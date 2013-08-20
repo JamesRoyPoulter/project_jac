@@ -1,5 +1,7 @@
 class Checkin < ActiveRecord::Base
+
   attr_accessible :address, :category_id, :latitude, :longitude, :user_id, :title, :assets_attributes
+
 
   has_one :user
   has_one :category

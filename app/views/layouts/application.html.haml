@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title YourWorld
+    = stylesheet_link_tag    "application", :media => "all"
+    %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans", :rel => "stylesheet", :type => "text/css"}
+      = csrf_meta_tags
+  %body
+    - if current_user
+      = link_to 'Logout', session_path(session), method: :delete, data: {confirm: 'Are you sure?'}
+    - else
+      = link_to 'Sign up', new_user_path
+      = link_to 'Login', sign_in_path
+    = yield
+    %script{:src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyCxyxHdIcLqLf9BGmNqQNQ1Ya9MVUedKjg&sensor=false", :type => "text/javascript"}
+    = javascript_include_tag "application"
