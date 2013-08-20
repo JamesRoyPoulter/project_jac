@@ -24,6 +24,7 @@
       = f.link_to_add "Add an Asset", :assets
     .field
       %b Category
+      = f.text_field :category_id
       %br
       = f.fields_for :category do |category|
         = category.label :name

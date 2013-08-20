@@ -19,10 +19,9 @@
     %tr
       %td= checkin.latitude
       %td= checkin.longitude
-      %td= checkin.text
-      %td= checkin.image
-      %td= checkin.audio
-      %td= checkin.video
+      - checkin.assets.each do |asset|
+        = asset.words
+        = image_tag asset.media
       %td= checkin.user_id
       %td= checkin.category_id
       %td= checkin.address
