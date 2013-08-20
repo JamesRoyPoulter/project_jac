@@ -1,7 +1,7 @@
 YourWorld::Application.routes.draw do
-  
-  get 'sign_in', to: 'sessions#create', as: :sign_in
-  get 'sign_out', to: 'sessions#destroy', as: :sign_out
+
+  get 'sign_in', to: 'sessions#new', as: :sign_in
+  resources :sessions, only: [:new, :create, :destroy]
 
   root to: 'pages#home'
 
