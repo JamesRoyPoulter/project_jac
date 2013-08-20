@@ -1,0 +1,35 @@
+.new_checkin_form
+  #map
+
+  = nested_form_for @checkin do |f|
+    - if @checkin.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@checkin.errors.count, "error")} prohibited this checkin from being saved:"
+        %ul
+          - @checkin.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.hidden_field :latitude
+    .field
+      = f.hidden_field :longitude
+    .field
+      %b Text:
+      = f.text_field :title
+    .field
+      = f.fields_for :assets do |asset|
+        = asset.text_field :words
+        = asset.file_field :media
+        = asset.link_to_remove "Remove Asset"
+      = f.link_to_add "Add an Asset", :assets
+    .field
+      %b Category
+      %br
+      = f.fields_for :category do |category|
+        = category.label :name
+        = category.text_field :name
+    / .field
+    /   = f.label :address
+    /   = f.text_field :address
+    .actions
+      = f.submit 'Save'

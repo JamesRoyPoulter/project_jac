@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YourWorld</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+<script type="text/javascript" 
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxyxHdIcLqLf9BGmNqQNQ1Ya9MVUedKjg&sensor=false"></script>
+<%= javascript_include_tag "application" %>
+</body>
+</html>

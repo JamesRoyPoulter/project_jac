@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Latitude:
+  = @checkin.latitude
+%p
+  %b Longitude:
+  = @checkin.longitude
+%p
+  %b Text:
+  = @checkin.text
+%p
+  %b Image:
+  = @checkin.image
+%p
+  %b Audio:
+  = @checkin.audio
+%p
+  %b Video:
+  = @checkin.video
+%p
+  %b User:
+  = @checkin.user_id
+%p
+  %b Category:
+  = @checkin.category_id
+%p
+  %b Address:
+  = @checkin.address
+
+= link_to 'Edit', edit_checkin_path(@checkin)
+\|
+= link_to 'Back', checkins_path
