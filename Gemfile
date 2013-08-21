@@ -8,6 +8,8 @@ gem 'active_model_serializers'
 gem 'pg'
 gem 'puma'
 
+gem 'faker'
+
 group :development do
   gem 'pry-rails'
   gem 'pry-debugger'
