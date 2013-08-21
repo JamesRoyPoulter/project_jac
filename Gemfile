@@ -31,5 +31,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # File Uploads
 gem 'carrierwave'
 gem 'fog'
+gem 'rmagick'
 
 gem 'geocoder'
