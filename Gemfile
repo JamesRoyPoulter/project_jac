@@ -8,6 +8,8 @@ gem 'active_model_serializers'
 gem 'pg'
 gem 'puma'
 
+gem 'faker'
+
 
 group :development do
   gem 'pry-rails'
@@ -16,6 +18,11 @@ group :development do
   gem 'binding_of_caller'
   gem 'pry-stack_explorer'
 end
+
+
+gem 'rspec-rails'
+gem 'factory_girl_rails'
+gem 'database_cleaner'
 
 
 gem 'sass-rails',   '~> 3.2.3'
