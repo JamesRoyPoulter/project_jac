@@ -1,1 +1,1 @@
-media File.open(File.join(Rails.root,'/app/assets/images/<file name>'))
+#media File.open(File.join(Rails.root,'/app/assets/images/<file name>'))
