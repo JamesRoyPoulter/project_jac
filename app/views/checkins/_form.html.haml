@@ -1,3 +1,5 @@
+%script{src:'http:////ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'}
+
 .new_checkin_form
   #map
 
@@ -24,13 +26,13 @@
       = f.link_to_add "Add an Asset", :assets
     .field
       %b Category
-      = f.text_field :category_id
       %br
-      = f.fields_for :category do |category|
-        = category.label :name
-        = category.text_field :name
+      = f.fields_for :categories do |category|
+        = select "checkin", "category_id", Category.all.collect { |x| [x.name, x.id] }
     / .field
     /   = f.label :address
     /   = f.text_field :address
     .actions
       = f.submit 'Save'
+
+= javascript_include_tag 'checkin_form'

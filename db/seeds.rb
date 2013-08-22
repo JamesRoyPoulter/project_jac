@@ -46,8 +46,9 @@ if @user.save
         media = ''
         words = 'Meow Meow Meow'
       end
-      @checkin = Checkin.create(latitude: @coords[0], longitude: @coords[1], title: "checkin_#{@index+1}", user_id: @user.id, category_id: @category.id)
+      @checkin = Checkin.create(latitude: @coords[0], longitude: @coords[1], title: "checkin_#{@index}", user_id: @user.id, category_id: @category.id)
       @asset = Asset.create(media: media, file_type: file_type, words: words, checkin_id: @checkin.id, user_id: @user.id,category_id: @category.id)
+      @index += 1
     end
   end
 end
