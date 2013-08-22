@@ -24,11 +24,12 @@
       = f.link_to_add "Add an Asset", :assets
     .field
       %b Category
-      = f.text_field :category_id
       %br
-      = f.fields_for :category do |category|
-        = category.label :name
-        = category.text_field :name
+      -# = f.fields_for :assets do |asset|
+      -#   = asset.select("asset", "category_id", Category.all.collect { [|x| x.id, x.name]})
+      = f.fields_for :categories do |category|
+        -# = category.select(:category_id, options_for_select(@event.items.map {|p| p.name}))
+        = select "checkin", "category_id", Category.all.collect { |x| [x.name, x.id]}
     / .field
     /   = f.label :address
     /   = f.text_field :address

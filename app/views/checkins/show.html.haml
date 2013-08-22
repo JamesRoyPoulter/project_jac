@@ -1,13 +1,10 @@
 %p#notice= notice
 
 %p
-  %b Latitude:
-  = @checkin.latitude
+  %b Category:
+  = @checkin.category.name
 %p
-  %b Longitude:
-  = @checkin.longitude
-%p
-  %b Text:
+  %b Experience:
   - @checkin.assets.each do |asset|
     = asset.words
     %p

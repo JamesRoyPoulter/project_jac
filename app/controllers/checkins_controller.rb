@@ -42,6 +42,7 @@ class CheckinsController < ApplicationController
   def create
     @checkin = Checkin.new(params[:checkin])
     @checkin.user_id = current_user.id
+    @checkin.category_id = params[:checkin][:category_id]
 
     respond_to do |format|
       if @checkin.save

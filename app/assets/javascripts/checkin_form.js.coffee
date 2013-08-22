@@ -41,6 +41,8 @@ map.locate({setView: true, maxZoom: 16});
 onLocationFound = (e) ->
   radius = e.accuracy / 2
   # If using custom markers, pass the marker image as an option to the marker, such as {icon: greenIcon}
+  $('#checkin_latitude').val(e.latitude)
+  $('#checkin_longitude').val(e.longitude)
   L.marker(e.latlng, draggable: true).addTo(map).bindPopup("You are within " + radius + " meters of this point").openPopup()
   # Creates radius circle beneath marker
   # L.circle(e.latlng, radius).addTo map
@@ -51,8 +53,6 @@ map.on "locationfound", onLocationFound
 onLocationError = (e) ->
   alert e.message
 map.on "locationerror", onLocationError
-
-
 
 # GOOGLE MAPS API
       #   myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
