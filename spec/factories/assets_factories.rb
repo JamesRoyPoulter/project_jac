@@ -1,9 +1,11 @@
 FactoryGirl.define do
 
   factory :asset do
-    association :user
-    association :category
-    association :checkin
+    trait :with_user do
+      user
+    end
+    category
+    checkin
     words 'lots of words'
     media File.open(File.join(Rails.root,'/app/assets/images/tiny_image.png'))
 
