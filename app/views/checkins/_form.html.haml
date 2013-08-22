@@ -26,11 +26,9 @@
       = f.link_to_add "Add an Asset", :assets
     .field
       %b Category
-      = f.text_field :category_id
       %br
-      = f.fields_for :category do |category|
-        = category.label :name
-        = category.text_field :name
+      = f.fields_for :categories do |category|
+        = select "checkin", "category_id", Category.all.collect { |x| [x.name, x.id] }
     / .field
     /   = f.label :address
     /   = f.text_field :address
