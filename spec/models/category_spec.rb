@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Category do
   before :each do
-    @category = FactoryGirl.create :category, :with_user
+    @category = FactoryGirl.build :category, :with_user
   end
   describe '#new' do
 

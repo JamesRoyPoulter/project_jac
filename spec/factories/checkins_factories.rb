@@ -1,6 +1,9 @@
 FactoryGirl.define do
 
   factory :checkin do
+    # trait :with_user do
+    #   user
+    # end
     user
     category
     # assets_attributes

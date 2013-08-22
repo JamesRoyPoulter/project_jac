@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Checkin do
   before :each do
-    @checkin = FactoryGirl.create :checkin
+    @checkin = FactoryGirl.build :checkin
   end
   describe '#new' do
 
