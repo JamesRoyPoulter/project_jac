@@ -8,6 +8,8 @@ describe User do
    it 'should instantiate a new User' do
      expect(@user).to be_an_instance_of User
    end
+   it 'should assign email'
+   it 'should assign name'
   end
 
 end
