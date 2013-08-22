@@ -15,15 +15,15 @@ assignPositionToForm = (position)->
 #***********
 
 # creates a map in the "map" divset
-# map = new L.map('map')
+map = new L.map('map')
 
 # adds an OpenStreetMap tile layer
-# L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-#     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-# }).addTo(map);
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
 
 # geolocates user
-# map.locate({setView: true, maxZoom: 16});
+map.locate({setView: true, maxZoom: 16});
 
 # # creates a custom icon
 # greenIcon = L.icon(
@@ -43,13 +43,13 @@ onLocationFound = (e) ->
   L.marker(e.latlng, draggable: true).addTo(map).bindPopup("You are within " + radius + " meters of this point").openPopup()
   # Creates radius circle beneath marker
   # L.circle(e.latlng, radius).addTo map
-# map.on "locationfound", onLocationFound
+map.on "locationfound", onLocationFound
 
 
 #raises error is cannot geolocate
 onLocationError = (e) ->
   alert e.message
-# map.on "locationerror", onLocationError
+map.on "locationerror", onLocationError
 
 
 
