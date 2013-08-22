@@ -14,7 +14,7 @@ $(function() {
         latlong = new L.LatLng(parseFloat(checkin.latitude), parseFloat(checkin.longitude));
         marker = new L.marker(latlong);
         marker.data = checkin;
-        return checkin_map.addLayer(marker);
+        checkin_map.addLayer(marker.bindPopup(checkin.title));
       });
     });
   });
