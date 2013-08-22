@@ -1,4 +1,5 @@
 class CheckinsController < ApplicationController
+  
   # GET /checkins
   # GET /checkins.json
   def index
