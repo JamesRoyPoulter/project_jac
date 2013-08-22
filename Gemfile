@@ -10,6 +10,7 @@ gem 'puma'
 
 gem 'faker'
 
+gem 'pry-rails'
 
 group :development do
   gem 'pry-rails'
