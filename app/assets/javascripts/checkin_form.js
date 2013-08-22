@@ -1,18 +1,5 @@
 var assignPositionToForm, getLocation, map, onLocationError, onLocationFound;
 
-getLocation = function() {
-  if (navigator.geolocation) {
-    return navigator.geolocation.getCurrentPosition(assignPositionToForm);
-  } else {
-    return x.innerHTML = 'Geolocation is not supported by this browser.';
-  }
-};
-
-assignPositionToForm = function(position) {
-  $('#checkin_latitude').val(position.coords.latitude);
-  return $('#checkin_longitude').val(position.coords.longitude);
-};
-
 map = L.map('map');
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
