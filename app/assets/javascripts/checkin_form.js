@@ -14,6 +14,8 @@ map.locate({
 onLocationFound = function(e) {
   var radius;
   radius = e.accuracy / 2;
+  $('#checkin_latitude').val(e.latitude);
+  $('#checkin_longitude').val(e.longitude);
   return L.marker(e.latlng, {
     draggable: true
   }).addTo(map).bindPopup("You are within " + radius + " meters of this point").openPopup();
