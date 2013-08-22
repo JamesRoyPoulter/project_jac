@@ -7,9 +7,9 @@ $(function() {
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(checkin_map);
-  return $('#show_checkins_map').click(function() {
-    return $.getJSON("/checkins.json", function(data) {
-      return $.each(data.checkins, function(index, checkin) {
+  $('#show_checkins_map').click(function() {
+    $.getJSON("/checkins.json", function(data) {
+      $.each(data.checkins, function(index, checkin) {
         var latlong, marker;
         latlong = new L.LatLng(parseFloat(checkin.latitude), parseFloat(checkin.longitude));
         marker = new L.marker(latlong);
