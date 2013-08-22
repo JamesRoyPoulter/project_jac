@@ -11,6 +11,9 @@ describe Category do
     it 'should have an assigned user' do
       expect(@category.user.name).to eq 'Luke Skywalker'
     end
+    it 'should assign a name' do
+      expect(@category.name).to eq 'Love'
+    end
   end
 
 end
