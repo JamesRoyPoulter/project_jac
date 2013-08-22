@@ -10,6 +10,7 @@ $(()->
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(checkin_map)
 
+  masterArray = []
   $('#show_checkins_map').click ()->
     $.getJSON "/checkins.json", (data)->
       $.each data.checkins, (index, checkin)->
@@ -19,6 +20,8 @@ $(()->
         marker = new L.marker(latlong)
         marker.data = checkin
         checkin_map.addLayer(marker)
+
+
 
         # POPULATE TIMELINE
         console.log(checkin.category)
@@ -34,13 +37,13 @@ $(()->
         if checkin.asset[0].media isnt undefined
           console.log(checkin.asset[0].media.url)
 
-       $('<img/>', {
-            id: 'asset',
-            src: checkin.asset[0].media.url
-          }).appendTo('#asset')
+          $('<img/>', {
+              id: 'asset',
+              src: checkin.asset[0].media.url
+            }).appendTo('#asset')
 
-       $('#timeline').append(timeline)
-       $('#category').append("<img src='"+checkin.asset[0].media.url+"'>")
+         # $('#timeline').append(timeline)
+          $('#category').append("<img src='"+checkin.asset[0].media.url+"'/>")
 
 
 )
