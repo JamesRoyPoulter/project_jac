@@ -9,7 +9,7 @@
       = csrf_meta_tags
       -# this meta_tag below makes the check-in map render on mobile without unwanted scaling
       %meta{:name =>"viewport", :content =>"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}
-  %body
+  %body{data: {page: [controller_name.capitalize, action_name.capitalize].join}}
     = render 'layouts/navbar'
     = yield
     %script{:src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyCxyxHdIcLqLf9BGmNqQNQ1Ya9MVUedKjg&sensor=false", :type => "text/javascript"}

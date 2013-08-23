@@ -1,7 +1,10 @@
 FactoryGirl.define do
 
   factory :category do
-    association :user
+    # user
+    trait :with_user do
+      user
+    end
     name 'Love'
   end
 

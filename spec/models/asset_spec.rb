@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Asset do
   before :each do
-    @asset = FactoryGirl.create :asset
+    @asset = FactoryGirl.build :asset
   end
   describe '#new' do
 
@@ -19,12 +19,9 @@ describe Asset do
     end
 
     it 'should have an assigned checkin' do
-      expect(@asset.checkin.name).to eq 'Love'
+      expect(@asset.checkin.title).to eq 'Checkin title'
     end
 
-    # it 'should assign a name' do
-    #   expect(@category.name).to eq 'Love'
-    # end
   end
 
 end

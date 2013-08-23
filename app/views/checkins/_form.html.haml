@@ -1,4 +1,4 @@
-%script{src:'http:////ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'}
+= current_user
 
 .new_checkin_form
   #map
@@ -20,8 +20,13 @@
       = f.text_field :title
     .field
       = f.fields_for :assets do |asset|
-        = asset.text_field :words
-        = asset.file_field :media
+        .words_or_media
+          .button Words
+          .button Media
+          .words_form
+            = asset.text_field :words
+          .media_form
+            = asset.file_field :media
         = asset.link_to_remove "Remove Asset"
       = f.link_to_add "Add an Asset", :assets
     .field
@@ -34,5 +39,3 @@
     /   = f.text_field :address
     .actions
       = f.submit 'Save'
-
-= javascript_include_tag 'checkin_form'

@@ -1,9 +1,9 @@
 class CheckinsController < ApplicationController
-  
+
   # GET /checkins
   # GET /checkins.json
   def index
-    @checkins = Checkin.all
+    @checkins = Checkin.all.reverse
 
     respond_to do |format|
       format.html # index.html.erb

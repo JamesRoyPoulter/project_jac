@@ -1,6 +1,6 @@
 class CheckinSerializer < ActiveModel::Serializer
   attributes :id, :latitude, :longitude, :title, :user_id, :category, :address, :asset, :created_at
-
+  
   def category
     self.object.category.name
   end
