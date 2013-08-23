@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130818154750) do
+ActiveRecord::Schema.define(:version => 20130820191446) do
 
   create_table "assets", :force => true do |t|
     t.string   "media"
     t.string   "words"
-    t.string   "type"
+    t.string   "file_type"
     t.integer  "checkin_id"
     t.integer  "user_id"
     t.integer  "category_id"

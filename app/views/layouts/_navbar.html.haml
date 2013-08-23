@@ -1,0 +1,7 @@
+.h1 NAVBAR
+- if current_user
+  = link_to 'Account', edit_user_path(current_user)
+  = link_to 'Logout', session_path(session), method: :delete, data: {confirm: 'Are you sure?'}
+- else
+  = link_to 'Sign up', new_user_path
+  = link_to 'Login', sign_in_path

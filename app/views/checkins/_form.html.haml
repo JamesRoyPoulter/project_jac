@@ -25,9 +25,8 @@
     .field
       %b Category
       %br
-      = f.fields_for :category do |category|
-        = category.label :name
-        = category.text_field :name
+      = f.fields_for :categories do |category|
+        = select "checkin", "category_id", Category.all.collect { |x| [x.name, x.id] }
     / .field
     /   = f.label :address
     /   = f.text_field :address
