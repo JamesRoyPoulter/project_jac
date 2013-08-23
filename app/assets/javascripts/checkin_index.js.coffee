@@ -1,9 +1,5 @@
 $ ->
 
-  # INITIATE JPAGES
-  $ ->
-    $("div.holder").jPages containerID: "itemContainer"
-
   # INITIATE MAP
   if $('body').data('page') is 'CheckinsIndex'
     checkin_map = undefined
@@ -32,11 +28,28 @@ $ ->
           checkin_map.addLayer marker.bindPopup(checkin.title)
 
           # POPULATE TIMELINE
+
+          # INITIATE JPAGES
+          $ ->
+            $("div.holder").jPages
+              containerID: "itemContainer"
+              # first       : false,
+              # previous    : false,
+              # next        : false,
+              # last        : false,
+              # # midRange    : 15,
+              # links       : "blank"
+              perPage : 2
+              # startPage : 1
+              # startRange : 1
+              # midRange : 5
+              # endRange : 1
+
           # CREATE DIVS
-          $("<div/>",
+          $("<li/>",
             class: 'checkin'
             id: 'checkin'+index
-          ).appendTo("#timeline")
+          ).appendTo("#itemContainer")
 
           # POPULATE CATEGORY
           $("<div/>",
@@ -57,4 +70,3 @@ $ ->
             # $("#checkin"+index).append "<img src='" + checkin.asset[0].media.show_checkin.url + "'/>"
 
           index +=1
-
