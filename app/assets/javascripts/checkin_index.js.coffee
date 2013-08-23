@@ -1,4 +1,10 @@
 $ ->
+
+  # INITIATE JPAGES
+  $ ->
+    $("div.holder").jPages containerID: "itemContainer"
+
+  # INITIATE MAP
   if $('body').data('page') is 'CheckinsIndex'
     checkin_map = undefined
     checkin_map = L.map("map",
