@@ -1,5 +1,3 @@
-= current_user
-
 .new_checkin_form
   #map
 
@@ -21,8 +19,8 @@
     .field
       = f.fields_for :assets do |asset|
         .words_or_media
-          .button Words
-          .button Media
+          .words_button Words
+          .media_button Media
           .words_form
             = asset.text_field :words
           .media_form
@@ -30,12 +28,12 @@
         = asset.link_to_remove "Remove Asset"
       = f.link_to_add "Add an Asset", :assets
     .field
-      %b Category
+      %b New Category
       %br
-      = f.fields_for :categories do |category|
-        = select "checkin", "category_id", Category.all.collect { |x| [x.name, x.id] }
-    / .field
-    /   = f.label :address
-    /   = f.text_field :address
+      = f.fields_for :category do |category_fields|
+        = category_fields.text_field :name
+    .field
+      %b Category
+      = select "checkin", "category_id", Category.all.collect { |x| [x.name, x.id] }, include_blank: true
     .actions
       = f.submit 'Save'
