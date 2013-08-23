@@ -8,6 +8,10 @@ gem 'active_model_serializers'
 gem 'pg'
 gem 'puma'
 
+gem 'faker'
+
+gem 'pry-rails'
+
 group :development do
   gem 'pry-rails'
   gem 'pry-debugger'
@@ -15,6 +19,11 @@ group :development do
   gem 'binding_of_caller'
   gem 'pry-stack_explorer'
 end
+
+
+gem 'rspec-rails'
+gem 'factory_girl_rails'
+gem 'database_cleaner'
 
 
 gem 'sass-rails',   '~> 3.2.3'
@@ -30,5 +39,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # File Uploads
 gem 'carrierwave'
 gem 'fog'
+gem 'rmagick'
 
 gem 'geocoder'

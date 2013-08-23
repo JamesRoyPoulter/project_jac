@@ -1,35 +1,14 @@
-%h1 Listing checkins
+%button#show_checkins_map Checkins
 
-%table
-  %tr
-    %th Latitude
-    %th Longitude
-    %th Text
-    %th Image
-    %th Audio
-    %th Video
-    %th User
-    %th Category
-    %th Address
-    %th
-    %th
-    %th
+#map
 
-  - @checkins.each do |checkin|
-    %tr
-      %td= checkin.latitude
-      %td= checkin.longitude
-      %td= checkin.text
-      %td= checkin.image
-      %td= checkin.audio
-      %td= checkin.video
-      %td= checkin.user_id
-      %td= checkin.category_id
-      %td= checkin.address
-      %td= link_to 'Show', checkin
-      %td= link_to 'Edit', edit_checkin_path(checkin)
-      %td= link_to 'Destroy', checkin, :method => :delete, :data => { :confirm => 'Are you sure?' }
+#timeline
+  TIMELINE
+  .h1#title
+  #category
+  #asset
+  .buttons
+    %button#timeline_next_button Previous five
+    %button#timeline_previous_button Next five
 
-%br
 
-= link_to 'New Checkin', new_checkin_path
