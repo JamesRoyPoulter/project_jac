@@ -1,4 +1,6 @@
 $ ->
+
+  # INITIATE MAP
   if $('body').data('page') is 'CheckinsIndex'
     checkin_map = undefined
     checkin_map = L.map("map",
@@ -26,29 +28,50 @@ $ ->
           checkin_map.addLayer marker.bindPopup(checkin.title)
 
           # POPULATE TIMELINE
-          # CREATE DIVS
-          $("<div/>",
-            class: 'checkin'
-            id: 'checkin'+index
-          ).appendTo("#timeline")
+
+          # INITIATE JPAGES
+          $ ->
+            $("div.holder").jPages
+              containerID: "itemContainer"
+              # first       : false,
+              # previous    : false,
+              # next        : false,
+              # last        : false,
+              # # midRange    : 15,
+              # links       : "blank"
+              perPage : 2
+              # startPage : 1
+              # startRange : 1
+              # midRange : 5
+              # endRange : 1
 
           # POPULATE CATEGORY
-          $("<div/>",
+          checkin_div = $("<div/>",
             class: 'checkin_category'
             id: 'checkin_category'+index
             text: checkin.category
-          ).appendTo "#checkin" + index
+          )
+
+          # POPULATE LINK TO SHOW PAGE
+          anchor_tag = $('<a/>', { href: '/checkins/' + checkin.id, html: checkin_div })
+
+          # CREATE CONTAINER DIVS
+          $("<li/>",
+            class: 'checkin'
+            id: 'checkin'+index,
+            html: anchor_tag
+            # html: $('<a/>', { href: '/checkins/' + checkin.id })
+          ).appendTo("#itemContainer")
 
           #  CHECK CHECKIN HAS MEDIA
-          if checkin.asset[0].media isnt undefined
+          if checkin.assets[0].media isnt undefined
 
-            # IF MEDIA PRESENT, APPEND TO ABOVE DIV
+            # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
             $("<img/>",
               class: 'checkin_image'
               id: 'checkin_image'+index
-              src: checkin.asset[0].media.show_checkin.url
+              src: checkin.assets[0].media.show_checkin.url
             ).appendTo "#checkin_category"+index
-            # $("#checkin"+index).append "<img src='" + checkin.asset[0].media.show_checkin.url + "'/>"
+
 
           index +=1
-
