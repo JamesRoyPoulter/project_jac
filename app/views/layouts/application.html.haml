@@ -6,7 +6,7 @@
     = stylesheet_link_tag    "application", :media => "all"
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans", :rel => "stylesheet", :type => "text/css"}
     %script{:src=>"//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
-    %script{:src=>"http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"}
+    %script{:type=>"text/javascript", :src=>"http://maps.stamen.com/js/tile.stamen.js?v1.2.3"}
       = csrf_meta_tags
       -# this meta_tag below makes the check-in map render on mobile without unwanted scaling
       %meta{:name =>"viewport", :content =>"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}
