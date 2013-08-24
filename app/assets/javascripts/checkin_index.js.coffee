@@ -141,6 +141,8 @@ $ ->
 
     google.maps.event.addDomListener(window, 'load', initialize(6, styles))
 
+    infowindow = new google.maps.InfoWindow
+
     $("#show_checkins_map").click ->
       $.getJSON "/checkins.json", (data) ->
 
@@ -159,11 +161,12 @@ $ ->
           bounds.extend(checkinLatLng)
           map.fitBounds(bounds)
 
-          infowindow = new google.maps.InfoWindow
-
+          contentString = checkin.category
           google.maps.event.addListener(marker, 'click', ->
-            infowindow.setContent(checkin.category)
+            infowindow.setContent(contentString)
             infowindow.open(map, marker))
+          #Closes infowindow when new one opened
+
 
           # POPULATE TIMELINE
           # INITIATE JPAGES
@@ -212,5 +215,6 @@ $ ->
 
 
           index +=1
+
 
 
