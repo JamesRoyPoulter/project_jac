@@ -3,32 +3,35 @@ $ ->
   # INITIATE MAP
   if $('body').data('page') is 'CheckinsIndex'
 
-    initialize = () ->
+    initialize = (zoom) ->
       mapOptions =
         center: new google.maps.LatLng(51.5072, -0.1275)
-        zoom: 5
+        zoom: zoom
         mapTypeId: google.maps.MapTypeId.ROADMAP
 
       map = new google.maps.Map(document.getElementById("map"), mapOptions)
 
-    google.maps.event.addDomListener(window, 'load', initialize)
+    google.maps.event.addDomListener(window, 'load', initialize(5))
 
     $("#show_checkins_map").click ->
       $.getJSON "/checkins.json", (data) ->
-        map = new google.maps.Map(document.getElementById("map"))
+
+        map = initialize()
+        bounds = new google.maps.LatLngBounds()
 
         # DECLARE INDEX VALUE
         index = 1
 
         # ITERATE THROUGH JSON OBJECT
         $.each data.checkins, (index, checkin) ->
+          checkinLatLng = new google.maps.LatLng checkin.latitude, checkin.longitude
           marker = new google.maps.Marker
-            position: new google.maps.LatLng checkin.latitude, checkin.longitude
+            position: checkinLatLng
             map: map
-
+          bounds.extend(checkinLatLng)
+          map.fitBounds(bounds)
 
           # POPULATE TIMELINE
-
           # INITIATE JPAGES
           $ ->
             $("div.holder").jPages
@@ -64,7 +67,7 @@ $ ->
           ).appendTo("#itemContainer")
 
           #  CHECK CHECKIN HAS MEDIA
-          if checkin.assets[0].media isnt undefined
+          unless checkin.assets[0] is undefined
 
             # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
             $("<img/>",
