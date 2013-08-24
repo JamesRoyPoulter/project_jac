@@ -6,7 +6,8 @@
   - @checkin.assets.each do |asset|
     = asset.words
     %p
-      = image_tag asset.media.show_checkin
+      - if asset.media.url != nil
+        = image_tag asset.media.show_checkin
 
 
 
