@@ -4,10 +4,11 @@ class AssetUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
+  include CarrierWave::MimeTypes
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  # storage :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -41,7 +42,7 @@ class AssetUploader < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg gif png mp4 3gp mp3 aac wav mid mov)
   end
 
   # Override the filename of the uploaded files:

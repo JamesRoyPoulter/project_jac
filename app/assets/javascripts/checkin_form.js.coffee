@@ -1,4 +1,18 @@
 $ ->
+
+  $('.words_button').on 'click', ()->
+    $('.media_form').slideUp 500
+    $('.words_form').slideDown 500
+
+  $('.media_button').on 'click', ()->
+    $('.words_form').slideUp 500
+    $('.media_form').slideDown 500
+
+  $('.new_category').on 'click', (e)->
+    e.preventDefault()
+    $('#new_category').slideDown 500
+    $('#existing_category').slideUp 500
+
   if $('body').data('page') is 'CheckinsNew'
     #***********
     #LEAFLET JS
@@ -10,10 +24,10 @@ $ ->
     # adds an OpenStreetMap tile layer
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map)
+    }).addTo map
 
     # geolocates user
-    map.locate({setView: true, maxZoom: 16})
+    map.locate setView: true, maxZoom: 16
 
     # # creates a custom icon
     # greenIcon = L.icon(

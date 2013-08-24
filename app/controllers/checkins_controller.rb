@@ -1,4 +1,5 @@
 class CheckinsController < ApplicationController
+  before_filter :authenticate
 
   # GET /checkins
   # GET /checkins.json
@@ -43,8 +44,8 @@ class CheckinsController < ApplicationController
   def create
     @checkin = Checkin.new(params[:checkin])
     @checkin.user_id = current_user.id
-    @checkin.category_id = params[:checkin][:category_id]
-
+    assign_category
+    binding.pry
     respond_to do |format|
       if @checkin.save
         format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
@@ -81,6 +82,18 @@ class CheckinsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to checkins_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+  def assign_category
+    category_id = params[:checkin][:category_id]
+    if category_id.empty?
+      category = Category.create(name: params[:category][:name], user_id: current_user.id)
+      @checkin.category_id = category.id
+      binding.pry
+    else
+      @checkin.category_id = category_id
     end
   end
 end

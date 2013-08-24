@@ -5,6 +5,22 @@
   margin: 0 auto;
   padding: 1%;
   text-align: center;
+  
+  .words_button,
+  .media_button {
+    display: inline-block;
+    padding: 3% 5%;
+    border-radius: 10px;
+    background: #ccc;
+    margin: 5%;
+  }
+
+  .words_form,
+  .media_form,
+  #new_category {
+    display: none;
+  }
+
 }
 
 #map {
@@ -13,7 +29,6 @@
   margin: 0 auto;
   float: left;
 }
-
 
 // CSS for leaflet map on mobile
 // body {

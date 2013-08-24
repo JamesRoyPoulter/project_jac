@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130820191446) do
+ActiveRecord::Schema.define(:version => 20130824113932) do
 
   create_table "assets", :force => true do |t|
     t.string   "media"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20130820191446) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "color"
   end
 
   create_table "checkins", :force => true do |t|
