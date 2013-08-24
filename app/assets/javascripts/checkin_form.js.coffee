@@ -4,13 +4,28 @@ $ ->
     #LEAFLET JS
     #***********
 
-    # creates a map in the "map" divset
-    map = new L.map('map')
+    # defines the tile layers
+    graphic = L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.jpg', {
+    attribution: "<a href='http://stamen.com'>Stamen Design</a> <a href='http://creativecommons.org/licenses/by/3.0'>CC-BY-SA</a>"
+    })
+    midnight = L.tileLayer("http://{s}.tile.cloudmade.com/8fe4ccbb4940415d9475cc21bf41ea53/999/256/{z}/{x}/{y}.png", {attribution: '2011 CloudMade'})
 
-    # adds an OpenStreetMap tile layer
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo map
+    # creates a map in the "map" divset
+    map = new L.map('map', {
+      layers: [graphic]
+      })
+
+    # sets variable for the layers
+    baseMaps = {
+      "Day View": graphic,
+      "Night View": midnight
+    };
+
+    #determines layer based on time of day
+
+
+    #add manual controller for layer versions
+    L.control.layers(baseMaps).addTo(map);
 
     # geolocates user
     map.locate setView: true, maxZoom: 16
