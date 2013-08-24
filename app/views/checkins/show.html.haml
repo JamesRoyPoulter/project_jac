@@ -1,15 +1,24 @@
 %p#notice= notice
 
-%p
-  = @checkin.category.name
-%p
-  - @checkin.assets.each do |asset|
-    = asset.words
-    %p
-      - if asset.media.url != nil
-        = image_tag asset.media.show_checkin
+.show_checkin_container
+  %p
+    = @checkin.category.name
+    %b :
+    = @checkin.title
+    = link_to 'Edit', edit_checkin_path(@checkin)
+  .assets_container
+    .show_checkin_map
+      MAP GOES HERE
+      - if @checkin.address != nil
+        = @checkin.address
+      - else
+        ADDRESS GOES UNDERNEATH
+    - @checkin.assets.each do |asset|
+      .asset_div
+        .asset_words
+          = asset.words
+        .asset_media
+          - if asset.media.url != nil
+            = image_tag asset.media.show_checkin
 
-
-
-= link_to 'Edit', edit_checkin_path(@checkin)
-/ # = link_to 'Back', checkins_path
+  / # = link_to 'Back', checkins_path
