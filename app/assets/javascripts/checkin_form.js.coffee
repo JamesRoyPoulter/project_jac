@@ -11,7 +11,7 @@ assignPositionToForm = (position)->
   $('#checkin_latitude').val(position.coords.latitude)
   $('#checkin_longitude').val(position.coords.longitude)
 
-# GOOGLE MAPS API
+  # GOOGLE MAPS API
   myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
   mapOptions =
@@ -25,5 +25,9 @@ assignPositionToForm = (position)->
       position: myLatlng
       map: map
       title: 'Hello World!'
+      draggable: true
+
+
+google.maps.event.addListener(marker, 'dragend', ()->)
 
 google.maps.event.addDomListener(window, 'load', getLocation)
