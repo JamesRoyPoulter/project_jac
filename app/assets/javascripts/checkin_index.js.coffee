@@ -59,13 +59,13 @@ $ ->
           ).appendTo "#checkin" + index
 
           #  CHECK CHECKIN HAS MEDIA
-          if checkin.asset[0].media isnt undefined
+          if checkin.assets[0].media isnt undefined
 
             # IF MEDIA PRESENT, APPEND TO ABOVE DIV
             $("<img/>",
               class: 'checkin_image'
               id: 'checkin_image'+index
-              src: checkin.asset[0].media.show_checkin.url
+              src: checkin.assets[0].media.show_checkin.url
             ).appendTo "#checkin_category"+index
             # $("#checkin"+index).append "<img src='" + checkin.asset[0].media.show_checkin.url + "'/>"
 
