@@ -10,9 +10,9 @@ end
 @user = User.new(email: 'cj@cj.com', name: 'CJ Ponti', password: 'meowmeow', password_confirmation: 'meowmeow')
 if @user.save
   puts 'User saved...'
-  @love = Category.new(name: 'Love', user_id: @user.id)
-  @food = Category.new(name: 'Food', user_id: @user.id)
-  @art = Category.new(name: 'Art', user_id: @user.id)
+  @love = Category.new(name: 'Love', color: 'red', user_id: @user.id)
+  @food = Category.new(name: 'Food', color: 'blue', user_id: @user.id)
+  @art = Category.new(name: 'Art', color: 'green', user_id: @user.id)
   if @love.save && @food.save && @art.save
     puts 'Categories saved...'
     @words = ['love','food','art']

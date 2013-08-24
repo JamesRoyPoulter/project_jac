@@ -1,4 +1,18 @@
 $ ->
+
+  $('.words_button').on 'click', ()->
+    $('.media_form').slideUp 500
+    $('.words_form').slideDown 500
+
+  $('.media_button').on 'click', ()->
+    $('.words_form').slideUp 500
+    $('.media_form').slideDown 500
+
+  $('.new_category').on 'click', (e)->
+    e.preventDefault()
+    $('#new_category').slideDown 500
+    $('#existing_category').slideUp 500
+
   if $('body').data('page') is 'CheckinsNew'
     #***********
     #LEAFLET JS
@@ -6,13 +20,6 @@ $ ->
 
     # creates a map in the "map" divset
     map = new L.map('map')
-
-    $('.words_button').click ()->
-      alert('meow')
-      $('.words_form').slideDown(500)
-
-    $('.media_button').click ()->
-      $('.media_form').slideDown(500)
 
     # adds an OpenStreetMap tile layer
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
