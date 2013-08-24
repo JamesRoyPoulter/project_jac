@@ -2,30 +2,30 @@ $ ->
 
   # INITIATE MAP
   if $('body').data('page') is 'CheckinsIndex'
-    checkin_map = undefined
-    checkin_map = L.map("map",
-      center: [51.505, -0.09]
-      zoom: 11
-    )
-    L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png",
-      attribution: "&copy; <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"
-    ).addTo checkin_map
+
+    initialize = () ->
+      mapOptions =
+        center: new google.maps.LatLng(51.5072, -0.1275)
+        zoom: 5
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+
+      map = new google.maps.Map(document.getElementById("map"), mapOptions)
+
+    google.maps.event.addDomListener(window, 'load', initialize)
+
     $("#show_checkins_map").click ->
       $.getJSON "/checkins.json", (data) ->
+        map = new google.maps.Map(document.getElementById("map"))
 
         # DECLARE INDEX VALUE
         index = 1
 
         # ITERATE THROUGH JSON OBJECT
         $.each data.checkins, (index, checkin) ->
+          marker = new google.maps.Marker
+            position: new google.maps.LatLng checkin.latitude, checkin.longitude
+            map: map
 
-          # POPULATE MAP
-          latlong = undefined
-          marker = undefined
-          latlong = new L.LatLng(parseFloat(checkin.latitude), parseFloat(checkin.longitude))
-          marker = new L.marker(latlong)
-          marker.data = checkin
-          checkin_map.addLayer marker.bindPopup(checkin.title)
 
           # POPULATE TIMELINE
 
@@ -75,3 +75,5 @@ $ ->
 
 
           index +=1
+
+
