@@ -13,7 +13,26 @@ $ ->
     $('#new_category').slideDown 500
     $('#existing_category').slideUp 500
 
+  set_form_lat_lng = (lat, long)->
+    $('#checkin_latitude').val(lat)
+    $('#checkin_longitude').val(long)
+    console.log lat, long
+
   if $('body').data('page') is 'CheckinsNew'
+
+    assignPositionToForm = (position)->
+      loc = coords()
+      set_form_lat_lng loc[0], loc[1]
+
+    coords = (position)->
+      loc = [ position.coords.latitude, position.coords.longitude ]
+      return loc
+
+      if (navigator.geolocation)
+        navigator.geolocation.getCurrentPosition coords
+      else
+        $('body').innerHTML= 'Geolocation is not supported by this browser.'
+
     #***********
     #LEAFLET JS
     #***********
@@ -26,8 +45,7 @@ $ ->
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo map
 
-    # geolocates user
-    map.locate setView: true, maxZoom: 16
+    marker = L.marker([coords()[0], coords()[1]], draggable: true).addTo(map).bindPopup("meow").openPopup()
 
     # # creates a custom icon
     # greenIcon = L.icon(
@@ -40,17 +58,9 @@ $ ->
     #   popupAnchor: [-3, -76] # point from which the popup should open relative to the iconAnchor
     # )
 
-    #sets marker with popup
-    onLocationFound = (e) ->
-      radius = e.accuracy / 2
-      # If using custom markers, pass the marker image as an option to the marker, such as {icon: greenIcon}
-      $('#checkin_latitude').val(e.latitude)
-      $('#checkin_longitude').val(e.longitude)
-      L.marker(e.latlng, draggable: true).addTo(map).bindPopup("You are within " + radius + " meters of this point").openPopup()
-      # Creates radius circle beneath marker
-      # L.circle(e.latlng, radius).addTo map
-    map.on "locationfound", onLocationFound
+    # marker.on 'dragend', onLocationFound
 
+    # map.on "locationfound", onLocationFound
 
     #raises error is cannot geolocate
     onLocationError = (e) ->

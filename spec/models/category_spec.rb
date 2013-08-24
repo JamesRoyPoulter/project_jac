@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe Category do
-  before :each do
-    @category = FactoryGirl.build :category, :with_user
-  end
   describe '#new' do
-
+    before :each do
+      @category = FactoryGirl.create :category
+    end
     it 'should instantiate a new Category' do
       expect(@category).to be_an_instance_of Category
     end
@@ -17,5 +16,10 @@ describe Category do
     it 'should assign a name' do
       expect(@category.name).to eq 'Love'
     end
+
+    # it 'should format name' do
+    #   @category1 = FactoryGirl.build :category, name: 'LOVE'
+    #   expect(@category1.name).to eq 'Love'
+    # end
   end
 end

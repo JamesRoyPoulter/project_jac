@@ -13,6 +13,6 @@
   %body{data: {page: [controller_name.capitalize, action_name.capitalize].join}}
     = render 'layouts/navbar'
     = yield
-    %script{:src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyCxyxHdIcLqLf9BGmNqQNQ1Ya9MVUedKjg&sensor=false", :type => "text/javascript"}
 
+    %script{src: "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE2']}&sensor=false", type: "text/javascript"}
     = javascript_include_tag "application"

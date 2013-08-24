@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Checkin do
   before :each do
-    @checkin = FactoryGirl.build :checkin
+    @checkin = FactoryGirl.create :checkin
   end
   describe '#new' do
 
@@ -23,7 +23,7 @@ describe Checkin do
     end
 
     it 'should assign an address' do
-      expect(@checkin.address).to eq '9 Backhill Lane, PO57 C0D'
+      expect(@checkin.address).to eq '46 Old Woolwich Road, London, Greater London SE10 9NY, UK'
     end
 
     it 'should assign a latitude' do

@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-
   private
   def authenticate
     unless logged_in?
