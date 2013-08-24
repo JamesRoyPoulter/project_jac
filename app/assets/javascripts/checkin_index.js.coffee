@@ -45,28 +45,33 @@ $ ->
               # midRange : 5
               # endRange : 1
 
-          # CREATE DIVS
-          $("<li/>",
-            class: 'checkin'
-            id: 'checkin'+index
-          ).appendTo("#itemContainer")
-
           # POPULATE CATEGORY
-          $("<div/>",
+          checkin_div = $("<div/>",
             class: 'checkin_category'
             id: 'checkin_category'+index
             text: checkin.category
-          ).appendTo "#checkin" + index
+          )
+
+          # POPULATE LINK TO SHOW PAGE
+          anchor_tag = $('<a/>', { href: '/checkins/' + checkin.id, html: checkin_div })
+
+          # CREATE CONTAINER DIVS
+          $("<li/>",
+            class: 'checkin'
+            id: 'checkin'+index,
+            html: anchor_tag
+            # html: $('<a/>', { href: '/checkins/' + checkin.id })
+          ).appendTo("#itemContainer")
 
           #  CHECK CHECKIN HAS MEDIA
           if checkin.assets[0].media isnt undefined
 
-            # IF MEDIA PRESENT, APPEND TO ABOVE DIV
+            # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
             $("<img/>",
               class: 'checkin_image'
               id: 'checkin_image'+index
               src: checkin.assets[0].media.show_checkin.url
             ).appendTo "#checkin_category"+index
-            # $("#checkin"+index).append "<img src='" + checkin.asset[0].media.show_checkin.url + "'/>"
+
 
           index +=1
