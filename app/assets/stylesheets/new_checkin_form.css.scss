@@ -5,21 +5,22 @@
   margin: 0 auto;
   padding: 1%;
   text-align: center;
-  
+
   .form {
     width: 100%;
     text-align: center;
 
     #new_category {
       display: none;
-    } 
+    }
   }
 }
 
 #map {
   height:400px;
-  width:90%;
+  width:100%;
   margin: 0 auto;
+  float: left;
 }
 
 // CSS for leaflet map on mobile

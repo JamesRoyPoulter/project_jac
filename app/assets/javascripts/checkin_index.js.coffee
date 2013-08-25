@@ -22,8 +22,6 @@ $ ->
     # CREATE CONTAINER DIVS
     list_item = $("<li/>", class: 'checkin', id: 'checkin'+index, html: anchor_tag)
 
-    $('#itemContainer').append list_item
-
     #  CHECK CHECKIN HAS MEDIA
     unless checkin.assets[0] is undefined
         # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
@@ -33,15 +31,17 @@ $ ->
           src: checkin.assets[0].media.show_checkin.url
         ).appendTo "#checkin_category"+index
 
+    $('#itemContainer').append list_item
+
   paginate = ()->
-    $("div.holder").jPages
+    $(".holder").jPages
       containerID: "itemContainer"
       # first       : false,
-      # previous    : false,
-      # next        : false,
+      previous    : false,
+      next        : false,
       # last        : false,
       # # midRange    : 15,
-      # links       : "blank"
+      links       : "blank"
       perPage : 5
       # startPage : 1
       # startRange : 1
