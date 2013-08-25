@@ -1,32 +1,47 @@
-.new_checkin_form {
+.new_checkin,
+.past_checkin {
   border-radius: 10px;
-  border: 1px solid #ccc;
   width: 60%;
   margin: 0 auto;
   padding: 1%;
   text-align: center;
-  
+
   .form {
     width: 100%;
     text-align: center;
 
     #new_category {
       display: none;
-    } 
+    }
   }
 }
 
-#map {
+.past_checkin_form {
+  display: none;
+}
+
+.checkin_buttons {
+  width: 40%; height: 71px;
+  margin: 0 auto;
+  border: 1px solid black;
+
+  .new_checkin_button,
+  .past_checkin_button {
+    float: left;
+    display: inline-block;
+    padding: 5%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+
+  .past_checkin_button {
+    float: right;
+  }
+}
+
+#map,
+#past_map {
   height:400px;
   width:90%;
   margin: 0 auto;
 }
-
-// CSS for leaflet map on mobile
-// body {
-//     padding: 0;
-//     margin: 0;
-// }
-// html, body, #map {
-//     height: 100%;
-// }
