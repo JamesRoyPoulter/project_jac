@@ -1,5 +1,4 @@
 $ ->
-
   addCheckinMarker = (checkin, map, bounds)->
     checkinLatLng = new google.maps.LatLng checkin.latitude, checkin.longitude
     marker = new google.maps.Marker
@@ -169,6 +168,7 @@ $ ->
           ]
         }
       ]
+
     $('#checkinsSearch').submit (e)->
       e.preventDefault
       console.log 'poop'
