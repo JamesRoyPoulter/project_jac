@@ -12,6 +12,12 @@ $ ->
     bounds.extend(checkinLatLng)
     map.fitBounds(bounds)
 
+  generate_static_url = (checkin) ->
+    console.log(checkin)
+    lat = checkin.latitude
+    lng = checkin.longitude
+    "http://maps.googleapis.com/maps/api/staticmap?center=" +lat + "," + lng + " &zoom=14&markers=" + lat + ","+lng + "&size=175x175&sensor=false"
+
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
     checkin_title = $("<div/>", class: 'checkin_title', id: 'checkin_title'+index, text: checkin.title)
@@ -26,14 +32,12 @@ $ ->
 
     #  CHECK CHECKIN HAS MEDIA
     if checkin.assets[0] is undefined
-      console.log('hi1')
       $("<img/>",
           class: 'checkin_minimap'
           id: 'checkin_minimap'+index
-          src: checkin.generate_static_url
+          src: generate_static_url(checkin)
         ).appendTo "#checkin_title"+index
     else if checkin.assets[0].media.show_checkin.url
-      console.log('hi2')
       $("<img/>",
         class: 'checkin_image'
         id: 'checkin_image'+index
@@ -42,7 +46,6 @@ $ ->
     else
     # console.log(checkin.assets[0].media.show_checkin.url)
         # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
-      console.log('hello')
       $("<div/>",
           class: 'checkin_words'
           id: 'checkin_words'+index
