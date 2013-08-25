@@ -45,7 +45,7 @@ class CheckinsController < ApplicationController
     @checkin = Checkin.new(params[:checkin])
     @checkin.user_id = current_user.id
     assign_category
-    binding.pry
+    # binding.pry
     respond_to do |format|
       if @checkin.save
         format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
@@ -91,7 +91,7 @@ class CheckinsController < ApplicationController
     if category_id.empty?
       category = Category.create(name: params[:category][:name], user_id: current_user.id)
       @checkin.category_id = category.id
-      binding.pry
+      # binding.pry
     else
       @checkin.category_id = category_id
     end

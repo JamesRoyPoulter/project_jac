@@ -34,11 +34,11 @@ $ ->
             $("div.holder").jPages
               containerID: "itemContainer"
               # first       : false,
-              # previous    : false,
-              # next        : false,
-              # last        : false,
+              previous    : false,
+              next        : false,
+              last        : false,
               # # midRange    : 15,
-              # links       : "blank"
+              links       : "blank"
               perPage : 2
               # startPage : 1
               # startRange : 1
