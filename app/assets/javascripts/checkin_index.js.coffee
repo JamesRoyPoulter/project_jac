@@ -173,8 +173,8 @@ $ ->
 
     $('#checkinsSearch').submit (e)->
       e.preventDefault
-      console.log 'poop'
       query = $('#searchLocation').val()
+      $('#searchLocation').val ''
       $.getJSON '/checkins/search/'+query, (data)->
         if data.checkins.length isnt 0
           index = 1
@@ -215,18 +215,4 @@ $ ->
         populateTimeLine checkin, index
         index +=1
       paginate()
-
-    $('#checkinsSearch').submit (e)->
-      e.preventDefault
-      query = $('#searchLocation').val()
-      $.getJSON '/checkins/search/'+query, (data)->
-        if data.checkins.length isnt 0
-          index = 1
-          $.each data.checkins, (index, checkin) ->
-            addCheckinMarker checkin, map, bounds
-            populateTimeLine checkin, index
-            index += 1
-        else
-          alert 'No checkins near the location you have requested'
-
 
