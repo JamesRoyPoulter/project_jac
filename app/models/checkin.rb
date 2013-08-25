@@ -19,8 +19,6 @@ class Checkin < ActiveRecord::Base
     [self.latitude, self.longitude]
   end
 
-  def generate_static_url
-    "http://maps.google.com/maps/api/staticmap?markers=label:X|" + latitude + ","+longitude + "&size=200x200&sensor=TRUE_OR_FALSE"
-  end
+
 
 end

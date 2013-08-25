@@ -11,12 +11,18 @@ $ ->
     bounds.extend(checkinLatLng)
     map.fitBounds(bounds)
 
+  generate_static_url = (checkin) ->
+    console.log(checkin)
+    lat = checkin.latitude
+    lng = checkin.longitude
+    "http://maps.googleapis.com/maps/api/staticmap?center=" +lat + "," + lng + " &zoom=14&markers=" + lat + ","+lng + "&size=175x175&sensor=false"
+
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
-    checkin_div = $("<div/>", class: 'checkin_category', id: 'checkin_category'+index, text: checkin.title)
+    checkin_title = $("<div/>", class: 'checkin_title', id: 'checkin_title'+index, text: checkin.title)
 
     # POPULATE LINK TO SHOW PAGE IN CHECKIN DIV
-    anchor_tag = $('<a/>', { href: '/checkins/' + checkin.id, html: checkin_div })
+    anchor_tag = $('<a/>', { href: '/checkins/' + checkin.id, html: checkin_title })
 
     # CREATE CONTAINER DIVS
     list_item = $("<li/>", class: 'checkin', id: 'checkin'+index, html: anchor_tag)
@@ -24,23 +30,38 @@ $ ->
     $('#itemContainer').append list_item
 
     #  CHECK CHECKIN HAS MEDIA
-    unless checkin.assets[0] is undefined
+    if checkin.assets[0] is undefined
+      $("<img/>",
+          class: 'checkin_minimap'
+          id: 'checkin_minimap'+index
+          src: generate_static_url(checkin)
+        ).appendTo "#checkin_title"+index
+    else if checkin.assets[0].media.show_checkin.url
+      $("<img/>",
+        class: 'checkin_image'
+        id: 'checkin_image'+index
+        src: checkin.assets[0].media.show_checkin.url
+      ).appendTo "#checkin_title"+index
+    else
+    # console.log(checkin.assets[0].media.show_checkin.url)
         # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
-        $("<img/>",
-          class: 'checkin_image'
-          id: 'checkin_image'+index
-          src: checkin.assets[0].media.show_checkin.url
-        ).appendTo "#checkin_category"+index
+      $("<div/>",
+          class: 'checkin_words'
+          id: 'checkin_words'+index
+          html: checkin.assets[0].words
+        ).appendTo "#checkin_title"+index
+
+
 
   paginate = ()->
-    $("div.holder").jPages
+    $(".holder").jPages
       containerID: "itemContainer"
       # first       : false,
-      # previous    : false,
-      # next        : false,
+      previous    : false,
+      next        : false,
       # last        : false,
       # # midRange    : 15,
-      # links       : "blank"
+      links       : "blank"
       perPage : 5
       # startPage : 1
       # startRange : 1
