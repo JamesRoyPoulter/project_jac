@@ -12,7 +12,6 @@ $ ->
     map.fitBounds(bounds)
 
   generate_static_url = (checkin) ->
-    console.log(checkin)
     lat = checkin.latitude
     lng = checkin.longitude
     "http://maps.googleapis.com/maps/api/staticmap?center=" +lat + "," + lng + " &zoom=14&markers=" + lat + ","+lng + "&size=175x175&sensor=false"

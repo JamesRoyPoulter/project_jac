@@ -8,7 +8,8 @@
     = link_to 'Edit', edit_checkin_path(@checkin)
   .assets_container
     .show_checkin_map
-      MAP GOES HERE
+      = image_tag @checkin.generate_static_url
+      %br
       - if @checkin.address != nil
         = @checkin.address
       - else
