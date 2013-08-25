@@ -32,13 +32,13 @@ class CheckinsController < ApplicationController
   # GET /checkins/new.json
   def new
     @checkin = Checkin.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @checkin }
-    end
   end
 
+  def past
+    @checkin = Checkin.new
+  end
+
+  
   # GET /checkins/1/edit
   def edit
     @checkin = Checkin.find(params[:id])
