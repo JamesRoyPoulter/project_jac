@@ -4,7 +4,7 @@ $ ->
     marker = new google.maps.Marker
       position: checkinLatLng
       map: map
-    contentString = checkin.title
+    contentString = checkin.category
     google.maps.event.addListener(marker, 'click', ->
       infowindow.setContent(contentString)
       infowindow.open(map, marker))
