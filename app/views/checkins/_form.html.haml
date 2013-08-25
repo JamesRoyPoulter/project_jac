@@ -21,6 +21,12 @@
         = asset.link_to_remove "Remove Asset"
       = f.link_to_add "Add an Asset", :assets
 
+    / .field
+    /   = f.fields_for :people do |asset|
+    /     = asset.text_field :name
+    /     = asset.link_to_remove "Remove Person"
+    /   = f.link_to_add "Add A Person", :people
+
     .field#existing_category
       %b Category
       = select "checkin", "category_id", Category.all.collect { |x| [x.name, x.id] }, include_blank: true
