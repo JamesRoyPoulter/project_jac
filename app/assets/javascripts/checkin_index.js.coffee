@@ -5,6 +5,10 @@ $ ->
     marker = new google.maps.Marker
       position: checkinLatLng
       map: map
+    contentString = checkin.title
+    google.maps.event.addListener(marker, 'click', ->
+      infowindow.setContent(contentString)
+      infowindow.open(map, marker))
     bounds.extend(checkinLatLng)
     map.fitBounds(bounds)
 
@@ -16,7 +20,9 @@ $ ->
     anchor_tag = $('<a/>', { href: '/checkins/' + checkin.id, html: checkin_div })
 
     # CREATE CONTAINER DIVS
-    $("<li/>", class: 'checkin', id: 'checkin'+index, html: anchor_tag).appendTo("#itemContainer")
+    list_item = $("<li/>", class: 'checkin', id: 'checkin'+index, html: anchor_tag)
+
+    $('#itemContainer').append list_item
 
     #  CHECK CHECKIN HAS MEDIA
     unless checkin.assets[0] is undefined
@@ -165,6 +171,20 @@ $ ->
         }
       ]
 
+    $('#checkinsSearch').submit (e)->
+      e.preventDefault
+      console.log 'poop'
+      query = $('#searchLocation').val()
+      $.getJSON '/checkins/search/'+query, (data)->
+        if data.checkins.length isnt 0
+          index = 1
+          $.each data.checkins, (index, checkin) ->
+            addCheckinMarker checkin, map, bounds
+            populateTimeLine checkin, index
+            index += 1
+        else
+          alert 'No checkins near the location you have requested'
+
     initialize = (zoom, styles) ->
       mapOptions =
         mapTypeControlOptions:
@@ -185,7 +205,7 @@ $ ->
 
     infowindow = new google.maps.InfoWindow
 
-    map = initialize()
+    map = initialize(bounds, styles)
     bounds = new google.maps.LatLngBounds()
 
     $.getJSON "/checkins.json", (data) ->
