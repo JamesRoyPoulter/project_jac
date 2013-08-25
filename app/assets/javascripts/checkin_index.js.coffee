@@ -1,5 +1,5 @@
 $ ->
-  
+
   addCheckinMarker = (checkin, map, bounds)->
     checkinLatLng = new google.maps.LatLng checkin.latitude, checkin.longitude
     marker = new google.maps.Marker
@@ -184,7 +184,7 @@ $ ->
 
     infowindow = new google.maps.InfoWindow
 
-    map = initialize()
+    map = initialize(bounds, styles)
     bounds = new google.maps.LatLngBounds()
 
     $.getJSON "/checkins.json", (data) ->
@@ -194,7 +194,7 @@ $ ->
         populateTimeLine checkin, index
         index +=1
       paginate()
-      
+
     $('#checkinsSearch').submit (e)->
       e.preventDefault
       query = $('#searchLocation').val()
