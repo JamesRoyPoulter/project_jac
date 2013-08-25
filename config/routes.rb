@@ -6,6 +6,9 @@ YourWorld::Application.routes.draw do
   root to: 'pages#home'
 
   resources :categories
+
+  get '/checkins/search/:location', to: 'checkins#search'
+
   resources :checkins
   resources :users
 

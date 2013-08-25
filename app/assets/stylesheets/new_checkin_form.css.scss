@@ -1,33 +1,25 @@
 .new_checkin_form {
   border-radius: 10px;
   border: 1px solid #ccc;
-  width: 40%;
+  width: 60%;
   margin: 0 auto;
   padding: 1%;
   text-align: center;
   
-  .words_button,
-  .media_button {
-    display: inline-block;
-    padding: 3% 5%;
-    border-radius: 10px;
-    background: #ccc;
-    margin: 5%;
-  }
+  .form {
+    width: 100%;
+    text-align: center;
 
-  .words_form,
-  .media_form,
-  #new_category {
-    display: none;
+    #new_category {
+      display: none;
+    } 
   }
-
 }
 
 #map {
   height:400px;
   width:90%;
   margin: 0 auto;
-  float: left;
 }
 
 // CSS for leaflet map on mobile

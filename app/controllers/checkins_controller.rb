@@ -23,6 +23,11 @@ class CheckinsController < ApplicationController
     end
   end
 
+  def search
+    @checkins = Checkin.near params[:location]
+    render json: @checkins
+  end
+
   # GET /checkins/new
   # GET /checkins/new.json
   def new
@@ -45,7 +50,6 @@ class CheckinsController < ApplicationController
     @checkin = Checkin.new(params[:checkin])
     @checkin.user_id = current_user.id
     assign_category
-    binding.pry
     respond_to do |format|
       if @checkin.save
         format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
@@ -91,7 +95,6 @@ class CheckinsController < ApplicationController
     if category_id.empty?
       category = Category.create(name: params[:category][:name], user_id: current_user.id)
       @checkin.category_id = category.id
-      binding.pry
     else
       @checkin.category_id = category_id
     end

@@ -11,8 +11,12 @@
       -# this meta_tag below makes the check-in map render on mobile without unwanted scaling
       %meta{:name =>"viewport", :content =>"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}
   %body{data: {page: [controller_name.capitalize, action_name.capitalize].join}}
-    = render 'layouts/navbar'
-    = yield
+  
+    .navbar
+      = render 'layouts/navbar'
+  
+    .content
+      = yield
 
     %script{src: "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE2']}&sensor=false", type: "text/javascript"}
     = javascript_include_tag "application"

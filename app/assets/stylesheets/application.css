@@ -21,3 +21,55 @@ html, body {
 .center-text {
   text-align: center;
 }
+
+.boxcutter {
+  -moz-box-shadow:inset 0px 1px 0px 0px #f29c93;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #f29c93;
+  box-shadow:inset 0px 1px 0px 0px #f29c93;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fe1a00), color-stop(1, #ce0100) );
+  background:-moz-linear-gradient( center top, #fe1a00 5%, #ce0100 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fe1a00', endColorstr='#ce0100');
+  background-color:#fe1a00;
+  -webkit-border-top-left-radius:28px;
+  -moz-border-radius-topleft:28px;
+  border-top-left-radius:28px;
+  -webkit-border-top-right-radius:0px;
+  -moz-border-radius-topright:0px;
+  border-top-right-radius:0px;
+  -webkit-border-bottom-right-radius:28px;
+  -moz-border-radius-bottomright:28px;
+  border-bottom-right-radius:28px;
+  -webkit-border-bottom-left-radius:0px;
+  -moz-border-radius-bottomleft:0px;
+  border-bottom-left-radius:0px;
+  text-indent:0;
+  border:1px solid #d83526;
+  display:inline-block;
+  color:#ffffff;
+  font-family: 'Droid Sans';
+  font-size:15px;
+  font-weight:bold;
+  font-style:normal;
+  /*height:37px;*/
+  line-height:37px;
+  /*width:83px */
+  padding: 0 5px 0 5px;
+  text-decoration:none;
+  text-align:center;
+  text-shadow:1px 1px 0px #b23e35;
+}
+.boxcutter:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ce0100), color-stop(1, #fe1a00) );
+  background:-moz-linear-gradient( center top, #ce0100 5%, #fe1a00 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ce0100', endColorstr='#fe1a00');
+  background-color:#ce0100;
+}
+.boxcutter:active {
+  position:relative;
+  top:1px;
+}
+
+.field {
+  padding: 10px 0 10px 0;
+  
+}
