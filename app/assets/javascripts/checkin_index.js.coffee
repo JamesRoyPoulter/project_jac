@@ -26,12 +26,12 @@ $ ->
 
     #  CHECK CHECKIN HAS MEDIA
     unless checkin.assets[0] is undefined
-        # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
-        $("<img/>",
-          class: 'checkin_image'
-          id: 'checkin_image'+index
-          src: checkin.assets[0].media.show_checkin.url
-        ).appendTo "#checkin_category"+index
+      # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
+      $("<img/>",
+        class: 'checkin_image'
+        id: 'checkin_image'+index
+        src: checkin.assets[0].media.show_checkin.url
+      ).appendTo "#checkin_category"+index
 
   paginate = ()->
     $("div.holder").jPages
