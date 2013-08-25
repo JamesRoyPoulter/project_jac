@@ -177,6 +177,5 @@ if $('body').data('page') is 'CheckinsNew'
     google.maps.event.addListener(marker, 'click', ->
       infowindow.open(map, marker))
 
-
   google.maps.event.addDomListener(window, 'load', getLocation)
 

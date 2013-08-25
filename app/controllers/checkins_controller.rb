@@ -99,4 +99,5 @@ class CheckinsController < ApplicationController
       @checkin.category_id = category_id
     end
   end
+
 end
