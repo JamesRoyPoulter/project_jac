@@ -1,47 +1,5 @@
 $ ->
 
-  addCheckinMarker = (checkin, map, bounds)->
-    checkinLatLng = new google.maps.LatLng checkin.latitude, checkin.longitude
-    marker = new google.maps.Marker
-      position: checkinLatLng
-      map: map
-    bounds.extend(checkinLatLng)
-    map.fitBounds(bounds)
-
-  # POPULATE CATEGORY
-  populateTimeLine = (checkin, index)->
-    checkin_div = $("<div/>", class: 'checkin_category', id: 'checkin_category'+index, text: checkin.title)
-
-    # POPULATE LINK TO SHOW PAGE IN CHECKIN DIV
-    anchor_tag = $('<a/>', { href: '/checkins/' + checkin.id, html: checkin_div })
-
-    # CREATE CONTAINER DIVS
-    $("<li/>", class: 'checkin', id: 'checkin'+index, html: anchor_tag).appendTo("#itemContainer")
-
-    #  CHECK CHECKIN HAS MEDIA
-    unless checkin.assets[0] is undefined
-        # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
-        $("<img/>",
-          class: 'checkin_image'
-          id: 'checkin_image'+index
-          src: checkin.assets[0].media.show_checkin.url
-        ).appendTo "#checkin_category"+index
-
-  paginate = ()->
-    $("div.holder").jPages
-      containerID: "itemContainer"
-      # first       : false,
-      # previous    : false,
-      # next        : false,
-      # last        : false,
-      # # midRange    : 15,
-      # links       : "blank"
-      perPage : 5
-      # startPage : 1
-      # startRange : 1
-      # midRange : 5
-      # endRange : 1
-
   # INITIATE MAP
   if $('body').data('page') is 'CheckinsIndex'
     styles = [
@@ -185,28 +143,77 @@ $ ->
 
     infowindow = new google.maps.InfoWindow
 
-    map = initialize()
-    bounds = new google.maps.LatLngBounds()
+    $("#show_checkins_map").click ->
+      $.getJSON "/checkins.json", (data) ->
 
-    $.getJSON "/checkins.json", (data) ->
-      index = 1
-      $.each data.checkins, (index, checkin) ->
-        addCheckinMarker checkin, map, bounds
-        populateTimeLine checkin, index
-        index +=1
-      paginate()
+        map = initialize(bounds, styles)
+        bounds = new google.maps.LatLngBounds()
 
-    $('#checkinsSearch').submit (e)->
-      e.preventDefault
-      query = $('#searchLocation').val()
-      $.getJSON '/checkins/search/'+query, (data)->
-        if data.checkins.length isnt 0
-          index = 1
-          $.each data.checkins, (index, checkin) ->
-            addCheckinMarker checkin, map, bounds
-            populateTimeLine checkin, index
-            index += 1
-        else
-          alert 'No checkins near the location you have requested'
+        # DECLARE INDEX VALUE
+        index = 1
+
+        # ITERATE THROUGH JSON OBJECT
+        $.each data.checkins, (index, checkin) ->
+          checkinLatLng = new google.maps.LatLng checkin.latitude, checkin.longitude
+          marker = new google.maps.Marker
+            position: checkinLatLng
+            map: map
+          bounds.extend(checkinLatLng)
+          map.fitBounds(bounds)
+
+          contentString = checkin.category
+          google.maps.event.addListener(marker, 'click', ->
+            infowindow.setContent(contentString)
+            infowindow.open(map, marker))
+          #Closes infowindow when new one opened
+
+
+          # POPULATE TIMELINE
+          # POPULATE CATEGORY
+          checkin_div = $("<div/>",
+            class: 'checkin_category'
+            id: 'checkin_category'+index
+            text: checkin.category
+          )
+
+          # POPULATE LINK TO SHOW PAGE
+          anchor_tag = $('<a/>', { href: '/checkins/' + checkin.id, html: checkin_div })
+
+          # CREATE CONTAINER DIVS
+          $("<li/>",
+            class: 'checkin'
+            id: 'checkin'+index,
+            html: anchor_tag
+            # html: $('<a/>', { href: '/checkins/' + checkin.id })
+          ).appendTo("#itemContainer")
+
+          #  CHECK CHECKIN HAS MEDIA
+          unless checkin.assets[0] is undefined
+
+            # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
+            $("<img/>",
+              class: 'checkin_image'
+              id: 'checkin_image'+index
+              src: checkin.assets[0].media.show_checkin.url
+            ).appendTo "#checkin_category"+index
+
+          # INITIATE JPAGES
+          $ ->
+            $("div.holder").jPages
+              containerID: "itemContainer"
+              # first       : false,
+              previous    : false,
+              next        : false,
+              last        : false,
+              # # midRange    : 15,
+              links       : "blank"
+              perPage : 2
+              # startPage : 1
+              # startRange : 1
+              # midRange : 5
+              # endRange : 1
+
+          index +=1
+
 
 
