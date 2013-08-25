@@ -10,9 +10,7 @@
     = link_to 'Dashboard', checkins_path
   %li
     = link_to 'New checkin', new_checkin_path
-  %li
-    %form{id:'checkinsSearch'}
-      %input{type:'text',name:'location',id:'searchLocation'}
+
 - else
   = link_to 'Sign up', new_user_path
   = link_to 'Login', sign_in_path
