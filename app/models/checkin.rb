@@ -1,8 +1,8 @@
 class Checkin < ActiveRecord::Base
 
-  attr_accessible :address, :category_id, :latitude, :longitude, :user_id, :title, 
+  attr_accessible :address, :category_id, :latitude, :longitude, :user_id, :title,
                   :assets_attributes, :category_attributes
-                  
+
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode
 
@@ -17,6 +17,10 @@ class Checkin < ActiveRecord::Base
 
   def location
     [self.latitude, self.longitude]
+  end
+
+  def generate_static_url
+    "http://maps.google.com/maps/api/staticmap?markers=label:X|" + latitude + ","+longitude + "&size=200x200&sensor=TRUE_OR_FALSE"
   end
 
 end
