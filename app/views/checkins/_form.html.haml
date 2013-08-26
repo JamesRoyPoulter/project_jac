@@ -24,21 +24,21 @@
       .field
         = f.fields_for :categories_checkins do |category_checkin|
           = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
-          = category_checkin.link_to_remove "Remove Category"
+          = category_checkin.link_to_remove "X"
         = f.link_to_add "Add Category", :categories_checkins
 
       .field
         = f.fields_for :categories do |category|
           = category.label :name
           = category.text_field :name
-          = category.link_to_remove "Remove Category"
+          = category.link_to_remove "X"
         = f.link_to_add "New Category", :categories
 
     .people.checkin_form_box
       .field
         = f.fields_for :people_checkins do |person|
           = person.select 'person_id', Person.all.collect { |x| [x.name,x.id ]}
-          = person.link_to_remove "Remove Person"
+          = person.link_to_remove "X"
         .add_button
           = f.link_to_add "Tag A Person", :people_checkins
 
@@ -46,17 +46,18 @@
         = f.fields_for :people do |person|
           = person.label :name
           = person.text_field :name
-          = person.link_to_remove "Remove Person"
+          = person.link_to_remove "X"
         = f.link_to_add "New Person", :people
 
     .assets.checkin_form_box
+      .file_field
+        = file_field_tag 'medias[]'
+
       .field
         = f.fields_for :assets do |asset|
-          .previewImage
           = asset.text_field :words
-          = asset.file_field :media, style:'display:none', class:'asset_photo'
-          %a.fileUpload Upload Image
-          = asset.link_to_remove "Remove Asset"
+          = asset.file_field :media
+          = asset.link_to_remove "X"
         = f.link_to_add "Add an Asset", :assets
 
     / .assets.checkin_form_box
