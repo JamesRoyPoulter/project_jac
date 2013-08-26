@@ -36,6 +36,7 @@ if $('body').data('page') is 'CheckinsNew'
       map: map
       draggable: true
       title: 'mark your life here X'
+      icon: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
 
     #creates check-in info-window
     infowindow = new google.maps.InfoWindow
