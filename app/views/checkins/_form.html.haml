@@ -22,28 +22,6 @@
         = f.text_field :title
 
       .field
-        = f.fields_for :assets do |asset|
-          = asset.text_field :words
-          = asset.file_field :media
-          = asset.link_to_remove "Remove Asset"
-        = f.link_to_add "Add an Asset", :assets
-
-    .people.checkin_form_box
-      .field
-        = f.fields_for :people_checkins do |person|
-          = person.select 'person_id', Person.all.collect { |x| [x.name,x.id ]}
-          = person.link_to_remove "Remove Person"
-        = f.link_to_add "Tag A Person", :people_checkins
-
-      .field
-        = f.fields_for :people do |person|
-          = person.label :name
-          = person.text_field :name
-          = person.link_to_remove "Remove Person"
-        = f.link_to_add "New Person", :people
-
-    .category.checkin_form_box
-      .field
         = f.fields_for :categories_checkins do |category_checkin|
           = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
           = category_checkin.link_to_remove "Remove Category"
@@ -55,6 +33,29 @@
           = category.text_field :name
           = category.link_to_remove "Remove Category"
         = f.link_to_add "New Category", :categories
+
+    .people.checkin_form_box
+      .field
+        = f.fields_for :people_checkins do |person|
+          = person.select 'person_id', Person.all.collect { |x| [x.name,x.id ]}
+          = person.link_to_remove "Remove Person"
+        .add_button
+          = f.link_to_add "Tag A Person", :people_checkins
+
+      .field
+        = f.fields_for :people do |person|
+          = person.label :name
+          = person.text_field :name
+          = person.link_to_remove "Remove Person"
+        = f.link_to_add "New Person", :people
+
+    .assets.checkin_form_box
+      .field
+        = f.fields_for :assets do |asset|
+          = asset.text_field :words
+          = asset.file_field :media
+          = asset.link_to_remove "Remove Asset"
+        = f.link_to_add "Add an Asset", :assets
 
     .actions
       = f.submit 'Save', class: 'submit_button'

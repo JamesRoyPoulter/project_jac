@@ -3,7 +3,7 @@
 class AssetUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  include CarrierWave::RMagick
+  # include CarrierWave::RMagick
   include CarrierWave::MimeTypes
   # include CarrierWave::MiniMagick
 
@@ -33,13 +33,13 @@ class AssetUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :thumb do
-    process :resize_to_fill => [50, 50]
-  end
+  # version :thumb do
+  #   process :resize_to_fill => [50, 50]
+  # end
 
-  version :show_checkin do
-    process :resize_to_fill => [175, 175]
-  end
+  # version :show_checkin do
+  #   process :resize_to_fill => [175, 175]
+  # end
 
   def extension_white_list
     %w(jpg jpeg gif png mp4 3gp mp3 aac wav mid mov)
