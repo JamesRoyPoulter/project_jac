@@ -16,6 +16,16 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: 'Droid Sans', sans-serif;
+  background-color: #bbb;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .center-text {
@@ -71,5 +81,5 @@ html, body {
 
 .field {
   padding: 10px 0 10px 0;
-  
+
 }

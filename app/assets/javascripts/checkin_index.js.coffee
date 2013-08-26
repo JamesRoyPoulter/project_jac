@@ -4,6 +4,7 @@ $ ->
     marker = new google.maps.Marker
       position: checkinLatLng
       map: map
+      # icon: 'assets/markers/exhe_marker_black_little.png'
     contentString = checkin.category
     google.maps.event.addListener(marker, 'click', ->
       infowindow.setContent(contentString)
