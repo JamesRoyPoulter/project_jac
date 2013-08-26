@@ -5,10 +5,9 @@ class CheckinsController < ApplicationController
   # GET /checkins.json
   def index
     @checkins = Checkin.belonging_to current_user
-    @checkins.reverse
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @checkins }
+      format.json { render json: @checkins.reverse }
     end
   end
 
