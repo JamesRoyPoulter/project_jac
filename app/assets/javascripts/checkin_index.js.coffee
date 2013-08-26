@@ -9,6 +9,7 @@ $ ->
     google.maps.event.addListener(marker, 'click', ->
       infowindow.setContent(contentString)
       infowindow.open(map, marker))
+    markersArray.push marker
     bounds.extend(checkinLatLng)
     map.fitBounds(bounds)
 
@@ -66,22 +67,15 @@ $ ->
       # midRange : 5
       # endRange : 1
 
+  markersArray = []
+
+  clearMarkers = (markersArray)->
+    if markersArray
+      for i in markersArray
+        i.setMap null
+
   # INITIATE MAP
   if $('body').data('page') is 'CheckinsIndex'
-    $('#checkinsSearch').submit (e)->
-      e.preventDefault
-      query = $('#searchLocation').val()
-      $('#searchLocation').val ''
-
-      $.getJSON '/checkins/search/'+query, (data)->
-        if data.checkins.length isnt 0
-          index = 1
-          $.each data.checkins, (index, checkin) ->
-            addCheckinMarker checkin, map, bounds
-            populateTimeLine checkin, index
-            index += 1
-        else
-          alert 'No checkins near the location you have requested'
 
     initialize = (zoom, styles) ->
       mapOptions =
@@ -99,7 +93,7 @@ $ ->
 
       map
 
-    google.maps.event.addDomListener(window, 'load', initialize(6, STYLES))
+    google.maps.event.addDomListener(window, 'load', initialize(10, STYLES))
 
     infowindow = new google.maps.InfoWindow
 
@@ -113,5 +107,26 @@ $ ->
         populateTimeLine checkin, index
         index +=1
       paginate()
+
+    $('#checkinsSearch').submit (e)->
+      e.preventDefault
+      query = $('#searchLocation').val()
+      $('#searchLocation').val ''
+      $('#itemContainer').html ''
+
+      $.getJSON '/checkins/search/'+query, (data)->
+        if data.checkins.length isnt 0
+          index = 1
+          clearMarkers markersArray
+          markersArray.length = 0
+          $.each data.checkins, (index, checkin) ->
+            addCheckinMarker checkin, map, bounds
+            populateTimeLine checkin, index
+            index += 1
+          map.setCenter markersArray[0].position
+          map.setZoom 10
+          paginate()
+        else
+          alert 'No checkins near the location you have requested'
 
 

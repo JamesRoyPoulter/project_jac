@@ -1,16 +1,17 @@
 class Category < ActiveRecord::Base
   attr_accessible :name, :user_id
   scope :current_users, -> { where(user_id: current_user) }
-  before_save :capitalize_name
 
   belongs_to :user
   has_many :checkins
   has_many :assets
+  has_many :checkins, through: :categories_checkins
 
   validates_uniqueness_of :name, scope: :user_id
-  
-  def capitalize_name
-    self.name = name.downcase.capitalize
+  validates :name, length: {minimum: 3, maximum: 15 }
+
+  def self.belonging_to user
+    self.where(user_id: user.id)
   end
 
 end

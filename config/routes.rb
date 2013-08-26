@@ -1,5 +1,8 @@
 YourWorld::Application.routes.draw do
 
+  resources :people
+
+
   get 'sign_in', to: 'sessions#new', as: :sign_in
   resources :sessions, only: [:new, :create, :destroy]
 

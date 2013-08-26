@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, except: [:new, :edit]
+  before_filter :authenticate, except: [:new, :create, :edit]
 
   # GET /users/1
   # GET /users/1.json
