@@ -108,7 +108,7 @@ class CheckinsController < ApplicationController
     @checkin.categories_checkins.each { |x| x.checkin_id = @checkin.id }
   end
   def assign_user_to_categories
-    @checkin.categories.each { |x| x.user_id = current_user.id }
+    @checkin.categories.each { |x| x.user_id = current_user.id; x.save }
   end
   def assign_people
     if @checkin.people
