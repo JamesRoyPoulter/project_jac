@@ -13,10 +13,38 @@ $ ->
     bounds.extend(checkinLatLng)
     map.fitBounds(bounds)
 
+# CREATE CHART FOR PEOPLE
+  # createChart = () ->
+  #   chart = new CanvasJS.Chart("chartContainer",
+  #     title:
+  #       text: "Categories with friends"
+
+  #     data: [
+  #       type: "stackedBar100"
+  #       dataPoints: [
+  #         y: 600
+  #         label: "Water Filter",
+  #         y: 400
+  #         label: "Modern Chair",
+  #         y: 120
+  #         label: "VOIP Phone",
+  #         y: 250
+  #         label: "Microwave",
+  #         y: 120
+  #         label: "Water Filter",
+  #         y: 374
+  #         label: "Expresso Machine",
+  #         y: 350
+  #         label: "Lobby Chair"
+  #       ]
+  #     ]
+  #   )
+  #   chart.render()
+
   generate_static_url = (checkin) ->
     lat = checkin.latitude
     lng = checkin.longitude
-    "http://maps.googleapis.com/maps/api/staticmap?center=" +lat + "," + lng + " &zoom=14&markers=" + lat + ","+lng + "&size=175x175&sensor=false"
+    "http://maps.googleapis.com/maps/api/staticmap?center=" +lat + "," + lng + " &zoom=14&markers=" + lat + ","+lng + "&size=175x175&sensor=false&style=STYLES"
 
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
