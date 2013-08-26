@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130825194324) do
+ActiveRecord::Schema.define(:version => 20130826085741) do
 
   create_table "assets", :force => true do |t|
     t.string   "media"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(:version => 20130825194324) do
     t.datetime "updated_at", :null => false
     t.string   "color"
   end
+
+  create_table "categories_checkins", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "checkin_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "categories_checkins", ["category_id"], :name => "index_categories_checkins_on_category_id"
+  add_index "categories_checkins", ["checkin_id"], :name => "index_categories_checkins_on_checkin_id"
 
   create_table "checkins", :force => true do |t|
     t.float    "latitude",                    :null => false

@@ -5,6 +5,7 @@ class Person < ActiveRecord::Base
   has_many :checkins, through: :people_checkins
 
   validates_presence_of :user_id
+  validates_uniqueness_of :name, scope: :user_id
 
   mount_uploader :picture, AvatarUploader
 

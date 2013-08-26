@@ -5,6 +5,7 @@ class Category < ActiveRecord::Base
   belongs_to :user
   has_many :checkins
   has_many :assets
+  has_many :checkins, through: :categories_checkins
 
   validates_uniqueness_of :name, scope: :user_id
   validates :name, length: {minimum: 3, maximum: 15 }
