@@ -6,15 +6,16 @@
     = stylesheet_link_tag    "application", :media => "all"
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans", :rel => "stylesheet", :type => "text/css"}
     %script{:src=>"//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
-    %script{:type=>"text/javascript", :src=>"http://maps.stamen.com/js/tile.stamen.js?v1.2.3"}
+    %script{:src=>"/assets/javascripts/canvasjs.min.js"}
+
       = csrf_meta_tags
       -# this meta_tag below makes the check-in map render on mobile without unwanted scaling
       %meta{:name =>"viewport", :content =>"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}
   %body{data: {page: [controller_name.capitalize, action_name.capitalize].join}}
-  
+
     .navbar
       = render 'layouts/navbar'
-  
+
     .content
       = yield
 

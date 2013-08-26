@@ -4,7 +4,7 @@ class CheckinsController < ApplicationController
   # GET /checkins
   # GET /checkins.json
   def index
-    @checkins = Checkin.all.reverse
+    @checkins = Checkin.belonging_to current_user
 
     respond_to do |format|
       format.html # index.html.erb
@@ -38,7 +38,6 @@ class CheckinsController < ApplicationController
     @checkin = Checkin.new
   end
 
-  
   # GET /checkins/1/edit
   def edit
     @checkin = Checkin.find(params[:id])
@@ -49,9 +48,13 @@ class CheckinsController < ApplicationController
   def create
     @checkin = Checkin.new(params[:checkin])
     @checkin.user_id = current_user.id
-    assign_category
+    puts @checkin.errors unless @checkin.valid?
+    assign_people
     respond_to do |format|
-      if @checkin.save
+      if @checkin.save!
+        make_assets
+        assign_checkin_to_categories
+        assign_user_to_categories
         format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }
       else
@@ -90,13 +93,23 @@ class CheckinsController < ApplicationController
   end
 
   private
-  def assign_category
-    category_id = params[:checkin][:category_id]
-    if category_id.empty?
-      category = Category.create(name: params[:category][:name], user_id: current_user.id)
-      @checkin.category_id = category.id
-    else
-      @checkin.category_id = category_id
+  def make_assets
+    params[:medias].each do |asset|
+      Asset.create media: asset, checkin_id: @checkin.id, user_id: current_user.id
+    end
+  end
+  def assign_checkin_to_categories
+    @checkin.categories_checkins.each { |x| x.checkin_id = @checkin.id }
+  end
+  def assign_user_to_categories
+    @checkin.categories.each { |x| x.user_id = current_user.id }
+  end
+  def assign_people
+    if @checkin.people
+      @checkin.people.each do |person|
+        person.user_id = current_user.id
+        person.save
+      end
     end
   end
 

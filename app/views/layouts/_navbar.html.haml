@@ -5,13 +5,13 @@
   %li
     = link_to 'Logout', session_path(session), method: :delete, data: {confirm: 'Are you sure?'}
   %li
-    %button#show_checkins_map Checkins
-  %li
     = link_to 'Dashboard', checkins_path
   %li
     = link_to 'New checkin', new_checkin_path
   %li
     = link_to 'Past Checkin', past_checkin_path
+  %li
+    = link_to 'Categories', categories_path
 
 - else
   = link_to 'Sign up', new_user_path

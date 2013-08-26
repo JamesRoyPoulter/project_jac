@@ -2,7 +2,8 @@
 
 .show_checkin_container
   %p
-    = @checkin.category.name
+    - @checkin.categories.each do |category|
+      = category.name
     %b :
     = @checkin.title
     = link_to 'Edit', edit_checkin_path(@checkin)
@@ -21,5 +22,6 @@
         .asset_media
           - if asset.media.url != nil
             = image_tag asset.media.show_checkin
-
-  / # = link_to 'Back', checkins_path
+    - if @checkin.people
+      - @checkin.people.each do |person|
+        = person.name

@@ -4,17 +4,47 @@ $ ->
     marker = new google.maps.Marker
       position: checkinLatLng
       map: map
-    contentString = checkin.category
+      icon: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
+      contentString = checkin.title
     google.maps.event.addListener(marker, 'click', ->
-      infowindow.setContent(contentString)
+      # infowindow.setContent(contentString)
       infowindow.open(map, marker))
+    markersArray.push marker
     bounds.extend(checkinLatLng)
     map.fitBounds(bounds)
+
+# CREATE CHART FOR PEOPLE
+  # createChart = () ->
+  #   chart = new CanvasJS.Chart("chartContainer",
+  #     title:
+  #       text: "Categories with friends"
+
+  #     data: [
+  #       type: "stackedBar100"
+  #       dataPoints: [
+  #         y: 600
+  #         label: "Water Filter",
+  #         y: 400
+  #         label: "Modern Chair",
+  #         y: 120
+  #         label: "VOIP Phone",
+  #         y: 250
+  #         label: "Microwave",
+  #         y: 120
+  #         label: "Water Filter",
+  #         y: 374
+  #         label: "Expresso Machine",
+  #         y: 350
+  #         label: "Lobby Chair"
+  #       ]
+  #     ]
+  #   )
+  #   chart.render()
 
   generate_static_url = (checkin) ->
     lat = checkin.latitude
     lng = checkin.longitude
-    "http://maps.googleapis.com/maps/api/staticmap?center=" +lat + "," + lng + " &zoom=14&markers=" + lat + ","+lng + "&size=175x175&sensor=false"
+    "http://maps.googleapis.com/maps/api/staticmap?center=" +lat + "," + lng + " &zoom=14&markers=" + lat + ","+lng + "&size=175x175&sensor=false&style=STYLES"
 
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
@@ -28,27 +58,33 @@ $ ->
 
     $('#itemContainer').append list_item
 
-    #  CHECK CHECKIN HAS MEDIA
+     # CHECK CHECKIN HAS MEDIA
     if checkin.assets[0] is undefined
       $("<img/>",
-          class: 'checkin_minimap'
-          id: 'checkin_minimap'+index
-          src: generate_static_url(checkin)
-        ).appendTo "#checkin_title"+index
-    else if checkin.assets[0].media.show_checkin.url
+        class: 'checkin_minimap'
+        id: 'checkin_minimap'+index
+        src: generate_static_url(checkin)
+      ).appendTo "#checkin_title"+index
+    else if checkin.assets[0].media.file_type is 'image'
       $("<img/>",
         class: 'checkin_image'
         id: 'checkin_image'+index
         src: checkin.assets[0].media.show_checkin.url
-        ).appendTo "#checkin_title"+index
+      ).appendTo "#checkin_title"+index
+    else if checkin.assets[0].media.file_type is 'audio'
+      $("<audio/>",
+        class: 'checkin_image'
+        id: 'checkin_image'+index
+        src: checkin.assets[0].media.url
+      ).appendTo "#checkin_title"+index
     else
-    # console.log(checkin.assets[0].media.show_checkin.url)
+      console.log(checkin.assets[0].media.file_type)
         # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
       $("<div/>",
-          class: 'checkin_words'
-          id: 'checkin_words'+index
-          html: checkin.assets[0].words
-        ).appendTo "#checkin_title"+index
+        class: 'checkin_words'
+        id: 'checkin_words'+index
+        html: checkin.assets[0].words
+      ).appendTo "#checkin_title"+index
 
   paginate = ()->
     $(".holder").jPages
@@ -65,22 +101,15 @@ $ ->
       # midRange : 5
       # endRange : 1
 
+  markersArray = []
+
+  clearMarkers = (markersArray)->
+    if markersArray
+      for i in markersArray
+        i.setMap null
+
   # INITIATE MAP
   if $('body').data('page') is 'CheckinsIndex'
-    $('#checkinsSearch').submit (e)->
-      e.preventDefault
-      query = $('#searchLocation').val()
-      $('#searchLocation').val ''
-
-      $.getJSON '/checkins/search/'+query, (data)->
-        if data.checkins.length isnt 0
-          index = 1
-          $.each data.checkins, (index, checkin) ->
-            addCheckinMarker checkin, map, bounds
-            populateTimeLine checkin, index
-            index += 1
-        else
-          alert 'No checkins near the location you have requested'
 
     initialize = (zoom, styles) ->
       mapOptions =
@@ -98,7 +127,7 @@ $ ->
 
       map
 
-    google.maps.event.addDomListener(window, 'load', initialize(6, STYLES))
+    google.maps.event.addDomListener(window, 'load', initialize(10, STYLES))
 
     infowindow = new google.maps.InfoWindow
 
@@ -112,5 +141,27 @@ $ ->
         populateTimeLine checkin, index
         index +=1
       paginate()
+
+    $('#checkinsSearch').submit (e)->
+      e.preventDefault
+      query = $('#searchLocation').val()
+      $('#searchLocation').val ''
+      $('#itemContainer').html ''
+
+      $.getJSON '/checkins/search/'+query, (data)->
+        console.log data
+        if data.checkins.length isnt 0
+          index = 1
+          clearMarkers markersArray
+          markersArray.length = 0
+          $.each data.checkins, (index, checkin) ->
+            addCheckinMarker checkin, map, bounds
+            populateTimeLine checkin, index
+            index += 1
+          map.setCenter markersArray[0].position
+          map.setZoom 10
+          paginate()
+        else
+          alert 'No checkins near the location you have requested'
 
 

@@ -1,8 +1,3 @@
-$('.new_category').click (e)->
-  e.preventDefault()
-  $('#existing_category').slideUp 500
-  $('#new_category').slideDown 500
-  
 if $('body').data('page') is 'CheckinsNew'
 
   #gets location from browser
