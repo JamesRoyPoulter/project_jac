@@ -4,10 +4,10 @@ $ ->
     marker = new google.maps.Marker
       position: checkinLatLng
       map: map
-      # icon: 'assets/markers/exhe_marker_black_little.png'
-    contentString = checkin.category
+      icon: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
+      contentString = checkin.title
     google.maps.event.addListener(marker, 'click', ->
-      infowindow.setContent(contentString)
+      # infowindow.setContent(contentString)
       infowindow.open(map, marker))
     markersArray.push marker
     bounds.extend(checkinLatLng)
@@ -58,27 +58,33 @@ $ ->
 
     $('#itemContainer').append list_item
 
-    #  CHECK CHECKIN HAS MEDIA
+     # CHECK CHECKIN HAS MEDIA
     if checkin.assets[0] is undefined
       $("<img/>",
-          class: 'checkin_minimap'
-          id: 'checkin_minimap'+index
-          src: generate_static_url(checkin)
-        ).appendTo "#checkin_title"+index
-    else if checkin.assets[0].media.show_checkin.url
+        class: 'checkin_minimap'
+        id: 'checkin_minimap'+index
+        src: generate_static_url(checkin)
+      ).appendTo "#checkin_title"+index
+    else if checkin.assets[0].media.file_type is 'image'
       $("<img/>",
         class: 'checkin_image'
         id: 'checkin_image'+index
         src: checkin.assets[0].media.show_checkin.url
-        ).appendTo "#checkin_title"+index
+      ).appendTo "#checkin_title"+index
+    else if checkin.assets[0].media.file_type is 'audio'
+      $("<audio/>",
+        class: 'checkin_image'
+        id: 'checkin_image'+index
+        src: checkin.assets[0].media.url
+      ).appendTo "#checkin_title"+index
     else
-    # console.log(checkin.assets[0].media.show_checkin.url)
+      console.log(checkin.assets[0].media.file_type)
         # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
       $("<div/>",
-          class: 'checkin_words'
-          id: 'checkin_words'+index
-          html: checkin.assets[0].words
-        ).appendTo "#checkin_title"+index
+        class: 'checkin_words'
+        id: 'checkin_words'+index
+        html: checkin.assets[0].words
+      ).appendTo "#checkin_title"+index
 
   paginate = ()->
     $(".holder").jPages
@@ -143,6 +149,7 @@ $ ->
       $('#itemContainer').html ''
 
       $.getJSON '/checkins/search/'+query, (data)->
+        console.log data
         if data.checkins.length isnt 0
           index = 1
           clearMarkers markersArray

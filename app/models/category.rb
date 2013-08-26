@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
 
   belongs_to :user
   has_many :assets
+  has_many :categories_checkins
   has_many :checkins, through: :categories_checkins
 
   validates_uniqueness_of :name, scope: :user_id

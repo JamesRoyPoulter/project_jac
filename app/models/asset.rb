@@ -8,11 +8,11 @@ class Asset < ActiveRecord::Base
   mount_uploader :media, AssetUploader
 
   before_save :save_file_type
-  
+
   private
   def save_file_type
     if media.present? && media_changed?
-      self.file_type = media.file.content_type
+      self.file_type = media.file.content_type.match(/^[a-zA-Z]*/).to_s
     end
   end
 
