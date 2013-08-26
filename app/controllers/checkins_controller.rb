@@ -20,7 +20,7 @@ class CheckinsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @checkin }
     end
-    binding.pry
+    # binding.pry
   end
 
   def search
@@ -30,7 +30,7 @@ class CheckinsController < ApplicationController
       when 'category' then Category.find_by_name(@category).checkins
       when 'location' then Checkin.near params[:location]
     end
-    binding.pry
+    # binding.pry
     render json: @checkins
   end
 

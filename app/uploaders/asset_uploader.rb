@@ -42,7 +42,7 @@ class AssetUploader < CarrierWave::Uploader::Base
   # end
 
   def extension_white_list
-    %w(jpg jpeg gif png mp4 3gp mp3 aac wav mid mov)
+    %w(jpg jpeg gif png mp4 3gp mp3 aac wav mid mov m4a)
   end
 
   # Override the filename of the uploaded files:

@@ -15,6 +15,7 @@
         = @checkin.address
       - else
         ADDRESS GOES UNDERNEATH
+
     - @checkin.assets.each do |asset|
       .asset_div
         .asset_words
@@ -22,8 +23,14 @@
         .asset_media
           - if asset.media.model.file_type === 'image'
             = image_tag asset.media, style:'height:50px;width:50px'
-          - if asset.media.model.file_type === 'audio'
+          - elsif asset.media.model.file_type === 'audio'
             = audio_tag asset.media.url
+            = asset.media.url
+          - elsif asset.media.model.file_type === 'video'
+            = video_tag asset.media.url
+            = asset.media.url
+          - else
+            yoda
     - if @checkin.people
       - @checkin.people.each do |person|
         = person.name
