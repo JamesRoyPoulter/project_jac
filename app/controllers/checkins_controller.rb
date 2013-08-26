@@ -4,7 +4,7 @@ class CheckinsController < ApplicationController
   # GET /checkins
   # GET /checkins.json
   def index
-    @checkins = Checkin.all.reverse
+    @checkins = Checkin.belonging_to current_user
 
     respond_to do |format|
       format.html # index.html.erb
@@ -38,10 +38,10 @@ class CheckinsController < ApplicationController
     @checkin = Checkin.new
   end
 
-  
   # GET /checkins/1/edit
   def edit
     @checkin = Checkin.find(params[:id])
+    @people = []
   end
 
   # POST /checkins
@@ -52,6 +52,7 @@ class CheckinsController < ApplicationController
     assign_category
     respond_to do |format|
       if @checkin.save
+        assign_people
         format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }
       else
@@ -97,6 +98,20 @@ class CheckinsController < ApplicationController
       @checkin.category_id = category.id
     else
       @checkin.category_id = category_id
+    end
+  end
+
+  def assign_people
+    if params[:people]
+      params[:people].each do |person|
+        PeopleCheckin.new(checkin_id: @checkin.id, person_id: person[:id])
+      end
+    end
+    if @checkin.people
+      @checkin.people.each do |person|
+        person.user_id = current_user.id
+        person.save
+      end
     end
   end
 

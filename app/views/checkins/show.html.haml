@@ -21,5 +21,6 @@
         .asset_media
           - if asset.media.url != nil
             = image_tag asset.media.show_checkin
-
-  / # = link_to 'Back', checkins_path
+    - if @checkin.people
+      - @checkin.people.each do |person|
+        = person.name

@@ -123,7 +123,7 @@ $ ->
             populateTimeLine checkin, index
             index += 1
           map.setCenter markersArray[0].position
-          map.setZoom 6
+          map.setZoom 10
           paginate()
         else
           alert 'No checkins near the location you have requested'
