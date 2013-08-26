@@ -1,20 +1,3 @@
-$('.new_category').click (e)->
-  e.preventDefault()
-  $('#existing_category').slideUp 500
-  $('#new_category').slideDown 500
-
-$('.fileUpload').click (e)->
-    e.preventDefault()
-    $(@).siblings("asset_photo").click()
-    readURL = (input)->
-      if input.files && input.files[0]
-        reader = new FileReader()
-        reader.onload = (e)->
-        $(@).siblings('.previewImage').attr 'src', e.target.result
-      reader.readAsDataURL input.files[0]
-    $("#asset_photo").change ()->
-      readURL(@)
-
 if $('body').data('page') is 'CheckinsNew'
 
   #gets location from browser

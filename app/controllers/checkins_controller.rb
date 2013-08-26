@@ -51,6 +51,7 @@ class CheckinsController < ApplicationController
     puts @checkin.errors unless @checkin.valid?
     respond_to do |format|
       if @checkin.save!
+        make_assets
         assign_people
         assign_checkin_to_categories
         assign_user_to_categories
@@ -92,6 +93,11 @@ class CheckinsController < ApplicationController
   end
 
   private
+  def make_assets
+    params[:medias].each do |asset|
+      Asset.create media: asset, checkin_id: @checkin.id, user_id: current_user.id
+    end
+  end
   def assign_checkin_to_categories
     @checkin.categories_checkins.each { |x| x.checkin_id = @checkin.id }
   end

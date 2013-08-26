@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require jPages
+//= require canvasjs.min
 //= require chart
 //= require_tree .
 
