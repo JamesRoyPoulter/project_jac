@@ -16,4 +16,25 @@ class Asset < ActiveRecord::Base
     end
   end
 
+#   # a trampoline method which checks the extension before invocation
+# def self.process_extensions(*args)
+#   extensions = args.shift
+#   args.each do |arg|
+#     if arg.is_a?(Hash)
+#       arg.each do |method, args|
+#         processors.push([:process_trampoline, [extensions, method, args]])
+#       end
+#     else
+#       processors.push([:process_trampoline, [extensions, arg, []]])
+#     end
+#   end
+# end
+
+# # our trampoline method which only performs processing if the extension matches
+# def process_trampoline(extensions, method, args)
+#   extension = File.extname(original_filename).downcase
+#   extension = extension[1..-1] if extension[0,1] == '.'
+#   self.send(method, *args) if extensions.include?(extension)
+# end
+
 end

@@ -3,7 +3,7 @@
 class AssetUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   include CarrierWave::MimeTypes
   # include CarrierWave::MiniMagick
 
@@ -32,14 +32,23 @@ class AssetUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :resize_to_fill => [50, 50]
+  # IMAGE_EXTENSIONS = %w(jpg jpeg gif png)
+  # DOCUMENT_EXTENSIONS = %(exe pdf doc docm xls)
+  # def extension_white_list
+  #   IMAGE_EXTENSIONS + DOCUMENT_EXTENSIONS
   # end
 
-  # version :show_checkin do
-  #   process :resize_to_fill => [175, 175]
-  # end
+  # process_extensions IMAGE_EXTENSIONS, :resize_to_fit => [1024, 768]
+
+
+  # Create different versions of your uploaded files:
+  version :thumb, :if => :image? do
+    process :resize_to_fill => [50, 50]
+  end
+
+  version :show_checkin, :if => :image? do
+    process :resize_to_fill => [175, 175]
+  end
 
   def extension_white_list
     %w(jpg jpeg gif png mp4 3gp mp3 aac wav mid mov m4a)
@@ -50,5 +59,11 @@ class AssetUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  protected
+  def image?(new_file)
+    new_file.content_type.start_with? 'image'
+  end
+
 
 end
