@@ -20,12 +20,12 @@
       = f.hidden_field :longitude
 
     .categories.checkin_form_box
-
-      .field
-        = f.fields_for :categories_checkins do |category_checkin|
-          = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
-          = category_checkin.link_to_remove "X"
-        = f.link_to_add "Add Category", :categories_checkins
+      - if !current_user.categories.empty?
+        .field
+          = f.fields_for :categories_checkins do |category_checkin|
+            = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
+            = category_checkin.link_to_remove "X"
+          = f.link_to_add "Add Category", :categories_checkins
 
       .field
         = f.fields_for :categories do |category|
@@ -35,12 +35,13 @@
         = f.link_to_add "New Category", :categories
 
     .people.checkin_form_box
-      .field
-        = f.fields_for :people_checkins do |person|
-          = person.select 'person_id', Person.all.collect { |x| [x.name,x.id ]}
-          = person.link_to_remove "X"
-        .add_button
-          = f.link_to_add "Tag A Person", :people_checkins
+      - if !current_user.people.empty?
+        .field
+          = f.fields_for :people_checkins do |person|
+            = person.select 'person_id', Person.all.collect { |x| [x.name,x.id ]}
+            = person.link_to_remove "X"
+          .add_button
+            = f.link_to_add "Tag A Person", :people_checkins
 
       .field
         = f.fields_for :people do |person|
@@ -59,22 +60,6 @@
           = asset.file_field :media
           = asset.link_to_remove "X"
         = f.link_to_add "Add an Asset", :assets
-
-    / .assets.checkin_form_box
-    /   .field
-    /     = f.fields_for :assets do |asset|
-    /       = asset.text_field :words
-    /       = asset.file_field :media, id:'fileUpload'
-    /       = asset.link_to_remove "Remove Asset"
-    /     = f.link_to_add "Add an Asset", :assets
-
-    / .assets.checkin_form_box
-    /   .field
-    /     = f.fields_for :assets do |asset|
-    /       = asset.text_field :words
-    /       = asset.file_field :media, id:'fileUpload'
-    /       = asset.link_to_remove "Remove Asset"
-    /     = f.link_to_add "Add an Asset", :assets
 
     .actions
       = f.submit 'Save', class: 'submit_button'

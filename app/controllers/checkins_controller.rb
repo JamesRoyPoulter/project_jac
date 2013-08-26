@@ -24,7 +24,13 @@ class CheckinsController < ApplicationController
   end
 
   def search
-    @checkins = Checkin.near params[:location]
+    @category = params[:category]
+    @checkins = case @category
+      when 'people' then People.find_by_name(name: @category).checkins
+      when 'category' then Category.find_by_name(@category).checkins
+      when 'location' then Checkin.near params[:location]
+    end
+    binding.pry
     render json: @checkins
   end
 
@@ -49,10 +55,10 @@ class CheckinsController < ApplicationController
     @checkin = Checkin.new(params[:checkin])
     @checkin.user_id = current_user.id
     puts @checkin.errors unless @checkin.valid?
+    assign_people
     respond_to do |format|
       if @checkin.save!
         make_assets
-        assign_people
         assign_checkin_to_categories
         assign_user_to_categories
         format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
@@ -102,14 +108,9 @@ class CheckinsController < ApplicationController
     @checkin.categories_checkins.each { |x| x.checkin_id = @checkin.id }
   end
   def assign_user_to_categories
-    @checkin.categories.each { |x| x.user_id = current_user.id }
+    @checkin.categories.each { |x| x.user_id = current_user.id; x.save }
   end
   def assign_people
-    if params[:people]
-      params[:people].each do |person|
-        PeopleCheckin.new(checkin_id: @checkin.id, person_id: person[:id])
-      end
-    end
     if @checkin.people
       @checkin.people.each do |person|
         person.user_id = current_user.id
