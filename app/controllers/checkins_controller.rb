@@ -24,7 +24,13 @@ class CheckinsController < ApplicationController
   end
 
   def search
-    @checkins = Checkin.near params[:location]
+    @category = params[:category]
+    @checkins = case @category
+      when 'people' then People.find_by_name(name: @category).checkins
+      when 'category' then Category.find_by_name(@category).checkins
+      when 'location' then Checkin.near params[:location]
+    end
+    binding.pry
     render json: @checkins
   end
 

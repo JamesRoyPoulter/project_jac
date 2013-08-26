@@ -11,8 +11,8 @@ YourWorld::Application.routes.draw do
   resources :categories
 
   get '/checkin/past', to: 'checkins#past', as: :past_checkin
-  get '/checkins/search/:location', to: 'checkins#search', as: :search_checkins
-  
+  get '/checkins/search/:category/:location', to: 'checkins#search', as: :search_checkins
+
   resources :checkins
 
   resources :users

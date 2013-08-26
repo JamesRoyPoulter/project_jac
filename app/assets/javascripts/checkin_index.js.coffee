@@ -144,7 +144,8 @@ $ ->
 
     $('#checkinsSearch').submit (e)->
       e.preventDefault
-      query = $('#searchLocation').val()
+      query = $('#searchCatgory').val() + '/' + $('#searchLocation').val()
+
       $('#searchLocation').val ''
       $('#itemContainer').html ''
 

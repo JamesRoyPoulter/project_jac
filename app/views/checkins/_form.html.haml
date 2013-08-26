@@ -61,21 +61,5 @@
           = asset.link_to_remove "X"
         = f.link_to_add "Add an Asset", :assets
 
-    / .assets.checkin_form_box
-    /   .field
-    /     = f.fields_for :assets do |asset|
-    /       = asset.text_field :words
-    /       = asset.file_field :media, id:'fileUpload'
-    /       = asset.link_to_remove "Remove Asset"
-    /     = f.link_to_add "Add an Asset", :assets
-
-    / .assets.checkin_form_box
-    /   .field
-    /     = f.fields_for :assets do |asset|
-    /       = asset.text_field :words
-    /       = asset.file_field :media, id:'fileUpload'
-    /       = asset.link_to_remove "Remove Asset"
-    /     = f.link_to_add "Add an Asset", :assets
-
     .actions
       = f.submit 'Save', class: 'submit_button'
