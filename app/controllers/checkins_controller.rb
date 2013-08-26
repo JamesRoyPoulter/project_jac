@@ -41,7 +41,6 @@ class CheckinsController < ApplicationController
   # GET /checkins/1/edit
   def edit
     @checkin = Checkin.find(params[:id])
-    @people = []
   end
 
   # POST /checkins
@@ -49,10 +48,11 @@ class CheckinsController < ApplicationController
   def create
     @checkin = Checkin.new(params[:checkin])
     @checkin.user_id = current_user.id
-    assign_category
+    puts @checkin.errors unless @checkin.valid?
     respond_to do |format|
-      if @checkin.save
+      if @checkin.save!
         assign_people
+        assign_checkin_to_categories
         format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }
       else
@@ -91,14 +91,8 @@ class CheckinsController < ApplicationController
   end
 
   private
-  def assign_category
-    category_id = params[:checkin][:category_id]
-    if category_id.empty?
-      category = Category.create(name: params[:category][:name], user_id: current_user.id)
-      @checkin.category_id = category.id
-    else
-      @checkin.category_id = category_id
-    end
+  def assign_checkin_to_categories
+    @checkin.categories_checkins.each { |x| x.checkin_id = @checkin.id }
   end
 
   def assign_people
