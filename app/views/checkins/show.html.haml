@@ -20,8 +20,10 @@
         .asset_words
           = asset.words
         .asset_media
-          - if asset.media.url != nil
-            = image_tag asset.media.show_checkin
+          - if asset.media.model.file_type === 'image'
+            = image_tag asset.media, style:'height:50px;width:50px'
+          - if asset.media.model.file_type === 'audio'
+            = audio_tag asset.media.url
     - if @checkin.people
       - @checkin.people.each do |person|
         = person.name

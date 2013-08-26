@@ -1,6 +1,12 @@
 #map
+
 %form{id:'checkinsSearch', data: { remote: true } }
+  %select{name:'category',id:'searchCategory'}
+    %option{value:'location'} Location
+    %option{value:'people'} People
+    %option{value:'category'} Category
   %input{type:'text',name:'location',id:'searchLocation'}
+
 / JPAGES NAV PANEL
 .holder
   / JPAGES ITEM CONTAINER
