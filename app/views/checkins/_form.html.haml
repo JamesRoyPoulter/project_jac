@@ -7,7 +7,10 @@
           - @checkin.errors.full_messages.each do |msg|
             %li= msg
 
-    .map.checkin_form_box
+    .title_field
+      = f.text_field :title, placeholder: 'Title'
+
+    .map
       - if request.env['REQUEST_PATH'] === '/checkins/new'
         #map
       - if request.env['REQUEST_PATH'] === '/checkin/past'
@@ -16,10 +19,7 @@
       = f.hidden_field :latitude
       = f.hidden_field :longitude
 
-    .assets.checkin_form_box
-      .field
-        %b Title:
-        = f.text_field :title
+    .categories.checkin_form_box
 
       .field
         = f.fields_for :categories_checkins do |category_checkin|
@@ -52,10 +52,28 @@
     .assets.checkin_form_box
       .field
         = f.fields_for :assets do |asset|
+          .previewImage
           = asset.text_field :words
-          = asset.file_field :media
+          = asset.file_field :media, style:'display:none', class:'asset_photo'
+          %a.fileUpload Upload Image
           = asset.link_to_remove "Remove Asset"
         = f.link_to_add "Add an Asset", :assets
+
+    / .assets.checkin_form_box
+    /   .field
+    /     = f.fields_for :assets do |asset|
+    /       = asset.text_field :words
+    /       = asset.file_field :media, id:'fileUpload'
+    /       = asset.link_to_remove "Remove Asset"
+    /     = f.link_to_add "Add an Asset", :assets
+
+    / .assets.checkin_form_box
+    /   .field
+    /     = f.fields_for :assets do |asset|
+    /       = asset.text_field :words
+    /       = asset.file_field :media, id:'fileUpload'
+    /       = asset.link_to_remove "Remove Asset"
+    /     = f.link_to_add "Add an Asset", :assets
 
     .actions
       = f.submit 'Save', class: 'submit_button'

@@ -53,6 +53,7 @@ class CheckinsController < ApplicationController
       if @checkin.save!
         assign_people
         assign_checkin_to_categories
+        assign_user_to_categories
         format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }
       else
@@ -94,7 +95,9 @@ class CheckinsController < ApplicationController
   def assign_checkin_to_categories
     @checkin.categories_checkins.each { |x| x.checkin_id = @checkin.id }
   end
-
+  def assign_user_to_categories
+    @checkin.categories.each { |x| x.user_id = current_user.id }
+  end
   def assign_people
     if params[:people]
       params[:people].each do |person|
