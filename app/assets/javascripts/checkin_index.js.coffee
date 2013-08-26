@@ -7,7 +7,7 @@ $ ->
       icon: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
       contentString = checkin.title
     google.maps.event.addListener(marker, 'click', ->
-      # infowindow.setContent(contentString)
+      infowindow.setContent(contentString)
       infowindow.open(map, marker))
     markersArray.push marker
     bounds.extend(checkinLatLng)
@@ -44,7 +44,7 @@ $ ->
   generate_static_url = (checkin) ->
     lat = checkin.latitude
     lng = checkin.longitude
-    "http://maps.googleapis.com/maps/api/staticmap?center=" +lat + "," + lng + " &zoom=14&markers=" + lat + ","+lng + "&size=175x175&sensor=false&style=STYLES"
+    "http://maps.googleapis.com/maps/api/staticmap?center=" +lat + "," + lng + " &zoom=14&markers=" + lat + ","+lng + "&size=175x175&sensor=false&style=" + STYLES
 
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
