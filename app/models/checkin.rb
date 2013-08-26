@@ -1,6 +1,6 @@
 class Checkin < ActiveRecord::Base
 
-  attr_accessible :address, :category_id, :latitude, :longitude, :user_id, :title, :assets_attributes, 
+  attr_accessible :address, :category_id, :latitude, :longitude, :user_id, :title, :assets_attributes,
                   :categories_attributes, :categories_checkins_attributes,
                   :people_attributes, :people_checkins_attributes
 
@@ -20,7 +20,7 @@ class Checkin < ActiveRecord::Base
   accepts_nested_attributes_for :categories
   accepts_nested_attributes_for :categories_checkins
 
-  validates_presence_of :latitude, :longitude, :title, :user_id, :category_id
+  validates_presence_of :latitude, :longitude, :title, :user_id, :categories_checkins
 
   def location
     [self.latitude, self.longitude]

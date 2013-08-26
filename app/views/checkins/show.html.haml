@@ -2,7 +2,8 @@
 
 .show_checkin_container
   %p
-    = @checkin.category.name
+    - @checkin.categories.each do |category|
+      = category.name
     %b :
     = @checkin.title
     = link_to 'Edit', edit_checkin_path(@checkin)
