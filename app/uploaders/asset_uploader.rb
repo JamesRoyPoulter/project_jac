@@ -41,6 +41,9 @@ class AssetUploader < CarrierWave::Uploader::Base
   # process_extensions IMAGE_EXTENSIONS, :resize_to_fit => [1024, 768]
 
 
+  # CALL METHOD TO SET CONTENT TYPE
+  process :set_content_type
+
   # Create different versions of your uploaded files:
   version :thumb, :if => :image? do
     process :resize_to_fill => [50, 50]
