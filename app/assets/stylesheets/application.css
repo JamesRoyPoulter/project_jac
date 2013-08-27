@@ -47,3 +47,13 @@ a:hover {
   width: 90%;
   height: 100%;
 }
+
+#chartContainer {
+  float: left;
+}
+
+.chart_holder {
+  width: 100%;
+  text-align: center;
+  clear: both;
+}
