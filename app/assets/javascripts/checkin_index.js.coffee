@@ -13,30 +13,39 @@ $ ->
     bounds.extend(checkinLatLng)
     map.fitBounds(bounds)
 
-# CREATE CHART FOR PEOPLE
-  # createChart = () ->
-  #   chart = new CanvasJS.Chart("chartContainer",
-  #     title:
-  #       text: "Categories with friends"
 
+
+# CREATE CHART FOR PEOPLE
+  # window.onload = () ->
+  #   chart = new CanvasJS.Chart("chartContainer",
   #     data: [
+  #       {
+  #         type: "stackedBar100"
+  #         showInLegend: false
+  #         dataPoints: [
+  #           {
+  #             y: 350
+  #             label: "Lobby Chair"
+  #           }]
+  #       },
+  #      {
   #       type: "stackedBar100"
+  #       showInLegend: false
   #       dataPoints: [
-  #         y: 600
-  #         label: "Water Filter",
-  #         y: 400
-  #         label: "Modern Chair",
-  #         y: 120
-  #         label: "VOIP Phone",
-  #         y: 250
-  #         label: "Microwave",
-  #         y: 120
-  #         label: "Water Filter",
-  #         y: 374
-  #         label: "Expresso Machine",
-  #         y: 350
-  #         label: "Lobby Chair"
-  #       ]
+  #         {
+  #           y: 450
+  #           label: "Lobby Chair"
+  #         }]
+  #     },
+  #     {
+  #       type: "stackedBar100"
+  #       showInLegend: false
+  #       dataPoints: [
+  #         {
+  #           y: 340,
+  #           label: "Lobby Chair"
+  #         }]
+  #     }
   #     ]
   #   )
   #   chart.render()
