@@ -13,6 +13,8 @@ class Asset < ActiveRecord::Base
   def save_file_type
     if media.present? && media_changed?
       self.file_type = media.file.content_type.match(/^[a-zA-Z]*/).to_s
+    else
+      self.file_type = 'text'
     end
   end
 

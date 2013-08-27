@@ -4,4 +4,6 @@
 
 = link_to 'Show', @checkin
 
+= button_to 'Delete', @checkin, method: :delete, data: { confirm: 'Are you sure?' }
+
 = link_to 'Back', checkins_path

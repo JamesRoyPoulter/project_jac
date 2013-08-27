@@ -67,37 +67,39 @@ $ ->
 
     $('#itemContainer').append list_item
 
-    # CHECK CHECKIN HAS MEDIA
-    if checkin.assets[0] is undefined
+     # CHECK CHECKIN HAS MEDIA
+    if checkin.image_assets isnt null
       $("<img/>",
-        class: 'checkin_minimap'
-        id: 'checkin_minimap'+index
-        src: generate_static_url(checkin, map)
+        class: 'checkin_image'
+        id: 'checkin_image'+index
+        src: checkin.image_assets.media.show_checkin.url
       ).appendTo "#checkin_title"+index
-    else
-      for asset in checkin.assets
-        do (asset)->
-          switch asset.file_type
-            when 'image'
-              $("<img/>",
-                class: 'checkin_image'
-                id: 'checkin_image'+index
-                src: checkin.assets[0].media.show_checkin.url
-              ).appendTo "#checkin_title"+index
-            when 'audio'
-              $("<audio/>",
-                class: 'checkin_image'
-                id: 'checkin_image'+index
-                src: checkin.assets[0].media.url
-              ).appendTo "#checkin_title"+index
-            else
-              # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
-              $("<div/>",
-                class: 'checkin_words'
-                id: 'checkin_words'+index
-                html: checkin.assets[0].words
-              ).appendTo "#checkin_title"+index
-
+     else if checkin.video_assets isnt null
+       $('<video/>',
+          class:'checkin_video'
+          id: 'checkin_video' + index
+          src: checkin.video_assets.media.url
+          style: 'height:200px;width:175px'
+        ).appendTo "#checkin_title"+index
+      else if checkin.audio_assets isnt null
+        $('<img/>',
+          class: 'checkin_audio'
+          id: 'checkin_audio' + index
+          src: 'http://us.cdn2.123rf.com/168nwm/lucky1124/lucky11240912/lucky1124091200006/6062932-music-tone.jpg'
+          style: 'height:175px;width:175px'
+        ).appendTo "#checkin_title"+index
+      else if checkin.words_assets isnt null
+        $('<p/>',
+          class: 'checkin_words'
+          id: 'checkin_words' + index
+          html: checkin.words_assets.words
+        ).appendTo "#checkin_title"+index
+      else
+        $("<img/>",
+          class: 'checkin_minimap'
+          id: 'checkin_minimap'+index
+          src: generate_static_url(checkin)
+        ).appendTo "#checkin_title"+index
 
   paginate = ()->
     $(".holder").jPages
