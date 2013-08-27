@@ -41,37 +41,19 @@ $ ->
   #   )
   #   chart.render()
 
-  generate_static_url = (checkin) ->
-    url = "http://maps.googleapis.com/maps/api/staticmap?"
-    params = []
-    params.push "center=" + map.getCenter().toUrlValue()
-    params.push "zoom=" + map.getZoom()
-    params.push "format=png"
-    params.push "sensor=false"
-    params.push "size=175x175"
-    params.push "maptype=" + map.getMapTypeId()
-    params.push "markers=icon:http://tinyurl.com/mhoqu4d|" + checkin.latitude + ',' + checkin.longitude
-    params.push "visual_refresh=true"  if google.maps.visualRefresh
-    i = 0
-
-    while i < STYLES.length
-      styleRule = []
-      styleRule.push "feature:" + STYLES[i].featureType  unless STYLES[i].featureType is "all"
-      styleRule.push "element:" + STYLES[i].elementType  unless STYLES[i].elementType is "all"
-      j = 0
-
-      while j < STYLES[i].stylers.length
-        for p of STYLES[i].stylers[j]
-          ruleArg = STYLES[i].stylers[j][p]
-          ruleArg = "0x" + ruleArg.substring(1)  if p is "hue" or p is "color"
-          styleRule.push p + ":" + ruleArg
-        j++
-      rule = styleRule.join("|")
-      params.push "style=" + rule  unless rule is ""
-      i++
-    url + params.join("&")
-
-
+  generate_static_url = (checkin, map) ->
+    GMaps.staticMapURL
+      size: [175, 175]
+      zoom: 6
+      style:"feature:water|element:undefined|saturation:-8|color:0x00009d|hue:0x00eeff"
+      lat: checkin.latitude
+      lng: checkin.longitude
+      mapType: 'Styled'
+      markers: [
+        icon: 'http://tinyurl.com/mhoqu4d'
+        lat: checkin.latitude
+        lng: checkin.longitude
+      ]
 
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
@@ -85,33 +67,37 @@ $ ->
 
     $('#itemContainer').append list_item
 
-     # CHECK CHECKIN HAS MEDIA
+    # CHECK CHECKIN HAS MEDIA
     if checkin.assets[0] is undefined
       $("<img/>",
         class: 'checkin_minimap'
         id: 'checkin_minimap'+index
-        src: generate_static_url(checkin)
-      ).appendTo "#checkin_title"+index
-    else if checkin.assets[0].file_type is 'image'
-      $("<img/>",
-        class: 'checkin_image'
-        id: 'checkin_image'+index
-        src: checkin.assets[0].media.show_checkin.url
-      ).appendTo "#checkin_title"+index
-    else if checkin.assets[0].file_type is 'audio'
-      $("<audio/>",
-        class: 'checkin_image'
-        id: 'checkin_image'+index
-        src: checkin.assets[0].media.url
+        src: generate_static_url(checkin, map)
       ).appendTo "#checkin_title"+index
     else
-      console.log(checkin.assets[0].file_type)
-        # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
-      $("<div/>",
-        class: 'checkin_words'
-        id: 'checkin_words'+index
-        html: checkin.assets[0].words
-      ).appendTo "#checkin_title"+index
+      for asset in checkin.assets
+        do (asset)->
+          switch asset.file_type
+            when 'image'
+              $("<img/>",
+                class: 'checkin_image'
+                id: 'checkin_image'+index
+                src: checkin.assets[0].media.show_checkin.url
+              ).appendTo "#checkin_title"+index
+            when 'audio'
+              $("<audio/>",
+                class: 'checkin_image'
+                id: 'checkin_image'+index
+                src: checkin.assets[0].media.url
+              ).appendTo "#checkin_title"+index
+            else
+              # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
+              $("<div/>",
+                class: 'checkin_words'
+                id: 'checkin_words'+index
+                html: checkin.assets[0].words
+              ).appendTo "#checkin_title"+index
+
 
   paginate = ()->
     $(".holder").jPages

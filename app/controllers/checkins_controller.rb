@@ -57,9 +57,7 @@ class CheckinsController < ApplicationController
     assign_people
     respond_to do |format|
       if @checkin.save!
-        make_assets
-        assign_checkin_to_categories
-        assign_user_to_categories
+        manage_assets_and_categories
         format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }
       else
@@ -73,9 +71,10 @@ class CheckinsController < ApplicationController
   # PUT /checkins/1.json
   def update
     @checkin = Checkin.find(params[:id])
-
+    assign_people
     respond_to do |format|
       if @checkin.update_attributes(params[:checkin])
+        manage_assets_and_categories
         format.html { redirect_to @checkin, notice: 'Checkin was successfully updated.' }
         format.json { head :no_content }
       else
@@ -98,23 +97,25 @@ class CheckinsController < ApplicationController
   end
 
   private
-  def make_assets
-    params[:medias].each do |asset|
-      Asset.create media: asset, checkin_id: @checkin.id, user_id: current_user.id
+  def manage_assets_and_categories
+    if params[:medias]
+      params[:medias].each do |asset|
+        Asset.create media: asset, checkin_id: @checkin.id, user_id: current_user.id
+      end
+    end
+
+    if @checkin.categories_checkins
+      @checkin.categories_checkins.each { |x| x.checkin_id = @checkin.id; x.save }
+    end
+
+    if @checkin.categories
+      @checkin.categories.each { |x| x.user_id = current_user.id; x.save }  if @checkin.categories
     end
   end
-  def assign_checkin_to_categories
-    @checkin.categories_checkins.each { |x| x.checkin_id = @checkin.id }
-  end
-  def assign_user_to_categories
-    @checkin.categories.each { |x| x.user_id = current_user.id; x.save }
-  end
+
   def assign_people
     if @checkin.people
-      @checkin.people.each do |person|
-        person.user_id = current_user.id
-        person.save
-      end
+      @checkin.people.each { |person| person.user_id = current_user.id; person.save }
     end
   end
 
