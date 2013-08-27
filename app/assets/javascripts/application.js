@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require jPages
+//= require gmaps.js
 //= require canvasjs.min
 //= require chart
 //= require_tree .
@@ -32,14 +33,6 @@ STYLES = [
     "stylers": [
       { "hue": "#fff700" },
       { "saturation": -49 }
-    ]
-  },{
-    "featureType": "landscape.natural",
-    "elementType": "geometry",
-    "stylers": [
-      { "hue": "#ffe500" },
-      { "saturation": 46 },
-      { "lightness": -23 }
     ]
   },{
     "featureType": "road.highway",
@@ -77,19 +70,24 @@ STYLES = [
     "stylers": [
       { "visibility": "on" },
       { "hue": "#ffff00" },
-      { "saturation": 84 },
-      { "lightness": -15 },
-      { "gamma": 1.24 }
+    ]
+  },  {
+    "featureType": "landscape.natural",
+    "elementType": "geometry.fill",
+    "stylers": [
+      { "visibility": "on" },
+      { "hue": "#fff700" },
+      { "gamma": 0.89 },
+      { "lightness": -11 },
+      { "saturation": 72 }
     ]
   },{
     "featureType": "landscape.natural.landcover",
     "stylers": [
-      { "hue": "#ff002b" }
-    ]
-  },{
-    "featureType": "landscape.natural.terrain",
-    "stylers": [
-      { "hue": "#ff0011" }
+      { "saturation": 49 },
+      { "hue": "#ff0022" },
+      { "gamma": 1 },
+      { "lightness": -8 }
     ]
   },{
     "featureType": "administrative",
@@ -135,6 +133,14 @@ STYLES = [
     "elementType": "labels.text.fill",
     "stylers": [
       { "color": "#7d8080" }
+    ]
+  },{
+    "featureType": "poi.park",
+    "stylers": [
+      { "saturation": 49 },
+      { "gamma": 1 },
+      { "lightness": -12 },
+      { "hue": "#00ff91" }
     ]
   }
 ]

@@ -2,11 +2,12 @@
 %html
   %head
     %title YourWorld
-    %link{:rel =>"stylesheet", :href =>"http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css"}
     = stylesheet_link_tag    "application", :media => "all"
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans", :rel => "stylesheet", :type => "text/css"}
     %script{:src=>"//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
-    %script{:src=>"/assets/javascripts/canvasjs.min.js"}
+    %script{:type => "text/javascript", :src=>"/assets/canvasjs.min.js"}
+    %script{src: "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE2']}&sensor=false", type: "text/javascript"}
+    %script{:type => "text/javascript", :src=>"/assets/gmaps.js"}
 
       = csrf_meta_tags
       -# this meta_tag below makes the check-in map render on mobile without unwanted scaling
@@ -19,5 +20,5 @@
     .content
       = yield
 
-    %script{src: "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE2']}&sensor=false", type: "text/javascript"}
+
     = javascript_include_tag "application"
