@@ -1,5 +1,6 @@
 class CheckinsController < ApplicationController
   before_filter :authenticate
+  # protect_from_forgery
 
   # GET /checkins
   # GET /checkins.json
@@ -89,6 +90,7 @@ class CheckinsController < ApplicationController
   # DELETE /checkins/1
   # DELETE /checkins/1.json
   def destroy
+    # binding.pry
     @checkin = Checkin.find(params[:id])
     @checkin.destroy
 
