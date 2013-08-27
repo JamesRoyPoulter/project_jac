@@ -2,9 +2,6 @@
 
 .show_checkin_container
   %p
-    - @checkin.categories.each do |category|
-      = category.name
-    %b :
     = @checkin.title
     = link_to 'Edit', edit_checkin_path(@checkin)
   .assets_container
@@ -13,24 +10,24 @@
       %br
       - if @checkin.address != nil
         = @checkin.address
-      - else
-        ADDRESS GOES UNDERNEATH
 
     - @checkin.assets.each do |asset|
       .asset_div
-        .asset_words
+        - if asset.media.model.file_type === 'image'
+          = image_tag asset.media, style:'height:100px;width:100px'
+        - elsif asset.media.model.file_type === 'audio'
+          = audio_tag asset.media.url, style:'height:100px;width:100px', controls: true
+        - elsif asset.media.model.file_type === 'video'
+          = video_tag asset.media.url, style:'height:200px;width:175px', controls: true
+        - else
           = asset.words
-        .asset_media
-          - if asset.media.model.file_type === 'image'
-            = image_tag asset.media, style:'height:100px;width:100px'
-          - elsif asset.media.model.file_type === 'audio'
-            = audio_tag asset.media.url, style:'height:100px;width:100px'
-            = asset.media.url
-          - elsif asset.media.model.file_type === 'video'
-            = video_tag asset.media.url, style:'height:200px;width:175px', controls: true
-            = asset.media.url
-          - else
-            yoda
+
     - if @checkin.people
-      - @checkin.people.each do |person|
-        = person.name
+      .show_checkin_people_div
+        - @checkin.people.each do |person|
+          = person.name
+
+    - if @checkin.categories
+      .show_checkin_categories_div
+        - @checkin.categories.each do |category|
+          = category.name
