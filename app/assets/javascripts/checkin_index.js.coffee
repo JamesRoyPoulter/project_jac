@@ -50,19 +50,19 @@ $ ->
   #   )
   #   chart.render()
 
-  generate_static_url = (checkin, map) ->
-    GMaps.staticMapURL
-      size: [175, 175]
-      zoom: 6
-      style:"feature:water|element:undefined|saturation:-8|color:0x00009d|hue:0x00eeff"
-      lat: checkin.latitude
-      lng: checkin.longitude
-      mapType: 'Styled'
-      markers: [
-        icon: 'http://tinyurl.com/mhoqu4d'
-        lat: checkin.latitude
-        lng: checkin.longitude
-      ]
+  # generate_static_url = (checkin, map) ->
+  #   GMaps.staticMapURL
+  #     size: [175, 175]
+  #     zoom: 6
+  #     style:"feature:water|element:undefined|saturation:-8|color:0x00009d|hue:0x00eeff"
+  #     lat: checkin.latitude
+  #     lng: checkin.longitude
+  #     mapType: 'Styled'
+  #     markers: [
+  #       icon: 'http://tinyurl.com/mhoqu4d'
+  #       lat: checkin.latitude
+  #       lng: checkin.longitude
+  #     ]
 
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
@@ -107,7 +107,7 @@ $ ->
         $("<img/>",
           class: 'checkin_minimap'
           id: 'checkin_minimap'+index
-          src: generate_static_url(checkin)
+          src: 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png'
         ).appendTo "#checkin_title"+index
 
   paginate = ()->
