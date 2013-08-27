@@ -42,9 +42,36 @@ $ ->
   #   chart.render()
 
   generate_static_url = (checkin) ->
-    lat = checkin.latitude
-    lng = checkin.longitude
-    "http://maps.googleapis.com/maps/api/staticmap?center=" +lat + "," + lng + " &zoom=14&markers=" + lat + ","+lng + "&size=175x175&sensor=false&style=" + STYLES
+    url = "http://maps.googleapis.com/maps/api/staticmap?"
+    params = []
+    params.push "center=" + map.getCenter().toUrlValue()
+    params.push "zoom=" + map.getZoom()
+    params.push "format=png"
+    params.push "sensor=false"
+    params.push "size=175x175"
+    params.push "maptype=" + map.getMapTypeId()
+    params.push "markers=icon:http://tinyurl.com/mhoqu4d|" + checkin.latitude + ',' + checkin.longitude
+    params.push "visual_refresh=true"  if google.maps.visualRefresh
+    i = 0
+
+    while i < STYLES.length
+      styleRule = []
+      styleRule.push "feature:" + STYLES[i].featureType  unless STYLES[i].featureType is "all"
+      styleRule.push "element:" + STYLES[i].elementType  unless STYLES[i].elementType is "all"
+      j = 0
+
+      while j < STYLES[i].stylers.length
+        for p of STYLES[i].stylers[j]
+          ruleArg = STYLES[i].stylers[j][p]
+          ruleArg = "0x" + ruleArg.substring(1)  if p is "hue" or p is "color"
+          styleRule.push p + ":" + ruleArg
+        j++
+      rule = styleRule.join("|")
+      params.push "style=" + rule  unless rule is ""
+      i++
+    url + params.join("&")
+
+
 
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
