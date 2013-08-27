@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_email(params[:email])
-    binding.pry
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to checkins_path, :notice => "Welcome back, #{user.email}"

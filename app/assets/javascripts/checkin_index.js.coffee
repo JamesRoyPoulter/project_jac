@@ -92,20 +92,20 @@ $ ->
         id: 'checkin_minimap'+index
         src: generate_static_url(checkin)
       ).appendTo "#checkin_title"+index
-    else if checkin.assets[0].media.file_type is 'image'
+    else if checkin.assets[0].file_type is 'image'
       $("<img/>",
         class: 'checkin_image'
         id: 'checkin_image'+index
         src: checkin.assets[0].media.show_checkin.url
       ).appendTo "#checkin_title"+index
-    else if checkin.assets[0].media.file_type is 'audio'
+    else if checkin.assets[0].file_type is 'audio'
       $("<audio/>",
         class: 'checkin_image'
         id: 'checkin_image'+index
         src: checkin.assets[0].media.url
       ).appendTo "#checkin_title"+index
     else
-      console.log(checkin.assets[0].media.file_type)
+      console.log(checkin.assets[0].file_type)
         # IF MEDIA PRESENT, APPEND TO CHECKIN DIV
       $("<div/>",
         class: 'checkin_words'
