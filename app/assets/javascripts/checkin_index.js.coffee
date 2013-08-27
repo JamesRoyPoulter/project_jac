@@ -7,7 +7,7 @@ $ ->
       icon: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
       contentString = checkin.title
     google.maps.event.addListener(marker, 'click', ->
-      # infowindow.setContent(contentString)
+      infowindow.setContent(contentString)
       infowindow.open(map, marker))
     markersArray.push marker
     bounds.extend(checkinLatLng)
@@ -144,13 +144,11 @@ $ ->
 
     $('#checkinsSearch').submit (e)->
       e.preventDefault
-      query = $('#searchCatgory').val() + '/' + $('#searchLocation').val()
-
+      query = $('#searchCategory').val() + '/' + $('#searchQuery').val()
       $('#searchLocation').val ''
       $('#itemContainer').html ''
 
       $.getJSON '/checkins/search/'+query, (data)->
-        console.log data
         if data.checkins.length isnt 0
           index = 1
           clearMarkers markersArray
