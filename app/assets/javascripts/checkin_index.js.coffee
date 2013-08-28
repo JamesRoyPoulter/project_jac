@@ -169,6 +169,9 @@ $ ->
         index +=1
       paginate()
 
+    # $( "#searchQuery" ).autocomplete
+    #   source: availableTags
+
     $('#checkinsSearch').submit (e)->
       e.preventDefault
       query = $('#searchCategory').val() + '/' + $('#searchQuery').val()
