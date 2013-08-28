@@ -140,6 +140,7 @@ $ ->
           mapTypeIds: [ 'Styled']
         center: new google.maps.LatLng(51.0500, 3.7333)
         zoom: zoom
+        minZoom: 1
         mapTypeId: 'Styled'
 
       styledMapType = new google.maps.StyledMapType(STYLES, { name: 'Styled' })

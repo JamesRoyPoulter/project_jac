@@ -13,6 +13,7 @@ if $('body').data('page') is 'CheckinsPast'
         mapOptions =
           center: center
           zoom: 12
+          minZoom: 1
           mapTypeId: 'Styled'
           mapTypeControlOptions:
             mapTypeIds: [ 'Styled']
