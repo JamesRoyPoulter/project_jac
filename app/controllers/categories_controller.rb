@@ -19,6 +19,11 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def search
+    render json: Category.where('name ilike :query AND user_id=:id',
+      query: "%#{params[:name_startsWith]}%", id: current_user.id)
+  end
+
   def new
     @category = Category.new
 

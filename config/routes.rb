@@ -14,6 +14,7 @@ YourWorld::Application.routes.draw do
 
   get 'search/people', to: 'people#search'
   get 'search/location', to: 'checkins#search'
+  get 'search/category', to: 'categories#search'
 
 
 end
