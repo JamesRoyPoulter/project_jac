@@ -6,15 +6,16 @@
     = link_to 'Edit', edit_checkin_path(@checkin)
   .assets_container
     .show_checkin_map
-      #map
+      #map.show
       %br
-      - if @checkin.address != nil
-        = @checkin.address
+      #address
+        - if @checkin.address != nil
+          = @checkin.address
 
     - @checkin.assets.each do |asset|
       .asset_div
         - if asset.media.model.file_type === 'image'
-          = image_tag asset.media, style:'height:100px;width:100px'
+          = image_tag asset.media.show_checkin.url
         - elsif asset.media.model.file_type === 'audio'
           = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png", id: 'audio_default_image'
           = audio_tag asset.media.url, id:'audio_tag_show_page', controls: true
