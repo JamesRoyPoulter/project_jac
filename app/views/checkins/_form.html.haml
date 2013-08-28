@@ -51,15 +51,17 @@
         = f.link_to_add "New Person", :people
 
     .assets.checkin_form_box
-      .file_field
-        = file_field_tag 'medias[]'
+      .file_fields
+      .add_media
+        %a#add_media Add Media
 
+    .words.checkin_form_box
       .field
         = f.fields_for :assets do |asset|
           = asset.text_field :words
-          = asset.file_field :media
+          = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
           = asset.link_to_remove image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
-        = f.link_to_add "Add an Asset", :assets
+        = f.link_to_add "Add Words", :assets
 
     .actions
       = f.submit 'Save', class: 'submit_button'

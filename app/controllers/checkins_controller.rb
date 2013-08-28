@@ -4,6 +4,7 @@ class CheckinsController < ApplicationController
 
   def index
     @checkins = Checkin.belonging_to current_user
+
     respond_to do |format|
       format.html
       format.json { render json: @checkins.reverse }
@@ -19,12 +20,16 @@ class CheckinsController < ApplicationController
     end
   end
 
+  # Person.where(user_id: current_user.id)
+
   def search
     @category = params[:category]
-    @query = params[:query]
+    @query = "%#{params[:query]}%"
+    @sql = 'name ilike :query AND user_id=:id'
+    @id = current_user.id
     @checkins = case @category
-      when 'people' then Person.find_by_name(@query).checkins
-      when 'category' then Category.find_by_name(@query).checkins
+      when 'people' then Person.where(@sql, query: @query, id:@id).first.checkins
+      when 'category' then Category.where(@sql, query: @query, id:@id).first.checkins
       when 'location' then Checkin.near @query
     end
     render json: @checkins
@@ -48,7 +53,7 @@ class CheckinsController < ApplicationController
     respond_to do |format|
       if @checkin.save!
         build_new_assets
-        format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
+        format.html { redirect_to checkins_path, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }
       else
         format.html { render action: "new" }
