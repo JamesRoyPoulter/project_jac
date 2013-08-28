@@ -1,3 +1,6 @@
+media_divs_length = 0
+word_divs_length = 0
+
 $ ()->
   $('#add_media').click ()->
     $('.file_fields').append $('<div/>',
@@ -8,6 +11,9 @@ $ ()->
         id: 'checkin_medias'
       )
     )
+    media_divs_length += 1
+    if media_divs_length>=10
+      $('#add_media').hide()
 
 if $('body').data('page') is 'CheckinsNew'
   #gets location from browser
@@ -61,4 +67,3 @@ if $('body').data('page') is 'CheckinsNew'
       infowindow.open map, marker
 
   google.maps.event.addDomListener window, 'load', getLocation
-
