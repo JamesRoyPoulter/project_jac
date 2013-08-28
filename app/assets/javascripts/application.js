@@ -19,9 +19,17 @@
 //= require chart
 //= require_tree .
 
-// GLOBAL VARIABLES
+
+function stopRKey(evt) {
+  var evt = (evt) ? evt : ((event) ? event : null);
+  var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+  if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
+}
+
+document.onkeypress = stopRKey;
 
 AUDIO_IMAGE = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png"
+ICON = 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
 
 STYLES = [
   {
@@ -29,6 +37,15 @@ STYLES = [
     "stylers": [
       { "hue": "#3c00ff" },
       { "color": "#808080" }
+    ]
+  },{
+    "featureType": "water",
+    "elementType": "labels.text",
+    "stylers": [
+      { "hue": "#ff00ee" },
+      { "weight": 0.1 },
+      { "visibility": "on" },
+      { "color": "#cccccc" }
     ]
   },{
     "featureType": "poi.park",
@@ -89,6 +106,14 @@ STYLES = [
     "stylers": [
       { "color": "#000000" }
     ]
-  },{
+  }, {
+    "featureType": "poi.park",
+    "elementType": "labels.text",
+    "stylers": [
+      { "hue": "#ff00ee" },
+      { "weight": 0.1 },
+      { "visibility": "on" },
+      { "color": "#cccccc" }
+    ]
   }
 ]
