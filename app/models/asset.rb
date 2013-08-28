@@ -9,6 +9,8 @@ class Asset < ActiveRecord::Base
 
   before_save :save_file_type
 
+  validates :media, uniqueness: :true
+
   private
   def save_file_type
     if media.present? && media_changed?

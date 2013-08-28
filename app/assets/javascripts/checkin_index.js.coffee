@@ -87,11 +87,11 @@ $ ->
         src: checkin.image_assets.media.show_checkin.url
       ).appendTo "#checkin_title"+index
     else if checkin.video_assets isnt null
-      $('<video/>',
+      $('<img/>',
         class:'checkin_video'
         id: 'checkin_video' + index
-        src: checkin.video_assets.media.url
-        style: 'height:200px;width:175px'
+        src: checkin.video_assets.media.video_thumb.url
+        style: 'height:175px;width:175px'
       ).appendTo "#checkin_title"+index
     else if checkin.audio_assets isnt null
       $('<img/>',
