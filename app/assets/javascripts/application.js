@@ -31,6 +31,15 @@ STYLES = [
       { "color": "#808080" }
     ]
   },{
+    "featureType": "water",
+    "elementType": "labels.text",
+    "stylers": [
+      { "hue": "#ff00ee" },
+      { "weight": 0.1 },
+      { "visibility": "on" },
+      { "color": "#cccccc" }
+    ]
+  },{
     "featureType": "poi.park",
     "elementType": "geometry",
     "stylers": [
@@ -89,11 +98,14 @@ STYLES = [
     "stylers": [
       { "color": "#000000" }
     ]
-  },{
+  }, {
     "featureType": "poi.park",
-    "elementType": "text",
+    "elementType": "labels.text",
     "stylers": [
-      { "color": "#708080" }
+      { "hue": "#ff00ee" },
+      { "weight": 0.1 },
+      { "visibility": "on" },
+      { "color": "#cccccc" }
     ]
   }
 ]
