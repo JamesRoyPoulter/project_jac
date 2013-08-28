@@ -201,6 +201,7 @@ $ ->
         if category is 'people'
           $.getJSON '/search/people?name_startsWith='+ui.item.label, (data)->
             if data.people[0].checkins.length isnt 0
+              $('#itemContainer').html ''
               index = 1
               clearMarkers markersArray
               markersArray.length = 0
@@ -216,6 +217,7 @@ $ ->
         else if category is 'location'
           $.getJSON '/search/location?name_startsWith='+ui.item.label, (data)->
             if data.checkins.length isnt 0
+              $('#itemContainer').html ''
               index = 1
               clearMarkers markersArray
               markersArray.length = 0

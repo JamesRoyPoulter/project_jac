@@ -7,11 +7,9 @@
     %link{rel:"stylesheet",href:"http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"}
     %script{src:"http://code.jquery.com/jquery-1.9.1.js"}
     %script{src: "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE2']}&sensor=false", type: "text/javascript"}
-
-
-      = csrf_meta_tags
-      -# this meta_tag below makes the check-in map render on mobile without unwanted scaling
-      %meta{:name =>"viewport", :content =>"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}
+    = csrf_meta_tags
+    -# this meta_tag below makes the check-in map render on mobile without unwanted scaling
+    %meta{:name =>"viewport", :content =>"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}
   %body{data: {page: [controller_name.capitalize, action_name.capitalize].join} }
 
     .container
