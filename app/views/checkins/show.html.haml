@@ -19,7 +19,9 @@
           = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png", id: 'audio_default_image'
           = audio_tag asset.media.url, id:'audio_tag_show_page', controls: true
         - elsif asset.media.model.file_type === 'video'
+          = image_tag asset.media.video_thumb.url
           = video_tag asset.media.url, style:'height:200px;width:175px', controls: true
+
         - else
           = asset.words
 
