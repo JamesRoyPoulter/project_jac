@@ -166,64 +166,67 @@ $ ->
         index +=1
       paginate()
 
-    availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ]
-
     $( "#searchQuery" ).autocomplete
       source: (request, response)->
+        category = $('#searchCategory').val()
         $.ajax
-          url: "/search/people",
-          dataType: "json",
+          url:
+            if category is 'people'
+              "/search/people"
+            else if category is 'location'
+              "http://ws.geonames.org/searchJSON"
+          dataType:
+            if category is 'people'
+              "json"
+            else if category is 'location'
+              'jsonp'
           data:
             featureClass: "P"
             style: "full"
             maxRows: 12
             name_startsWith: request.term
           success: (data)->
-            $.map data.people, (person)->
-              console.log person.name
-              { label: person.name, value: person.name }
+            if category is 'people'
+              response(
+                $.map data.people, (person)->
+                  return label: person.name, value: person.name
+              )
+            else if category is 'location'
+              response(
+                $.map data.geonames, (item)->
+                  return label: (item.name + ", " + item.countryName), value: item.name
+              )
+      select: (event,ui)->
+        category = $('#searchCategory').val()
+        if category is 'people'
+          $.getJSON '/search/people?name_startsWith='+ui.item.label, (data)->
+            if data.people[0].checkins.length isnt 0
+              index = 1
+              clearMarkers markersArray
+              markersArray.length = 0
+              $.each data.people[0].checkins, (index, checkin)->
+                addCheckinMarker checkin, map, bounds
+                populateTimeLine checkin, index
+                index += 1
+              map.setCenter markersArray[0].position
+              map.setZoom 10
+              paginate()
+            else
+              alert 'You have no checkins with this person'
+        else if category is 'location'
+          $.getJSON '/search/location?name_startsWith='+ui.item.label, (data)->
+            if data.checkins.length isnt 0
+              index = 1
+              clearMarkers markersArray
+              markersArray.length = 0
+              $.each data.checkins, (index, checkin)->
+                addCheckinMarker checkin, map, bounds
+                populateTimeLine checkin, index
+                index += 1
+              map.setCenter markersArray[0].position
+              map.setZoom 10
+              paginate()
+            else
+              alert 'You have no checkins near this location'
 
-    $('#checkinsSearch').submit (e)->
-      e.preventDefault
-      query = $('#searchCategory').val() + '/' + $('#searchQuery').val()
-      $('#searchLocation').val ''
-      $('#itemContainer').html ''
-
-      $.getJSON '/checkins/search/'+query, (data)->
-        if data.checkins.length isnt 0
-          index = 1
-          clearMarkers markersArray
-          markersArray.length = 0
-          $.each data.checkins, (index, checkin)->
-            addCheckinMarker checkin, map, bounds
-            populateTimeLine checkin, index
-            index += 1
-          map.setCenter markersArray[0].position
-          map.setZoom 10
-          paginate()
-        else
-          alert 'No checkins near the location you have requested'
 

@@ -14,6 +14,7 @@ YourWorld::Application.routes.draw do
   get '/checkins/search/:category/:query', to: 'checkins#search', as: :search_checkins
 
   get 'search/people', to: 'people#search'
+  get 'search/location', to: 'checkins#search'
 
   resources :checkins
 

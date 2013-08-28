@@ -20,19 +20,8 @@ class CheckinsController < ApplicationController
     end
   end
 
-  # Person.where(user_id: current_user.id)
-
   def search
-    @category = params[:category]
-    @query = "%#{params[:query]}%"
-    @sql = 'name ilike :query AND user_id=:id'
-    @id = current_user.id
-    @checkins = case @category
-      when 'people' then Person.where(@sql, query: @query, id:@id).first.checkins
-      when 'category' then Category.where(@sql, query: @query, id:@id).first.checkins
-      when 'location' then Checkin.near @query
-    end
-    render json: @checkins
+    render json: Checkin.belonging_to(current_user).near(params[:name_startsWith])
   end
 
   def new
