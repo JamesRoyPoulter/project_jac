@@ -1,24 +1,20 @@
 class CheckinsController < ApplicationController
   before_filter :authenticate
-  # protect_from_forgery
+  protect_from_forgery
 
-  # GET /checkins
-  # GET /checkins.json
   def index
     @checkins = Checkin.belonging_to current_user
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @checkins.reverse }
     end
   end
 
-  # GET /checkins/1
-  # GET /checkins/1.json
   def show
     @checkin = Checkin.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @checkin }
     end
   end
@@ -34,8 +30,6 @@ class CheckinsController < ApplicationController
     render json: @checkins
   end
 
-  # GET /checkins/new
-  # GET /checkins/new.json
   def new
     @checkin = Checkin.new
   end
@@ -44,13 +38,10 @@ class CheckinsController < ApplicationController
     @checkin = Checkin.new
   end
 
-  # GET /checkins/1/edit
   def edit
     @checkin = Checkin.find(params[:id])
   end
 
-  # POST /checkins
-  # POST /checkins.json
   def create
     @checkin = Checkin.new(params[:checkin])
     @checkin.user_id = current_user.id
@@ -68,8 +59,6 @@ class CheckinsController < ApplicationController
     end
   end
 
-  # PUT /checkins/1
-  # PUT /checkins/1.json
   def update
     @checkin = Checkin.find(params[:id])
     assign_people
@@ -85,10 +74,7 @@ class CheckinsController < ApplicationController
     end
   end
 
-  # DELETE /checkins/1
-  # DELETE /checkins/1.json
   def destroy
-    # binding.pry
     @checkin = Checkin.find(params[:id])
     @checkin.destroy
 

@@ -6,7 +6,7 @@ $ ->
       map: map
       icon: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
       contentString = checkin.title
-    google.maps.event.addListener(marker, 'click', ->
+    google.maps.event.addListener(marker, 'click', ()->
       infowindow.setContent(contentString)
       infowindow.open(map, marker))
     markersArray.push marker
@@ -14,8 +14,7 @@ $ ->
     map.fitBounds(bounds)
 
 
-
-# CREATE CHART FOR PEOPLE
+  # CREATE CHART FOR PEOPLE
   # window.onload = () ->
   #   chart = new CanvasJS.Chart("chartContainer",
   #     data: [
@@ -64,6 +63,7 @@ $ ->
   #       lng: checkin.longitude
   #     ]
 
+
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
     checkin_title = $("<div/>", class: 'checkin_title', id: 'checkin_title'+index, text: checkin.title)
@@ -83,32 +83,33 @@ $ ->
         id: 'checkin_image'+index
         src: checkin.image_assets.media.show_checkin.url
       ).appendTo "#checkin_title"+index
-     else if checkin.video_assets isnt null
-       $('<video/>',
-          class:'checkin_video'
-          id: 'checkin_video' + index
-          src: checkin.video_assets.media.url
-          style: 'height:200px;width:175px'
-        ).appendTo "#checkin_title"+index
-      else if checkin.audio_assets isnt null
-        $('<img/>',
-          class: 'checkin_audio'
-          id: 'checkin_audio' + index
-          src: 'http://us.cdn2.123rf.com/168nwm/lucky1124/lucky11240912/lucky1124091200006/6062932-music-tone.jpg'
-          style: 'height:175px;width:175px'
-        ).appendTo "#checkin_title"+index
-      else if checkin.words_assets isnt null
-        $('<p/>',
-          class: 'checkin_words'
-          id: 'checkin_words' + index
-          html: checkin.words_assets.words
-        ).appendTo "#checkin_title"+index
-      else
-        $("<img/>",
-          class: 'checkin_minimap'
-          id: 'checkin_minimap'+index
-          src: 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png'
-        ).appendTo "#checkin_title"+index
+    else if checkin.video_assets isnt null
+      $('<video/>',
+        class:'checkin_video'
+        id: 'checkin_video' + index
+        src: checkin.video_assets.media.url
+        style: 'height:200px;width:175px'
+      ).appendTo "#checkin_title"+index
+    else if checkin.audio_assets isnt null
+      $('<img/>',
+        class: 'checkin_audio'
+        id: 'checkin_audio' + index
+        src: 'http://us.cdn2.123rf.com/168nwm/lucky1124/lucky11240912/lucky1124091200006/6062932-music-tone.jpg'
+        style: 'height:175px;width:175px'
+      ).appendTo "#checkin_title"+index
+    else if checkin.words_assets isnt null
+      $('<p/>',
+        class: 'checkin_words'
+        id: 'checkin_words' + index
+        html: checkin.words_assets.words
+      ).appendTo "#checkin_title"+index
+    else
+      $("<img/>",
+        class: 'checkin_minimap'
+        id: 'checkin_minimap'+index
+        src: 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png'
+      ).appendTo "#checkin_title"+index
+
 
   paginate = ()->
     $(".holder").jPages
@@ -135,7 +136,7 @@ $ ->
   # INITIATE MAP
   if $('body').data('page') is 'CheckinsIndex'
 
-    initialize = (zoom, styles) ->
+    initialize = (zoom, styles)->
       mapOptions =
         mapTypeControlOptions:
           mapTypeIds: [ 'Styled']
@@ -158,9 +159,9 @@ $ ->
     map = initialize(bounds, STYLES)
     bounds = new google.maps.LatLngBounds()
 
-    $.getJSON "/checkins.json", (data) ->
+    $.getJSON "/checkins.json", (data)->
       index = 1
-      $.each data.checkins, (index, checkin) ->
+      $.each data.checkins, (index, checkin)->
         addCheckinMarker checkin, map, bounds
         populateTimeLine checkin, index
         index +=1
@@ -177,7 +178,7 @@ $ ->
           index = 1
           clearMarkers markersArray
           markersArray.length = 0
-          $.each data.checkins, (index, checkin) ->
+          $.each data.checkins, (index, checkin)->
             addCheckinMarker checkin, map, bounds
             populateTimeLine checkin, index
             index += 1
