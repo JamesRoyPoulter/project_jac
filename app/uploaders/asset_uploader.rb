@@ -5,6 +5,8 @@ class AssetUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   include CarrierWave::MimeTypes
+  include CarrierWave::Video
+  include CarrierWave::Video::Thumbnailer
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -32,13 +34,16 @@ class AssetUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # IMAGE_EXTENSIONS = %w(jpg jpeg gif png)
-  # DOCUMENT_EXTENSIONS = %(exe pdf doc docm xls)
-  # def extension_white_list
-  #   IMAGE_EXTENSIONS + DOCUMENT_EXTENSIONS
-  # end
+  version :video_thumb, :if => :video? do
+    process thumbnail: [{format: 'jpg', quality: 10, size: 192, strip: true, logger: Rails.logger}]
+    def full_filename for_file
+      png_name for_file, version_name
+    end
+  end
 
-  # process_extensions IMAGE_EXTENSIONS, :resize_to_fit => [1024, 768]
+  def png_name for_file, version_name
+    %Q{#{version_name}_#{for_file.chomp(File.extname(for_file))}.jpg}
+  end
 
 
   # CALL METHOD TO SET CONTENT TYPE
@@ -66,6 +71,10 @@ class AssetUploader < CarrierWave::Uploader::Base
   protected
   def image?(new_file)
     new_file.content_type.start_with? 'image'
+  end
+
+  def video?(new_file)
+    new_file.content_type.start_with? 'video'
   end
 
 end

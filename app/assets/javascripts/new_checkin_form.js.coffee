@@ -29,6 +29,7 @@ if $('body').data('page') is 'CheckinsNew'
     mapOptions =
       center: myLatlng
       zoom: 16
+      minZoom: 1
       mapTypeId: 'Styled'
       mapTypeControlOptions:
         mapTypeIds: ['Styled']

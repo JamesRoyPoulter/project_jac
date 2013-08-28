@@ -4,15 +4,18 @@ $ ->
     marker = new google.maps.Marker
       position: checkinLatLng
       map: map
-      icon: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
+      icon: ICON
       contentString = checkin.title
     google.maps.event.addListener(marker, 'click', ()->
       infowindow.setContent(contentString)
       infowindow.open(map, marker))
     markersArray.push marker
     bounds.extend(checkinLatLng)
-    map.fitBounds(bounds)
-
+    if markersArray[0] is marker
+      map.setZoom(13)
+      map.setCenter(checkinLatLng)
+    else
+      map.fitBounds(bounds)
 
   # CREATE CHART FOR PEOPLE
   # window.onload = () ->
@@ -137,6 +140,7 @@ $ ->
           mapTypeIds: [ 'Styled']
         center: new google.maps.LatLng(51.0500, 3.7333)
         zoom: zoom
+        minZoom: 1
         mapTypeId: 'Styled'
 
       styledMapType = new google.maps.StyledMapType(STYLES, { name: 'Styled' })

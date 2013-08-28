@@ -1,12 +1,12 @@
 %p#notice= notice
 
-.show_checkin_container
+.show_checkin_container{data: { id: @checkin.id } }
   %p
     = @checkin.title
     = link_to 'Edit', edit_checkin_path(@checkin)
   .assets_container
     .show_checkin_map
-      = image_tag @checkin.generate_static_url
+      #map
       %br
       - if @checkin.address != nil
         = @checkin.address
@@ -19,16 +19,20 @@
           = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png", id: 'audio_default_image'
           = audio_tag asset.media.url, id:'audio_tag_show_page', controls: true
         - elsif asset.media.model.file_type === 'video'
+          = image_tag asset.media.video_thumb.url
           = video_tag asset.media.url, style:'height:200px;width:175px', controls: true
+
         - else
           = asset.words
 
     - if @checkin.people
       .show_checkin_people_div
+        %h3 People:
         - @checkin.people.each do |person|
           = person.name
 
     - if @checkin.categories
       .show_checkin_categories_div
+        %h3 Categories:
         - @checkin.categories.each do |category|
           = category.name

@@ -29,7 +29,7 @@ function stopRKey(evt) {
 document.onkeypress = stopRKey;
 
 AUDIO_IMAGE = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png"
-
+ICON = 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
 
 STYLES = [
   {
@@ -37,6 +37,15 @@ STYLES = [
     "stylers": [
       { "hue": "#3c00ff" },
       { "color": "#808080" }
+    ]
+  },{
+    "featureType": "water",
+    "elementType": "labels.text",
+    "stylers": [
+      { "hue": "#ff00ee" },
+      { "weight": 0.1 },
+      { "visibility": "on" },
+      { "color": "#cccccc" }
     ]
   },{
     "featureType": "poi.park",
@@ -97,6 +106,14 @@ STYLES = [
     "stylers": [
       { "color": "#000000" }
     ]
-  },{
+  }, {
+    "featureType": "poi.park",
+    "elementType": "labels.text",
+    "stylers": [
+      { "hue": "#ff00ee" },
+      { "weight": 0.1 },
+      { "visibility": "on" },
+      { "color": "#cccccc" }
+    ]
   }
 ]
