@@ -13,15 +13,9 @@
 
 
 
-.audio_image_div, #audio__image_tag_id {
+#audio_tag_show_page {
   position: relative;
-  top: 0;
-  left: 0;
-
+  left: -140px;
+  top: -10px;
 }
 
-#audio_image_controls {
-  position: absolute;
-  top: 30;
-  left: 70;
-}

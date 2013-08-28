@@ -18,7 +18,7 @@
         - elsif asset.media.model.file_type === 'audio'
 
           = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png"
-          = audio_tag asset.media.url, style:'height:100px;width:100px', controls: true
+          = audio_tag asset.media.url, style:'height:100px;width:100px', id:'audio_tag_show_page', controls: true
         - elsif asset.media.model.file_type === 'video'
           = video_tag asset.media.url, style:'height:200px;width:175px', controls: true
         - else
