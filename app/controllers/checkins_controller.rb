@@ -1,35 +1,29 @@
 class CheckinsController < ApplicationController
   before_filter :authenticate
+  protect_from_forgery
 
-  # GET /checkins
-  # GET /checkins.json
   def index
-    @checkins = Checkin.all.reverse
+    @checkins = Checkin.belonging_to current_user
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @checkins }
+      format.html
+      format.json { render json: @checkins.reverse }
     end
   end
 
-  # GET /checkins/1
-  # GET /checkins/1.json
   def show
     @checkin = Checkin.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @checkin }
     end
   end
 
   def search
-    @checkins = Checkin.near params[:location]
-    render json: @checkins
+    render json: Checkin.belonging_to(current_user).near(params[:name_startsWith])
   end
 
-  # GET /checkins/new
-  # GET /checkins/new.json
   def new
     @checkin = Checkin.new
   end
@@ -38,21 +32,17 @@ class CheckinsController < ApplicationController
     @checkin = Checkin.new
   end
 
-  
-  # GET /checkins/1/edit
   def edit
     @checkin = Checkin.find(params[:id])
   end
 
-  # POST /checkins
-  # POST /checkins.json
   def create
-    @checkin = Checkin.new(params[:checkin])
-    @checkin.user_id = current_user.id
-    assign_category
+    @checkin = Checkin.new(checkin_params)
+    puts @checkin.errors unless @checkin.valid?
     respond_to do |format|
-      if @checkin.save
-        format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
+      if @checkin.save!
+        build_new_assets
+        format.html { redirect_to checkins_path, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }
       else
         format.html { render action: "new" }
@@ -61,12 +51,10 @@ class CheckinsController < ApplicationController
     end
   end
 
-  # PUT /checkins/1
-  # PUT /checkins/1.json
   def update
-    @checkin = Checkin.find(params[:id])
-
+    @checkin = Checkin.find(checkin_params)
     respond_to do |format|
+      build_new_assets
       if @checkin.update_attributes(params[:checkin])
         format.html { redirect_to @checkin, notice: 'Checkin was successfully updated.' }
         format.json { head :no_content }
@@ -77,8 +65,6 @@ class CheckinsController < ApplicationController
     end
   end
 
-  # DELETE /checkins/1
-  # DELETE /checkins/1.json
   def destroy
     @checkin = Checkin.find(params[:id])
     @checkin.destroy
@@ -90,14 +76,34 @@ class CheckinsController < ApplicationController
   end
 
   private
-  def assign_category
-    category_id = params[:checkin][:category_id]
-    if category_id.empty?
-      category = Category.create(name: params[:category][:name], user_id: current_user.id)
-      @checkin.category_id = category.id
-    else
-      @checkin.category_id = category_id
+  def checkin_params
+    @user_id = current_user.id
+    @params = params[:checkin]
+
+    @params[:user_id] = current_user.id
+
+    if @params[:categories_attributes]
+      @params[:categories_attributes].each do |x|
+        x[1][:user_id] = @user_id
+      end
+    end
+
+    if @params[:people_attributes]
+      @params[:people_attributes].each do |x|
+        x[1][:user_id] = @user_id
+      end
+    end
+
+    @params
+  end
+
+  def build_new_assets
+    if params[:medias]
+      params[:medias].each do |asset|
+        Asset.create media: asset, checkin_id: @checkin.id, user_id: current_user.id
+      end
     end
   end
+
 
 end

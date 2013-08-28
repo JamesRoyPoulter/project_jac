@@ -1,18 +1,23 @@
-%h1 NAVBAR
+.title
+  EHXE
 - if current_user
-  %li
+  .nav_link
     = link_to 'Account', edit_user_path(current_user)
-  %li
+  .nav_link
     = link_to 'Logout', session_path(session), method: :delete, data: {confirm: 'Are you sure?'}
-  %li
-    %button#show_checkins_map Checkins
-  %li
+  .nav_link
     = link_to 'Dashboard', checkins_path
-  %li
+  .nav_link
     = link_to 'New checkin', new_checkin_path
-  %li
+  .nav_link
     = link_to 'Past Checkin', past_checkin_path
+  .nav_link
+    = link_to 'Categories', categories_path
+  .nav_link
+    = link_to 'People', people_path
 
 - else
-  = link_to 'Sign up', new_user_path
-  = link_to 'Login', sign_in_path
+  .nav_link
+    = link_to 'Sign up', new_user_path
+  .nav_link
+    = link_to 'Login', sign_in_path

@@ -5,8 +5,48 @@
   // float: left;
 }
 
-.show_checkin_map, .asset_div {
+.show_checkin_map, .asset_div, .show_checkin_people_div, .show_checkin_categories_div {
   width: 50%;
   margin-top: 30px;
   float: left;
+  min-height: 250px;
+  margin: auto;
+}
+
+.asset_div {
+  max-height: 250px;
+}
+
+.show_checkin_map {
+  text-align: center;
+}
+
+#audio_tag_show_page {
+  position: relative;
+  top: -60px;
+  height: 100px;
+  width: 250px;
+  margin: 0 auto;
+  display: block;
+}
+
+#audio_default_image {
+  margin: 0 auto;
+  display: block;
+}
+
+#map.show {
+  width: 90%;
+  max-height: 200px;
+  margin: 0 auto;
+  display: block;
+  float: none;
+}
+
+#address {
+  clear: both;
+}
+
+.show_controls {
+  margin-bottom: 40px;
 }

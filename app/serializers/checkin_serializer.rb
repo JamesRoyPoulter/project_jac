@@ -1,16 +1,21 @@
 class CheckinSerializer < ActiveModel::Serializer
-  attributes :id, :latitude, :longitude, :title, :user_id, :category, :address, :assets, :created_at
+  attributes :id, :latitude, :longitude, :title, :user_id, :address, :created_at, :categories, :assets,
+                  :image_assets, :video_assets, :audio_assets, :words_assets
 
-  def category
-    self.object.category.name
+  def words_assets
+    self.assets.where(file_type: 'text').first
   end
 
-  # def asset
-  #   results = []
-  #   Asset.where(checkin_id: self.object.id).each do |asset|
-  #     results << (asset.file_type == 'text' ? asset.words : asset.media)
-  #   end
-  #   results
-  # end
+  def image_assets
+    self.assets.where(file_type: 'image').first
+  end
+
+  def video_assets
+    self.assets.where(file_type: 'video').first
+  end
+
+  def audio_assets
+    self.assets.where(file_type: 'audio').first
+  end
 
 end

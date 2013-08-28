@@ -1,5 +1,8 @@
 YourWorld::Application.routes.draw do
 
+  resources :people
+
+
   get 'sign_in', to: 'sessions#new', as: :sign_in
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -8,8 +11,11 @@ YourWorld::Application.routes.draw do
   resources :categories
 
   get '/checkin/past', to: 'checkins#past', as: :past_checkin
-  get '/checkins/search/:location', to: 'checkins#search', as: :search_checkins
-  
+  get '/checkins/search/:category/:query', to: 'checkins#search', as: :search_checkins
+
+  get 'search/people', to: 'people#search'
+  get 'search/location', to: 'checkins#search'
+
   resources :checkins
 
   resources :users

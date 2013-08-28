@@ -1,10 +1,22 @@
 #map
-%form{id:'checkinsSearch', data: { remote: true } }
-  %input{type:'text',name:'location',id:'searchLocation'}
+
+.search_box
+  %form{id:'checkinsSearch', data: { remote: true }}
+    %select{name:'category',id:'searchCategory'}
+      %option{value:'location'} Location
+      %option{value:'people'} People
+      %option{value:'category'} Category
+    %input{type:'text',name:'query',id:'searchQuery'}
+    %button Search
+
 / JPAGES NAV PANEL
 .holder
   / JPAGES ITEM CONTAINER
-%ul#itemContainer
+.timeline_holder
+  %ul#itemContainer
+  / CHART CONTAINER
+.chart_holder
+  #chartContainer
 
   / #timeline TIMELINE
   / .buttons

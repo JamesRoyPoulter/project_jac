@@ -34,11 +34,15 @@ gem 'haml-rails'
 
 gem 'nested_form'
 
+gem 'ransack'
+
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # File Uploads
 gem 'carrierwave'
 gem 'fog'
 gem 'rmagick'
+gem 'carrierwave-video-thumbnailer'
+gem 'carrierwave-video'
 
 gem 'geocoder'

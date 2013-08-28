@@ -1,10 +1,8 @@
 class CategoriesController < ApplicationController
   before_filter :authenticate
-  
-  # GET /categories
-  # GET /categories.json
+
   def index
-    @categories = Category.all
+    @categories = Category.where(user_id: current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,37 +10,30 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # GET /categories/1
-  # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
-
+    @checkins = @category.checkins
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @category }
     end
   end
 
-  # GET /categories/new
-  # GET /categories/new.json
   def new
     @category = Category.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @category }
     end
   end
 
-  # GET /categories/1/edit
   def edit
     @category = Category.find(params[:id])
   end
 
-  # POST /categories
-  # POST /categories.json
   def create
-    @category = Category.new(params[:category])
+    @category = Category.new(category_params)
 
     respond_to do |format|
       if @category.save
@@ -55,8 +46,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # PUT /categories/1
-  # PUT /categories/1.json
   def update
     @category = Category.find(params[:id])
 
@@ -71,8 +60,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # DELETE /categories/1
-  # DELETE /categories/1.json
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
@@ -82,4 +69,10 @@ class CategoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+   def category_params
+    params[:category][:user_id] = current_user.id
+    params[:category]
+   end
 end

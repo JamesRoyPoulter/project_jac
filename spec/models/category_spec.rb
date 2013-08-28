@@ -13,13 +13,5 @@ describe Category do
       expect(@category.user.name).to eq 'Luke Skywalker'
     end
 
-    it 'should assign a name' do
-      expect(@category.name).to eq 'Love'
-    end
-
-    # it 'should format name' do
-    #   @category1 = FactoryGirl.build :category, name: 'LOVE'
-    #   expect(@category1.name).to eq 'Love'
-    # end
   end
 end
