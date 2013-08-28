@@ -43,8 +43,8 @@ if $('body').data('page') is 'CheckinsNew'
 
     google.maps.event.addListener marker, 'dragend', ()->
       position = marker.getPosition()
-      $('#checkin_latitude').val position.mb
-      $('#checkin_longitude').val position.nb
+      $('#checkin_latitude').val position.lat()
+      $('#checkin_longitude').val position.lng()
 
     google.maps.event.addListener marker, 'click', ()->
       infowindow.open map, marker

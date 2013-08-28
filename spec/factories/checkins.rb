@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :checkin do
-    user_id 1
+    association :user
     latitude '51.4841'
     longitude '-0.00205'
     title 'Checkin title'

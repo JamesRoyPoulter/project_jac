@@ -68,5 +68,4 @@ class AssetUploader < CarrierWave::Uploader::Base
     new_file.content_type.start_with? 'image'
   end
 
-
 end

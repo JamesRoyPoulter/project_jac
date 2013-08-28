@@ -16,8 +16,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
-    @checkins = Checkin.where(category_id: @category.id, user_id: current_user.id)
-
+    @checkins = @category.checkins
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @category }
@@ -43,7 +42,7 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.json
   def create
-    @category = Category.new(params[:category])
+    @category = Category.new(category_params)
 
     respond_to do |format|
       if @category.save
@@ -83,4 +82,10 @@ class CategoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+   def category_params
+    params[:category][:user_id] = current_user.id
+    params[:category]
+   end
 end
