@@ -1,5 +1,15 @@
-if $('body').data('page') is 'CheckinsNew'
+$ ()->
+  $('#add_media').click ()->
+    $('.file_fields').append $('<div/>',
+      class:'new_media'
+      html: $('<input>',
+        type:'file'
+        name: 'medias[]'
+        id: 'checkin_medias'
+      )
+    )
 
+if $('body').data('page') is 'CheckinsNew'
   #gets location from browser
   getLocation = ()->
     if navigator.geolocation

@@ -165,6 +165,46 @@ $ ->
         index +=1
       paginate()
 
+    availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ]
+
+    $( "#searchQuery" ).autocomplete
+      source: (request, response)->
+        $.ajax
+          url: "/search/people",
+          dataType: "json",
+          data:
+            featureClass: "P"
+            style: "full"
+            maxRows: 12
+            name_startsWith: request.term
+          success: (data)->
+            $.map data.people, (person)->
+              console.log person.name
+              { label: person.name, value: person.name }
+
     $('#checkinsSearch').submit (e)->
       e.preventDefault
       query = $('#searchCategory').val() + '/' + $('#searchQuery').val()

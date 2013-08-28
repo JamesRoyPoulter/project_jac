@@ -9,8 +9,13 @@ class PeopleController < ApplicationController
     end
   end
 
+  def search
+    render json: Person.where('name ilike ?', "%#{params[:name_startsWith]}%")
+  end
+
   def show
     @person = Person.find(params[:id])
+    @checkins = @person.checkins
 
     respond_to do |format|
       format.html # show.html.erb

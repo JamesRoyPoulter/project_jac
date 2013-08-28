@@ -13,6 +13,8 @@ YourWorld::Application.routes.draw do
   get '/checkin/past', to: 'checkins#past', as: :past_checkin
   get '/checkins/search/:category/:query', to: 'checkins#search', as: :search_checkins
 
+  get 'search/people', to: 'people#search'
+
   resources :checkins
 
   resources :users

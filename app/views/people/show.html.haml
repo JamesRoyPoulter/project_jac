@@ -3,11 +3,16 @@
 %p
   %b Name:
   = @person.name
-  
+
 %p
   %b Picture:
   = @person.picture
 
+.person_checkins
+  - if @checkins
+    - @checkins.each do |checkin|
+      = link_to checkin.title, checkin
+
 = link_to 'Edit', edit_person_path(@person)
-\|
+
 = link_to 'Back', people_path
