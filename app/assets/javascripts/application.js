@@ -19,6 +19,10 @@
 //= require chart
 //= require_tree .
 
+// GLOBAL VARIABLES
+
+AUDIO_IMAGE = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png"
+
 STYLES = [
   {
     "featureType": "water",
