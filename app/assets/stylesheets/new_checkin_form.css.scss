@@ -12,10 +12,15 @@
   .past_checkin_form {
     display: none;
   }
+
   .checkin_form_box {
     border: 1px solid black;
     width: 49.5%; height: 300px;
     float: left;
+  }
+  .new_media {
+    width: 100%;
+    margin: 5px 0 5px 0;
   }
 
   #checkin_title {
