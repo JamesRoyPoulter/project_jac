@@ -32,15 +32,6 @@ class AssetUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # IMAGE_EXTENSIONS = %w(jpg jpeg gif png)
-  # DOCUMENT_EXTENSIONS = %(exe pdf doc docm xls)
-  # def extension_white_list
-  #   IMAGE_EXTENSIONS + DOCUMENT_EXTENSIONS
-  # end
-
-  # process_extensions IMAGE_EXTENSIONS, :resize_to_fit => [1024, 768]
-
-
   # CALL METHOD TO SET CONTENT TYPE
   process :set_content_type
 
