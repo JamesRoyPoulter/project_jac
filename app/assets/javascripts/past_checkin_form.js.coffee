@@ -12,7 +12,7 @@ if $('body').data('page') is 'CheckinsPast'
         $('#checkin_longitude').val center.lng()
         mapOptions =
           center: center
-          zoom: 6
+          zoom: 12
           mapTypeId: 'Styled'
           mapTypeControlOptions:
             mapTypeIds: [ 'Styled']
@@ -23,6 +23,7 @@ if $('body').data('page') is 'CheckinsPast'
           map: map
           position: results[0].geometry.location
           draggable: true
+          icon: ICON
         google.maps.event.addListener marker, 'dragend', ()->
           position = marker.getPosition()
           $('#checkin_latitude').val position.lat()
