@@ -1,12 +1,12 @@
 %p#notice= notice
 
-.show_checkin_container
+.show_checkin_container{data: { id: @checkin.id } }
   %p
     = @checkin.title
     = link_to 'Edit', edit_checkin_path(@checkin)
   .assets_container
     .show_checkin_map
-      = image_tag @checkin.generate_static_url
+      #map
       %br
       - if @checkin.address != nil
         = @checkin.address
