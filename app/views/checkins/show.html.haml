@@ -3,7 +3,6 @@
 .show_checkin_container{data: { id: @checkin.id } }
   %p
     = @checkin.title
-    = link_to 'Edit', edit_checkin_path(@checkin)
   .assets_container
     .show_checkin_map
       #map.show
@@ -37,3 +36,6 @@
         %h3 Categories:
         - @checkin.categories.each do |category|
           = category.name
+  .show_controls
+    = link_to 'Delete', @checkin, method: :delete, data: { confirm: 'Are you sure?' }
+    = link_to 'Edit', edit_checkin_path(@checkin)
