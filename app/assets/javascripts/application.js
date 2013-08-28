@@ -109,3 +109,5 @@ STYLES = [
     ]
   }
 ]
+
+ICON = 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'

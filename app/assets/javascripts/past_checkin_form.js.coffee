@@ -23,6 +23,7 @@ if $('body').data('page') is 'CheckinsPast'
           map: map
           position: results[0].geometry.location
           draggable: true
+          icon: ICON
         google.maps.event.addListener marker, 'dragend', ()->
           position = marker.getPosition()
           $('#checkin_latitude').val position.lat()

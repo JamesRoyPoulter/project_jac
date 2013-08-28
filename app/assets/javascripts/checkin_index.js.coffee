@@ -4,7 +4,7 @@ $ ->
     marker = new google.maps.Marker
       position: checkinLatLng
       map: map
-      icon: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
+      icon: ICON
       contentString = checkin.title
     google.maps.event.addListener(marker, 'click', ()->
       infowindow.setContent(contentString)
