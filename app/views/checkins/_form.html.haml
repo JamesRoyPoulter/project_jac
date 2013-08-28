@@ -24,14 +24,14 @@
         .field
           = f.fields_for :categories_checkins do |category_checkin|
             = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
-            = category_checkin.link_to_remove "X"
+            = category_checkin.link_to_remove image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
           = f.link_to_add "Add Category", :categories_checkins
 
       .field
         = f.fields_for :categories do |category|
           = category.label :name
           = category.text_field :name
-          = category.link_to_remove "X"
+          = category.link_to_remove image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
         = f.link_to_add "New Category", :categories
 
     .people.checkin_form_box
@@ -39,7 +39,7 @@
         .field
           = f.fields_for :people_checkins do |person|
             = person.select 'person_id', Person.all.collect { |x| [x.name,x.id ]}
-            = person.link_to_remove "X"
+            = person.link_to_remove image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
           .add_button
             = f.link_to_add "Tag A Person", :people_checkins
 
@@ -47,7 +47,7 @@
         = f.fields_for :people do |person|
           = person.label :name
           = person.text_field :name
-          = person.link_to_remove "X"
+          = person.link_to_remove image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
         = f.link_to_add "New Person", :people
 
     .assets.checkin_form_box
@@ -60,7 +60,7 @@
         = f.fields_for :assets do |asset|
           = asset.text_field :words
           = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
-          = asset.link_to_remove "X"
+          = asset.link_to_remove image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
         = f.link_to_add "Add Words", :assets
 
     .actions
