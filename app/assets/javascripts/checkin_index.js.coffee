@@ -93,7 +93,7 @@ $ ->
       $('<img/>',
         class: 'checkin_audio'
         id: 'checkin_audio' + index
-        src: 'http://us.cdn2.123rf.com/168nwm/lucky1124/lucky11240912/lucky1124091200006/6062932-music-tone.jpg'
+        src: AUDIO_IMAGE
         style: 'height:175px;width:175px'
       ).appendTo "#checkin_title"+index
     else if checkin.words_assets isnt null
@@ -112,17 +112,12 @@ $ ->
   paginate = ()->
     $(".holder").jPages
       containerID: "itemContainer"
-      # first       : false,
-      previous    : false,
-      next        : false,
-      # last        : false,
-      # # midRange    : 15,
-      links       : "blank"
-      perPage : 5
-      # startPage : 1
-      # startRange : 1
-      # midRange : 5
-      # endRange : 1
+      previous: false,
+      next: false,
+      links: "blank",
+      perPage: 5,
+      keybrowse: true,
+      scrollbrowse: true
 
   markersArray = []
 

@@ -19,6 +19,7 @@
 //= require chart
 //= require_tree .
 
+
 function stopRKey(evt) {
   var evt = (evt) ? evt : ((event) ? event : null);
   var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
@@ -26,6 +27,9 @@ function stopRKey(evt) {
 }
 
 document.onkeypress = stopRKey;
+
+AUDIO_IMAGE = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png"
+
 
 STYLES = [
   {
