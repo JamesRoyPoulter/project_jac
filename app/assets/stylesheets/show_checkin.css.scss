@@ -9,13 +9,21 @@
   width: 50%;
   margin-top: 30px;
   float: left;
+  min-height: 250px;
+  margin: auto;
 }
-
-
 
 #audio_tag_show_page {
   position: relative;
-  left: -140px;
-  top: -10px;
+  top: -60px;
+  height: 100px;
+  width: 250px;
+  margin: 0 auto;
+  display: block;
+}
+
+#audio_default_image {
+  margin: 0 auto;
+  display: block;
 }
 
