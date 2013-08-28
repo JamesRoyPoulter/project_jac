@@ -173,11 +173,15 @@ $ ->
           url:
             if category is 'people'
               "/search/people"
+            else if category is 'category'
+              '/search/category'
             else if category is 'location'
               "http://ws.geonames.org/searchJSON"
           dataType:
             if category is 'people'
               "json"
+            else if category is 'category'
+              'json'
             else if category is 'location'
               'jsonp'
           data:
@@ -191,6 +195,11 @@ $ ->
                 $.map data.people, (person)->
                   return label: person.name, value: person.name
               )
+            else if category is 'category'
+              response(
+                $.map data.categories, (category)->
+                  return label: category.name, value: category.name
+              )
             else if category is 'location'
               response(
                 $.map data.geonames, (item)->
@@ -201,6 +210,7 @@ $ ->
         if category is 'people'
           $.getJSON '/search/people?name_startsWith='+ui.item.label, (data)->
             if data.people[0].checkins.length isnt 0
+              $('#itemContainer').html ''
               index = 1
               clearMarkers markersArray
               markersArray.length = 0
@@ -216,6 +226,7 @@ $ ->
         else if category is 'location'
           $.getJSON '/search/location?name_startsWith='+ui.item.label, (data)->
             if data.checkins.length isnt 0
+              $('#itemContainer').html ''
               index = 1
               clearMarkers markersArray
               markersArray.length = 0
@@ -228,5 +239,23 @@ $ ->
               paginate()
             else
               alert 'You have no checkins near this location'
+        else if category is 'category'
+          $.getJSON '/search/category?name_startsWith='+ui.item.label, (data)->
+            if data.categories[0].checkins.length isnt 0
+              $('#itemContainer').html ''
+              index = 1
+              clearMarkers markersArray
+              markersArray.length = 0
+              $.each data.categories[0].checkins, (index, checkin)->
+                addCheckinMarker checkin, map, bounds
+                populateTimeLine checkin, index
+                index += 1
+              map.setCenter markersArray[0].position
+              map.setZoom 10
+              paginate()
+            else
+              alert 'You have no checkins with this category'
+
+
 
 

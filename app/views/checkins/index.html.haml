@@ -1,13 +1,11 @@
 #map
 
 .search_box
-  %form{id:'checkinsSearch', data: { remote: true }}
-    %select{name:'category',id:'searchCategory'}
-      %option{value:'location'} Location
-      %option{value:'people'} People
-      %option{value:'category'} Category
-    %input{type:'text',name:'query',id:'searchQuery'}
-    %button Search
+  %select{name:'category',id:'searchCategory'}
+    %option{value:'location'}= "Location".html_safe
+    %option{value:'people'} People
+    %option{value:'category'} Category
+  %input{type:'text',name:'query',id:'searchQuery',placeholder:"Search"}
 
 / JPAGES NAV PANEL
 .holder
