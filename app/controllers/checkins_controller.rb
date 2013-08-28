@@ -43,13 +43,11 @@ class CheckinsController < ApplicationController
   end
 
   def create
-    @checkin = Checkin.new(params[:checkin])
-    @checkin.user_id = current_user.id
+    @checkin = Checkin.new(checkin_params)
     puts @checkin.errors unless @checkin.valid?
-    assign_people
     respond_to do |format|
       if @checkin.save!
-        manage_assets_and_categories
+        build_new_assets
         format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }
       else
@@ -60,11 +58,10 @@ class CheckinsController < ApplicationController
   end
 
   def update
-    @checkin = Checkin.find(params[:id])
-    assign_people
+    @checkin = Checkin.find(checkin_params)
     respond_to do |format|
+      build_new_assets
       if @checkin.update_attributes(params[:checkin])
-        manage_assets_and_categories
         format.html { redirect_to @checkin, notice: 'Checkin was successfully updated.' }
         format.json { head :no_content }
       else
@@ -85,26 +82,34 @@ class CheckinsController < ApplicationController
   end
 
   private
-  def manage_assets_and_categories
+  def checkin_params
+    @user_id = current_user.id
+    @params = params[:checkin]
+
+    @params[:user_id] = current_user.id
+
+    if @params[:categories_attributes]
+      @params[:categories_attributes].each do |x|
+        x[1][:user_id] = @user_id
+      end
+    end
+
+    if @params[:people_attributes]
+      @params[:people_attributes].each do |x|
+        x[1][:user_id] = @user_id
+      end
+    end
+
+    @params
+  end
+
+  def build_new_assets
     if params[:medias]
       params[:medias].each do |asset|
         Asset.create media: asset, checkin_id: @checkin.id, user_id: current_user.id
       end
     end
-
-    if @checkin.categories_checkins
-      @checkin.categories_checkins.each { |x| x.checkin_id = @checkin.id; x.save }
-    end
-
-    if @checkin.categories
-      @checkin.categories.each { |x| x.user_id = current_user.id; x.save }  if @checkin.categories
-    end
   end
 
-  def assign_people
-    if @checkin.people
-      @checkin.people.each { |person| person.user_id = current_user.id; person.save }
-    end
-  end
 
 end

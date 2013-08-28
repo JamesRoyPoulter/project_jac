@@ -14,14 +14,6 @@ describe Checkin do
       expect(@checkin.user.name).to eq 'Luke Skywalker'
     end
 
-    it 'should have an assigned category' do
-      expect(@checkin.category.name).to eq 'Love'
-    end
-
-    it 'should have an assigned asset' do
-      expect(@checkin.category.name).to eq 'Love'
-    end
-
     it 'should assign an address' do
       expect(@checkin.address).to eq '46 Old Woolwich Road, London, Greater London SE10 9NY, UK'
     end

@@ -1,6 +1,5 @@
 class PeopleController < ApplicationController
-  # GET /people
-  # GET /people.json
+
   def index
     @people = current_user.people
 
@@ -10,8 +9,6 @@ class PeopleController < ApplicationController
     end
   end
 
-  # GET /people/1
-  # GET /people/1.json
   def show
     @person = Person.find(params[:id])
 
@@ -21,8 +18,6 @@ class PeopleController < ApplicationController
     end
   end
 
-  # GET /people/new
-  # GET /people/new.json
   def new
     @person = Person.new
 
@@ -32,16 +27,13 @@ class PeopleController < ApplicationController
     end
   end
 
-  # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
   end
 
-  # POST /people
-  # POST /people.json
   def create
-    @person = Person.new(params[:person])
-    @person.user_id = current_user.id
+    @person = Person.new(person_params)
+
     respond_to do |format|
       if @person.save
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
@@ -53,8 +45,6 @@ class PeopleController < ApplicationController
     end
   end
 
-  # PUT /people/1
-  # PUT /people/1.json
   def update
     @person = Person.find(params[:id])
 
@@ -69,8 +59,6 @@ class PeopleController < ApplicationController
     end
   end
 
-  # DELETE /people/1
-  # DELETE /people/1.json
   def destroy
     @person = Person.find(params[:id])
     @person.destroy
@@ -80,4 +68,10 @@ class PeopleController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def person_params
+      params[:person][:user_id] = current_user.id
+      params[:person]
+    end
 end
