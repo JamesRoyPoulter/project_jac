@@ -112,17 +112,12 @@ $ ->
   paginate = ()->
     $(".holder").jPages
       containerID: "itemContainer"
-      # first       : false,
-      previous    : false,
-      next        : false,
-      # last        : false,
-      # # midRange    : 15,
-      links       : "blank"
-      perPage : 5
-      # startPage : 1
-      # startRange : 1
-      # midRange : 5
-      # endRange : 1
+      previous: false,
+      next: false,
+      links: "blank",
+      perPage: 5,
+      keybrowse: true,
+      scrollbrowse: true
 
   markersArray = []
 
