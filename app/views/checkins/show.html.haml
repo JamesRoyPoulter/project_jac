@@ -25,10 +25,12 @@
 
     - if @checkin.people
       .show_checkin_people_div
+        %h3 People:
         - @checkin.people.each do |person|
           = person.name
 
     - if @checkin.categories
       .show_checkin_categories_div
+        %h3 Categories:
         - @checkin.categories.each do |category|
           = category.name

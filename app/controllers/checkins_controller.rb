@@ -48,7 +48,7 @@ class CheckinsController < ApplicationController
     respond_to do |format|
       if @checkin.save!
         build_new_assets
-        format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
+        format.html { redirect_to checkins_path, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }
       else
         format.html { render action: "new" }
