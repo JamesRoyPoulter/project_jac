@@ -1,4 +1,4 @@
-if $('body').data('page') is 'CheckinsPast'  
+if $('body').data('page') is 'CheckinsPast'
 
   $('form#past_checkin_search').submit (e)->
     e.preventDefault()
@@ -8,8 +8,8 @@ if $('body').data('page') is 'CheckinsPast'
       if status is google.maps.GeocoderStatus.OK
         $('.past_checkin_form').slideDown 500
         center = results[0].geometry.location
-        $('#checkin_latitude').val center.mb
-        $('#checkin_longitude').val center.nb 
+        $('#checkin_latitude').val center.lat()
+        $('#checkin_longitude').val center.lng()
         mapOptions =
           center: center
           zoom: 6
@@ -25,7 +25,7 @@ if $('body').data('page') is 'CheckinsPast'
           draggable: true
         google.maps.event.addListener marker, 'dragend', ()->
           position = marker.getPosition()
-          $('#checkin_latitude').val position.mb
-          $('#checkin_longitude').val position.nb 
+          $('#checkin_latitude').val position.lat()
+          $('#checkin_longitude').val position.lng()
       else
         alert "Geocode was not successful for the following reason: " + status

@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
   has_many :checkins, through: :categories_checkins
 
   validates_uniqueness_of :name, scope: :user_id
-  validates :name, length: {minimum: 3, maximum: 15 }
+  validates :name, length: {minimum: 3, maximum: 50 }
 
   def self.belonging_to user
     self.where(user_id: user.id)
