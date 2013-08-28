@@ -12,10 +12,53 @@
  *= require_tree .
  */
 
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+
 html, body {
   width: 100%; height: 100%;
   font-family: 'Droid Sans', sans-serif;
-  background-color: #222;
+  background-color: #bbb;
+  margin: 0;
 }
 
 a {
@@ -35,21 +78,6 @@ h1 {
 
 .field { padding: 10px 0 10px 0; }
 
-.navbar {
-  float: right;
-  width: 10%;
-  height: 100%;
-}
-
-.field {
-  padding: 10px 0 10px 0;
-}
-
-.content {
-  float: left;
-  width: 90%;
-  height: 100%;
-}
 
 #chartContainer {
   float: left;
@@ -59,8 +87,4 @@ h1 {
   width: 100%;
   text-align: center;
   clear: both;
-}
-
-#map {
-  margin-bottom: 10px;
 }

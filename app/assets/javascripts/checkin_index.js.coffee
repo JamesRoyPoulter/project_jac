@@ -188,4 +188,3 @@ $ ->
         else
           alert 'No checkins near the location you have requested'
 
-

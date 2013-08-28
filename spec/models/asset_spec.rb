@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Asset do
   before :each do
-    @asset = FactoryGirl.build :asset
+    @asset = FactoryGirl.create :asset
   end
   describe '#new' do
 

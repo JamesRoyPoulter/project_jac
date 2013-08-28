@@ -8,20 +8,12 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
   .field
-    = f.label :email
-    %br/
-    = f.text_field :email
+    = f.text_field :email, placeholder: ' Email'
   .field
-    = f.label :name
-    %br/
-    = f.text_field :name
+    = f.text_field :name, placeholder: ' Name'
   .field
-    = f.label :password
-    %br/
-    = f.password_field :password
+    = f.password_field :password, placeholder: ' Password'
   .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  .actions
-    = f.submit
+    = f.password_field :password_confirmation, placeholder: ' Password Confirmation'
+  .field
+    = f.submit 'Sign Up', class: 'submit_button'

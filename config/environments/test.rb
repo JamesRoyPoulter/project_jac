@@ -39,5 +39,5 @@ YourWorld::Application.configure do
     config.storage = :file
     config.enable_processing = false
   end
-  
+
 end
