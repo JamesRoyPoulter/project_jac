@@ -11,7 +11,14 @@ $ ->
       infowindow.open(map, marker))
     markersArray.push marker
     bounds.extend(checkinLatLng)
-    map.fitBounds(bounds)
+    if markersArray[0] is marker
+      map.setZoom(13)
+      map.setCenter(checkinLatLng)
+    else
+      map.fitBounds(bounds)
+
+
+
 
 
   # CREATE CHART FOR PEOPLE
