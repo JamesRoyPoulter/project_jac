@@ -90,5 +90,10 @@ STYLES = [
       { "color": "#000000" }
     ]
   },{
+    "featureType": "poi.park",
+    "elementType": "text",
+    "stylers": [
+      { "color": "#708080" }
+    ]
   }
 ]

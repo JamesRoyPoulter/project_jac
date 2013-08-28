@@ -12,7 +12,7 @@ if $('body').data('page') is 'CheckinsPast'
         $('#checkin_longitude').val center.lng()
         mapOptions =
           center: center
-          zoom: 6
+          zoom: 12
           mapTypeId: 'Styled'
           mapTypeControlOptions:
             mapTypeIds: [ 'Styled']

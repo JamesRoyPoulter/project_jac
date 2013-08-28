@@ -17,10 +17,6 @@ $ ->
     else
       map.fitBounds(bounds)
 
-
-
-
-
   # CREATE CHART FOR PEOPLE
   # window.onload = () ->
   #   chart = new CanvasJS.Chart("chartContainer",
