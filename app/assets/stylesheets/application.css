@@ -63,11 +63,15 @@ html, body {
 
 a {
   text-decoration: none;
-  color: #000;
+  color: #fff;
 }
 
 a:hover {
   text-decoration: none;
+}
+
+h1 {
+  color: #fff;
 }
 
 .center-text { text-align: center; }
