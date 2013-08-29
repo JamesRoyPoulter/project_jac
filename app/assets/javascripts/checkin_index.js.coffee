@@ -81,27 +81,27 @@ $ ()->
 
     # Iterate Through Checkin's Assets
     assets = checkin.seperated_assets
-    if assets['image'].length isnt 0
+    if assets['image'] and assets['image'].length isnt 0
       $("<img/>",
         class: 'checkin_image'
         id: 'checkin_image'+index
         src: assets['image'][0].media.show_checkin.url
       ).appendTo "#checkin_title"+index
-    else if assets['audio'].length isnt 0
+    else if assets['audio'] and assets['audio'].length isnt 0
       $('<img/>',
         class: 'checkin_audio'
         id: 'checkin_audio' + index
         src: AUDIO_IMAGE
         style: 'height:175px;width:175px'
       ).appendTo "#checkin_title"+index
-    else if assets['video'].length isnt 0
+    else if assets['video'] and assets['video'].length isnt 0
       $('<img/>',
         class:'checkin_video'
         id: 'checkin_video' + index
         src: assets['video'][0].media.video_thumb.url
         style: 'height:175px;width:175px'
       ).appendTo "#checkin_title"+index
-    else if assets['text'].length isnt 0
+    else if assets['text'] and assets['text'].length isnt 0
       $('<p/>',
         class: 'checkin_words'
         id: 'checkin_words' + index
