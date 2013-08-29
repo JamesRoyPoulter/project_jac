@@ -1,5 +1,14 @@
 if $('body').data('page') is 'CheckinsPast'
 
+  markersArray = []
+
+  placeMarker = (location, map)->
+    marker = new google.maps.Marker
+      position: location
+      icon: ICON
+      map: map
+    markersArray.push marker
+
   $('.past_checkin_location_search').keypress (e)->
     if e.keyCode is 13
       location = $('#location').val()
@@ -20,14 +29,11 @@ if $('body').data('page') is 'CheckinsPast'
           map = new google.maps.Map document.getElementById("past_map"), mapOptions
           styledMapType = new google.maps.StyledMapType STYLES, name: 'Styled'
           map.mapTypes.set 'Styled', styledMapType
-          marker = new google.maps.Marker
-            map: map
-            position: results[0].geometry.location
-            draggable: true
-            icon: ICON
-          google.maps.event.addListener marker, 'dragend', ()->
-            position = marker.getPosition()
-            $('#checkin_latitude').val position.lat()
-            $('#checkin_longitude').val position.lng()
+          google.maps.event.addListener map, 'click', (event)->
+            for i in markersArray
+              i.setMap null
+            placeMarker event.latLng, map
+            $('#checkin_latitude').val event.latLng.lat()
+            $('#checkin_longitude').val event.latLng.lng()
         else
           alert "Geocode was not successful for the following reason: " + status

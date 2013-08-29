@@ -20,8 +20,8 @@ class CategoriesController < ApplicationController
   end
 
   def search
-    render json: Category.where('name ilike :query AND user_id=:id',
-      query: "%#{params[:name_startsWith]}%", id: current_user.id)
+    @category = Category.where(name:params[:name_startsWith],user_id: current_user.id).first
+    render json: @category.checkins, root: false
   end
 
   def new
