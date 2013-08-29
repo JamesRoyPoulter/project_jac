@@ -18,7 +18,6 @@ if $('body').data('page') is 'CheckinsEdit'
      checkin_id = $('#edit_map').data 'id'
     $.getJSON '/checkins/'+checkin_id+'/edit.json', (data)->
       checkinLatLng = new google.maps.LatLng(data.checkin.latitude, data.checkin.longitude)
-      console.log(data.checkin.latitude)
 
       mapOptions =
         center: checkinLatLng
@@ -38,7 +37,13 @@ if $('body').data('page') is 'CheckinsEdit'
       marker = new google.maps.Marker
         position: checkinLatLng
         map: map
+        draggable: true
         icon: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
+
+      google.maps.event.addListener marker, 'dragend', ()->
+        position = marker.getPosition()
+        $('#checkin_latitude').val position.lat()
+        $('#checkin_longitude').val position.lng()
 
       #creates check-in info-window
       infowindow = new google.maps.InfoWindow
