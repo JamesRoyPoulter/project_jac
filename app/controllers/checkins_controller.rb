@@ -21,7 +21,8 @@ class CheckinsController < ApplicationController
   end
 
   def search
-    render json: Checkin.belonging_to(current_user).near(params[:name_startsWith])
+    @checkins = Checkin.belonging_to(current_user).near(params[:name_startsWith])
+    render json: @checkins, root: false
   end
 
   def new
@@ -45,7 +46,7 @@ class CheckinsController < ApplicationController
     @checkin = Checkin.new(checkin_params)
     puts @checkin.errors unless @checkin.valid?
     respond_to do |format|
-      if @checkin.save!
+      if @checkin.save
         build_new_assets
         format.html { redirect_to checkins_path, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }
@@ -57,10 +58,10 @@ class CheckinsController < ApplicationController
   end
 
   def update
-    @checkin = Checkin.find(checkin_params)
+    @checkin = Checkin.find(params[:id])
     respond_to do |format|
       build_new_assets
-      if @checkin.update_attributes(params[:checkin])
+      if @checkin.update_attributes(checkin_params)
         format.html { redirect_to @checkin, notice: 'Checkin was successfully updated.' }
         format.json { head :no_content }
       else

@@ -1,14 +1,9 @@
 .checkin_form
   = nested_form_for @checkin do |f|
-    - if @checkin.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@checkin.errors.count, "error")} prohibited this checkin from being saved:"
-        %ul
-          - @checkin.errors.full_messages.each do |msg|
-            %li= msg
+    = render 'partials/errors', resource: @checkin
 
     .title_field
-      = f.text_field :title, placeholder: ' Title'
+      = f.text_field :title, placeholder: ' Title', required: true
 
     .map
       - if request.env['REQUEST_PATH'] === '/checkins/new'
