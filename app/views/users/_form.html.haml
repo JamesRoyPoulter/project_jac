@@ -1,11 +1,6 @@
 = form_for(@user) do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@user.errors.count, "error")
-        prohibited this user from being saved:
-        - @user.errors.full_messages.each do |msg|
-          %p= msg
+  = render 'partials/errors', resource: @user
+
   .field
     = f.text_field :email, placeholder: ' Email', required: true
   .field
