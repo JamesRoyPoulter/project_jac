@@ -1,5 +1,5 @@
 .holder {
-    margin: 15px 0;
+    margin: auto;
     position: absolute;
     bottom: 0;
     height: 200px;
@@ -36,4 +36,8 @@
 }
 .holder span {
     margin: 0 5px;
+}
+
+#centernav {
+    margin: auto;
 }

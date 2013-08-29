@@ -17,6 +17,8 @@
 //= require gmaps.js
 //= require canvasjs.min
 //= require chart
+//= require jquery.lazyload.min
+//= require jquery.scrollstop.min
 //= require_tree .
 
 

@@ -44,5 +44,7 @@ gem 'fog'
 gem 'rmagick'
 gem 'carrierwave-video-thumbnailer'
 gem 'carrierwave-video'
+gem 'vulcan'
+gem 'thor', "0.14.6"
 
 gem 'geocoder'
