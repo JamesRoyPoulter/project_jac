@@ -1,18 +1,10 @@
-media_divs_length = 0
-
 $ ()->
-  $('#add_media').click ()->
-    $('.file_fields').append $('<div/>',
-      class:'new_media'
-      html: $('<input>',
-        type:'file'
-        name: 'medias[]'
-        id: 'checkin_medias'
-      )
-    )
-    media_divs_length += 1
-    if media_divs_length>=10
-      $('#add_media').hide()
+
+  media_divs_length = 0
+  media_divs_length += 1
+
+  if media_divs_length>=10
+    $('#add_media').hide()
 
 if $('body').data('page') is 'CheckinsEdit'
      checkin_id = $('#edit_map').data 'id'

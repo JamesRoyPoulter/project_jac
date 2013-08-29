@@ -1,6 +1,7 @@
 media_divs_length = 0
 
 $ ()->
+
   $('#add_media').click ()->
     $('.file_fields').append $('<div/>',
       class:'new_media'
@@ -9,7 +10,16 @@ $ ()->
         name: 'medias[]'
         id: 'checkin_medias'
       )
-    )
+    ).append $('<img/>',
+      src: DEFAULT_X,
+      class: 'x_icon')
+
+    $('.x_icon').click ()->
+      $(@).parent('.new_media').remove()
+
+
+
+
     media_divs_length += 1
     if media_divs_length>=10
       $('#add_media').hide()
