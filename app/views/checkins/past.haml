@@ -1,10 +1,8 @@
 .past_checkin
   %h1.center-text Past Check-In
 
-  %b Location: 
-  %form{id:'past_checkin_search'}
-    %input{type:'text',id:'location'}
-    %button Search
+
+  %input{type:'text',id:'location',placeholder:'Location',class: 'past_checkin_location_search'}
 
   .past_checkin_form
     = render 'form'

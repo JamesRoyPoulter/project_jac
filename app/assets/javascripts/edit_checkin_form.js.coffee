@@ -18,6 +18,7 @@ if $('body').data('page') is 'CheckinsEdit'
      checkin_id = $('#edit_map').data 'id'
     $.getJSON '/checkins/'+checkin_id+'/edit.json', (data)->
       checkinLatLng = new google.maps.LatLng(data.checkin.latitude, data.checkin.longitude)
+      console.log(data.checkin.latitude)
 
       mapOptions =
         center: checkinLatLng
@@ -30,7 +31,7 @@ if $('body').data('page') is 'CheckinsEdit'
       styledMapType = new google.maps.StyledMapType STYLES, name: 'Styled'
 
       #generates the map, passing options and style
-      map = new google.maps.Map document.getElementById("map"), mapOptions
+      map = new google.maps.Map document.getElementById("edit_map"), mapOptions
       map.mapTypes.set 'Styled', styledMapType
 
       #creates the geolocated marker

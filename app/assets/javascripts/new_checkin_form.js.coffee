@@ -66,3 +66,4 @@ if $('body').data('page') is 'CheckinsNew'
       infowindow.open map, marker
 
   google.maps.event.addDomListener window, 'load', getLocation
+
