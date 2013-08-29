@@ -2,7 +2,6 @@ media_divs_length = 0
 
 $ ()->
 
-
   $('#add_media').click ()->
     $('.file_fields').append $('<div/>',
       class:'new_media'
@@ -25,6 +24,18 @@ $ ()->
   $('.category_overlay').click () ->
     $(@).hide()
     $('.category_content').show()
+
+  $('.people_overlay').click () ->
+    $(@).hide()
+    $('.people_content').show()
+
+  $('.words_overlay').click () ->
+    $(@).hide()
+    $('.words_content').show()
+
+  $('.add_media_overlay').click () ->
+    $(@).hide()
+    $('.add_media').show()
 
 if $('body').data('page') is 'CheckinsNew'
   #gets location from browser

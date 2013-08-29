@@ -71,13 +71,36 @@
   border: none;
 }
 
-.category_overlay {
-  background-color: red;
+.category_overlay, .people_overlay, .words_overlay, .add_media_overlay, #assets_image {
+  background-color: #00D5E1;
   position: relative;
   min-height: 100%;
+  max-height: 100%;
+  border-radius: 10px;
 }
 
-.category_content {
+.people_overlay {
+  background-color: #FF4F5C;
+}
+
+.category_overlay {
+  background-color: #00D5E1;
+}
+
+.words_overlay {
+  background-color: #00FFB1;
+}
+
+.add_media_overlay, #assets_image {
+  background-color: #FFD200;
+}
+
+
+.category_content, .people_content, .words_content, .add_media {
   display: none;
+}
+
+.categories .check_in_form {
+  border: none;
 }
 
