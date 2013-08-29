@@ -35,6 +35,11 @@ class CheckinsController < ApplicationController
 
   def edit
     @checkin = Checkin.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @checkin }
+    end
   end
 
   def create

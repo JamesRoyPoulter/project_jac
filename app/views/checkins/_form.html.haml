@@ -10,6 +10,9 @@
         #map
       - if request.env['REQUEST_PATH'] === '/checkin/past'
         #past_map
+      - if request.env['REQUEST_PATH'] === "/checkins/#{@checkin.id}/edit"
+        #edit_map{data: { id: @checkin.id } }
+
 
       = f.hidden_field :latitude
       = f.hidden_field :longitude
