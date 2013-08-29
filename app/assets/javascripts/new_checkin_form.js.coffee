@@ -1,5 +1,4 @@
 media_divs_length = 0
-word_divs_length = 0
 
 $ ()->
   $('#add_media').click ()->
