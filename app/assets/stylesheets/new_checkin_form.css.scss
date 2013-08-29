@@ -102,9 +102,14 @@
 
 .people_content, .category_content, .words_content, .add_media {
   border-radius: 20px;
-  min-height: 90%;
-  min-width: 90%;
+  min-height: 85%;
+  min-width: 85%;
   display: none;
+  padding: 20px;
+}
+
+.file_fields {
+padding-top: 10px;
 }
 
 .people_overlay, .people_content {
