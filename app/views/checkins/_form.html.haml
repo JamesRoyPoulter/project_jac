@@ -6,9 +6,9 @@
       = f.text_field :title, placeholder: ' Title'
 
     .map
-      - if request.env['REQUEST_PATH'] === '/checkins/new'
+      - if params[:action] === 'new'
         #map
-      - if request.env['REQUEST_PATH'] === '/checkin/past'
+      - elsif params[:action] === 'past'
         #past_map
 
       = f.hidden_field :latitude
