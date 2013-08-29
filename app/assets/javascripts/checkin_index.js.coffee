@@ -1,4 +1,4 @@
-$ ->
+$ ()->
   addCheckinMarker = (checkin, map, bounds)->
     checkinLatLng = new google.maps.LatLng checkin.latitude, checkin.longitude
     marker = new google.maps.Marker
@@ -79,32 +79,33 @@ $ ->
 
     $('#itemContainer').append list_item
 
-     # CHECK CHECKIN HAS MEDIA
-    if checkin.image_assets isnt null
+    # Iterate Through Checkin's Assets
+    assets = checkin.seperated_assets
+    if assets['image'].length isnt 0
       $("<img/>",
         class: 'checkin_image'
         id: 'checkin_image'+index
-        src: checkin.image_assets.media.show_checkin.url
+        src: assets['image'][0].media.show_checkin.url
       ).appendTo "#checkin_title"+index
-    else if checkin.video_assets isnt null
-      $('<img/>',
-        class:'checkin_video'
-        id: 'checkin_video' + index
-        src: checkin.video_assets.media.video_thumb.url
-        style: 'height:175px;width:175px'
-      ).appendTo "#checkin_title"+index
-    else if checkin.audio_assets isnt null
+    else if assets['audio'].length isnt 0
       $('<img/>',
         class: 'checkin_audio'
         id: 'checkin_audio' + index
         src: AUDIO_IMAGE
         style: 'height:175px;width:175px'
       ).appendTo "#checkin_title"+index
-    else if checkin.words_assets isnt null
+    else if assets['video'].length isnt 0
+      $('<img/>',
+        class:'checkin_video'
+        id: 'checkin_video' + index
+        src: assets['video'][0].media.video_thumb.url
+        style: 'height:175px;width:175px'
+      ).appendTo "#checkin_title"+index
+    else if assets['text'].length isnt 0
       $('<p/>',
         class: 'checkin_words'
         id: 'checkin_words' + index
-        html: checkin.words_assets.words
+        html: assets['text'][0].words
       ).appendTo "#checkin_title"+index
     else
       $("<img/>",
@@ -188,91 +189,51 @@ $ ->
         category = $('#searchCategory').val()
         $.ajax
           url:
-            if category is 'people'
-              "/search/people"
-            else if category is 'category'
-              '/search/category'
-            else if category is 'location'
-              "http://ws.geonames.org/searchJSON"
+            switch category
+              when 'people' then "/people"
+              when 'category' then "/categories"
+              when 'location' then "http://ws.geonames.org/searchJSON"
           dataType:
-            if category is 'people'
-              "json"
-            else if category is 'category'
-              'json'
-            else if category is 'location'
-              'jsonp'
+            switch category
+              when 'people', 'category'
+                "json"
+              when 'location' then 'jsonp'
           data:
             featureClass: "P"
             style: "full"
             maxRows: 12
             name_startsWith: request.term
           success: (data)->
-            if category is 'people'
-              response(
-                $.map data.people, (person)->
-                  return label: person.name, value: person.name
-              )
-            else if category is 'category'
-              response(
-                $.map data.categories, (category)->
-                  return label: category.name, value: category.name
-              )
-            else if category is 'location'
-              response(
-                $.map data.geonames, (item)->
-                  return label: (item.name + ", " + item.countryName), value: item.name
-              )
+            switch category
+              when 'people'
+                response(
+                  $.map data.people, (person)->
+                    return label: person.name, value: person.name
+                )
+              when 'category'
+                response(
+                  $.map data.categories, (category)->
+                    return label: category.name, value: category.name
+                )
+              when 'location'
+                response(
+                  $.map data.geonames, (item)->
+                    return label: (item.name + ", " + item.countryName), value: item.name
+                )
       select: (event,ui)->
         category = $('#searchCategory').val()
-        if category is 'people'
-          $.getJSON '/search/people?name_startsWith='+ui.item.label, (data)->
-            if data.person.checkins.length isnt 0
-              $('#itemContainer').html ''
-              index = 1
-              clearMarkers markersArray
-              markersArray.length = 0
-              $.each data, (index, checkin)->
-                addCheckinMarker checkin, map, bounds
-                populateTimeLine checkin, index
-                index += 1
-              map.setCenter markersArray[0].position
-              map.setZoom 10
-              paginate()
-            else
-              alert 'You have no checkins with this person'
-        else if category is 'location'
-          $.getJSON '/search/location?name_startsWith='+ui.item.label, (data)->
-            if data.checkins.length isnt 0
-              $('#itemContainer').html ''
-              index = 1
-              clearMarkers markersArray
-              markersArray.length = 0
-              $.each data.checkins, (index, checkin)->
-                addCheckinMarker checkin, map, bounds
-                populateTimeLine checkin, index
-                index += 1
-              map.setCenter markersArray[0].position
-              map.setZoom 10
-              paginate()
-            else
-              alert 'You have no checkins near this location'
-        else if category is 'category'
-          $.getJSON '/search/category?name_startsWith='+ui.item.label, (data)->
-            if data.categories[0].checkins.length isnt 0
-              $('#itemContainer').html ''
-              index = 1
-              clearMarkers markersArray
-              markersArray.length = 0
-              $.each data.categories[0].checkins, (index, checkin)->
-                addCheckinMarker checkin, map, bounds
-                populateTimeLine checkin, index
-                index += 1
-              map.setCenter markersArray[0].position
-              map.setZoom 10
-              paginate()
-            else
-              alert 'You have no checkins with this category'
-
-
-
-
+        $.getJSON "/search/#{category}?name_startsWith="+ui.item.label, (data)->
+          if data.length isnt 0
+            $('#itemContainer').html ''
+            index = 1
+            clearMarkers markersArray
+            markersArray.length = 0
+            $.each data, (index, checkin)->
+              addCheckinMarker checkin, map, bounds
+              populateTimeLine checkin, index
+              index += 1
+            map.setCenter markersArray[0].position
+            map.setZoom 10
+            paginate()
+          else
+            alert 'No Results Found'
