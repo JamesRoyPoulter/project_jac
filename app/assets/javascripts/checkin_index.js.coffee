@@ -111,7 +111,7 @@ $ ()->
       $("<img/>",
         class: 'checkin_minimap'
         id: 'checkin_minimap'+index
-        src: 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png'
+        src: DEFAULT_MAP
       ).appendTo "#checkin_title"+index
 
 

@@ -53,10 +53,10 @@ class CheckinsController < ApplicationController
   end
 
   def update
-    @checkin = Checkin.find(checkin_params)
+    @checkin = Checkin.find(params[:id])
     respond_to do |format|
       build_new_assets
-      if @checkin.update_attributes(params[:checkin])
+      if @checkin.update_attributes(checkin_params)
         format.html { redirect_to @checkin, notice: 'Checkin was successfully updated.' }
         format.json { head :no_content }
       else
