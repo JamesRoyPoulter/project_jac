@@ -3,11 +3,7 @@ class CheckinSerializer < ActiveModel::Serializer
              :seperated_assets
 
   def seperated_assets
-    results = {text:[],image:[], video:[],audio:[]}
-    Checkin.find(self.id).assets.each do |asset|
-      results[asset.file_type.to_sym] << asset
-    end
-    results
+    Checkin.find(self.id).assets.group_by(&:file_type)
   end
 
 end
