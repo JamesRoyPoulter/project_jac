@@ -70,3 +70,14 @@
   font-size: 1.3em;
   border: none;
 }
+
+.category_overlay {
+  background-color: red;
+  position: relative;
+  min-height: 100%;
+}
+
+.category_content {
+  display: none;
+}
+

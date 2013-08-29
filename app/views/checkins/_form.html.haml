@@ -18,20 +18,24 @@
       = f.hidden_field :longitude
       - default_x = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
 
-    .categories.checkin_form_box
-      - if !current_user.categories.empty?
-        .field
-          = f.fields_for :categories_checkins do |category_checkin|
-            = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
-            = category_checkin.link_to_remove image_tag default_x
-          = f.link_to_add "Add Category", :categories_checkins
 
-      .field
-        = f.fields_for :categories do |category|
-          = category.label :name
-          = category.text_field :name
-          = category.link_to_remove image_tag default_x
-        = f.link_to_add "New Category", :categories
+    .categories.checkin_form_box
+      .category_overlay
+        = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/Categories.png"
+      .category_content
+        - if !current_user.categories.empty?
+          .field#categories
+            = f.fields_for :categories_checkins do |category_checkin|
+              = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
+              = category_checkin.link_to_remove image_tag default_x
+            = f.link_to_add "Add Category", :categories_checkins
+
+        .field#categories
+          = f.fields_for :categories do |category|
+            = category.label :name
+            = category.text_field :name
+            = category.link_to_remove image_tag default_x
+          = f.link_to_add "New Category", :categories
 
     .people.checkin_form_box
       - if !current_user.people.empty?

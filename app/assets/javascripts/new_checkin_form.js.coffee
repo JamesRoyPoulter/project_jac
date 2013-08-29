@@ -2,6 +2,7 @@ media_divs_length = 0
 
 $ ()->
 
+
   $('#add_media').click ()->
     $('.file_fields').append $('<div/>',
       class:'new_media'
@@ -17,12 +18,13 @@ $ ()->
     $('.x_icon').click ()->
       $(@).parent('.new_media').remove()
 
-
-
-
     media_divs_length += 1
     if media_divs_length>=10
       $('#add_media').hide()
+
+  $('.category_overlay').click () ->
+    $(@).hide()
+    $('.category_content').show()
 
 if $('body').data('page') is 'CheckinsNew'
   #gets location from browser
