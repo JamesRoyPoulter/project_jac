@@ -41,7 +41,7 @@ class CheckinsController < ApplicationController
     @checkin = Checkin.new(checkin_params)
     puts @checkin.errors unless @checkin.valid?
     respond_to do |format|
-      if @checkin.save!
+      if @checkin.save
         build_new_assets
         format.html { redirect_to checkins_path, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }

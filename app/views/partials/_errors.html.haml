@@ -1,0 +1,6 @@
+- if resource.errors.any?
+  .errors
+    #error_explanation
+      %h2= "#{pluralize(resource.errors.count, "error")} prohibited this checkin from being saved:"
+      - resource.errors.full_messages.each do |msg|
+        %p= msg

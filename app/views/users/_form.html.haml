@@ -4,16 +4,15 @@
       %h2
         = pluralize(@user.errors.count, "error")
         prohibited this user from being saved:
-      %ul
         - @user.errors.full_messages.each do |msg|
-          %li= msg
+          %p= msg
   .field
-    = f.text_field :email, placeholder: ' Email'
+    = f.text_field :email, placeholder: ' Email', required: true
   .field
-    = f.text_field :name, placeholder: ' Name'
+    = f.text_field :name, placeholder: ' Name', required: true
   .field
-    = f.password_field :password, placeholder: ' Password'
+    = f.password_field :password, placeholder: ' Password', required: true
   .field
-    = f.password_field :password_confirmation, placeholder: ' Password Confirmation'
+    = f.password_field :password_confirmation, placeholder: ' Password Confirmation', required: true
   .field
     = f.submit 'Sign Up', class: 'submit_button'

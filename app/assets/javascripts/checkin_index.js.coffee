@@ -159,22 +159,9 @@ $ ()->
     map = initialize(bounds, STYLES)
     bounds = new google.maps.LatLngBounds()
 
-    multipartJSON = ()->
-      $.getJSON '/search/people?name_startsWith='+ui.item.label, (data)->
-        if data.people[0].checkins.length isnt 0
-          $('#itemContainer').html ''
-          index = 1
-          clearMarkers markersArray
-          markersArray.length = 0
-          $.each data.people[0].checkins, (index, checkin)->
-            addCheckinMarker checkin, map, bounds
-            populateTimeLine checkin, index
-            index += 1
-          map.setCenter markersArray[0].position
-          map.setZoom 10
-          paginate()
-        else
-          alert 'You have no checkins with this person'
+    dataMap = (data)->
+      $.map data, (x)->
+        return label: x.name, value: x.name
 
     $.getJSON "/checkins.json", (data)->
       index = 1
@@ -205,16 +192,8 @@ $ ()->
             name_startsWith: request.term
           success: (data)->
             switch category
-              when 'people'
-                response(
-                  $.map data.people, (person)->
-                    return label: person.name, value: person.name
-                )
-              when 'category'
-                response(
-                  $.map data.categories, (category)->
-                    return label: category.name, value: category.name
-                )
+              when 'people' then response( dataMap(data.people) )
+              when 'category' then response( dataMap(data.categories) )
               when 'location'
                 response(
                   $.map data.geonames, (item)->
