@@ -5,10 +5,12 @@ $ ()->
   $('.category_overlay').click () ->
     $(@).hide()
     $('.category_content').show()
+    autoOpenCategoryChoice()
 
   $('.people_overlay').click () ->
     $(@).hide()
     $('.people_content').show()
+    autoOpenPeopleChoice()
 
   $('.words_overlay').click () ->
     $(@).hide()
@@ -42,25 +44,14 @@ $ ()->
     if media_divs_length>=5
       $('#add_media').hide()
 
-  $('.category_overlay').click () ->
-    $(@).hide()
-    $('.category_content').show()
-
-  $('.people_overlay').click () ->
-    $(@).hide()
-    $('.people_content').show()
-
-  $('.words_overlay').click () ->
-    $(@).hide()
-    $('.words_content').show()
-    $('.field').open()
-
-  $('.add_media_overlay').click () ->
-    $(@).hide()
-    $('.add_media').show()
-
   autoOpenMediaChoice = () ->
     $('#checkin_medias').trigger('click');
+
+  autoOpenCategoryChoice = () ->
+    $('#auto_open_id').trigger('click');
+
+  autoOpenPeopleChoice = () ->
+    $('#auto_open_people_id').trigger('click');
 
 if $('body').data('page') is 'CheckinsNew'
   #gets location from browser
