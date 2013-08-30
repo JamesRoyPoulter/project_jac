@@ -105,8 +105,8 @@
 }
 
 #assets_image {
-  height: 75%;
-  width: 75%;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 #category_image, #people_image, #words_image {
