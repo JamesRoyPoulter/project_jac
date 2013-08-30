@@ -99,18 +99,18 @@
 .category_overlay, .people_overlay, .words_overlay, .add_media_overlay {
   background-color: #00D5E1;
   position: relative;
-  max-height: 100%;
   max-width: 100%;
   margin: 0;
 }
 
 #assets_image {
-  max-height: 100%;
-  max-width: 100%;
+  width: 60%;
+  display: block;
+  margin: auto;
 }
 
 #category_image, #people_image, #words_image {
-  width: 50%;
+  width: 40%;
   display: block;
   margin: auto;
 }
@@ -127,19 +127,20 @@ padding-top: 10px;
 }
 
 .people.checkin_form_box, .people_overlay, .people_content {
-  background-color: #D2C469;
-}
-
-.categories.checkin_form_box, .category_overlay, .category_content{
-  background-color: #998080;
-}
-
-.words.checkin_form_box, .words_overlay , .words_content{
   background-color: #767E7F;
 }
 
-.add_media.checkin_form_box, .add_media_overlay, #assets_image, .add_media {
+.categories.checkin_form_box, .category_overlay, .category_content{
   background-color: #95B2BB;
+}
+
+.words.checkin_form_box, .words_overlay , .words_content{
+  background-color: #998080;
+}
+
+.assets.checkin_form_box, .add_media_overlay, #assets_image, .add_media {
+  background-color: #D2C469;
+
 }
 
 .categories.checkin_form_box, .people.checkin_form_box, .assets.checkin_form_box, .words.checkin_form_box{
@@ -154,5 +155,11 @@ padding-top: 10px;
   margin: 0 auto;
   width: 100%;
   height: 60%;
+}
+
+p.instructions {
+  z-index: 2;
+  font-family: "Perpetua Titling MT", Garamond, "Times New Roman";
+  font-size: 14px;
 }
 

@@ -42,6 +42,23 @@ $ ()->
     if media_divs_length>=5
       $('#add_media').hide()
 
+  $('.category_overlay').click () ->
+    $(@).hide()
+    $('.category_content').show()
+
+  $('.people_overlay').click () ->
+    $(@).hide()
+    $('.people_content').show()
+
+  $('.words_overlay').click () ->
+    $(@).hide()
+    $('.words_content').show()
+    $('.field').open()
+
+  $('.add_media_overlay').click () ->
+    $(@).hide()
+    $('.add_media').show()
+
   autoOpenMediaChoice = () ->
     $('#checkin_medias').trigger('click');
 

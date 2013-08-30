@@ -20,9 +20,9 @@
   overflow-y: scroll;
   position: fixed;
   top: 0px;
-  // width: 250px;
   z-index: 1;
   zoom: 1;
+
   .checkin_link {
     display: none;
   }
@@ -46,7 +46,6 @@
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 0px;
-    // width: 250px;
     zoom: 1;
     li {
       border-bottom-color: rgb(72, 72, 72);
@@ -64,7 +63,6 @@
       list-style-position: outside;
       list-style-type: none;
       text-align: center;
-      // width: 250px;
       zoom: 1;
       a {
         -webkit-background-clip: border-box;
@@ -99,7 +97,6 @@
         padding-top: 8px;
         text-decoration: none;
         text-shadow: rgb(34, 34, 34) 0px -1px 2px;
-        // width: 225px;
         zoom: 1;
       }
     }
