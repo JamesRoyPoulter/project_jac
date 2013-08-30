@@ -13,16 +13,15 @@
   %body{data: {page: [controller_name.capitalize, action_name.capitalize].join} }
 
     .container
-      .navbar
+      #navbar
         = render 'layouts/navbar'
 
       .content
-        .logo
-          = image_tag "Ehxe_logo.png", id: "logo"
+        .top_bar
+          = image_tag 'http://www.acceleratedtaxsolutions.com/sites/default/themes/ats/images/menu-icon.png'
+          EXHE
         = yield
 
 
     = javascript_include_tag "application"
-    %script{:type => "text/javascript", :src=>"/assets/gmaps.js"}
-    %script{:type => "text/javascript", :src=>"/assets/canvasjs.min.js"}
     %script{src:"http://code.jquery.com/ui/1.10.3/jquery-ui.js"}
