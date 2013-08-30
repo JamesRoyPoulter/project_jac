@@ -52,8 +52,8 @@ $ ()->
 
   $('.words_overlay').click () ->
     $(@).hide()
-    $('.words_content').show()
-    $('.field').open()
+    # $('.words_content').show()
+    $('#add_words_link').trigger()
 
   $('.add_media_overlay').click () ->
     $(@).hide()
