@@ -15,6 +15,7 @@ $ ()->
   $('.words_overlay').click () ->
     $(@).hide()
     $('.words_content').show()
+    autoOpenWordsChoice()
 
   $('.add_media_overlay').click () ->
     $(@).hide()
@@ -52,6 +53,10 @@ $ ()->
 
   autoOpenPeopleChoice = () ->
     $('#auto_open_people_id').trigger('click');
+
+  autoOpenWordsChoice = () ->
+    $('#add_words_link').trigger('click');
+
 
 if $('body').data('page') is 'CheckinsNew'
   #gets location from browser

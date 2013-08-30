@@ -29,7 +29,7 @@
               = asset.text_area :words
               = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
               = asset.link_to_remove image_tag default_x
-            = f.link_to_add "Add Words", :assets
+            = f.link_to_add "Add Words", :assets, id: "add_words_link"
 
       .categories.checkin_form_box
         .category_overlay
