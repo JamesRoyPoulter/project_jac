@@ -2,18 +2,21 @@
   #map
 
 .search_box
-  %select{name:'category',id:'searchCategory'}
-    %option{value:'location'}= "Location".html_safe
-    %option{value:'people'} People
-    %option{value:'category'} Category
-  %input{type:'text',name:'query',id:'searchQuery',placeholder:"Search"}
+  .select_search_div
+    %select{name:'category',id:'searchCategory'}
+      %option{value:'location'}= "Location".html_safe
+      %option{value:'people'} People
+      %option{value:'category'} Category
+  .search_input_div
+    %input{type:'text',name:'query',id:'searchQuery',placeholder:"Search"}
 
-/ JPAGES NAV PANEL
-.holder#centernav
-/ JPAGES ITEM CONTAINER
-.timeline_holder
-  %ul#itemContainer
+.timelinecontainer
+  / JPAGES NAV PANEL
+  .holder#centernav
+  / JPAGES ITEM CONTAINER
+  .timeline_holder
+    %ul#itemContainer
 
-.chart_holder
-  #chartContainer
+/ .chart_holder
+/   #chartContainer
 

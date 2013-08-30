@@ -133,7 +133,7 @@ $ ()->
       previous: false,
       next: false,
       links: "blank",
-      perPage: 5,
+      perPage: 3,
       keybrowse: true,
       scrollbrowse: true,
       animation   : "fadeInUp",
