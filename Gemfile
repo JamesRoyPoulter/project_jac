@@ -18,12 +18,10 @@ group :development do
   gem 'pry-stack_explorer'
 end
 
-
 gem 'faker'
 gem 'rspec-rails'
 gem 'factory_girl_rails'
 gem 'database_cleaner'
-
 
 gem 'sass-rails',   '~> 3.2.3'
 gem 'coffee-rails', '~> 3.2.1'
