@@ -18,49 +18,61 @@
       = f.hidden_field :longitude
       - default_x = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
 
-    .categories.checkin_form_box
-      - if !current_user.categories.empty?
-        .field
-          = f.fields_for :categories_checkins do |category_checkin|
-            = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
-            = category_checkin.link_to_remove image_tag default_x
-          = f.link_to_add "Add Category", :categories_checkins
+    #checkin_inventory
+      .categories.checkin_form_box
+        .category_overlay
+          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/Categories.png"
+        .category_content
+          - if !current_user.categories.empty?
+            .field
+              = f.fields_for :categories_checkins do |category_checkin|
+                = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
+                = category_checkin.link_to_remove image_tag default_x
+              = f.link_to_add "Add Category", :categories_checkins
 
-      .field
-        = f.fields_for :categories do |category|
-          = category.label :name
-          = category.text_field :name
-          = category.link_to_remove image_tag default_x
-        = f.link_to_add "New Category", :categories
+          .field
+            = f.fields_for :categories do |category|
+              = category.label :name
+              = category.text_field :name
+              = category.link_to_remove image_tag default_x
+            = f.link_to_add "New Category", :categories
 
-    .people.checkin_form_box
-      - if !current_user.people.empty?
-        .field
-          = f.fields_for :people_checkins do |person|
-            = person.select 'person_id', Person.all.collect { |x| [x.name,x.id ]}
-            = person.link_to_remove image_tag default_x
-          .add_button
-            = f.link_to_add "Tag A Person", :people_checkins
+      .people.checkin_form_box
+        .people_overlay
+          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/People.png"
+        .people_content
+          - if !current_user.people.empty?
+            .field
+              = f.fields_for :people_checkins do |person|
+                = person.select 'person_id', Person.all.collect { |x| [x.name,x.id ]}
+                = person.link_to_remove image_tag default_x
+              .add_button
+                = f.link_to_add "Tag A Person", :people_checkins
 
-      .field
-        = f.fields_for :people do |person|
-          = person.label :name
-          = person.text_field :name
-          = person.link_to_remove image_tag default_x
-        = f.link_to_add "New Person", :people
+          .field
+            = f.fields_for :people do |person|
+              = person.label :name
+              = person.text_field :name
+              = person.link_to_remove image_tag default_x
+            = f.link_to_add "New Person", :people
 
-    .assets.checkin_form_box
-      .file_fields
-      .add_media
-        %a#add_media Add Media
+      .assets.checkin_form_box
+        .add_media_overlay
+          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/assets_image.png", id: "assets_image"
+        .add_media
+          .file_fields
+            %a#add_media Add Media
 
-    .words.checkin_form_box
-      .field
-        = f.fields_for :assets do |asset|
-          = asset.text_area :words
-          = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
-          = asset.link_to_remove image_tag default_x
-        = f.link_to_add "Add Words", :assets
+      .words.checkin_form_box
+        .words_overlay
+          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/words.png"
+        .words_content
+          .field
+            = f.fields_for :assets do |asset|
+              = asset.text_area :words
+              = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
+              = asset.link_to_remove image_tag default_x
+            = f.link_to_add "Add Words", :assets
 
-    .actions
-      = f.submit 'Save', class: 'submit_button'
+      .actions
+        = f.submit 'Save', class: 'submit_button'

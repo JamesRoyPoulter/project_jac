@@ -9,14 +9,27 @@
   width: 90%; height: 100%;
   margin: 0 auto; padding: 1%;
   text-align: center;
+  margin-top: -40px;
   .past_checkin_form {
     display: none;
   }
 
+.new_checkin {
+    background-color: #bbb;
+    // border: 2px solid #000;
+    border-radius: 40px;
+}
+
+.checkin_form {
+    margin: 20px;
+}
+
   .checkin_form_box {
     border: 1px solid black;
-    width: 49.5%; height: 300px;
+    width: 47%; height: 300px;
     float: left;
+    padding-left: 5px;
+    margin-bottom: 20px;
   }
   .new_media {
     width: 100%;
@@ -25,17 +38,23 @@
 
   #checkin_title,
   .past_checkin_location_search {
-    width: 100%;
+    width: 90%;
     font-size: 1.3em;
     height: 30px;
+    border-radius: 20px;
+    margin: 15px;
   }
 
   .past_checkin_location_search {
     width: 90%;
     text-align: center;
     border: none;
+    margin-bottom: 20px;
   }
 
+  .past_checkin_form {
+    margin-top: 40px;
+    }
 }
 
 #searchCategory {
@@ -57,16 +76,70 @@
 #map,
 #past_map,
 #edit_map {
-  height: 300px; width:100%;
-  margin: 0 auto;
-  float: left;
+  height: 300px;
+  width: 95%;
+  margin: auto;
+  margin-bottom: 20px;
 }
 
 .submit_button {
-  width: 100%;
+  width: 95%;
   background: black;
   color: white;
   font-family: 'Droid Sans';
   font-size: 1.3em;
   border: none;
+  border-radius: 15px;
+  margin: 10px;
+  margin-bottom: 20px;
 }
+
+.category_overlay, .people_overlay, .words_overlay, .add_media_overlay, #assets_image {
+  background-color: #00D5E1;
+  position: relative;
+  min-height: 95%;
+  max-height: 95%;
+  max-width: 100%;
+  border-radius: 20px;
+  margin: 0;
+}
+
+.people_content, .category_content, .words_content, .add_media {
+  border-radius: 20px;
+  min-height: 85%;
+  min-width: 85%;
+  display: none;
+  padding: 20px;
+}
+
+.file_fields {
+padding-top: 10px;
+}
+
+.people_overlay, .people_content {
+  background-color: #FF4F5C;
+}
+
+.category_overlay, .category_content{
+  background-color: #00D5E1;
+}
+
+.words_overlay , .words_content{
+  background-color: #00FFB1;
+}
+
+.add_media_overlay, #assets_image, .add_media {
+  background-color: #FFD200;
+}
+
+.categories.checkin_form_box, .people.checkin_form_box, .assets.checkin_form_box, .words.checkin_form_box{
+  border: none;
+  margin: 10px;
+}
+
+#checkin_inventory {
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+}
+

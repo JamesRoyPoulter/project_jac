@@ -17,12 +17,25 @@ $ ()->
     $('.x_icon').click ()->
       $(@).parent('.new_media').remove()
 
-
-
-
     media_divs_length += 1
     if media_divs_length>=10
       $('#add_media').hide()
+
+  $('.category_overlay').click () ->
+    $(@).hide()
+    $('.category_content').show()
+
+  $('.people_overlay').click () ->
+    $(@).hide()
+    $('.people_content').show()
+
+  $('.words_overlay').click () ->
+    $(@).hide()
+    $('.words_content').show()
+
+  $('.add_media_overlay').click () ->
+    $(@).hide()
+    $('.add_media').show()
 
 if $('body').data('page') is 'CheckinsNew'
   #gets location from browser
