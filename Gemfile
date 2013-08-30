@@ -8,8 +8,6 @@ gem 'active_model_serializers'
 gem 'pg'
 gem 'puma'
 
-gem 'faker'
-
 gem 'pry-rails'
 
 group :development do
@@ -21,6 +19,7 @@ group :development do
 end
 
 
+gem 'faker'
 gem 'rspec-rails'
 gem 'factory_girl_rails'
 gem 'database_cleaner'
@@ -33,8 +32,6 @@ gem 'jquery-rails'
 gem 'haml-rails'
 
 gem 'nested_form'
-
-gem 'ransack'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 

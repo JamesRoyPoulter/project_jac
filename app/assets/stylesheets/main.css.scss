@@ -1,49 +1,58 @@
+.jPanelMenu-panel {
+  height: 100%;
+  width: 100%;
+}
+
 .container {
   width: 100%;
   height: 100%;
   position: relative;
 
-  .navbar {
+  #navbar {
+    display: none;
+  }
+
+  .top_bar {
+    -webkit-background-clip: border-box;
+    -webkit-background-origin: padding-box;
+    -webkit-background-size: auto;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-size: auto;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: -webkit-linear-gradient(top, rgb(62, 62, 62), rgb(56, 56, 56));
+    background-origin: padding-box;
+    background-size: auto;
+    border-bottom: 2px;
+    border-bottom-color: rgb(72, 72, 72);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    color: rgb(247, 247, 247);
+    cursor: auto;
+    display: block;
+    font-family: museo-sans, 'Museo Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: rgb(34, 34, 34) 0px -1px 2px;
+    width: 225px;
+    zoom: 1;
     position: absolute;
-    right: 0;
-    width: 0%;
-    height: 100%;
-    border: 1px solid black;
-    background: black;
-    color: white;
-
-
-    a {
-      color: white;
-      font-size: 1.25em
-    }
-
-    .title {
-      text-align: center;
-      font-size: 2em;
-    }
-
-    .nav_link {
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 1.5em;
+    padding: 0.5% 0 0.8% 0;
     text-align: center;
-    margin: 10% 0 10% 0;
-    }
   }
 
   .content {
+    padding-top: 50px;
     position: absolute;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: #bbb;
-    // background: rgb(238,238,238); /* Old browsers */
-    // background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
-    // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
-    // background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
-    // background: -o-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Opera 11.10+ */
-    // background: -ms-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* IE10+ */
-    // background: linear-gradient(to bottom,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C */
-    // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+    background-image: url('https://s3-eu-west-1.amazonaws.com/ehxe/sandpaper.png');
   }
 
   .errors {
