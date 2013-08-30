@@ -32,6 +32,7 @@ $ ()->
   $('.words_overlay').click () ->
     $(@).hide()
     $('.words_content').show()
+    $('.field').open()
 
   $('.add_media_overlay').click () ->
     $(@).hide()

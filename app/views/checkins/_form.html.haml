@@ -22,7 +22,7 @@
       .words.checkin_form_box
         .words_overlay
           = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/words.png",  id: 'words_image'
-          %p.instructions Add Words
+          %p.instructions Words
         .words_content
           .field
             = f.fields_for :assets do |asset|
@@ -34,7 +34,7 @@
       .categories.checkin_form_box
         .category_overlay
           = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/Categories.png", id: 'category_image'
-          %p.instructions Add Categories
+          %p.instructions Categories
         .category_content
           - if !current_user.categories.empty?
             .field
@@ -50,18 +50,11 @@
               = category.link_to_remove image_tag default_x
             = f.link_to_add "New Category", :categories
 
-          .field
-            = f.fields_for :people do |person|
-              = person.label :name
-              = person.text_field :name
-              = person.link_to_remove image_tag default_x
-            = f.link_to_add "New Person", :people
-
 
       .assets.checkin_form_box
         .add_media_overlay
-          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/assets_image_small.png", id: "assets_image"
-          %p.instructions Add Media
+          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/assets_image_small2.png", id: "assets_image"
+          %p.instructions Media
         .add_media
           .file_fields
             %a#add_media Add Another
@@ -69,7 +62,7 @@
       .people.checkin_form_box
         .people_overlay
           = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/People.png",  id: 'people_image'
-          %p.instructions Tag People
+          %p.instructions People
         .people_content
           - if !current_user.people.empty?
             .field
@@ -78,5 +71,12 @@
                 = person.link_to_remove image_tag default_x
               .add_button
                 = f.link_to_add "Tag A Person", :people_checkins
+
+          .field
+            = f.fields_for :people do |person|
+              = person.label :name
+              = person.text_field :name
+              = person.link_to_remove image_tag default_x
+            = f.link_to_add "New Person", :people
       .actions
         = f.submit 'Save', class: 'submit_button'

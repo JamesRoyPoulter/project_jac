@@ -104,7 +104,7 @@
 }
 
 #assets_image {
-  width: 40%;
+  width: 60%;
   display: block;
   margin: auto;
 }
@@ -138,7 +138,7 @@ padding-top: 10px;
   background-color: #998080;
 }
 
-.add_media.checkin_form_box, .add_media_overlay, #assets_image, .add_media {
+.assets.checkin_form_box, .add_media_overlay, #assets_image, .add_media {
   background-color: #D2C469;
 
 }
@@ -159,5 +159,7 @@ padding-top: 10px;
 
 p.instructions {
   z-index: 2;
+  font-family: "Perpetua Titling MT", Garamond, "Times New Roman";
+  font-size: 14px;
 }
 
