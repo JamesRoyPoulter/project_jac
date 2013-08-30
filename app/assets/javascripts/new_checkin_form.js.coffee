@@ -2,8 +2,29 @@ media_divs_length = 0
 
 $ ()->
 
+  $('.category_overlay').click () ->
+    $(@).hide()
+    $('.category_content').show()
+
+  $('.people_overlay').click () ->
+    $(@).hide()
+    $('.people_content').show()
+
+  $('.words_overlay').click () ->
+    $(@).hide()
+    $('.words_content').show()
+
+  $('.add_media_overlay').click () ->
+    $(@).hide()
+    $('.add_media').show()
+    addMedia()
+    autoOpenMediaChoice()
+
   $('#add_media').click ()->
-    $('.file_fields').append $('<div/>',
+    addMedia()
+
+  addMedia = () ->
+    $('.div_for_asset__upload_appends').append $('<div/>',
       class:'new_media'
       html: $('<input>',
         type:'file'
@@ -18,7 +39,7 @@ $ ()->
       $(@).parent('.new_media').remove()
 
     media_divs_length += 1
-    if media_divs_length>=10
+    if media_divs_length>=5
       $('#add_media').hide()
 
   $('.category_overlay').click () ->
@@ -37,6 +58,9 @@ $ ()->
   $('.add_media_overlay').click () ->
     $(@).hide()
     $('.add_media').show()
+
+  autoOpenMediaChoice = () ->
+    $('#checkin_medias').trigger('click');
 
 if $('body').data('page') is 'CheckinsNew'
   #gets location from browser

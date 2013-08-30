@@ -1,4 +1,12 @@
 $ ()->
+  $('.show_checkin_options').click (e)->
+    e.preventDefault()
+    item = $('.checkin_link')
+    if item.css('display') is 'none'
+      item.slideDown 500
+    else
+      item.slideUp 500
+
   addCheckinMarker = (checkin, map, bounds)->
     checkinLatLng = new google.maps.LatLng checkin.latitude, checkin.longitude
     marker = new google.maps.Marker

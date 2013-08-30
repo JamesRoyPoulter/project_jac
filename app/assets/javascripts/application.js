@@ -13,14 +13,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery_nested_form
+//= require jpanel.min
 //= require jPages
 //= require gmaps.js
-//= require canvasjs.min
-//= require chart
 //= require jquery.lazyload.min
 //= require jquery.scrollstop.min
 //= require_tree .
 
+
+var navBar = $.jPanelMenu({
+  menu: '#navbar',
+  trigger: '.top_bar',
+  openPosition: '12%',
+  closeOnContentClick: true
+});
+
+navBar.on();
 
 function stopRKey(evt) {
   var evt = (evt) ? evt : ((event) ? event : null);
