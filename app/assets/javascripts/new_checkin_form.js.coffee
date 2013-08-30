@@ -17,6 +17,11 @@ $ ()->
     $('.words_content').show()
     autoOpenWordsChoice()
 
+# Not console-logging or re-showing text div on click...
+  # $('.remove_nested_fields').click () ->
+  #   console.log "meow"
+  #   $('.words_overlay').show()
+
   $('.add_media_overlay').click () ->
     $(@).hide()
     $('.add_media').show()
@@ -56,6 +61,10 @@ $ ()->
 
   autoOpenWordsChoice = () ->
     $('#add_words_link').trigger('click');
+    $('#add_words_link').hide()
+
+
+
 
 
 if $('body').data('page') is 'CheckinsNew'
