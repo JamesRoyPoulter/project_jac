@@ -41,7 +41,7 @@
               = f.fields_for :categories_checkins do |category_checkin|
                 = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
                 = category_checkin.link_to_remove image_tag default_x
-              = f.link_to_add "Add Category", :categories_checkins
+              = f.link_to_add "Add Category", :categories_checkins, id: 'auto_open_id'
 
           .field
             = f.fields_for :categories do |category|
@@ -56,8 +56,8 @@
           = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/assets_image_small2.png", id: "assets_image"
           %p.instructions Media
         .add_media
-          .file_fields
-            %a#add_media Add Another
+          .div_for_asset__upload_appends
+          %a#add_media Add Another
 
       .people.checkin_form_box
         .people_overlay
@@ -70,7 +70,7 @@
                 = person.select 'person_id', Person.all.collect { |x| [x.name,x.id ]}
                 = person.link_to_remove image_tag default_x
               .add_button
-                = f.link_to_add "Tag A Person", :people_checkins
+                = f.link_to_add "Tag A Person", :people_checkins, id: 'auto_open_people_id'
 
           .field
             = f.fields_for :people do |person|
