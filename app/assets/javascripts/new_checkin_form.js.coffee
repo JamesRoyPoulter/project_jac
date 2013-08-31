@@ -2,6 +2,7 @@ media_divs_length = 0
 
 $ ()->
 
+if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'CheckinsPast'
   $('.category_overlay').click () ->
     $(@).hide()
     $('.category_content').show()
@@ -62,11 +63,6 @@ $ ()->
     if media_divs_length>=5
       $('#add_media').hide()
 
-  autoOpenMediaChoice = () ->
-    inputs = document.getElementsByClassName('checkin_medias')
-    input = inputs[inputs.length-1]
-    input.click()
-
   autoOpenCategoryChoice = () ->
     $('#auto_open_id').trigger('click')
 
@@ -77,10 +73,7 @@ $ ()->
     $('#add_words_link').trigger('click')
     $('#add_words_link').hide()
 
-
-
-
-
+#MAPPING BELOW
 if $('body').data('page') is 'CheckinsNew'
   #gets location from browser
   getLocation = ()->
