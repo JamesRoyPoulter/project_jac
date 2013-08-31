@@ -20,9 +20,9 @@
           = audio_tag asset.media.url, controls: true
         - elsif asset.media.model.file_type === 'video'
           = video_tag asset.media.url, controls: true
-
         - else
-          = asset.words
+          .words_div
+            = asset.words
 
     - if @checkin.people
       .show_checkin_people_div
