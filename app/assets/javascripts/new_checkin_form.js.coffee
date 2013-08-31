@@ -7,6 +7,7 @@ $ ()->
     $('.category_content').show()
     autoOpenCategoryChoice()
 
+
   $('.people_overlay').click () ->
     $(@).hide()
     $('.people_content').show()
@@ -16,6 +17,11 @@ $ ()->
     $(@).hide()
     $('.words_content').show()
     autoOpenWordsChoice()
+
+# Not console-logging or re-showing text div on click...
+  # $('.remove_nested_fields').click () ->
+  #   console.log "meow"
+  #   $('.words_overlay').show()
 
   $('.add_media_overlay').click () ->
     $(@).hide()
@@ -29,14 +35,20 @@ $ ()->
   addMedia = () ->
     $('.div_for_asset__upload_appends').append $('<div/>',
       class:'new_media'
-      html: $('<input>',
+      html: $('<img/>',
+        class: 'upload_preview'
+        style: 'height: 50px'
+      )
+    ).append $('<input>',
         type:'file'
         name: 'medias[]'
-        id: 'checkin_medias'
+        class: 'checkin_medias'
+        style:'display:none'
+      ).append $('<img/>',
+        src: DEFAULT_X,
+        class: 'x_icon'
       )
-    ).append $('<img/>',
-      src: DEFAULT_X,
-      class: 'x_icon')
+      autoOpenMediaChoice()
 
     $('.x_icon').click ()->
       $(@).parent('.new_media').remove()
@@ -46,16 +58,32 @@ $ ()->
       $('#add_media').hide()
 
   autoOpenMediaChoice = () ->
-    $('#checkin_medias').trigger('click');
+    inputs = document.getElementsByClassName('checkin_medias')
+    input = inputs[inputs.length-1]
+    input.click()
+    readURL = (input)->
+      if input.files[0].name.length > 5
+        reader = new FileReader()
+      reader.onload = (e) ->
+        $(".upload_preview").last()[0].attr "src", e.target.result
+      reader.readAsDataURL input.files[0]
+    readURL(input)
+
+
+    $('.checkin_medias').last()[0].click()
 
   autoOpenCategoryChoice = () ->
-    $('#auto_open_id').trigger('click');
+    $('#auto_open_id').trigger('click')
 
   autoOpenPeopleChoice = () ->
-    $('#auto_open_people_id').trigger('click');
+    $('#auto_open_people_id').trigger('click')
 
   autoOpenWordsChoice = () ->
-    $('#add_words_link').trigger('click');
+    $('#add_words_link').trigger('click')
+    $('#add_words_link').hide()
+
+
+
 
 
 if $('body').data('page') is 'CheckinsNew'

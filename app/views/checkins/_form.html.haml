@@ -1,83 +1,164 @@
 .checkin_form
-  = nested_form_for @checkin do |f|
-    = render 'partials/errors', resource: @checkin
+  -if params[:action] == 'new'
+    = nested_form_for @checkin do |f|
+      = render 'partials/errors', resource: @checkin
 
-    .title_field
-      = f.text_field :title, placeholder: ' Title', required: true
+      .title_field
+        = f.text_field :title, placeholder: ' Title', required: true
 
-    .map
-      - if params[:action] === 'new'
-        #map
-      - elsif params[:action] === 'past'
-        #past_map
-      - if request.env['REQUEST_PATH'] === "/checkins/#{@checkin.id}/edit"
-        #edit_map{data: { id: @checkin.id } }
+      .map
+        - if params[:action] === 'new'
+          #map
+        - elsif params[:action] === 'past'
+          #past_map
+        - if request.env['REQUEST_PATH'] === "/checkins/#{@checkin.id}/edit"
+          #edit_map{data: { id: @checkin.id } }
 
 
-      = f.hidden_field :latitude
-      = f.hidden_field :longitude
-      - default_x = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
+        = f.hidden_field :latitude
+        = f.hidden_field :longitude
+        - default_x = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
 
-    #checkin_inventory
-      .words.checkin_form_box
-        .words_overlay
-          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/words.png",  id: 'words_image'
-          %p.instructions Words
-        .words_content
-          .field
-            = f.fields_for :assets do |asset|
-              = asset.text_area :words
-              = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
-              = asset.link_to_remove image_tag default_x
-            = f.link_to_add "Add Words", :assets, id: "add_words_link"
-
-      .categories.checkin_form_box
-        .category_overlay
-          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/Categories.png", id: 'category_image'
-          %p.instructions Categories
-        .category_content
-          - if !current_user.categories.empty?
+      #checkin_inventory
+        .words.checkin_form_box
+          .words_overlay
+            = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/words.png",  id: 'words_image'
+            %p.instructions Words
+          .words_content
             .field
-              = f.fields_for :categories_checkins do |category_checkin|
-                = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
-                = category_checkin.link_to_remove image_tag default_x
-              = f.link_to_add "Add Category", :categories_checkins, id: 'auto_open_id'
+              = f.fields_for :assets do |asset|
+                = asset.text_area :words
+                = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
+                = asset.link_to_remove "Remove Words"
+              = f.link_to_add "Add Words", :assets, id: "add_words_link"
 
-          .field
-            = f.fields_for :categories do |category|
-              = category.label :name
-              = category.text_field :name
-              = category.link_to_remove image_tag default_x
-            = f.link_to_add "New Category", :categories
+        .categories.checkin_form_box
+          .category_overlay
+            = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/Categories.png", id: 'category_image'
+            %p.instructions Categories
+          .category_content
+            - if !current_user.categories.empty?
+              .field
+                = f.fields_for :categories_checkins do |category_checkin|
+                  = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
+                  = category_checkin.link_to_remove image_tag default_x
+                = f.link_to_add "Add Category", :categories_checkins, id: 'auto_open_id'
 
-
-      .assets.checkin_form_box
-        .add_media_overlay
-          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/assets_image_small2.png", id: "assets_image"
-          %p.instructions Media
-        .add_media
-          .div_for_asset__upload_appends
-          %a#add_media Add Another
-
-      .people.checkin_form_box
-        .people_overlay
-          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/People.png",  id: 'people_image'
-          %p.instructions People
-        .people_content
-          - if !current_user.people.empty?
             .field
-              = f.fields_for :people_checkins do |person|
-                = person.select 'person_id', Person.all.collect { |x| [x.name,x.id ]}
+              = f.fields_for :categories do |category|
+                = category.text_field :name, placeholder: ' Name'
+                = category.select :color, [['Coral','coral'],['Crimson','crimson'],['Green','green'],['Mustard','mustard'],['Pink','pink'],['Purple','purple'],['Red','red']]
+                = category.link_to_remove image_tag default_x
+              = f.link_to_add "New Category", :categories
+
+
+        .assets.checkin_form_box
+          .add_media_overlay
+            = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/assets_image_small2.png", id: "assets_image"
+            %p.instructions Media
+          .add_media
+            .div_for_asset__upload_appends
+            %a#add_media Add Another
+
+        .people.checkin_form_box
+          .people_overlay
+            = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/People.png",  id: 'people_image'
+            %p.instructions People
+          .people_content
+            - if !current_user.people.empty?
+              .field
+                = f.fields_for :people_checkins do |person|
+                  = person.select 'person_id', Person.all.collect { |x| [x.name,x.id ]}
+                  = person.link_to_remove image_tag default_x
+                .add_button
+                  = f.link_to_add "Tag A Person", :people_checkins, id: 'auto_open_people_id'
+
+            .field
+              = f.fields_for :people do |person|
+                = person.label :name
+                = person.text_field :name
                 = person.link_to_remove image_tag default_x
-              .add_button
-                = f.link_to_add "Tag A Person", :people_checkins, id: 'auto_open_people_id'
+              = f.link_to_add "New Person", :people
 
-          .field
-            = f.fields_for :people do |person|
-              = person.label :name
-              = person.text_field :name
-              = person.link_to_remove image_tag default_x
-            = f.link_to_add "New Person", :people
+        .actions
+          = f.submit 'CHECKIN', class: 'submit_button'
+  -elsif params[:action] == 'edit'
+    %h2 Edit Checkin
+    = nested_form_for @checkin do |f|
+      = render 'partials/errors', resource: @checkin
 
-      .actions
-        = f.submit 'CHECKIN', class: 'submit_button'
+      .title_field
+        = f.text_field :title, placeholder: ' Title', required: true
+
+      .map
+        - if request.env['REQUEST_PATH'] === "/checkins/#{@checkin.id}/edit"
+          #edit_map{data: { id: @checkin.id } }
+
+
+        = f.hidden_field :latitude
+        = f.hidden_field :longitude
+        - default_x = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
+
+      #checkin_inventory
+        .words.checkin_form_box
+          .words_overlay
+            = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/words.png",  id: 'words_image'
+            %p.instructions Words
+          .words_content
+            .field
+              = f.fields_for :assets do |asset|
+                = asset.text_area :words
+                = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
+                = asset.link_to_remove "Remove Words"
+              = f.link_to_add "Add Words", :assets, id: "add_words_link"
+
+        .categories.checkin_form_box
+          .category_overlay
+            = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/Categories.png", id: 'category_image'
+            %p.instructions Categories
+          .category_content
+            - if !current_user.categories.empty?
+              .field
+                = f.fields_for :categories_checkins do |category_checkin|
+                  = category_checkin.collection_select :category_id, Category.belonging_to(current_user), :id, :name
+                  = category_checkin.link_to_remove image_tag default_x
+                = f.link_to_add "Add Category", :categories_checkins, id: 'auto_open_id'
+
+            .field
+              = f.fields_for :categories do |category|
+                = category.text_field :name, placeholder: ' Name'
+                = category.select :color, [['Coral','coral'],['Crimson','crimson'],['Green','green'],['Mustard','mustard'],['Pink','pink'],['Purple','purple'],['Red','red']]
+                = category.link_to_remove image_tag default_x
+              = f.link_to_add "New Category", :categories
+
+
+        .assets.checkin_form_box
+          .add_media_overlay
+            = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/assets_image_small2.png", id: "assets_image"
+            %p.instructions Media
+          .add_media
+            .div_for_asset__upload_appends
+            %a#add_media Add Another
+
+        .people.checkin_form_box
+          .people_overlay
+            = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/People.png",  id: 'people_image'
+            %p.instructions People
+          .people_content
+            - if !current_user.people.empty?
+              .field
+                = f.fields_for :people_checkins do |person|
+                  = person.select 'person_id', Person.all.collect { |x| [x.name,x.id ]}
+                  = person.link_to_remove image_tag default_x
+                .add_button
+                  = f.link_to_add "Tag A Person", :people_checkins, id: 'auto_open_people_id'
+
+            .field
+              = f.fields_for :people do |person|
+                = person.label :name
+                = person.text_field :name
+                = person.link_to_remove image_tag default_x
+              = f.link_to_add "New Person", :people
+
+        .actions
+          = f.submit 'CHECKIN', class: 'submit_button'

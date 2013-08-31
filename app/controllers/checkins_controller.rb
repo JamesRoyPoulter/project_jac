@@ -27,6 +27,8 @@ class CheckinsController < ApplicationController
 
   def new
     @checkin = Checkin.new
+    @categories = current_user.categories.map { |x| [x.name,x.id] }
+    @people = current_user.people.map { |x| [x.name,x.id] }
   end
 
   def past

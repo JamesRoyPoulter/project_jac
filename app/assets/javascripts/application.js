@@ -24,7 +24,7 @@
 var navBar = $.jPanelMenu({
   menu: '#navbar',
   trigger: '.menu_icon',
-  openPosition: '12%',
+  openPosition: '120px',
   closeOnContentClick: true
 });
 
@@ -41,6 +41,28 @@ document.onkeypress = stopRKey;
 DEFAULT_MAP = 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png'
 DEFAULT_X = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
 AUDIO_IMAGE = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png"
+
+function markerColor(color) {
+  switch (color) {
+    case 'red':
+      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_red.png'
+    case 'coral':
+      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_coral.png'
+    case 'crimson':
+      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_crimson_little.png'
+    case 'green':
+      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_green.png'
+    case 'mustard':
+      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_mustard.png'
+    case 'pink':
+      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_pink.png'
+    case 'purple':
+      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_purple.png'
+    default:
+      return 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
+    }
+}
+
 ICON = 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
 
 STYLES = [
