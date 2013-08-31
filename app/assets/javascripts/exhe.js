@@ -36,6 +36,31 @@ var Ehxe = {
   setFormLatLng: function(lat,lng) {
     $('#checkin_latitude').val(lat)
     $('#checkin_longitude').val(lng)
+  },
+  previewImage: function(element, input) {
+    if (input && input.files[0]) {
+      reader = new FileReader();
+      reader.onload = function (e) {
+        $(element).eq(-1).attr("src", e.target.result)
+      }
+      reader.readAsDataURL(input.files[0])
+    }
+  },
+  Maps: {
+    map: function(element,options) {
+      return new google.maps.Map(document.getElementById(element),options)
+    },
+    mapOptions: function (center,zoom) {
+      return {
+        center: center,
+        zoom: zoom,
+        minZoom: 1,
+        mapTypeId: 'Styled',
+        mapTypeControlOptions:{
+          mapTypeIds: ['Styled']
+      }
+    }
+   }
   }
 }
 

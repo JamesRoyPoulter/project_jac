@@ -18,14 +18,7 @@ if $('body').data('page') is 'CheckinsPast'
           $('.past_checkin_form').slideDown 500
           center = results[0].geometry.location
           Ehxe.setFormLatLng center.lat(), center.lng()
-          mapOptions =
-            center: center
-            zoom: 12
-            minZoom: 1
-            mapTypeId: 'Styled'
-            mapTypeControlOptions:
-              mapTypeIds: [ 'Styled']
-          map = new google.maps.Map document.getElementById("past_map"), mapOptions
+          map = Ehxe.Maps.map 'past_map', Ehxe.Maps.mapOptions center, 12
           styledMapType = new google.maps.StyledMapType STYLES, name: 'Styled'
           map.mapTypes.set 'Styled', styledMapType
           google.maps.event.addListener map, 'click', (event)->

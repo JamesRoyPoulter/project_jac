@@ -82,9 +82,9 @@ $ ()->
         html: assets['text'][0].words
       ).appendTo "#checkin_title"+index
     else
-      $("<img/>",
-        class: 'jpage_image checkin_minimap'
-        src: Ehxe.defaults.map
+      $('<p/>',
+        class: 'jpage_image checkin_title'
+        html: checkin.title
       ).appendTo "#checkin_title"+index
 
     $('.checkin_title').append('.jpage_category_bar')
