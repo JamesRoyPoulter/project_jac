@@ -73,7 +73,7 @@
         .actions
           = f.submit 'CHECKIN', class: 'submit_button'
   -elsif params[:action] == 'edit'
-    %h2 Edit Checkin
+    %h4 Edit Checkin
     = nested_form_for @checkin do |f|
       = render 'partials/errors', resource: @checkin
 
@@ -91,8 +91,8 @@
 
       #checkin_inventory
         .words.checkin_form_box
-          %p.instructions Words
           .words_content
+            %p.instructions Words
             .field
               = f.fields_for :assets do |asset|
                 = asset.text_area :words
@@ -101,8 +101,8 @@
               = f.link_to_add "Add Words", :assets, id: "add_words_link"
 
         .categories.checkin_form_box
-          %p.instructions Categories
           .category_content
+            %p.instructions Categories
             - if !current_user.categories.empty?
               .field
                 = f.select :category_ids, @categories, {prompt: false}, multiple: true
@@ -115,14 +115,14 @@
               = f.link_to_add "New Category", :categories
 
         .assets.checkin_form_box
-          %p.instructions Media
           .add_media
+            %p.instructions Media
             .div_for_asset__upload_appends
             %a#add_media Add Another
 
         .people.checkin_form_box
-          %p.instructions People
           .people_content
+            %p.instructions People
             - if !current_user.people.empty?
               .field
                 = f.select :person_ids, @people, {prompt: false}, multiple: true
