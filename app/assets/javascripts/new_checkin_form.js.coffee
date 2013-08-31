@@ -119,8 +119,7 @@ if $('body').data('page') is 'CheckinsNew'
 
     google.maps.event.addListener marker, 'dragend', ()->
       position = marker.getPosition()
-      $('#checkin_latitude').val position.lat()
-      $('#checkin_longitude').val position.lng()
+      setFormLatLng position.lat(), position.lng()
 
     google.maps.event.addListener marker, 'click', ()->
       infowindow.open map, marker
