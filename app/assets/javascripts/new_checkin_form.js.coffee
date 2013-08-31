@@ -84,8 +84,7 @@ if $('body').data('page') is 'CheckinsNew'
 
   #assigns location to hidden form fields
   assignPositionToForm = (position)->
-    $('#checkin_latitude').val position.coords.latitude
-    $('#checkin_longitude').val position.coords.longitude
+    setFormLatLng position.coords.latitude, position.coords.longitude
 
     #sets lat and lng to current location
     myLatlng = new google.maps.LatLng position.coords.latitude, position.coords.longitude
@@ -111,7 +110,7 @@ if $('body').data('page') is 'CheckinsNew'
       map: map
       draggable: true
       title: 'mark your life here X'
-      icon: Exhe.markers.black
+      icon: Ehxe.markers.black
 
     #creates check-in info-window
     infowindow = new google.maps.InfoWindow
