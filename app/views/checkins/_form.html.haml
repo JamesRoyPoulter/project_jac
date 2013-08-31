@@ -80,7 +80,7 @@
         .actions
           = f.submit 'CHECKIN', class: 'submit_button'
   -elsif params[:action] == 'edit'
-    %h2 Edit Checkin
+    %h4 Edit Checkin
     = nested_form_for @checkin do |f|
       = render 'partials/errors', resource: @checkin
 
