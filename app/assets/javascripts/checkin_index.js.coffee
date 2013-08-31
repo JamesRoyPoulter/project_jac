@@ -5,8 +5,6 @@ $ ()->
     height : $(window).height()
   };
 
-  test = 2
-
   console.log(screen_size.width)
   if screen_size.width < 225
     test = 1
