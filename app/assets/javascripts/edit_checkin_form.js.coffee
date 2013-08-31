@@ -35,8 +35,7 @@ $ ()->
 
       google.maps.event.addListener marker, 'dragend', ()->
         position = marker.getPosition()
-        $('#checkin_latitude').val position.lat()
-        $('#checkin_longitude').val position.lng()
+        setFormLatLng position.lat(), position.lng()
 
       #creates check-in info-window
       infowindow = new google.maps.InfoWindow
