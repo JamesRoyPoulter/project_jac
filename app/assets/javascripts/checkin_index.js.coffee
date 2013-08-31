@@ -125,7 +125,7 @@ $ ()->
       $('<img/>',
         class: 'checkin_audio'
         id: 'checkin_audio' + index
-        src: AUDIO_IMAGE
+        src: Ehxe.defaults.audio
         style: 'height:175px;width:175px'
       ).appendTo "#checkin_title"+index
     else if assets['video'] and assets['video'].length isnt 0
@@ -145,7 +145,7 @@ $ ()->
       $("<img/>",
         class: 'checkin_minimap'
         id: 'checkin_minimap'+index
-        src: DEFAULT_MAP
+        src: Ehxe.defaults.map
       ).appendTo "#checkin_title"+index
 
   paginate = ()->

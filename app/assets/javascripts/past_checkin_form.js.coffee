@@ -5,7 +5,7 @@ if $('body').data('page') is 'CheckinsPast'
   placeMarker = (location, map)->
     marker = new google.maps.Marker
       position: location
-      icon: ICON
+      icon: Ehxe.markers.black
       map: map
     markersArray.push marker
 

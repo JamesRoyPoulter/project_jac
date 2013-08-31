@@ -40,7 +40,7 @@ if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'Checkin
         class: 'checkin_medias'
         style:'display:none'
       ).append $('<img/>',
-        src: DEFAULT_X,
+        src: Ehxe.defaults.x,
         class: 'x_icon'
       )
       $('.checkin_medias').eq(-1).click()
@@ -111,7 +111,7 @@ if $('body').data('page') is 'CheckinsNew'
       map: map
       draggable: true
       title: 'mark your life here X'
-      icon: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
+      icon: Exhe.markers.black
 
     #creates check-in info-window
     infowindow = new google.maps.InfoWindow
