@@ -1,33 +1,35 @@
 $ ()->
 
-  screen_size = {
-    width  : $(window).width(),
-    height : $(window).height()
-  };
+  timelineDisplay = ()->
+    screen_size = {
+      width  : $(window).width(),
+      height : $(window).height()
+    }
+    console.log(screen_size.width)
+    if screen_size.width < 225
+      test = 1
+    else if screen_size.width < 410 and screen_size.width > 226
+      test = 2
+    else if screen_size.width < 600 and screen_size.width > 411
+      test = 3
+    else if screen_size.width < 810 and screen_size.width > 601
+      test = 4
+    else if screen_size.width < 1125 and screen_size.width > 811
+      test = 5
+    else if screen_size.width < 1350
+      test = 6
+    else if screen_size.width < 1575
+      test = 7
+    else if screen_size.width < 1800
+      test = 8
+    else if screen_size.width < 2025
+      test = 9
+    return test
 
-  console.log(screen_size.width)
-  if screen_size.width < 225
-    test = 1
-  else if screen_size.width < 410 and screen_size.width > 226
-    test = 2
-  else if screen_size.width < 600 and screen_size.width > 411
-    test = 3
-  else if screen_size.width < 810 and screen_size.width > 601
-    test = 4
-  else if screen_size.width < 1125 and screen_size.width > 811
-    test = 5
-  else if screen_size.width < 1350
-    test = 6
-  else if screen_size.width < 1575
-    test = 7
-  else if screen_size.width < 1800
-    test = 8
-  else if screen_size.width < 2025
-    test = 9
-
-  timeline_div_width = String(Math.round(100/test))
-  console.log(timeline_div_width+'%')
-  $('.checkin').width(timeline_div_width+'%')
+  widthFunction = () ->
+    timeline_div_width = String(Math.round(100/timelineDisplay()) + '%')
+    $('.checkin').width(timeline_div_width)
+    return timeline_div_width
 
   $('.show_checkin_options').click (e)->
     e.preventDefault()
@@ -55,56 +57,6 @@ $ ()->
     else
       map.fitBounds(bounds)
 
-  # CREATE CHART FOR PEOPLE
-  # window.onload = () ->
-  #   chart = new CanvasJS.Chart("chartContainer",
-  #     data: [
-  #       {
-  #         type: "stackedBar100"
-  #         showInLegend: false
-  #         dataPoints: [
-  #           {
-  #             y: 350
-  #             label: "Lobby Chair"
-  #           }]
-  #       },
-  #      {
-  #       type: "stackedBar100"
-  #       showInLegend: false
-  #       dataPoints: [
-  #         {
-  #           y: 450
-  #           label: "Lobby Chair"
-  #         }]
-  #     },
-  #     {
-  #       type: "stackedBar100"
-  #       showInLegend: false
-  #       dataPoints: [
-  #         {
-  #           y: 340,
-  #           label: "Lobby Chair"
-  #         }]
-  #     }
-  #     ]
-  #   )
-  #   chart.render()
-
-  # generate_static_url = (checkin, map) ->
-  #   GMaps.staticMapURL
-  #     size: [175, 175]
-  #     zoom: 6
-  #     style:"feature:water|element:undefined|saturation:-8|color:0x00009d|hue:0x00eeff"
-  #     lat: checkin.latitude
-  #     lng: checkin.longitude
-  #     mapType: 'Styled'
-  #     markers: [
-  #       icon: 'http://tinyurl.com/mhoqu4d'
-  #       lat: checkin.latitude
-  #       lng: checkin.longitude
-  #     ]
-
-
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
     checkin_title = $("<div/>", class: 'checkin_title', id: 'checkin_title'+index)
@@ -113,7 +65,7 @@ $ ()->
     anchor_tag = $('<a/>', { href: '/checkins/' + checkin.id, html: checkin_title })
 
     # CREATE CONTAINER DIVS
-    list_item = $("<li/>", class: 'checkin', id: 'checkin'+index, html: anchor_tag)
+    list_item = $("<li/>", class: 'checkin', id: 'checkin'+index, style: widthFunction(), html: anchor_tag)
 
     $('#itemContainer').append list_item
 
@@ -166,7 +118,7 @@ $ ()->
       last: false,
       links: "blank",
       midRange: 50,
-      perPage: test,
+      perPage: timelineDisplay(),
       keybrowse: true,
       scrollbrowse: true,
       animation   : "fadeInUp",
