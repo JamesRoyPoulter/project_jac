@@ -12,7 +12,7 @@ $ ()->
     marker = new google.maps.Marker
       position: checkinLatLng
       map: map
-      icon: ICON
+      icon: markerColor(checkin.categories[0].color)
       contentString = checkin.title
     google.maps.event.addListener(marker, 'click', ()->
       infowindow.setContent(contentString)

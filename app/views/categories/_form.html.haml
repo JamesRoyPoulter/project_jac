@@ -2,7 +2,9 @@
   = render 'partials/errors', resource: @category
 
   .field
-    = f.label :name
-    = f.text_field :name
+    = f.text_field :name, placeholder: ' Name'
+  .field
+    = f.select :color, [['Coral','coral'],['Crimson','crimson'],['Green','green'],['Mustard','mustard'],['Pink','pink'],['Purple','purple'],['Red','red']]
+
   .actions
     = f.submit 'Save'
