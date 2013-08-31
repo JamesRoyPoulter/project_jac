@@ -1,4 +1,34 @@
 $ ()->
+
+  screen_size = {
+    width  : $(window).width(),
+    height : $(window).height()
+  };
+
+  console.log(screen_size.width)
+  if screen_size.width < 225
+    test = 1
+  else if screen_size.width < 410 and screen_size.width > 226
+    test = 2
+  else if screen_size.width < 600 and screen_size.width > 411
+    test = 3
+  else if screen_size.width < 810 and screen_size.width > 601
+    test = 4
+  else if screen_size.width < 1125 and screen_size.width > 811
+    test = 5
+  else if screen_size.width < 1350
+    test = 6
+  else if screen_size.width < 1575
+    test = 7
+  else if screen_size.width < 1800
+    test = 8
+  else if screen_size.width < 2025
+    test = 9
+
+  timeline_div_width = String(Math.round(100/test))
+  console.log(timeline_div_width+'%')
+  $('.checkin').width(timeline_div_width+'%')
+
   $('.show_checkin_options').click (e)->
     e.preventDefault()
     item = $('.checkin_link')
@@ -12,7 +42,7 @@ $ ()->
     marker = new google.maps.Marker
       position: checkinLatLng
       map: map
-      icon: ICON
+      icon: markerColor(checkin.categories[0].color)
       contentString = checkin.title
     google.maps.event.addListener(marker, 'click', ()->
       infowindow.setContent(contentString)
@@ -122,7 +152,6 @@ $ ()->
         src: DEFAULT_MAP
       ).appendTo "#checkin_title"+index
 
-
   paginate = ()->
     $("ul li img").lazyload
       event : "turnPage",
@@ -130,10 +159,14 @@ $ ()->
 
     $(".holder").jPages
       containerID: "itemContainer"
+      first: false,
       previous: false,
       next: false,
+      # console.log(screen_size.width)
+      last: false,
       links: "blank",
-      perPage: 5,
+      midRange: 50,
+      perPage: test,
       keybrowse: true,
       scrollbrowse: true,
       animation   : "fadeInUp",

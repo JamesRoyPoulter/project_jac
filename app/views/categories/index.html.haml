@@ -3,13 +3,15 @@
 %table
   %tr
     %th Name
+    %th Color
     %th
     %th
 
   - @categories.each do |category|
     %tr
       %td= link_to category.name, category
-      %td= button_to 'Edit', edit_category_path(category)
+      %td= category.color
+      %td= link_to 'Edit', edit_category_path(category)
       %td= button_to 'Destroy', category, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
