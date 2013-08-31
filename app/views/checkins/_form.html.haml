@@ -46,7 +46,7 @@
           .field
             = f.fields_for :categories do |category|
               = category.text_field :name, placeholder: ' Name'
-              = category.select :color, [['Coral','coral'],['Crimson','crimson'],['Green','green'],['Mustard','mustard'],['Pink','pink'],['Purple','purple'],['Red','red']]
+              = category.select :color, Category.colors
               = category.link_to_remove image_tag default_x
             = f.link_to_add "New Category", :categories
 
