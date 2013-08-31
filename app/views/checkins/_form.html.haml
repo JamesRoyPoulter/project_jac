@@ -11,9 +11,6 @@
           #map
         - elsif params[:action] === 'past'
           #past_map
-        - if request.env['REQUEST_PATH'] === "/checkins/#{@checkin.id}/edit"
-          #edit_map{data: { id: @checkin.id } }
-
 
         = f.hidden_field :latitude
         = f.hidden_field :longitude
@@ -101,9 +98,7 @@
 
       #checkin_inventory
         .words.checkin_form_box
-          .words_overlay
-            = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/words.png",  id: 'words_image'
-            %p.instructions Words
+          %p.instructions Words
           .words_content
             .field
               = f.fields_for :assets do |asset|
@@ -113,9 +108,7 @@
               = f.link_to_add "Add Words", :assets, id: "add_words_link"
 
         .categories.checkin_form_box
-          .category_overlay
-            = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/Categories.png", id: 'category_image'
-            %p.instructions Categories
+          %p.instructions Categories
           .category_content
             - if !current_user.categories.empty?
               .field
@@ -133,17 +126,13 @@
 
 
         .assets.checkin_form_box
-          .add_media_overlay
-            = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/assets_image_small2.png", id: "assets_image"
-            %p.instructions Media
+          %p.instructions Media
           .add_media
             .div_for_asset__upload_appends
             %a#add_media Add Another
 
         .people.checkin_form_box
-          .people_overlay
-            = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/People.png",  id: 'people_image'
-            %p.instructions People
+          %p.instructions People
           .people_content
             - if !current_user.people.empty?
               .field
@@ -161,4 +150,4 @@
               = f.link_to_add "New Person", :people
 
         .actions
-          = f.submit 'CHECKIN', class: 'submit_button'
+          = f.submit 'UPDATE', class: 'submit_button'

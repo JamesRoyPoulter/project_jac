@@ -7,6 +7,7 @@ $ ()->
     $('#add_media').hide()
 
   if $('body').data('page') is 'CheckinsEdit'
+    $('.people_content, .category_content, .words_content, .add_media').css("display", "block")
     checkin_id = $('#edit_map').data 'id'
     $.getJSON '/checkins/'+checkin_id+'/edit.json', (data)->
       checkinLatLng = new google.maps.LatLng(data.checkin.latitude, data.checkin.longitude)
