@@ -6,24 +6,17 @@ $ ()->
       height : $(window).height()
     }
     console.log(screen_size.width)
-    if screen_size.width < 225
+    w = screen_size.width
+    if w < 410
       test = 1
-    else if screen_size.width < 410 and screen_size.width > 226
+    else if w > 411 and w < 640
       test = 2
-    else if screen_size.width < 600 and screen_size.width > 411
+    else if w > 641 and w < 800
       test = 3
-    else if screen_size.width < 810 and screen_size.width > 601
+    else if w > 801 and w < 1100
       test = 4
-    else if screen_size.width < 1125 and screen_size.width > 811
+    else if w < 1101
       test = 5
-    else if screen_size.width < 1350
-      test = 6
-    else if screen_size.width < 1575
-      test = 7
-    else if screen_size.width < 1800
-      test = 8
-    else if screen_size.width < 2025
-      test = 9
     return test
 
   widthFunction = () ->
@@ -73,34 +66,29 @@ $ ()->
     assets = checkin.seperated_assets
     if assets['image'] and assets['image'].length isnt 0
       $("<img/>",
-        class: 'checkin_image'
-        id: 'checkin_image'+index
+        class: 'jpage_image checkin_image'
         src: assets['image'][0].media.show_checkin.url
       ).appendTo "#checkin_title"+index
     else if assets['audio'] and assets['audio'].length isnt 0
       $('<img/>',
-        class: 'checkin_audio'
-        id: 'checkin_audio' + index
+        class: 'jpage_image checkin_audio'
         src: AUDIO_IMAGE
-        style: 'height:175px;width:175px'
+        # style: 'height:175px;width:175px'
       ).appendTo "#checkin_title"+index
     else if assets['video'] and assets['video'].length isnt 0
       $('<img/>',
-        class:'checkin_video'
-        id: 'checkin_video' + index
+        class:'jpage_image checkin_video'
         src: assets['video'][0].media.video_thumb.url
-        style: 'height:175px;width:175px'
+        # style: 'height:175px;width:175px'
       ).appendTo "#checkin_title"+index
     else if assets['text'] and assets['text'].length isnt 0
       $('<p/>',
-        class: 'checkin_words'
-        id: 'checkin_words' + index
+        class: 'jpage_image checkin_words'
         html: assets['text'][0].words
       ).appendTo "#checkin_title"+index
     else
       $("<img/>",
-        class: 'checkin_minimap'
-        id: 'checkin_minimap'+index
+        class: 'jpage_image checkin_minimap'
         src: DEFAULT_MAP
       ).appendTo "#checkin_title"+index
 

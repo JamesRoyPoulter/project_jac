@@ -15,9 +15,14 @@
 .checkin {
   float: left;
   display: inline;
-  margin: 10px;
+  // margin: 10px;
   height: 200px;
   width: 175px;
+}
+
+.jpage_image {
+  margin: 5px;
+  width: 95%;
 }
 
 .buttons {
@@ -48,7 +53,7 @@
     margin:0 5px;
     padding:4px;
     border-radius:50%;
-    background-color:#D4EE5E;
+    background-color:#767E7F;
 }
 .holder a:hover {
     background-color:#222;
@@ -84,6 +89,6 @@
   padding: 0;
 }
 
-li:first-child {
-  margin-left: 20px;
-}
+// li:first-child {
+//   margin-left: 20px;
+// }
