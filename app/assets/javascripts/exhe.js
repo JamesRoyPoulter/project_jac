@@ -16,9 +16,17 @@ function stopRKey(evt) {
 document.onkeypress = stopRKey;
 
 var Exhe = {
-  marker_base: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_',
   markers: {
-    black: .marker_base + 'black_little.png'
+    aqua: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/aqua_marker.png',
+    black: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/black_marker.png',
+    blue: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/blue_marker.png',
+    coral: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/coral_marker.png',
+    green: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/green_marker.png',
+    mint: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/mint_marker.png',
+    pink: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/pink_marker.png',
+    purple: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/purple_marker.png',
+    red: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/red_marker.png',
+    yellow: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/yellow_marker.png',
   }
 }
 
@@ -27,29 +35,30 @@ DEFAULT_X = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
 AUDIO_IMAGE = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png"
 
 function markerColor(color) {
-  url = 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_'
   switch (color) {
-    case 'red':
-      url += 'red.png'
+    case 'aqua':
+      return Exhe.markers.aqua
+    case 'black':
+      return Exhe.markers.black
+    case 'blue':
+      return Exhe.markers.blue
     case 'coral':
-      url +=  'coral.png'
-    case 'crimson':
-      url += 'crimson_little.png'
+      return Exhe.markers.coral
     case 'green':
-      url += 'green.png'
-    case 'mustard':
-      url += 'mustard.png'
+      return Exhe.markers.green
+    case 'mint':
+      return Exhe.markers.pink
     case 'pink':
-      url += 'pink.png'
-    case 'purple':
-      url += 'purple.png'
+      return Exhe.markers.purple
+    case 'red':
+      return Exhe.markers.red
+    case 'yellow':
+      return Exhe.markers.yellow
     default:
-      url += 'black_little.png'
+      Exhe.markers.black
   }
   return url
 }
-
-ICON = 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
 
 STYLES = [
   {
