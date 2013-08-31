@@ -1,8 +1,10 @@
 .timelinecontainer {
   height: 20%;
+  width: 100%;
   position: absolute;
-  bottom: 50;
+  // bottom: 50;
   // overflow: hidden;
+  text-align: center;
 }
 
 #timeline {
@@ -32,8 +34,6 @@
 
 // TIMELINE HOLDER
 .holder {
-
-  position: absolute;
   bottom: 0;
   height: 200px;
   display: inline;
@@ -75,3 +75,15 @@
     margin: 0 5px;
 }
 
+.timeline_holder {
+  margin: auto;
+}
+
+#itemContainer {
+  margin: 0;
+  padding: 0;
+}
+
+li:first-child {
+  margin-left: 20px;
+}

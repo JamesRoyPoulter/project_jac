@@ -4,11 +4,11 @@
 .search_box
   .select_search_div
     %select{name:'category',id:'searchCategory'}
-      %option{value:'location'}= "Location".html_safe
-      %option{value:'people'} People
-      %option{value:'category'} Category
+      %option{value:'location'}= "LOCATION".html_safe
+      %option{value:'people'} PEOPLE
+      %option{value:'category'} CATEGORY
   .search_input_div
-    %input{type:'text',name:'query',id:'searchQuery',placeholder:"Search"}
+    %input{type:'text',name:'query',id:'searchQuery',placeholder:"SEARCH"}
 
 .timelinecontainer
   / JPAGES NAV PANEL
@@ -16,7 +16,3 @@
   / JPAGES ITEM CONTAINER
   .timeline_holder
     %ul#itemContainer
-
-/ .chart_holder
-/   #chartContainer
-
