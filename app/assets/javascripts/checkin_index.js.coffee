@@ -15,7 +15,7 @@ $ ()->
       test = 3
     else if w > 801 and w < 1100
       test = 4
-    else if w < 1101
+    else if w > 1101
       test = 5
     return test
 
