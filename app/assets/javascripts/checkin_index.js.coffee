@@ -108,15 +108,11 @@ $ ()->
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
     checkin_title = $("<div/>", class: 'checkin_title', id: 'checkin_title'+index)
-
     # POPULATE LINK TO SHOW PAGE IN CHECKIN DIV
     anchor_tag = $('<a/>', { href: '/checkins/' + checkin.id, html: checkin_title })
-
     # CREATE CONTAINER DIVS
     list_item = $("<li/>", class: 'checkin', id: 'checkin'+index, html: anchor_tag)
-
     $('#itemContainer').append list_item
-
     # Iterate Through Checkin's Assets
     assets = checkin.seperated_assets
     if assets['image'] and assets['image'].length isnt 0
@@ -171,10 +167,8 @@ $ ()->
       scrollbrowse: true,
       animation   : "fadeInUp",
       callback: (pages, items) ->
-
         # lazy load current images
         items.showing.find("img").trigger "turnPage"
-
         # lazy load next page images
         items.oncoming.find("img").trigger "turnPage"
 
@@ -197,13 +191,9 @@ $ ()->
         zoom: zoom
         minZoom: 1
         mapTypeId: 'Styled'
-
       styledMapType = new google.maps.StyledMapType(STYLES, { name: 'Styled' })
-
       map = new google.maps.Map(document.getElementById("map"), mapOptions)
-
       map.mapTypes.set('Styled', styledMapType)
-
       map
 
     google.maps.event.addDomListener(window, 'load', initialize(10, STYLES))

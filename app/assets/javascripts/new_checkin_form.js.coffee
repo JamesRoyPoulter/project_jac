@@ -7,7 +7,6 @@ $ ()->
     $('.category_content').show()
     autoOpenCategoryChoice()
 
-
   $('.people_overlay').click () ->
     $(@).hide()
     $('.people_content').show()
@@ -17,11 +16,6 @@ $ ()->
     $(@).hide()
     $('.words_content').show()
     autoOpenWordsChoice()
-
-# Not console-logging or re-showing text div on click...
-  # $('.remove_nested_fields').click () ->
-  #   console.log "meow"
-  #   $('.words_overlay').show()
 
   $('.add_media_overlay').click () ->
     $(@).hide()
@@ -48,7 +42,18 @@ $ ()->
         src: DEFAULT_X,
         class: 'x_icon'
       )
-      autoOpenMediaChoice()
+      $('.checkin_medias').eq(-1).click()
+
+    previewImage = (input)->
+      if input && input.files[0]
+        reader = new FileReader
+        reader.onload = (e)->
+          $(".upload_preview").eq(-1).attr "src", e.target.result
+        reader.readAsDataURL input.files[0]
+
+    $('.checkin_medias').change ()->
+      previewImage(this)
+
 
     $('.x_icon').click ()->
       $(@).parent('.new_media').remove()
@@ -61,16 +66,6 @@ $ ()->
     inputs = document.getElementsByClassName('checkin_medias')
     input = inputs[inputs.length-1]
     input.click()
-    readURL = (input)->
-      if input.files[0].name.length > 5
-        reader = new FileReader()
-      reader.onload = (e) ->
-        $(".upload_preview").last()[0].attr "src", e.target.result
-      reader.readAsDataURL input.files[0]
-    readURL(input)
-
-
-    $('.checkin_medias').last()[0].click()
 
   autoOpenCategoryChoice = () ->
     $('#auto_open_id').trigger('click')

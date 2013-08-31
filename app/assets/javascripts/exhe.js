@@ -15,29 +15,38 @@ function stopRKey(evt) {
 
 document.onkeypress = stopRKey;
 
+var Exhe = {
+  marker_base: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_',
+  markers: {
+    black: .marker_base + 'black_little.png'
+  }
+}
+
 DEFAULT_MAP = 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png'
 DEFAULT_X = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
 AUDIO_IMAGE = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png"
 
 function markerColor(color) {
+  url = 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_'
   switch (color) {
     case 'red':
-      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_red.png'
+      url += 'red.png'
     case 'coral':
-      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_coral.png'
+      url +=  'coral.png'
     case 'crimson':
-      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_crimson_little.png'
+      url += 'crimson_little.png'
     case 'green':
-      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_green.png'
+      url += 'green.png'
     case 'mustard':
-      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_mustard.png'
+      url += 'mustard.png'
     case 'pink':
-      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_pink.png'
+      url += 'pink.png'
     case 'purple':
-      return  'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_purple.png'
+      url += 'purple.png'
     default:
-      return 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
-    }
+      url += 'black_little.png'
+  }
+  return url
 }
 
 ICON = 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'

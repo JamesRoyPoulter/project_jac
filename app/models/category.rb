@@ -21,7 +21,7 @@ class Category < ActiveRecord::Base
   end
 
   def available_colors
-    ['aqua','coral','crimson','green','light_blue','light_pink','mint','mustard','pink'
+    ['aqua','coral','crimson','green','light_blue','light_pink','mint','mustard','pink',
      'purple','red']
   end
 
