@@ -1,7 +1,5 @@
 media_divs_length = 0
 
-$ ()->
-
 if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'CheckinsPast'
   $('.category_overlay').click () ->
     $(@).hide()
@@ -22,7 +20,6 @@ if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'Checkin
     $(@).hide()
     $('.add_media').show()
     addMedia()
-    autoOpenMediaChoice()
 
   $('#add_media').click ()->
     addMedia()
@@ -45,15 +42,8 @@ if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'Checkin
       )
       $('.checkin_medias').eq(-1).click()
 
-    previewImage = (input)->
-      if input && input.files[0]
-        reader = new FileReader
-        reader.onload = (e)->
-          $(".upload_preview").eq(-1).attr "src", e.target.result
-        reader.readAsDataURL input.files[0]
-
     $('.checkin_medias').change ()->
-      previewImage(this)
+      Ehxe.previewImage(".upload_preview", this)
 
 
     $('.x_icon').click ()->
@@ -89,19 +79,9 @@ if $('body').data('page') is 'CheckinsNew'
     #sets lat and lng to current location
     myLatlng = new google.maps.LatLng position.coords.latitude, position.coords.longitude
 
-    #assigns map options using current location and styles
-    mapOptions =
-      center: myLatlng
-      zoom: 16
-      minZoom: 1
-      mapTypeId: 'Styled'
-      mapTypeControlOptions:
-        mapTypeIds: ['Styled']
-
     styledMapType = new google.maps.StyledMapType STYLES, name: 'Styled'
 
-    #generates the map, passing options and style
-    map = new google.maps.Map document.getElementById("map"), mapOptions
+    map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions myLatlng, 16
     map.mapTypes.set 'Styled', styledMapType
 
     #creates the geolocated marker
