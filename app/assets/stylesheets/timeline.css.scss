@@ -1,7 +1,10 @@
-.holder {
-  display: inline;
-  width: 90%;
-  position: relative;
+.timelinecontainer {
+  height: 20%;
+  width: 100%;
+  position: absolute;
+  // bottom: 50;
+  // overflow: hidden;
+  text-align: center;
 }
 
 #timeline {
@@ -23,4 +26,64 @@
 
 .checkin_category {
   float: left;
+}
+
+#centernav {
+    margin: auto;
+}
+
+// TIMELINE HOLDER
+.holder {
+  bottom: 0;
+  height: 200px;
+  display: inline;
+  width: 100%;
+  // position: relative;
+  margin: auto;
+}
+
+.holder a {
+    display:inline-block;
+    cursor:pointer;
+    margin:0 5px;
+    padding:4px;
+    border-radius:50%;
+    background-color:#D4EE5E;
+}
+.holder a:hover {
+    background-color:#222;
+    color:#fff;
+}
+.holder a.jp-previous {
+    margin-right:15px;
+}
+.holder a.jp-next {
+    margin-left:15px;
+}
+.holder a.jp-current,a.jp-current:hover {
+    color:#FF4242;
+    font-weight:bold;
+}
+.holder a.jp-disabled,a.jp-disabled:hover {
+    color:#bbb;
+}
+.holder a.jp-current,a.jp-current:hover,.holder a.jp-disabled,a.jp-disabled:hover {
+    cursor:default;
+    background-color:#FF4242;
+}
+.holder span {
+    margin: 0 5px;
+}
+
+.timeline_holder {
+  margin: auto;
+}
+
+#itemContainer {
+  margin: 0;
+  padding: 0;
+}
+
+li:first-child {
+  margin-left: 20px;
 }
