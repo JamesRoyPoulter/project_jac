@@ -35,7 +35,7 @@ $ ()->
 
       google.maps.event.addListener marker, 'dragend', ()->
         position = marker.getPosition()
-        setFormLatLng position.lat(), position.lng()
+        Ehxe.setFormLatLng position.lat(), position.lng()
 
       #creates check-in info-window
       infowindow = new google.maps.InfoWindow

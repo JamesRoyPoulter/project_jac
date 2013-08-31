@@ -32,10 +32,10 @@ var Ehxe = {
     map: 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map.png',
     audio: "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png",
     x: "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
-  }
+  },
   setFormLatLng: function(lat,lng) {
-    $('#checkin_latitude').val lat
-    $('#checkin_longitude').val lng
+    $('#checkin_latitude').val(lat)
+    $('#checkin_longitude').val(lng)
   }
 }
 

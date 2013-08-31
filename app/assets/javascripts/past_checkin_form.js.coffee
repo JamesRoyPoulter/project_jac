@@ -17,7 +17,7 @@ if $('body').data('page') is 'CheckinsPast'
         if status is google.maps.GeocoderStatus.OK
           $('.past_checkin_form').slideDown 500
           center = results[0].geometry.location
-          setFormLatLng center.lat(), center.lng()
+          Ehxe.setFormLatLng center.lat(), center.lng()
           mapOptions =
             center: center
             zoom: 12
@@ -32,6 +32,6 @@ if $('body').data('page') is 'CheckinsPast'
             for i in markersArray
               i.setMap null
             placeMarker event.latLng, map
-            setFormLatLng event.latLng.lat(), event.latLng.lng()
+            Ehxe.setFormLatLng event.latLng.lat(), event.latLng.lng()
         else
           alert "Geocode was not successful for the following reason: " + status

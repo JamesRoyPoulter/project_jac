@@ -84,7 +84,7 @@ if $('body').data('page') is 'CheckinsNew'
 
   #assigns location to hidden form fields
   assignPositionToForm = (position)->
-    setFormLatLng position.coords.latitude, position.coords.longitude
+    Ehxe.setFormLatLng position.coords.latitude, position.coords.longitude
 
     #sets lat and lng to current location
     myLatlng = new google.maps.LatLng position.coords.latitude, position.coords.longitude
@@ -118,7 +118,7 @@ if $('body').data('page') is 'CheckinsNew'
 
     google.maps.event.addListener marker, 'dragend', ()->
       position = marker.getPosition()
-      setFormLatLng position.lat(), position.lng()
+      Ehxe.setFormLatLng position.lat(), position.lng()
 
     google.maps.event.addListener marker, 'click', ()->
       infowindow.open map, marker
