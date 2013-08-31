@@ -4,7 +4,11 @@
   .field
     = f.text_field :name, placeholder: ' Name'
   .field
-    = f.select :color, [['Coral','coral'],['Crimson','crimson'],['Green','green'],['Mustard','mustard'],['Pink','pink'],['Purple','purple'],['Red','red']]
+    %select{name:'checkin[color]'}
+      - Category.colors.each do |color|
+        %option{value: color}
+        %option{value: }
+    = f.select :color, Category.colors
 
   .actions
     = f.submit 'Save'

@@ -1,33 +1,28 @@
 $ ()->
 
-  screen_size = {
-    width  : $(window).width(),
-    height : $(window).height()
-  };
+  timelineDisplay = ()->
+    screen_size = {
+      width  : $(window).width(),
+      height : $(window).height()
+    }
+    console.log(screen_size.width)
+    w = screen_size.width
+    if w < 410
+      test = 1
+    else if w > 411 and w < 640
+      test = 2
+    else if w > 641 and w < 800
+      test = 3
+    else if w > 801 and w < 1100
+      test = 4
+    else if w > 1101
+      test = 5
+    return test
 
-  console.log(screen_size.width)
-  if screen_size.width < 225
-    test = 1
-  else if screen_size.width < 410 and screen_size.width > 226
-    test = 2
-  else if screen_size.width < 600 and screen_size.width > 411
-    test = 3
-  else if screen_size.width < 810 and screen_size.width > 601
-    test = 4
-  else if screen_size.width < 1125 and screen_size.width > 811
-    test = 5
-  else if screen_size.width < 1350
-    test = 6
-  else if screen_size.width < 1575
-    test = 7
-  else if screen_size.width < 1800
-    test = 8
-  else if screen_size.width < 2025
-    test = 9
-
-  timeline_div_width = String(Math.round(100/test))
-  console.log(timeline_div_width+'%')
-  $('.checkin').width(timeline_div_width+'%')
+  widthFunction = () ->
+    timeline_div_width = String(Math.round(100/timelineDisplay()) + '%')
+    $('.checkin').width(timeline_div_width)
+    return timeline_div_width
 
   $('.show_checkin_options').click (e)->
     e.preventDefault()
@@ -55,101 +50,41 @@ $ ()->
     else
       map.fitBounds(bounds)
 
-  # CREATE CHART FOR PEOPLE
-  # window.onload = () ->
-  #   chart = new CanvasJS.Chart("chartContainer",
-  #     data: [
-  #       {
-  #         type: "stackedBar100"
-  #         showInLegend: false
-  #         dataPoints: [
-  #           {
-  #             y: 350
-  #             label: "Lobby Chair"
-  #           }]
-  #       },
-  #      {
-  #       type: "stackedBar100"
-  #       showInLegend: false
-  #       dataPoints: [
-  #         {
-  #           y: 450
-  #           label: "Lobby Chair"
-  #         }]
-  #     },
-  #     {
-  #       type: "stackedBar100"
-  #       showInLegend: false
-  #       dataPoints: [
-  #         {
-  #           y: 340,
-  #           label: "Lobby Chair"
-  #         }]
-  #     }
-  #     ]
-  #   )
-  #   chart.render()
-
-  # generate_static_url = (checkin, map) ->
-  #   GMaps.staticMapURL
-  #     size: [175, 175]
-  #     zoom: 6
-  #     style:"feature:water|element:undefined|saturation:-8|color:0x00009d|hue:0x00eeff"
-  #     lat: checkin.latitude
-  #     lng: checkin.longitude
-  #     mapType: 'Styled'
-  #     markers: [
-  #       icon: 'http://tinyurl.com/mhoqu4d'
-  #       lat: checkin.latitude
-  #       lng: checkin.longitude
-  #     ]
-
-
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
     checkin_title = $("<div/>", class: 'checkin_title', id: 'checkin_title'+index)
-
     # POPULATE LINK TO SHOW PAGE IN CHECKIN DIV
     anchor_tag = $('<a/>', { href: '/checkins/' + checkin.id, html: checkin_title })
-
     # CREATE CONTAINER DIVS
-    list_item = $("<li/>", class: 'checkin', id: 'checkin'+index, html: anchor_tag)
-
+    list_item = $("<li/>", class: 'checkin', id: 'checkin'+index, style: widthFunction(), html: anchor_tag)
     $('#itemContainer').append list_item
-
     # Iterate Through Checkin's Assets
     assets = checkin.seperated_assets
     if assets['image'] and assets['image'].length isnt 0
       $("<img/>",
-        class: 'checkin_image'
-        id: 'checkin_image'+index
+        class: 'jpage_image checkin_image'
         src: assets['image'][0].media.show_checkin.url
       ).appendTo "#checkin_title"+index
     else if assets['audio'] and assets['audio'].length isnt 0
       $('<img/>',
-        class: 'checkin_audio'
-        id: 'checkin_audio' + index
-        src: AUDIO_IMAGE
-        style: 'height:175px;width:175px'
+        class: 'jpage_image checkin_audio'
+        src: Ehxe.defaults.audio
       ).appendTo "#checkin_title"+index
     else if assets['video'] and assets['video'].length isnt 0
       $('<img/>',
-        class:'checkin_video'
-        id: 'checkin_video' + index
+        class:'jpage_image checkin_video'
         src: assets['video'][0].media.video_thumb.url
-        style: 'height:175px;width:175px'
+        # style: 'height:175px;width:175px'
       ).appendTo "#checkin_title"+index
     else if assets['text'] and assets['text'].length isnt 0
       $('<p/>',
-        class: 'checkin_words'
-        id: 'checkin_words' + index
+        class: 'jpage_image checkin_words'
         html: assets['text'][0].words
       ).appendTo "#checkin_title"+index
     else
       $("<img/>",
-        class: 'checkin_minimap'
-        id: 'checkin_minimap'+index
-        src: DEFAULT_MAP
+        class: 'jpage_image checkin_minimap'
+        src: Ehxe.defaults.map
       ).appendTo "#checkin_title"+index
 
   paginate = ()->
@@ -166,15 +101,13 @@ $ ()->
       last: false,
       links: "blank",
       midRange: 50,
-      perPage: test,
+      perPage: timelineDisplay(),
       keybrowse: true,
       scrollbrowse: true,
       animation   : "fadeInUp",
       callback: (pages, items) ->
-
         # lazy load current images
         items.showing.find("img").trigger "turnPage"
-
         # lazy load next page images
         items.oncoming.find("img").trigger "turnPage"
 
@@ -197,13 +130,9 @@ $ ()->
         zoom: zoom
         minZoom: 1
         mapTypeId: 'Styled'
-
       styledMapType = new google.maps.StyledMapType(STYLES, { name: 'Styled' })
-
       map = new google.maps.Map(document.getElementById("map"), mapOptions)
-
       map.mapTypes.set('Styled', styledMapType)
-
       map
 
     google.maps.event.addDomListener(window, 'load', initialize(10, STYLES))
