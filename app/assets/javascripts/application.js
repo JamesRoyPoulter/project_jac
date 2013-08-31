@@ -23,7 +23,7 @@
 
 var navBar = $.jPanelMenu({
   menu: '#navbar',
-  trigger: '.top_bar',
+  trigger: '.menu_icon',
   openPosition: '12%',
   closeOnContentClick: true
 });
