@@ -8,15 +8,15 @@ $ ()->
     console.log(screen_size.width)
     w = screen_size.width
     if w < 410
-      test = 1
-    else if w > 411 and w < 640
       test = 2
-    else if w > 641 and w < 800
+    else if w > 411 and w < 640
       test = 3
-    else if w > 801 and w < 1100
+    else if w > 641 and w < 800
       test = 4
-    else if w > 1101
+    else if w > 801 and w < 1100
       test = 5
+    else if w > 1101
+      test = 6
     return test
 
   widthFunction = () ->
@@ -86,6 +86,8 @@ $ ()->
         class: 'jpage_image checkin_minimap'
         src: Ehxe.defaults.map
       ).appendTo "#checkin_title"+index
+
+    $('.checkin_title').append('.jpage_category_bar')
 
   paginate = ()->
     $("ul li img").lazyload
