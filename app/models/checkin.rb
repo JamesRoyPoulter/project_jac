@@ -21,7 +21,7 @@ class Checkin < ActiveRecord::Base
   accepts_nested_attributes_for :categories
   accepts_nested_attributes_for :categories_checkins
 
-  validates_presence_of :latitude, :longitude, :title, :user_id
+  validates_presence_of :latitude, :longitude, :title, :user_id, :categories
 
   def location
     [self.latitude, self.longitude]

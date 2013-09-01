@@ -33,7 +33,7 @@
       .category_content
         - if !current_user.categories.empty?
           .field
-            = f.select :category_ids, @categories, {prompt: false}, multiple: true
+            = f.select :category_ids, current_user.categories.collect { |x| [x.name,x.id] }, {prompt: false}, multiple: true
 
     .checkin_form_box.assets
       .add_media_overlay
@@ -52,7 +52,7 @@
       .people_content
         - if !current_user.people.empty?
           .field
-            = f.select :person_ids, @people, {prompt: false}, multiple: true
+            = f.select :person_ids, current_user.people.collect { |x| [x.name,x.id] }, {prompt: false}, multiple: true
 
     .actions
       = f.submit 'CHECKIN', class: 'submit_button'
