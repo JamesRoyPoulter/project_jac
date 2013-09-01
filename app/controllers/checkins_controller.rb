@@ -33,6 +33,8 @@ class CheckinsController < ApplicationController
 
   def past
     @checkin = Checkin.new
+    @categories = current_user.categories.collect { |x| [x.name,x.id] }
+    @people = current_user.people.collect { |x| [x.name,x.id] }
   end
 
   def edit
