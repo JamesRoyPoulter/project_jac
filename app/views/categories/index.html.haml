@@ -1,24 +1,17 @@
-.category_index
+- @categories.each do |category|
+  .category
+    .head
+      .title
+        = link_to category.name, category
+      .marker
+        = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/markers/#{category.color}_marker.png"
+      .options
+        .button
+          = link_to 'Edit', edit_category_path(category)
+        .button
+          = button_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+    .checkins
 
-  .title
-    Listing categories
-
-  %table
-    %tr
-      %th Name
-      %th Color
-      %th
-      %th
-
-    - @categories.each do |category|
-      %tr
-        %td= link_to category.name, category
-        %td= image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/markers/#{category.color}_marker.png"
-        %td
-          = link_to 'Edit', edit_category_path(category), class:'button'
-          = button_to 'Destroy', category, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-  %br
-
-  .options
-    = link_to 'New Category', new_category_path, class:'button'
+.new_category
+  .button
+    = link_to 'New Category', new_category_path
