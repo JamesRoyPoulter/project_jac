@@ -28,7 +28,7 @@ class Category < ActiveRecord::Base
   end
 
   def validate_color
-    if !available_colors.include? self.color
+    if !Category.available_colors.include? self.color
       errors.add(:color, 'is an unavailable color')
     end
   end
