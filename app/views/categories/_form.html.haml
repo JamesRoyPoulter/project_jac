@@ -7,7 +7,7 @@
     .styled-select
       = f.select :color, Category.colors
     .marker
-      = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/markers/#{@category.color}_marker.png",id:'marker'
+      %img#marker
 
   .actions
     = f.submit 'Save'
