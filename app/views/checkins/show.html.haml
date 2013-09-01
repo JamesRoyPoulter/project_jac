@@ -14,12 +14,12 @@
     - @checkin.assets.each do |asset|
       .asset_div
         - if asset.media.model.file_type === 'image'
-          = image_tag asset.media.show_checkin.url
+          = image_tag asset.media.show_checkin.url, id: "image_show"
         - elsif asset.media.model.file_type === 'audio'
-          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png"
-          = audio_tag asset.media.url, controls: true
+          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png", id: "audio_show"
+          = audio_tag asset.media.url, controls: true, id: "audio_show_controls"
         - elsif asset.media.model.file_type === 'video'
-          = video_tag asset.media.url, controls: true
+          = video_tag asset.media.url, controls: true, id: "video_show"
         - else
           .words_div
             = asset.words

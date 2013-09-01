@@ -1,22 +1,21 @@
-restrictAddNumber = 0
+wordsAddNumber = 0
+categoryAddNumber = 0
+peopleAddNumber = 0
+mediaAddNumber = 0
 
 $ ()->
 
 if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'CheckinsPast'
+
   $('.category_overlay').click () ->
     $(@).hide()
     $('.category_content').show()
     autoOpenCategoryChoice()
 
-  addPeople = () ->
-    $('.people_overlay').click () ->
-      $(@).hide()
-      $('.people_content').show()
-      autoOpenPeopleChoice()
-
-    restrictAddNumber += 1
-    if restrictAddNumber>=5
-      $('#add_people').hide()
+  $('.people_overlay').click () ->
+    $(@).hide()
+    $('.people_content').show()
+    autoOpenPeopleChoice()
 
   $('.words_overlay').click () ->
     $(@).hide()
@@ -29,8 +28,32 @@ if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'Checkin
     addMedia()
     autoOpenMediaChoice()
 
+  $('#add_categories').click () ->
+    addCategory()
+
+  $('#add_people').click () ->
+    addPeople()
+
+  $('#add_words_link').click () ->
+    addWords()
+
   $('#add_media').click ()->
     addMedia()
+
+  addCategory = () ->
+    categoryAddNumber += 1
+    if categoryAddNumber>=10
+      $('#add_categories').hide()
+
+  addPeople = () ->
+    peopleAddNumber += 1
+    if peopleAddNumber>=10
+      $('#add_people').hide()
+
+  addWords = () ->
+    wordsAddNumber += 1
+    if wordsAddNumber>=1
+      $('#add_words_link').hide()
 
   addMedia = () ->
     $('.div_for_asset__upload_appends').append $('<div/>',
@@ -64,8 +87,8 @@ if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'Checkin
     $('.x_icon').click ()->
       $(@).parent('.new_media').remove()
 
-    restrictAddNumber += 1
-    if restrictAddNumber>=5
+    mediaAddNumber += 1
+    if mediaAddNumber>=5
       $('#add_media').hide()
 
   autoOpenCategoryChoice = () ->

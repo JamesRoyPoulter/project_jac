@@ -1,7 +1,7 @@
 .show_checkin_container {
   margin: auto;
   text-align: center;
-  width: 900px;
+  width: 85%;
   height: 50%;
   // float: left;
 }
@@ -11,21 +11,38 @@
 }
 
 .asset_div, .show_checkin_people_div, .show_checkin_categories_div {
-  width: 50%;
+  width: 45%;
   float: left;
   height: 100%;
   margin: auto;
   text-align: center;
+  padding: 2%;
 }
 
 .asset_div, video, audio {
-  max-height: 250px;
+  height: 100%;
 }
 
 .words_div {
   width: 50%;
   height: 100%;
-  margin: 0 auto;
+  margin: auto;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+#image_show, #video_show {
+  height: 95%;
+  padding: 2%;
+}
+
+#audio_show {
+  height: 80%;
+  padding: 2%;
+}
+
+#audio_show_controls {
+  height: 10%;
 }
 
 .show_checkin_map {
@@ -61,4 +78,17 @@
 
 .show_controls {
   margin-bottom: 40px;
+}
+
+.show_checkin_categories_div, .show_checkin_pages_dic {
+
+}
+
+.show_checkin_people_div {
+  background-color: blue;
+}
+
+.show_checkin_categories_div {
+  background-color: pink;
+
 }
