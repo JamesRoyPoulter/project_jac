@@ -16,4 +16,3 @@ setInterval (->
   changeBackground()
 ), 3000
 
-# if $('body').data('page') is 'Home'
