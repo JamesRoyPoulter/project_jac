@@ -20,7 +20,7 @@ $ ()->
     return test
 
   widthFunction = () ->
-    timeline_div_width = String(Math.round(100/timelineDisplay()) + '%')
+    timeline_div_width = String(100/timelineDisplay().toFixed(2) + '%')
     return timeline_div_width
 
   addCheckinMarker = (checkin, map, bounds)->
