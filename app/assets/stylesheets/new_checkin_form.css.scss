@@ -106,6 +106,14 @@
   overflow: scroll;
 }
 
+.words_content {
+  display: block;
+}
+
+#remove_words {
+  display: none;
+}
+
 .file_fields {
 padding-top: 10px;
 }

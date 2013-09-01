@@ -17,8 +17,8 @@ if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'Checkin
 
   $('.words_overlay').click () ->
     $(@).hide()
-    $('.words_content').show()
     autoOpenWordsChoice()
+    addWords()
 
   $('.add_media_overlay').click () ->
     $(@).hide()
@@ -31,8 +31,12 @@ if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'Checkin
   $('#add_people').click () ->
     addPeople()
 
-  $('#add_words_link').click () ->
-    addWords()
+  $(".remove").click () ->
+    $('#remove_words').trigger('click')
+    console.log('FUCK ME')
+    # $('.words_content').hide()
+    $('.words_content').show()
+    # $('.words_overlay').css('display', 'block')
 
   $('#add_media').click ()->
     addMedia()
@@ -89,7 +93,6 @@ if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'Checkin
 
   autoOpenWordsChoice = () ->
     $('#add_words_link').trigger('click')
-    $('#add_words_link').hide()
 
 #MAPPING BELOW
 if $('body').data('page') is 'CheckinsNew'
