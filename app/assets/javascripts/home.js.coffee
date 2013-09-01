@@ -7,7 +7,7 @@ for i of backgroundColors
 
 if $.inArray('#000000', backgroundHexes) != -1
   index = $.inArray('#000000', backgroundHexes)
-  delete Array[index]
+  delete backgroundHexes[index]
 
 changeBackground = () ->
    $('#logo_marker_background').css 'backgroundColor', (backgroundHexes[Math.floor(Math.random() * backgroundHexes.length)])
@@ -15,3 +15,5 @@ changeBackground = () ->
 setInterval (->
   changeBackground()
 ), 3000
+
+# if $('body').data('page') is 'Home'

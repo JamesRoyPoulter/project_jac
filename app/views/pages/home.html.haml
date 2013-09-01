@@ -2,11 +2,9 @@
   %h1.logo
     = image_tag 'Ehxe_logo.png', id: 'ehxe_logo'
   .logo_marker
+    .home_links
+      = link_to 'LOGIN', sign_in_path, id: 'login_home'
     #logo_marker_background
       = image_tag 'exhe_marker_clear.png', id: 'marker_home'
-  .login_home
-    %h2.home
-      = link_to 'Login', sign_in_path
-  .signup_home
-    %h2.home
-      = link_to 'Sign up', new_user_path
+    .home_links
+      = link_to 'SIGNUP', new_user_path, id: 'signup_home'
