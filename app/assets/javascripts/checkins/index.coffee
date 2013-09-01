@@ -5,7 +5,6 @@ $ ()->
       width  : $(window).width(),
       height : $(window).height()
     }
-    console.log(screen_size.width)
     w = screen_size.width
     if w < 410
       test = 3
@@ -67,11 +66,6 @@ $ ()->
         class:'jpage_image checkin_video'
         src: assets['video'][0].media.video_thumb.url
         # style: 'height:175px;width:175px'
-      ).appendTo "#checkin_title"+index
-    else if assets['text'] and assets['text'].length isnt 0
-      $('<p/>',
-        class: 'jpage_image checkin_words'
-        html: assets['text'][0].words
       ).appendTo "#checkin_title"+index
     else
       $("<img/>",

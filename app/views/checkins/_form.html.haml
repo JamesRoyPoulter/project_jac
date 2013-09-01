@@ -23,12 +23,7 @@
           %p.instructions Words
       .words_content
         .field
-          = f.fields_for :assets do |asset|
-            = asset.text_area :words, id:'text_area'
-            = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
-            = asset.link_to_remove "Remove Words"
-          -if params[:action] == 'new' || params[:action] == 'past'
-            = f.link_to_add "Add Words", :assets, id: "add_words_link"
+          = f.text_area :description
 
     .checkin_form_box.categories
       -if params[:action] == 'new' || params[:action] == 'past'
