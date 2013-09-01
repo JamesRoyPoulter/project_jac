@@ -58,9 +58,9 @@ var Ehxe = {
         mapTypeId: 'Styled',
         mapTypeControlOptions:{
           mapTypeIds: ['Styled']
+        }
       }
     }
-   }
   }
 }
 
