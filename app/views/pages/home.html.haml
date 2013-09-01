@@ -1,3 +1,12 @@
-%h1 Pages#home
-%p Find me in app/views/pages/home.html.haml
-
+.home_page
+  %h1.logo
+    = image_tag 'Ehxe_logo.png', id: 'ehxe_logo'
+  .logo_marker
+    #logo_marker_background
+      = image_tag 'exhe_marker_clear.png', id: 'marker_home'
+  .login_home
+    %h2.home
+      = link_to 'Login', sign_in_path
+  .signup_home
+    %h2.home
+      = link_to 'Sign up', new_user_path
