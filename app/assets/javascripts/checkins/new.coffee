@@ -3,7 +3,8 @@ categoryAddNumber = 0
 peopleAddNumber = 0
 mediaAddNumber = 0
 
-if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'CheckinsPast'
+page = $('body').data('page')
+if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
 
   $('.category_overlay').click () ->
     $(@).hide()
