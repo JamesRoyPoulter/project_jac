@@ -4,10 +4,6 @@
   .field
     = f.text_field :name, placeholder: ' Name'
   .field
-    %select{name:'checkin[color]'}
-      - Category.colors.each do |color|
-        %option{value: color}
-        %option{value: }
     = f.select :color, Category.colors
 
   .actions

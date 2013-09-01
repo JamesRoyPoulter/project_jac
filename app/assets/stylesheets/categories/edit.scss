@@ -1,0 +1,31 @@
+.edit_category {
+  width: 50%;
+  margin: 0 auto;
+
+  .title {
+    text-align: center;
+    margin: 20px auto 20px auto;
+    width: 70%;
+    padding: 2%;
+    border-bottom: 1.5px solid black;
+    color: black;
+    font-size: 2em;
+    font-weight: 800;
+  }
+
+  form {
+    width: 100%;
+    text-align: center;
+  }
+
+  .options {
+    text-align: center;
+    padding-top: 3%;
+    .button {
+      height: 45px;
+      width: 75px;
+      border-radius: 10px;
+      background: #ccc;
+    }
+  }
+}
