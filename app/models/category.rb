@@ -17,12 +17,14 @@ class Category < ActiveRecord::Base
   end
 
   def self.colors
-    [['Coral','coral'],['Crimson','crimson'],['Green','green'],['Mustard','mustard'],['Pink','pink'],['Purple','purple'],['Red','red']]
+    self.available_colors.map { |x| [x.capitalize,x] }
   end
 
-  def available_colors
-    ['aqua','coral','crimson','green','light_blue','light_pink','mint','mustard','pink',
-     'purple','red']
+  def self.available_colors
+    [
+     'aqua','black','blue','coral','green',
+     'mint','pink','purple','red','yellow'
+    ]
   end
 
   def validate_color
