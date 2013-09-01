@@ -1,6 +1,10 @@
 $ ()->
 
   if $('body').data('page') is 'CheckinsEdit'
+
+    $('.add_media_overlay').hide()
+    $('.people_overlay').hide()
+
     $('.people_content, .category_content, .words_content, .add_media').css("display", "block")
     checkin_id = $('#edit_map').data 'id'
     $.getJSON '/checkins/'+checkin_id+'/edit.json', (data)->

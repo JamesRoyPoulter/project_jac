@@ -12,6 +12,8 @@
  *= require_tree .
  */
 
+@import url(http://reset5.googlecode.com/hg/reset.min.css);
+
  .logo {
   width: 100%;
   text-align: center;
