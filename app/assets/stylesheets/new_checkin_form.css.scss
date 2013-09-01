@@ -14,23 +14,23 @@
   height: 100%;
   margin: 0 auto;
   text-align: center;
-  // margin-top: -40px;
+
   .past_checkin_form {
     display: none;
   }
 
-.checkin_form {
+  .checkin_form {
     margin: 20px;
     height: 100%;
-}
+  }
 
   .checkin_form_box {
     border: 1px solid black;
     width: 50%;
     height: 40%;
     float: left;
-    // margin-bottom: 20px;
   }
+
   .new_media {
     width: 100%;
     margin: 5px 0 5px 0;
@@ -48,12 +48,12 @@
     width: 100%;
     text-align: center;
     border: none;
-    // margin-bottom: 20px;
   }
 
-  .past_checkin_form {
-    // margin-top: 40px;
-    }
+}
+
+#add_media {
+  height: 20px;
 }
 
 .map {
@@ -66,7 +66,6 @@
   height: 100%;
   width: 100%;
   margin: auto;
-  // margin-bottom: 20px;
 }
 
 .submit_button {
@@ -76,8 +75,6 @@
   font-family: 'Droid Sans';
   font-size: 1.3em;
   border: none;
-  // margin: 10px;
-  // margin-bottom: 20px;
 }
 
 .category_overlay, .people_overlay, .words_overlay, .add_media_overlay {
@@ -115,7 +112,7 @@
 }
 
 .file_fields {
-padding-top: 10px;
+  padding-top: 10px;
 }
 
 .people.checkin_form_box, .people_overlay, .people_content {
@@ -138,7 +135,6 @@ padding-top: 10px;
   border: none;
   text-align: center;
   margin: auto;
-  // margin: 10px;
 }
 
 #checkin_inventory {

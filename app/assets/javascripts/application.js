@@ -18,5 +18,5 @@
 //= require gmaps.js
 //= require jquery.lazyload.min
 //= require jquery.scrollstop.min
-//= require exhe
+//= require ehxe
 //= require_tree .

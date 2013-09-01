@@ -1,19 +1,24 @@
-%h1 Listing categories
+.category_index
 
-%table
-  %tr
-    %th Name
-    %th Color
-    %th
-    %th
+  .title
+    Listing categories
 
-  - @categories.each do |category|
+  %table
     %tr
-      %td= link_to category.name, category
-      %td= category.color
-      %td= link_to 'Edit', edit_category_path(category)
-      %td= button_to 'Destroy', category, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th Name
+      %th Color
+      %th
+      %th
 
-%br
+    - @categories.each do |category|
+      %tr
+        %td= link_to category.name, category
+        %td= image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/markers/#{category.color}_marker.png"
+        %td
+          = link_to 'Edit', edit_category_path(category), class:'button'
+          = button_to 'Destroy', category, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-= link_to 'New Category', new_category_path
+  %br
+
+  .options
+    = link_to 'New Category', new_category_path, class:'button'
