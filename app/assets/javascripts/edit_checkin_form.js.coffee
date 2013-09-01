@@ -1,11 +1,5 @@
 $ ()->
 
-  media_divs_length = 0
-  media_divs_length += 1
-
-  if media_divs_length>=10
-    $('#add_media').hide()
-
   if $('body').data('page') is 'CheckinsEdit'
     $('.people_content, .category_content, .words_content, .add_media').css("display", "block")
     checkin_id = $('#edit_map').data 'id'
