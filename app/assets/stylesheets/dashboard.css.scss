@@ -107,6 +107,7 @@
     // padding: 0.5% 0 0.8% 0;
     border: 0;
     text-align: center;
+    padding: 3px;
 
     .menu_icon {
       left: 0;
@@ -135,18 +136,14 @@
   }
 }
 
+@media all and (max-width: 700px) {
 
-
-// MEDIA QUERIES
-
-@media (min-width: 700px) {
    .select_search_div {
     width: 50%;
   }
 
   .search_input_div {
     width: 50%;
-    float: left;
-    margin-top: 4px;
   }
 }
+

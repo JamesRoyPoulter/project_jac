@@ -15,6 +15,8 @@ function stopRKey(evt) {
 
 document.onkeypress = stopRKey;
 
+
+
 var Ehxe = {
   markers: {
     aqua: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/aqua_marker.png',
@@ -27,6 +29,18 @@ var Ehxe = {
     purple: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/purple_marker.png',
     red: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/red_marker.png',
     yellow: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/yellow_marker.png',
+  },
+  marker_hex_values: {
+    aqua: '#48D7E4',
+    black: '#000000',
+    blue: '#3496FF',
+    coral: '#F54054',
+    green: '#3AAC00',
+    mint: '#56FFAA',
+    pink: '#F4007B',
+    purple: '#B700CA',
+    red: '#C40000',
+    yellow: '#FBD300',
   },
   defaults: {
     map: 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map.png',

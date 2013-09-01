@@ -11,12 +11,13 @@
   float: left;
   display: inline;
   // margin: 10px;
-  height: 200px;
-  width: 175px;
+  // height: 200px;
+  // width: 175px;
+  height: 100%;
 }
 
 .jpage_image {
-  margin: 5px;
+  margin: 0 5px 0 5px;
   width: 95%;
   height: 85%;
 }
@@ -24,6 +25,7 @@
 .jpage_category_bar {
   width: 95%;
   height: 15%;
+  margin: 0 5px 0 5px;
 }
 
 .buttons {
@@ -83,11 +85,21 @@
 
 .timeline_holder {
   margin: auto;
+  height: 100%;
 }
 
 #itemContainer {
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+
+li a {
+  height: 100%;
+}
+
+.checkin_title {
+  height: 100%;
 }
 
 // li:first-child {

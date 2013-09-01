@@ -8,7 +8,7 @@ $ ()->
     console.log(screen_size.width)
     w = screen_size.width
     if w < 410
-      test = 2
+      test = 3
     else if w > 411 and w < 640
       test = 3
     else if w > 641 and w < 800
@@ -21,16 +21,7 @@ $ ()->
 
   widthFunction = () ->
     timeline_div_width = String(Math.round(100/timelineDisplay()) + '%')
-    $('.checkin').width(timeline_div_width)
     return timeline_div_width
-
-  $('.show_checkin_options').click (e)->
-    e.preventDefault()
-    item = $('.checkin_link')
-    if item.css('display') is 'none'
-      item.slideDown 500
-    else
-      item.slideUp 500
 
   addCheckinMarker = (checkin, map, bounds)->
     checkinLatLng = new google.maps.LatLng checkin.latitude, checkin.longitude
@@ -52,11 +43,12 @@ $ ()->
 
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
+
     checkin_title = $("<div/>", class: 'checkin_title', id: 'checkin_title'+index)
     # POPULATE LINK TO SHOW PAGE IN CHECKIN DIV
     anchor_tag = $('<a/>', { href: '/checkins/' + checkin.id, html: checkin_title })
     # CREATE CONTAINER DIVS
-    list_item = $("<li/>", class: 'checkin', id: 'checkin'+index, style: widthFunction(), html: anchor_tag)
+    list_item = $("<li/>", class: 'checkin', id: 'checkin'+index, style: 'width:'+widthFunction(), html: anchor_tag)
     $('#itemContainer').append list_item
     # Iterate Through Checkin's Assets
     assets = checkin.seperated_assets
@@ -82,12 +74,16 @@ $ ()->
         html: assets['text'][0].words
       ).appendTo "#checkin_title"+index
     else
-      $('<p/>',
-        class: 'jpage_image checkin_title'
-        html: checkin.title
+      $("<img/>",
+        class: 'jpage_image checkin_minimap'
+        src: Ehxe.defaults.map
       ).appendTo "#checkin_title"+index
 
-    $('.checkin_title').append('.jpage_category_bar')
+    category_color =  checkin.categories[0].color
+    $('<div/>',
+      class:'jpage_category_bar'
+      style: 'background-color:'+Ehxe.marker_hex_values[category_color]
+      ).appendTo '#checkin_title'+index
 
   paginate = ()->
     $("ul li img").lazyload
@@ -99,7 +95,6 @@ $ ()->
       first: false,
       previous: false,
       next: false,
-      # console.log(screen_size.width)
       last: false,
       links: "blank",
       midRange: 50,
