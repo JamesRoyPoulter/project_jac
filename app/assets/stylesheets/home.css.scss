@@ -1,0 +1,67 @@
+.home_page {
+  background-color: #000;
+  margin: 0 auto;
+  text-align: center;
+  height: 100%;
+}
+
+#marker_home {
+  width: 100%;
+  display: block;
+  margin: auto;
+}
+
+#ehxe_logo {
+  width: 20%;
+  margin-top: 5%;
+}
+
+.logo_marker {
+  height: 100%;
+  background-color: #000;
+}
+
+#logo_marker_background {
+  background-color: purple;
+  width: 15%;
+  float: left;
+  margin-left: 10%;
+}
+
+.home_links {
+  margin-top: 8%;
+  text-align: center;
+}
+
+#login_home,
+#signup_home  {
+  font-size: 1.5em;
+  border-radius: 3px;
+  color: #777;
+  padding: 1%;
+  width: 10%;
+  margin: 2% auto;
+  display: inline block;
+  font-family: "Sinhala MN", "Sinhala Sangam MN", "Perpetua", "Garamond"
+}
+
+#signup_home {
+  float: left;
+  width: 10%;
+  margin-left: 10%;
+}
+
+#login_home {
+  width: 10%;
+  float: left;
+  margin-left: 20%;
+}
+
+#login_home:hover,
+#login_home:focus,
+#signup_home:hover,
+#signup_home:focus {
+  color: #fff;
+}
+
+
