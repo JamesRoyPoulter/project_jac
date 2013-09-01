@@ -1,6 +1,9 @@
-media_divs_length = 0
+wordsAddNumber = 0
+categoryAddNumber = 0
+peopleAddNumber = 0
+mediaAddNumber = 0
 
-$ ()->
+if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'CheckinsPast'
 
   $('.category_overlay').click () ->
     $(@).hide()
@@ -21,10 +24,33 @@ $ ()->
     $(@).hide()
     $('.add_media').show()
     addMedia()
-    autoOpenMediaChoice()
+
+  $('#add_categories').click () ->
+    addCategory()
+
+  $('#add_people').click () ->
+    addPeople()
+
+  $('#add_words_link').click () ->
+    addWords()
 
   $('#add_media').click ()->
     addMedia()
+
+  addCategory = () ->
+    categoryAddNumber += 1
+    if categoryAddNumber>=10
+      $('#add_categories').hide()
+
+  addPeople = () ->
+    peopleAddNumber += 1
+    if peopleAddNumber>=10
+      $('#add_people').hide()
+
+  addWords = () ->
+    wordsAddNumber += 1
+    if wordsAddNumber>=1
+      $('#add_words_link').hide()
 
   addMedia = () ->
     $('.div_for_asset__upload_appends').append $('<div/>',
@@ -39,33 +65,21 @@ $ ()->
         class: 'checkin_medias'
         style:'display:none'
       ).append $('<img/>',
-        src: DEFAULT_X,
+        src: Ehxe.defaults.x,
         class: 'x_icon'
       )
       $('.checkin_medias').eq(-1).click()
 
-    previewImage = (input)->
-      if input && input.files[0]
-        reader = new FileReader
-        reader.onload = (e)->
-          $(".upload_preview").eq(-1).attr "src", e.target.result
-        reader.readAsDataURL input.files[0]
-
     $('.checkin_medias').change ()->
-      previewImage(this)
+      Ehxe.previewImage(".upload_preview", this)
 
 
     $('.x_icon').click ()->
       $(@).parent('.new_media').remove()
 
-    media_divs_length += 1
-    if media_divs_length>=5
+    mediaAddNumber += 1
+    if mediaAddNumber>=5
       $('#add_media').hide()
-
-  autoOpenMediaChoice = () ->
-    inputs = document.getElementsByClassName('checkin_medias')
-    input = inputs[inputs.length-1]
-    input.click()
 
   autoOpenCategoryChoice = () ->
     $('#auto_open_id').trigger('click')
@@ -77,10 +91,7 @@ $ ()->
     $('#add_words_link').trigger('click')
     $('#add_words_link').hide()
 
-
-
-
-
+#MAPPING BELOW
 if $('body').data('page') is 'CheckinsNew'
   #gets location from browser
   getLocation = ()->
@@ -91,25 +102,14 @@ if $('body').data('page') is 'CheckinsNew'
 
   #assigns location to hidden form fields
   assignPositionToForm = (position)->
-    $('#checkin_latitude').val position.coords.latitude
-    $('#checkin_longitude').val position.coords.longitude
+    Ehxe.setFormLatLng position.coords.latitude, position.coords.longitude
 
     #sets lat and lng to current location
     myLatlng = new google.maps.LatLng position.coords.latitude, position.coords.longitude
 
-    #assigns map options using current location and styles
-    mapOptions =
-      center: myLatlng
-      zoom: 16
-      minZoom: 1
-      mapTypeId: 'Styled'
-      mapTypeControlOptions:
-        mapTypeIds: ['Styled']
-
     styledMapType = new google.maps.StyledMapType STYLES, name: 'Styled'
 
-    #generates the map, passing options and style
-    map = new google.maps.Map document.getElementById("map"), mapOptions
+    map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions myLatlng, 16
     map.mapTypes.set 'Styled', styledMapType
 
     #creates the geolocated marker
@@ -118,7 +118,7 @@ if $('body').data('page') is 'CheckinsNew'
       map: map
       draggable: true
       title: 'mark your life here X'
-      icon: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
+      icon: Ehxe.markers.black
 
     #creates check-in info-window
     infowindow = new google.maps.InfoWindow
@@ -126,8 +126,7 @@ if $('body').data('page') is 'CheckinsNew'
 
     google.maps.event.addListener marker, 'dragend', ()->
       position = marker.getPosition()
-      $('#checkin_latitude').val position.lat()
-      $('#checkin_longitude').val position.lng()
+      Ehxe.setFormLatLng position.lat(), position.lng()
 
     google.maps.event.addListener marker, 'click', ()->
       infowindow.open map, marker

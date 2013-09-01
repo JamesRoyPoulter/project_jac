@@ -27,16 +27,20 @@ class CheckinsController < ApplicationController
 
   def new
     @checkin = Checkin.new
-    @categories = current_user.categories.map { |x| [x.name,x.id] }
-    @people = current_user.people.map { |x| [x.name,x.id] }
+    @categories = current_user.categories.collect { |x| [x.name,x.id] }
+    @people = current_user.people.collect { |x| [x.name,x.id] }
   end
 
   def past
     @checkin = Checkin.new
+    @categories = current_user.categories.collect { |x| [x.name,x.id] }
+    @people = current_user.people.collect { |x| [x.name,x.id] }
   end
 
   def edit
     @checkin = Checkin.find(params[:id])
+    @categories = current_user.categories.collect { |x| [x.name,x.id] }
+    @people = current_user.people.collect { |x| [x.name,x.id] }
 
     respond_to do |format|
       format.html

@@ -15,7 +15,7 @@ function stopRKey(evt) {
 
 document.onkeypress = stopRKey;
 
-var Exhe = {
+var Ehxe = {
   markers: {
     aqua: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/aqua_marker.png',
     black: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/black_marker.png',
@@ -27,37 +27,66 @@ var Exhe = {
     purple: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/purple_marker.png',
     red: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/red_marker.png',
     yellow: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/yellow_marker.png',
+  },
+  defaults: {
+    map: 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map.png',
+    audio: "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png",
+    x: "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
+  },
+  setFormLatLng: function(lat,lng) {
+    $('#checkin_latitude').val(lat)
+    $('#checkin_longitude').val(lng)
+  },
+  previewImage: function(element, input) {
+    if (input && input.files[0]) {
+      reader = new FileReader();
+      reader.onload = function (e) {
+        $(element).eq(-1).attr("src", e.target.result)
+      }
+      reader.readAsDataURL(input.files[0])
+    }
+  },
+  Maps: {
+    map: function(element,options) {
+      return new google.maps.Map(document.getElementById(element),options)
+    },
+    mapOptions: function (center,zoom) {
+      return {
+        center: center,
+        zoom: zoom,
+        minZoom: 1,
+        mapTypeId: 'Styled',
+        mapTypeControlOptions:{
+          mapTypeIds: ['Styled']
+        }
+      }
+    }
   }
 }
-
-DEFAULT_MAP = 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default_map_icon.png'
-DEFAULT_X = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
-AUDIO_IMAGE = "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png"
 
 function markerColor(color) {
   switch (color) {
     case 'aqua':
-      return Exhe.markers.aqua
+      return Ehxe.markers.aqua
     case 'black':
-      return Exhe.markers.black
+      return Ehxe.markers.black
     case 'blue':
-      return Exhe.markers.blue
+      return Ehxe.markers.blue
     case 'coral':
-      return Exhe.markers.coral
+      return Ehxe.markers.coral
     case 'green':
-      return Exhe.markers.green
+      return Ehxe.markers.green
     case 'mint':
-      return Exhe.markers.pink
+      return Ehxe.markers.pink
     case 'pink':
-      return Exhe.markers.purple
+      return Ehxe.markers.purple
     case 'red':
-      return Exhe.markers.red
+      return Ehxe.markers.red
     case 'yellow':
-      return Exhe.markers.yellow
+      return Ehxe.markers.yellow
     default:
-      Exhe.markers.black
+      return Ehxe.markers.black
   }
-  return url
 }
 
 STYLES = [

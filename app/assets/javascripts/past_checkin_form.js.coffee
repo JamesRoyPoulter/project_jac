@@ -5,7 +5,7 @@ if $('body').data('page') is 'CheckinsPast'
   placeMarker = (location, map)->
     marker = new google.maps.Marker
       position: location
-      icon: ICON
+      icon: Ehxe.markers.black
       map: map
     markersArray.push marker
 
@@ -17,23 +17,14 @@ if $('body').data('page') is 'CheckinsPast'
         if status is google.maps.GeocoderStatus.OK
           $('.past_checkin_form').slideDown 500
           center = results[0].geometry.location
-          $('#checkin_latitude').val center.lat()
-          $('#checkin_longitude').val center.lng()
-          mapOptions =
-            center: center
-            zoom: 12
-            minZoom: 1
-            mapTypeId: 'Styled'
-            mapTypeControlOptions:
-              mapTypeIds: [ 'Styled']
-          map = new google.maps.Map document.getElementById("past_map"), mapOptions
+          Ehxe.setFormLatLng center.lat(), center.lng()
+          map = Ehxe.Maps.map 'past_map', Ehxe.Maps.mapOptions center, 12
           styledMapType = new google.maps.StyledMapType STYLES, name: 'Styled'
           map.mapTypes.set 'Styled', styledMapType
           google.maps.event.addListener map, 'click', (event)->
             for i in markersArray
               i.setMap null
             placeMarker event.latLng, map
-            $('#checkin_latitude').val event.latLng.lat()
-            $('#checkin_longitude').val event.latLng.lng()
+            Ehxe.setFormLatLng event.latLng.lat(), event.latLng.lng()
         else
           alert "Geocode was not successful for the following reason: " + status
