@@ -77,7 +77,6 @@ if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'Checkin
     $('.checkin_medias').change ()->
       Ehxe.previewImage(".upload_preview", this)
 
-
     $('.x_icon').click ()->
       $(@).parent('.new_media').remove()
 

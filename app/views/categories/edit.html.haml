@@ -1,10 +1,12 @@
 .edit_category
 
   .title
-    Editing category
+    Editing Category
 
   = render 'form'
 
   .options
-    = link_to 'Show', @category, class:'button'
-    = link_to 'Back', categories_path, class:'button'
+    .button
+      = link_to 'Show', @category
+    .button
+      = link_to 'Back', categories_path

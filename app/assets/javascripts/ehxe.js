@@ -15,8 +15,6 @@ function stopRKey(evt) {
 
 document.onkeypress = stopRKey;
 
-
-
 var Ehxe = {
   markers: {
     aqua: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/aqua_marker.png',
@@ -91,8 +89,10 @@ function markerColor(color) {
     case 'green':
       return Ehxe.markers.green
     case 'mint':
-      return Ehxe.markers.pink
+      return Ehxe.markers.mint
     case 'pink':
+      return Ehxe.markers.pink
+    case 'purple':
       return Ehxe.markers.purple
     case 'red':
       return Ehxe.markers.red
