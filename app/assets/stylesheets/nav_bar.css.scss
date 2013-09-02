@@ -38,14 +38,8 @@
     list-style-image: none;
     list-style-position: outside;
     list-style-type: none;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
+    margin: 0px;
+    padding: 0px;
     zoom: 1;
     li {
       border-bottom-color: rgb(72, 72, 72);
@@ -90,10 +84,7 @@
         list-style-image: none;
         list-style-position: outside;
         list-style-type: none;
-        padding-bottom: 8px;
-        padding-left: 12.5px;
-        padding-right: 12.5px;
-        padding-top: 8px;
+        padding: 8px 12.5px 8px 12.5px;
         text-decoration: none;
         text-shadow: rgb(34, 34, 34) 0px -1px 2px;
         zoom: 1;
