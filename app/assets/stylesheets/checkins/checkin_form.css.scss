@@ -55,6 +55,8 @@
 
   #checkin_description {
     display: none;
+    max-width: 75%;
+    max-height: 75%
   }
   .new_media {
     width: 100%;
@@ -187,4 +189,8 @@ p.instructions {
 textarea {
   max-height: 100%;
   max-width: 100%;
+}
+
+#words_text_area {
+  height: 100%;
 }
