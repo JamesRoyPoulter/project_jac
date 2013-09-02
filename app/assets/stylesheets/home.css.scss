@@ -26,6 +26,11 @@
   width: 15%;
   float: left;
   margin-left: 10%;
+  -webkit-transition: all 1s ease-in;
+  -moz-transition: all 1s ease-in;
+  -o-transition: all 1s ease-in;
+  -ms-transition:all 1s ease-in;
+  transition: all 1s ease-in;
 }
 
 .home_links {
