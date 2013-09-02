@@ -1,6 +1,11 @@
-.new_login {
+.new_login,
+.new_session {
   text-align: center;
-  margin: 5% auto;
+  margin: 3% auto;
+}
+
+#new_user {
+  width: 100%;
 }
 
 .title {
@@ -32,7 +37,8 @@ input {
   transition: all 1s ease-in;
 }
 
-#login_submit {
+#login_submit,
+.submit_button {
   border: none;
   background-color: transparent;
   color: #fff;
@@ -41,14 +47,20 @@ input {
 }
 
 #email_field,
-#password_field {
+#password_field,
+#name_field,
+#password_conf_field {
   font-family: "Perpetua";
   position: relative;
   text-align: center;
 }
 
 input#password,
-input#email {
+input#email,
+input#user_email,
+input#user_name,
+input#user_password,
+input#user_password_confirmation {
   width: 30%;
   margin: auto;
   padding: 1%;
@@ -64,3 +76,4 @@ input#email {
   width: 100%;
   bottom: 40%;
 }
+

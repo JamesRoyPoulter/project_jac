@@ -1,13 +1,18 @@
 = form_for(@user) do |f|
   = render 'partials/errors', resource: @user
+  .new_session
+    %h1.logo
+      = image_tag 'Ehxe_logo.png', id: 'ehxe_logo'
 
-  .field
-    = f.email_field :email, placeholder: ' Email', required: true
-  .field
-    = f.text_field :name, placeholder: ' Name', required: true
-  .field
-    = f.password_field :password, placeholder: ' Password', required: true
-  .field
-    = f.password_field :password_confirmation, placeholder: ' Password Confirmation', required: true
-  .field
-    = f.submit 'Sign Up', class: 'submit_button'
+    .field#email_field
+      = f.email_field :email, placeholder: ' EMAIL', required: true
+    .field#name_field
+      = f.text_field :name, placeholder: ' NAME', required: true
+    .field#password_field
+      .password_field_tag
+        = f.password_field :password, placeholder: ' PASSWORD', required: true
+    .field#password_conf_field
+      .password_field_tag
+        = f.password_field :password_confirmation, placeholder: ' PASSWORD CONFIRMATION', required: true
+    .field.actions.login
+      = f.submit 'Sign Up', class: 'submit_button'

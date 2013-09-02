@@ -1,4 +1,6 @@
 .new_login
+  %h1.logo
+    = image_tag 'Ehxe_logo.png', id: 'ehxe_logo'
   = form_tag sessions_path do
     .field#email_field
       = text_field_tag :email, params[:email], placeholder: "EMAIL"
