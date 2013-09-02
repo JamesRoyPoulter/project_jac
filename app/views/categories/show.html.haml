@@ -6,7 +6,11 @@
 %p
   %b Checkins
   - @checkins.each do |checkin|
-    %p= link_to checkin.title, checkin
+    - checkin.assets.each do |asset|
+      - if asset.type === 'Image'
+        = image_tag(asset.media.thumb.url)
+      - elsif asset.type === 'Audio'
+        = audio_tag(asset.media.url, controls: true)
 
 = link_to 'Edit', edit_category_path(@category)
 

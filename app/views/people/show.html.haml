@@ -1,18 +1,23 @@
 %p#notice= notice
+.person
 
-%p
-  %b Name:
-  = @person.name
+  .name
+    = @person.name
 
-%p
-  %b Picture:
-  = @person.picture
+  .picture
+    = @person.picture
 
-.person_checkins
-  - if @checkins
-    - @checkins.each do |checkin|
-      = link_to checkin.title, checkin
+  .person_checkins
+    - if @checkins
+      - @checkins.each do |checkin|
+        - checkin.assets.each do |asset|
+          - if asset.type === 'Image'
+            = image_tag(asset.media.thumb.url)
+          - elsif asset.type === 'Audio'
+            = audio_tag(asset.media.url, controls: true)
 
-= link_to 'Edit', edit_person_path(@person)
-
-= link_to 'Back', people_path
+.actions
+  .button
+    = link_to 'Edit', edit_person_path(@person)
+  .button
+    = link_to 'Back', people_path
