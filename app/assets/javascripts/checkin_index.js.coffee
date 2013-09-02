@@ -10,13 +10,13 @@ $ ()->
     if w < 410
       test = 3
     else if w > 411 and w < 640
-      test = 3
-    else if w > 641 and w < 800
       test = 4
-    else if w > 801 and w < 1100
+    else if w > 641 and w < 800
       test = 5
-    else if w > 1101
+    else if w > 801 and w < 1100
       test = 6
+    else if w > 1101
+      test = 7
     return test
 
   widthFunction = () ->
