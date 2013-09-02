@@ -19,7 +19,7 @@
           = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/words.png",  id: 'words_image'
           %p.instructions Words
       .words_content
-        .field
+        .field#words_text_area
           = f.text_area :description
 
     .checkin_form_box.categories
