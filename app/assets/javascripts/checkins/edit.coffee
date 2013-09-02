@@ -4,6 +4,7 @@ $ ()->
 
     $('.add_media_overlay').hide()
     $('.people_overlay').hide()
+    $('.div_for_asset__upload_appends').show()
     $('textarea').show()
 
     $('.people_content, .category_content, .words_content, .add_media').css("display", "block")
