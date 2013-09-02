@@ -1,5 +1,8 @@
 $ ()->
 
+  # $('.select_search_div').click () ->
+
+
   timelineDisplay = ()->
     screen_size = {
       width  : $(window).width(),
@@ -8,16 +11,16 @@ $ ()->
     console.log(screen_size.width)
     w = screen_size.width
     if w < 410
-      test = 3
+      num = 3
     else if w > 411 and w < 640
-      test = 4
+      num = 4
     else if w > 641 and w < 800
-      test = 5
+      num = 5
     else if w > 801 and w < 1100
-      test = 6
+      num = 6
     else if w > 1101
-      test = 7
-    return test
+      num = 7
+    return num
 
   widthFunction = () ->
     timeline_div_width = String(100/timelineDisplay().toFixed(2) + '%')
