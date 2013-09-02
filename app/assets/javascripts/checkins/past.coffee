@@ -1,5 +1,7 @@
 if $('body').data('page') is 'CheckinsPast'
 
+  $('form').hide()
+
   markersArray = []
 
   placeMarker = (location, map)->
@@ -15,10 +17,10 @@ if $('body').data('page') is 'CheckinsPast'
       geocoder = new google.maps.Geocoder()
       geocoder.geocode address: location, (results, status)->
         if status is google.maps.GeocoderStatus.OK
-          $('.past_checkin_form').slideDown 500
+          $('form').slideDown 500
           center = results[0].geometry.location
           Ehxe.setFormLatLng center.lat(), center.lng()
-          map = Ehxe.Maps.map 'past_map', Ehxe.Maps.mapOptions center, 12
+          map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions center, 12
           styledMapType = new google.maps.StyledMapType STYLES, name: 'Styled'
           map.mapTypes.set 'Styled', styledMapType
           google.maps.event.addListener map, 'click', (event)->

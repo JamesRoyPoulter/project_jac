@@ -8,7 +8,6 @@ $ ()->
       width  : $(window).width(),
       height : $(window).height()
     }
-    console.log(screen_size.width)
     w = screen_size.width
     if w < 410
       num = 3
@@ -31,7 +30,11 @@ $ ()->
     marker = new google.maps.Marker
       position: checkinLatLng
       map: map
-      icon: markerColor(checkin.categories[0].color)
+      icon:
+        if checkin.categories[0]?
+          markerColor(checkin.categories[0].color)
+        else
+          Ehxe.markers.black
       contentString = checkin.title
     google.maps.event.addListener(marker, 'click', ()->
       infowindow.setContent(contentString)
@@ -45,11 +48,12 @@ $ ()->
       map.fitBounds(bounds)
 
   setCategoryColor = (checkin, index)->
-    category_color =  checkin.categories[0].color
-    $('<div/>',
-      class:'jpage_category_bar'
-      style: 'background-color:'+Ehxe.marker_hex_values[category_color]
-    ).appendTo '#checkin_title'+index
+    if checkin.categories[0]?
+      category_color =  checkin.categories[0].color
+      $('<div/>',
+        class:'jpage_category_bar'
+        style: 'background-color:'+Ehxe.marker_hex_values[category_color]
+      ).appendTo '#checkin_title'+index
 
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
@@ -64,30 +68,23 @@ $ ()->
     $('#itemContainer').append list_item
 
     # Iterate Through Checkin's Assets
-    assets = checkin.seperated_assets
-    if assets['image'] and assets['image'].length isnt 0
+    if checkin.image and checkin.image.length isnt 0
       $("<img/>",
         class: 'jpage_image checkin_image'
-        src: assets['image'][0].media.show_checkin.url
+        src: checkin.image[0].media.show_checkin.url
       ).appendTo "#checkin_title"+index
       setCategoryColor(checkin, index)
-    else if assets['audio'] and assets['audio'].length isnt 0
+    else if checkin.audio and checkin.audio.length isnt 0
       $('<img/>',
         class: 'jpage_image checkin_audio'
         src: Ehxe.defaults.audio
       ).appendTo "#checkin_title"+index
       setCategoryColor(checkin, index)
-    else if assets['video'] and assets['video'].length isnt 0
+    else if checkin.video and checkin.video.length isnt 0
       $('<img/>',
         class:'jpage_image checkin_video'
-        src: assets['video'][0].media.video_thumb.url
+        src: checkin.video[0].media.video_thumb.url
         # style: 'height:175px;width:175px'
-      ).appendTo "#checkin_title"+index
-      setCategoryColor(checkin, index)
-    else if assets['text'] and assets['text'].length isnt 0
-      $('<p/>',
-        class: 'jpage_image checkin_words'
-        html: assets['text'][0].words
       ).appendTo "#checkin_title"+index
       setCategoryColor(checkin, index)
     else

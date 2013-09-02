@@ -7,6 +7,8 @@ var navBar = $.jPanelMenu({
 
 navBar.on();
 
+$('.jPanelMenu-panel').css({height:'100%','min-height':'0'})
+
 function stopRKey(evt) {
   var evt = (evt) ? evt : ((event) ? event : null);
   var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);

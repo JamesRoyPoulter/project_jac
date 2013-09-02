@@ -1,8 +1,7 @@
 class Checkin < ActiveRecord::Base
 
-  attr_accessible :address, :latitude, :longitude, :user_id, :title,
-                  :category_ids, :person_ids,
-                  :assets_attributes, :categories_checkins,
+  attr_accessible :address, :latitude, :longitude, :user_id, :title, :description,
+                  :category_ids, :person_ids, :assets_attributes, :categories_checkins,
                   :categories_attributes, :categories_checkins_attributes,
                   :people_attributes, :people_checkins_attributes
 
@@ -10,10 +9,10 @@ class Checkin < ActiveRecord::Base
   after_validation :reverse_geocode
 
   belongs_to :user
-  has_many :categories, through: :categories_checkins
-  has_many :categories_checkins, dependent: :destroy
   has_many :assets, dependent: :destroy
+  has_many :categories, through: :categories_checkins
   has_many :people, through: :people_checkins
+  has_many :categories_checkins, dependent: :destroy
   has_many :people_checkins, dependent: :destroy
 
   accepts_nested_attributes_for :assets
@@ -22,7 +21,7 @@ class Checkin < ActiveRecord::Base
   accepts_nested_attributes_for :categories
   accepts_nested_attributes_for :categories_checkins
 
-  validates_presence_of :latitude, :longitude, :title, :user_id
+  validates_presence_of :latitude, :longitude, :title, :user_id, :categories
 
   def location
     [self.latitude, self.longitude]

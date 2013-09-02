@@ -3,7 +3,8 @@ categoryAddNumber = 0
 peopleAddNumber = 0
 mediaAddNumber = 0
 
-if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'CheckinsPast'
+page = $('body').data('page')
+if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
 
   $('.category_overlay').click () ->
     $(@).hide()
@@ -17,8 +18,8 @@ if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'Checkin
 
   $('.words_overlay').click () ->
     $(@).hide()
-    $('.words_content').show()
     autoOpenWordsChoice()
+    addWords()
 
   $('.add_media_overlay').click () ->
     $(@).hide()
@@ -31,8 +32,12 @@ if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'Checkin
   $('#add_people').click () ->
     addPeople()
 
-  $('#add_words_link').click () ->
-    addWords()
+  $(".remove").click () ->
+    $('#remove_words').trigger('click')
+    console.log('FUCK ME')
+    # $('.words_content').hide()
+    $('.words_overlay').show()
+    # $('.words_overlay').css('display', 'block')
 
   $('#add_media').click ()->
     addMedia()
@@ -47,10 +52,10 @@ if $('body').data('page') is 'CheckinsNew' || $('body').data('page') is 'Checkin
     if peopleAddNumber>=10
       $('#add_people').hide()
 
-  addWords = () ->
-    wordsAddNumber += 1
-    if wordsAddNumber>=1
-      $('#add_words_link').hide()
+  # addWords = () ->
+  #   wordsAddNumber += 1
+  #   if wordsAddNumber>=1
+  #     $('#add_words_link').hide()
 
   addMedia = () ->
     $('.div_for_asset__upload_appends').append $('<div/>',

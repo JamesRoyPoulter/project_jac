@@ -4,7 +4,6 @@ class Category < ActiveRecord::Base
   validate :validate_color
 
   belongs_to :user
-  has_many :assets
   has_many :categories_checkins
   has_many :checkins, through: :categories_checkins
 

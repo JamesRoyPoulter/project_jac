@@ -67,11 +67,15 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find(params[:id])
-    @category.destroy
 
-    respond_to do |format|
-      format.html { redirect_to categories_url }
-      format.json { head :no_content }
+    if @category.checkins.empty?
+      @category.destroy
+      respond_to do |format|
+        format.html { redirect_to categories_url }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to categories_url, notice: 'This category has checkins...'
     end
   end
 

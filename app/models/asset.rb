@@ -1,23 +1,10 @@
 class Asset < ActiveRecord::Base
-  attr_accessible :category_id, :checkin_id, :words, :user_id, :media, :file_type
+  attr_accessible :checkin_id, :user_id, :media, :file_type
 
+  before_save :set_file_type
   belongs_to :checkin
   belongs_to :user
-  belongs_to :category
 
-  mount_uploader :media, AssetUploader
-
-  before_save :save_file_type
-
-  validates :media, uniqueness: :true
-
-  private
-  def save_file_type
-    if media.present? && media_changed?
-      self.file_type = media.file.content_type.match(/^[a-zA-Z]*/).to_s
-    else
-      self.file_type = 'text'
-    end
-  end
+  # validates :media, uniqueness: true, presence: true
 
 end

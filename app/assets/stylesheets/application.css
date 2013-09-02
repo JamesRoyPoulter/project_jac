@@ -12,6 +12,12 @@
  *= require_tree .
  */
 
+@import url(http://reset5.googlecode.com/hg/reset.min.css);
+
+body {
+  background-color: #000;
+}
+
  .logo {
   width: 100%;
   text-align: center;
@@ -21,6 +27,10 @@
   max-height: 200px;
   margin: 0 auto;
   margin-top: -20px;
+ }
+
+ #logo_name {
+  width: 5%;
  }
 
 html, body {
@@ -47,15 +57,8 @@ h1 {
 
 .field { padding: 10px 0 10px 0; }
 
-
-#chartContainer {
-  float: left;
-}
-
-.chart_holder {
-  width: 100%;
-  text-align: center;
-  clear: both;
+.jPanelMenu-panel {
+  height: 90%;
 }
 
 
