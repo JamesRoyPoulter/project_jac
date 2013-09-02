@@ -1,53 +1,46 @@
+.category_page {
+  width: 75%;
+  margin: auto;
+  text-align: center;
+  margin-top: 5%;
+}
+
 .category {
-
-  .head {
-    margin: 0 auto 20px auto;
-    width: 95%;
-    height: 50px;
-    border-bottom: 1.5px solid black;
-    color: black;
-    .title {
-      width: 30%;
-      float: left;
-      font-size: 3em;
-      font-weight: 800;
-    }
-    .marker {
-      float: left;
-      width: 50px;
-    }
-    .options {
-      float: right;
-      text-align: center;
-      width: 50%;
-      .button {
-        width: 49%;
-      }
-      input[type=submit] {
-        border: none;
-        -webkit-appearance: none;
-        border-radius: 3px;
-        background: green;
-        height: 30px;
-        width: 49%;
-      }
-    }
-  }
-}
-
-.new_category {
-  height: 50px;
+  display: inline-block;
   width: 100%;
-  .button {
-    height: 30px;
-    width: 49.6%;
-    font-size: 1.3em;
-    font-weight: 700;
-    padding-top: 11px;
-    border-radius: 3px;
-    background: #5BBD96;
-    margin: 0 auto;
-    text-align: center;
-  }
 }
 
+.new_category_button {
+  padding: 1%;
+  background-color: purple;
+  border-radius: 3px;
+  width: 30%;
+  margin: 2% auto;
+  -webkit-transition: all 1s ease-in;
+  -moz-transition: all 1s ease-in;
+  -o-transition: all 1s ease-in;
+  -ms-transition:all 1s ease-in;
+  transition: all 1s ease-in;
+  text-align: center;
+}
+
+#submit_new_category {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-family: "Perpetua";
+  font-size: 1.2em;
+}
+
+#edit_icon {
+  width: 5%;
+  margin-right: 25%;
+}
+
+#category_icons {
+  display: inline-block;
+}
+
+.marker {
+
+}
