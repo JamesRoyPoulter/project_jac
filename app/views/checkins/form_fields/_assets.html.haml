@@ -6,10 +6,10 @@
     = asset.link_to_remove "Remove Words"
   = f.link_to_add '', :assets
 
-  %p.instructions MEDIA
+  -# %p.instructions MEDIA
 
 .add_media
-
+  #form_field_label.assets UPLOAD MEDIA
   .div_for_asset__upload_appends
     - if params[:action] === 'edit'
       = f.fields_for :assets do |asset|
@@ -24,6 +24,6 @@
         = asset.link_to_remove "X"
       = f.link_to_add '', :assets
 
-  .plus_button
+    .plus_button
 
-    %img#add_media{src:'http://iconizer.net/files/Wireframe_mono_icons/orig/sq_plus.png'}
+      %img#add_media{src:'http://iconizer.net/files/Wireframe_mono_icons/orig/sq_plus.png'}

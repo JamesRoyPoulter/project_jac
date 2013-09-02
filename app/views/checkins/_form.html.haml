@@ -31,5 +31,5 @@
     .checkin_form_box.people
       = render 'checkins/form_fields/people', f: f
 
-  .actions
-    = f.submit 'CHECKIN', class: 'submit_button'
+    .submit_checkin
+      = f.submit 'CHECKIN', class: 'submit_button'

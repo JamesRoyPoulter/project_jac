@@ -3,9 +3,9 @@ class CheckinSerializer < ActiveModel::Serializer
              :created_at, :categories, :video, :audio, :image
 
 
-  def video
-    Video.where(checkin_id: self.id)
-  end
+  # def video
+  #   Video.where(checkin_id: self.id)
+  # end
 
   def audio
     Audio.where(checkin_id: self.id)

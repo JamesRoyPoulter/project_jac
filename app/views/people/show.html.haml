@@ -5,19 +5,21 @@
     = @person.name
 
   .picture
-    = @person.picture
+    = image_tag(@person.picture.detail.url)
 
   .person_checkins
-    - if @checkins
-      - @checkins.each do |checkin|
+    - if @person.checkins
+      - @person.checkins.each do |checkin|
         - checkin.assets.each do |asset|
           - if asset.type === 'Image'
             = image_tag(asset.media.thumb.url)
           - elsif asset.type === 'Audio'
             = audio_tag(asset.media.url, controls: true)
 
-.actions
-  .button
-    = link_to 'Edit', edit_person_path(@person)
-  .button
-    = link_to 'Back', people_path
+.options
+  .button#person_icons
+    = link_to image_tag('edit_icon.png', id: 'edit_icon_people'), edit_person_path(@person)
+
+
+    .link_to_back
+      = link_to image_tag('left_arrow.png'), people_path, id: "left_arrow"

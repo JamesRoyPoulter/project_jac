@@ -13,6 +13,7 @@ changeBackground = () ->
    $('#logo_marker_background').css 'backgroundColor', (backgroundHexes[Math.floor(Math.random() * backgroundHexes.length)])
    $('.actions.login').css 'backgroundColor', (backgroundHexes[Math.floor(Math.random() * backgroundHexes.length)])
    $('.new_category_button ').css 'backgroundColor', (backgroundHexes[Math.floor(Math.random() * backgroundHexes.length)])
+   $('.new_person_button').css 'backgroundColor', (backgroundHexes[Math.floor(Math.random() * backgroundHexes.length)])
 
 setInterval (->
   changeBackground()
