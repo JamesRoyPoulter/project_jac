@@ -22,7 +22,7 @@
       marker = new google.maps.Marker
         position: checkinLatLng
         map: map
-        icon: 'https://s3-eu-west-1.amazonaws.com/ehxe/markers/exhe_marker_black_little.png'
+        icon: Ehxe.markers.black
 
       #creates check-in info-window
       infowindow = new google.maps.InfoWindow

@@ -54,5 +54,5 @@
           .field
             = f.select :person_ids, current_user.people.collect { |x| [x.name,x.id] }, {prompt: false}, multiple: true
 
-    .actions
-      = f.submit 'CHECKIN', class: 'submit_button'
+  .actions
+    = f.submit 'CHECKIN', class: 'submit_button'

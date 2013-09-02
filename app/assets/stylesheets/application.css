@@ -57,15 +57,8 @@ h1 {
 
 .field { padding: 10px 0 10px 0; }
 
-
-#chartContainer {
-  float: left;
-}
-
-.chart_holder {
-  width: 100%;
-  text-align: center;
-  clear: both;
+.jPanelMenu-panel {
+  height: 90%;
 }
 
 
