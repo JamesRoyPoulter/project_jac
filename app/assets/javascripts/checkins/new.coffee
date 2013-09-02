@@ -38,6 +38,9 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
   $('#add_media').click ()->
     addMedia()
 
+  $('#checkin_description').click () ->
+    $(@).css 'text-align', 'left'
+
   addCategory = () ->
     categoryAddNumber += 1
     if categoryAddNumber>=10

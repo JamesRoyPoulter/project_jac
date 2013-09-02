@@ -1,7 +1,7 @@
 -if params[:action] == 'new' || params[:action] == 'past'
-  .category_overlay
-    = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/Categories.png", id: 'category_image'
-    %p.instructions Categories
+  -# .category_overlay
+  -#   -# = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/Categories.png", id: 'category_image'
+  -#   %p.instructions CATEGORIES
   .category_content
     - if !current_user.categories.empty?
       .field
