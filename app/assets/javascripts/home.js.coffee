@@ -11,8 +11,12 @@ if $.inArray('#000000', backgroundHexes) != -1
 
 changeBackground = () ->
    $('#logo_marker_background').css 'backgroundColor', (backgroundHexes[Math.floor(Math.random() * backgroundHexes.length)])
+   $('.actions.login').css 'backgroundColor', (backgroundHexes[Math.floor(Math.random() * backgroundHexes.length)])
 
 setInterval (->
   changeBackground()
 ), 3000
 
+$('.password_placeholder').click () ->
+  $(@).hide()
+  $('password_field_tag').focus()

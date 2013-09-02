@@ -6,7 +6,6 @@ $ ()->
     $('#searchCategory').attr({value: 'category'})
   $('#people').click () ->
     $('#searchCategory').attr({value: 'people'})
-
   timelineDisplay = ()->
     screen_size = {
       width  : $(window).width(),

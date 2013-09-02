@@ -27,14 +27,17 @@ class CheckinsController < ApplicationController
 
   def new
     @checkin = Checkin.new
+    @id = @checkin.id || ''
   end
 
   def past
     @checkin = Checkin.new
+    @id = @checkin.id || ''
   end
 
   def edit
     @checkin = Checkin.find(params[:id])
+    @id = @checkin.id || ''
 
     respond_to do |format|
       format.html

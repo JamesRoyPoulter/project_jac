@@ -18,8 +18,7 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
 
   $('.words_overlay').click () ->
     $(@).hide()
-    autoOpenWordsChoice()
-    addWords()
+    $('#checkin_description').show()
 
   $('.add_media_overlay').click () ->
     $(@).hide()
@@ -33,11 +32,8 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
     addPeople()
 
   $(".remove").click () ->
-    $('#remove_words').trigger('click')
-    console.log('FUCK ME')
-    # $('.words_content').hide()
+    # $('#remove_words').trigger('click')
     $('.words_overlay').show()
-    # $('.words_overlay').css('display', 'block')
 
   $('#add_media').click ()->
     addMedia()
@@ -51,11 +47,6 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
     peopleAddNumber += 1
     if peopleAddNumber>=10
       $('#add_people').hide()
-
-  # addWords = () ->
-  #   wordsAddNumber += 1
-  #   if wordsAddNumber>=1
-  #     $('#add_words_link').hide()
 
   addMedia = () ->
     $('.div_for_asset__upload_appends').append $('<div/>',
@@ -90,10 +81,6 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
 
   autoOpenPeopleChoice = () ->
     $('#auto_open_people_id').trigger('click')
-
-  autoOpenWordsChoice = () ->
-    $('#add_words_link').trigger('click')
-    $('#add_words_link').hide()
 
 #MAPPING BELOW
 if $('body').data('page') is 'CheckinsNew'
