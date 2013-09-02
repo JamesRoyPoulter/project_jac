@@ -9,10 +9,10 @@ class Checkin < ActiveRecord::Base
   after_validation :reverse_geocode
 
   belongs_to :user
-  has_many :categories, through: :categories_checkins
-  has_many :categories_checkins, dependent: :destroy
   has_many :assets, dependent: :destroy
+  has_many :categories, through: :categories_checkins
   has_many :people, through: :people_checkins
+  has_many :categories_checkins, dependent: :destroy
   has_many :people_checkins, dependent: :destroy
 
   accepts_nested_attributes_for :assets

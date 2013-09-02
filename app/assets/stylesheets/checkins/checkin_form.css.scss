@@ -4,16 +4,28 @@
   clear: both;
 }
 
-#new_checkin {
-  width: 50%;
-}
-
-.new_checkin,
-.past_checkin {
+.checkin_form {
   width: 100%;
   height: 100%;
   margin: 20px auto;
   text-align: center;
+
+  form {
+    width: 50%;
+    height: 89%;
+    margin: 0 auto;
+
+    input#checkin_title {
+      width: 98.5%;
+      margin-bottom: 3px;
+    }
+    #map {
+      margin: 0 auto 3px;
+    }
+    .actions {
+      margin-top: 3px;
+    }
+  }
 
   .past_checkin_form {
     display: none;
@@ -22,7 +34,7 @@
   .checkin_form_box {
     border: 1px solid black;
     width: 50%;
-    height: 40%;
+    height: 50%;
     float: left;
 
     select[multiple] {
@@ -41,6 +53,9 @@
     }
   }
 
+  #checkin_description {
+    display: none;
+  }
   .new_media {
     width: 100%;
     margin: 5px 0 5px 0;
@@ -48,15 +63,11 @@
 
   #checkin_title,
   .past_checkin_location_search {
-    width: 100%;
+    width: 50%;
     font-size: 1.3em;
     height: 30px;
-  }
-
-  .past_checkin_location_search {
-    width: 100%;
-    text-align: center;
     border: none;
+    text-align: center;
   }
 
 }
@@ -80,16 +91,18 @@
 #edit_map {
   height: 30%;
   width: 100%;
-  margin: auto;
+  margin: 0 auto 3px;
 }
 
 .submit_button {
+  margin-top: 3px;
   width: 100%;
-  background: black;
+  background: red;
   color: white;
   font-family: 'Droid Sans';
   font-size: 1.3em;
   border: none;
+  border-radius: 3px;
 }
 
 .category_overlay, .people_overlay, .words_overlay, .add_media_overlay {
@@ -129,6 +142,11 @@
 
 .file_fields {
   padding-top: 10px;
+}
+
+.checkin_form_box {
+  height: 50%;
+  width: 49%;
 }
 
 .people.checkin_form_box, .people_overlay, .people_content {

@@ -24,14 +24,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  process :set_content_type
-
   # Create different versions of your uploaded files:
-  version :thumb, :if => :image? do
+  version :thumb do
     process :resize_to_fill => [50, 50]
   end
 
-  version :show_checkin, :if => :image? do
+  version :show_checkin do
     process :resize_to_fill => [175, 175]
   end
   # Process files as they are uploaded:
@@ -60,11 +58,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   # mp4 3gp mp3 aac wav mid mov m4a
   def extension_white_list
     %w(jpg jpeg gif png)
-  end
-
-  protected
-  def image?(new_file)
-    new_file.content_type.start_with? 'image'
   end
 
 end
