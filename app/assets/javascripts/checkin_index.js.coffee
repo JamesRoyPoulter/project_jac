@@ -41,15 +41,25 @@ $ ()->
     else
       map.fitBounds(bounds)
 
+  setCategoryColor = (checkin, index)->
+    category_color =  checkin.categories[0].color
+    $('<div/>',
+      class:'jpage_category_bar'
+      style: 'background-color:'+Ehxe.marker_hex_values[category_color]
+    ).appendTo '#checkin_title'+index
+
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
 
     checkin_title = $("<div/>", class: 'checkin_title', id: 'checkin_title'+index)
+
     # POPULATE LINK TO SHOW PAGE IN CHECKIN DIV
     anchor_tag = $('<a/>', { href: '/checkins/' + checkin.id, html: checkin_title })
+
     # CREATE CONTAINER DIVS
     list_item = $("<li/>", class: 'checkin', id: 'checkin'+index, style: 'width:'+widthFunction(), html: anchor_tag)
     $('#itemContainer').append list_item
+
     # Iterate Through Checkin's Assets
     assets = checkin.seperated_assets
     if assets['image'] and assets['image'].length isnt 0
@@ -57,33 +67,32 @@ $ ()->
         class: 'jpage_image checkin_image'
         src: assets['image'][0].media.show_checkin.url
       ).appendTo "#checkin_title"+index
+      setCategoryColor(checkin, index)
     else if assets['audio'] and assets['audio'].length isnt 0
       $('<img/>',
         class: 'jpage_image checkin_audio'
         src: Ehxe.defaults.audio
       ).appendTo "#checkin_title"+index
+      setCategoryColor(checkin, index)
     else if assets['video'] and assets['video'].length isnt 0
       $('<img/>',
         class:'jpage_image checkin_video'
         src: assets['video'][0].media.video_thumb.url
         # style: 'height:175px;width:175px'
       ).appendTo "#checkin_title"+index
+      setCategoryColor(checkin, index)
     else if assets['text'] and assets['text'].length isnt 0
       $('<p/>',
         class: 'jpage_image checkin_words'
         html: assets['text'][0].words
       ).appendTo "#checkin_title"+index
+      setCategoryColor(checkin, index)
     else
       $("<img/>",
         class: 'jpage_image checkin_minimap'
         src: Ehxe.defaults.map
       ).appendTo "#checkin_title"+index
-
-    category_color =  checkin.categories[0].color
-    $('<div/>',
-      class:'jpage_category_bar'
-      style: 'background-color:'+Ehxe.marker_hex_values[category_color]
-      ).appendTo '#checkin_title'+index
+      setCategoryColor(checkin, index)
 
   paginate = ()->
     $("ul li img").lazyload
