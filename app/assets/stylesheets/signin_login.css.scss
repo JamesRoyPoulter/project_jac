@@ -1,0 +1,79 @@
+.new_login,
+.new_session {
+  text-align: center;
+  margin: 3% auto;
+}
+
+#new_user {
+  width: 100%;
+}
+
+.title {
+  color: #fff;
+  font-size: 2em;
+  font-family: "Perpetua", "Garamond";
+  margin-bottom: 2%;
+}
+
+label {
+  color: #fff;
+  font-size: 1.2em;
+}
+
+input {
+  font-size: 1.5em;
+}
+
+.actions.login {
+  padding: 1%;
+  background-color: purple;
+  border-radius: 3px;
+  width: 30%;
+  margin: 2% auto;
+  -webkit-transition: all 1s ease-in;
+  -moz-transition: all 1s ease-in;
+  -o-transition: all 1s ease-in;
+  -ms-transition:all 1s ease-in;
+  transition: all 1s ease-in;
+}
+
+#login_submit,
+.submit_button {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-family: "Perpetua";
+  font-size: 1.2em;
+}
+
+#email_field,
+#password_field,
+#name_field,
+#password_conf_field {
+  font-family: "Perpetua";
+  position: relative;
+  text-align: center;
+}
+
+input#password,
+input#email,
+input#user_email,
+input#user_name,
+input#user_password,
+input#user_password_confirmation {
+  width: 30%;
+  margin: auto;
+  padding: 1%;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.password_placeholder {
+  position: absolute;
+  margin: auto;
+  text-align: center;
+  color: #A9A9A9;
+  width: 100%;
+  bottom: 40%;
+}
+
