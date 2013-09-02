@@ -1,8 +1,5 @@
 $ ()->
 
-  # $('.select_search_div').click () ->
-
-
   timelineDisplay = ()->
     screen_size = {
       width  : $(window).width(),
