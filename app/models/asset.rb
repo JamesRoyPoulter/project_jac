@@ -4,8 +4,6 @@ class Asset < ActiveRecord::Base
   belongs_to :checkin
   belongs_to :user
 
-  mount_uploader :media, AssetUploader
-
   before_save :save_file_type
 
   validates :media, uniqueness: :true

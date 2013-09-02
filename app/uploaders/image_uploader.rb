@@ -1,12 +1,9 @@
 # encoding: utf-8
 
-class AssetUploader < CarrierWave::Uploader::Base
+class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
-  include CarrierWave::MimeTypes
-  include CarrierWave::Video
-  include CarrierWave::Video::Thumbnailer
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -27,26 +24,6 @@ class AssetUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
-  # process :scale => [200, 300]
-  #
-  # def scale(width, height)
-  #   # do something
-  # end
-
-  version :video_thumb, :if => :video? do
-    process thumbnail: [{format: 'jpg', quality: 10, size: 192, strip: true, logger: Rails.logger}]
-    def full_filename for_file
-      png_name for_file, version_name
-    end
-  end
-
-  def png_name for_file, version_name
-    %Q{#{version_name}_#{for_file.chomp(File.extname(for_file))}.jpg}
-  end
-
-
-  # CALL METHOD TO SET CONTENT TYPE
   process :set_content_type
 
   # Create different versions of your uploaded files:
@@ -57,15 +34,37 @@ class AssetUploader < CarrierWave::Uploader::Base
   version :show_checkin, :if => :image? do
     process :resize_to_fill => [175, 175]
   end
+  # Process files as they are uploaded:
+  # process :scale => [200, 300]
+  #
+  # def scale(width, height)
+  #   # do something
+  # end
 
-  def extension_white_list
-    %w(jpg jpeg gif png mp4 3gp mp3 aac wav mid mov m4a)
-  end
+  # Create different versions of your uploaded files:
+  # version :thumb do
+  #   process :scale => [50, 50]
+  # end
+
+  # Add a white list of extensions which are allowed to be uploaded.
+  # For images you might use something like this:
+  # def extension_white_list
+  #   %w(jpg jpeg gif png)
+  # end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
   #   "something.jpg" if original_filename
   # end
+  # mp4 3gp mp3 aac wav mid mov m4a
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
+
+  protected
+  def image?(new_file)
+    new_file.content_type.start_with? 'image'
+  end
 
 end
