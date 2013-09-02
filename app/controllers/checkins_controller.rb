@@ -102,13 +102,21 @@ class CheckinsController < ApplicationController
     @params
   end
 
+  private
+  def file_type media
+    media.match(/^[a-zA-Z]*/).to_s
+  end
   def build_new_assets
     if params[:medias]
       params[:medias].each do |asset|
-        Asset.create media: asset, checkin_id: @checkin.id, user_id: current_user.id
+        klass = case file_type(asset.content_type)
+          when 'image' then Image
+          when 'audio' then Audio
+          when 'video' then Video
+        end
+        klass.create media: asset, checkin_id: @checkin.id, user_id: current_user.id
       end
     end
   end
-
 
 end

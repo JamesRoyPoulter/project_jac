@@ -4,16 +4,17 @@ $ ()->
 
     $('.add_media_overlay').hide()
     $('.people_overlay').hide()
+    $('textarea').show()
 
     $('.people_content, .category_content, .words_content, .add_media').css("display", "block")
-    checkin_id = $('#edit_map').data 'id'
+    checkin_id = $('#map').data 'id'
     $.getJSON '/checkins/'+checkin_id+'/edit.json', (data)->
       checkinLatLng = new google.maps.LatLng(data.checkin.latitude, data.checkin.longitude)
 
       styledMapType = new google.maps.StyledMapType STYLES, name: 'Styled'
 
       #generates the map, passing options and style
-      map = Ehxe.Maps.map 'edit_map', Ehxe.Maps.mapOptions(checkinLatLng, 16)
+      map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions(checkinLatLng, 16)
       map.mapTypes.set 'Styled', styledMapType
 
       #creates the geolocated marker

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130901223929) do
+ActiveRecord::Schema.define(:version => 20130902094503) do
 
   create_table "assets", :force => true do |t|
     t.string   "media"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20130901223929) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "type"
   end
 
   create_table "categories", :force => true do |t|
