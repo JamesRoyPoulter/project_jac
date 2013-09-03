@@ -105,14 +105,14 @@
     padding: 3px;
 
     .menu_icon {
-      left: 0;
+      left: 1%;
       float: left;
-      margin-left: 1%;
-      margin-top: 0.55%;
+      position: absolute;
+      margin-top: 0.2%;
     }
 
     a {
-      margin-right: 20px;
+      // margin-right: 20px;
     }
   }
 

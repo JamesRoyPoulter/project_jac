@@ -11,7 +11,8 @@ body[data-page=CheckinsPast] form {
 .checkin_form {
   width: 100%;
   height: 100%;
-  margin: 20px auto;
+  margin: 0 auto;
+  padding-top: 20px;
   text-align: center;
 
   form {
@@ -235,6 +236,10 @@ textarea {
   margin: auto;
   color: #fff;
   height: 100%;
+}
+
+select option.selected {
+  background-color: red;
 }
 
 .div_for_asset__upload_appends {
