@@ -14,8 +14,9 @@
   %body{data: {page: [controller_name.capitalize, action_name.capitalize].join} }
 
     .container
-      #navbar
-        = render 'layouts/navbar'
+      -if current_user
+        #navbar
+          = render 'layouts/navbar'
 
       .content
         -if current_user
