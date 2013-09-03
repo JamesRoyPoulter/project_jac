@@ -6,3 +6,7 @@
     .field#people_form
       #form_field_label PEOPLE
       = f.select :person_ids, current_user.people.collect { |x| [x.name,x.id] }, {prompt: false}, multiple: true
+  - else
+    .no_people
+      You have not yet added anyone
+
