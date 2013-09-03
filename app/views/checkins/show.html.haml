@@ -1,38 +1,43 @@
-%p#notice= notice
-
 .show_checkin_container{data: { id: @checkin.id } }
-  %p
+  .title_container
     = @checkin.title
-  .assets_container
-    .show_checkin_map
-      #map.show
-      %br
-      #address
-        - if @checkin.address != nil
-          = @checkin.address
 
-    - @checkin.assets.each do |asset|
-      .asset_div
+  .show_checkin_map
+    #map.show
+    %br
+    #address
+      - if @checkin.address != nil
+        = @checkin.address
+
+
+  .assets_container
+    .asset_div
+      - @checkin.assets.each do |asset|
         - if asset.media.model.file_type === 'image'
-          = image_tag asset.media.show_checkin.url, id: "image_show"
-        - elsif asset.media.model.file_type === 'audio'
-          = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png", id: "audio_show"
-          = audio_tag asset.media.url, controls: true, id: "audio_show_controls"
+          = image_tag asset.media.url, id: "image_show"
         - elsif asset.media.model.file_type === 'video'
           = video_tag asset.media.url, controls: true, id: "video_show"
-        - else
-          .words_div
-            = asset.words
 
+    .words_div
+      = @checkin.description
+
+  - @checkin.assets.each do |asset|
+    - if asset.media.model.file_type === 'audio'
+      .music_container
+        = audio_tag asset.media.url, controls: true, id: "audio_show_controls"
+
+  .people_category_container
     - if @checkin.people
-      .show_checkin_people_div
+      .show_checkin_people
+        PEOPLE
         - @checkin.people.each do |person|
           = person.name
-
     - if @checkin.categories
-      .show_checkin_categories_div
+      .show_checkin_categories
+        CATEGORIES
         - @checkin.categories.each do |category|
           = category.name
+
   .show_controls
-    = link_to 'Delete', @checkin, method: :delete, data: { confirm: 'Are you sure?' }
-    = link_to 'Edit', edit_checkin_path(@checkin)
+    = link_to image_tag('x_icon_invert.png', id: 'delete_icon_show_page'), @checkin, method: :delete, data: { confirm: 'Are you sure?' }
+    = link_to image_tag('edit_icon.png', id: "edit_icon_show_page"), edit_checkin_path(@checkin)

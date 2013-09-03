@@ -2,24 +2,42 @@
   margin: auto;
   text-align: center;
   width: 85%;
-  height: 50%;
+  height: 100%;
+}
+
+.title_container {
+  background-color: #fff;
+  width: 98%;
+  padding: 1%;
+  margin-top: 3%;
+}
+
+.show_checkin_map {
+  text-align: center;
+  height: 35%;
+  margin-top: 2%;
+
+  #map {
+    height: 100%;
+  }
 }
 
 .assets_container {
-  height: 100%;
+  height: 35%;
+  width: 100%;
+  margin-top: 2%;
+  background-color: #A9A9A9;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: inline-block;
 }
 
-.asset_div, .show_checkin_people_div, .show_checkin_categories_div {
-  width: 45%;
+.asset_div {
   float: left;
-  height: 100%;
+  height: 85%;
   margin: auto;
   text-align: center;
-  padding: 2%;
-}
-
-.asset_div, video, audio {
-  height: 100%;
+  padding: 2% 0 2% 2%;
 }
 
 .words_div {
@@ -30,59 +48,46 @@
   padding-bottom: 2%;
 }
 
-#image_show, #video_show {
-  height: 95%;
-  padding: 2%;
-}
-
-#audio_show {
-  height: 80%;
-  padding: 2%;
+.music_container {
+  width: 100%;
+  margin-top: 2%;
 }
 
 #audio_show_controls {
-  height: 10%;
+  width: 100%;
 }
 
-.show_checkin_map {
-  text-align: center;
-  height: 75%;
-
-  #map {
-    height: 100%;
-  }
+#image_show, #video_show {
+  height: 100%;
 }
 
-#audio_tag_show_page {
-  position: relative;
-  top: -60px;
-  height: 100px;
-  width: 250px;
-  margin: 0 auto;
-  display: block;
+.people_category_container {
+    // margin-top: 2%;
+    margin: auto;
 }
 
-#audio_default_image {
-  margin: 0 auto;
-  display: block;
-}
-
-#address {
-  clear: both;
+.show_checkin_people, .show_checkin_categories {
+  background-color: #A9A9A9;
+  width: 50%;
+  float: left;
+  margin-top: 2%;
 }
 
 .show_controls {
-  margin-bottom: 40px;
+  clear: both;
+  margin-top: 2%;
 }
 
-.show_checkin_categories_div, .show_checkin_pages_dic {
-
+#delete_icon_show_page {
+  width: 3%;
+  margin-top: 2%;
+  margin-right: 2%;
 }
 
-.show_checkin_people_div {
-  background-color: blue;
+#edit_icon_show_page {
+  width: 4%;
+  margin-top: 2%;
+  margin-left: 2%;
 }
 
-.show_checkin_categories_div {
-  background-color: pink;
-}
+
