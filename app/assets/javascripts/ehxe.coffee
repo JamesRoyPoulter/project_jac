@@ -98,17 +98,33 @@ window.Ehxe =
       mapTypeControlOptions:
         mapTypeIds: ["Styled"]
 
-    placeMarker: (location, map)->
+    styledMap: ()->
+      new google.maps.StyledMapType STYLES, name: 'Styled'
+
+    placeMarker: (location, map, color)->
       marker = new google.maps.Marker
         position: location
-        icon: Ehxe.markers.black
+        icon: Ehxe.markers[color]
         map: map
       @markersArray.push marker
+
+    checkinMarker: (location, map, color)->
+      new google.maps.Marker
+        position: location
+        map: map
+        draggable: true
+        title: 'mark your life here X'
+        icon: Ehxe.markers[color]
 
     clearMarkers: ()->
       for i in @markersArray
         i.setMap null
       @markersArray.length = 0
+
+    markerSetByCategory: (marker)->
+      $('#checkin_category_ids option').click (e)->
+        $.getJSON '/categories/'+$(this).attr('value')+'.json', (data)->
+          marker.icon = Ehxe.markers[data.category.color]
 
 
 window.STYLES = [

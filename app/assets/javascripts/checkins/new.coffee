@@ -6,27 +6,11 @@ mediaAddNumber = 0
 page = $('body').data('page')
 if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
 
-  $('#add_categories').click () ->
-    addCategory()
-
-  $('#add_people').click () ->
-    addPeople()
-
   $('#add_media').click ()->
     addMedia()
 
   $('#checkin_description').click () ->
     $(@).css 'text-align', 'left'
-
-  addCategory = () ->
-    categoryAddNumber += 1
-    if categoryAddNumber>=10
-      $('#add_categories').hide()
-
-  addPeople = () ->
-    peopleAddNumber += 1
-    if peopleAddNumber>=10
-      $('#add_people').hide()
 
   addMedia = () ->
     $('.div_for_asset__upload_appends').append $('<div/>',
@@ -56,12 +40,6 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
     if mediaAddNumber>=10
       $('#add_media').hide()
 
-  autoOpenCategoryChoice = () ->
-    $('#auto_open_id').trigger('click')
-
-  autoOpenPeopleChoice = () ->
-    $('#auto_open_people_id').trigger('click')
-
 #MAPPING BELOW
 if $('body').data('page') is 'CheckinsNew'
   #gets location from browser
@@ -78,10 +56,8 @@ if $('body').data('page') is 'CheckinsNew'
     #sets lat and lng to current location
     myLatlng = new google.maps.LatLng position.coords.latitude, position.coords.longitude
 
-    styledMapType = new google.maps.StyledMapType STYLES, name: 'Styled'
-
     map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions myLatlng, 16
-    map.mapTypes.set 'Styled', styledMapType
+    map.mapTypes.set 'Styled', Ehxe.Maps.styledMap()
 
     #creates the geolocated marker
     marker = new google.maps.Marker
@@ -95,9 +71,6 @@ if $('body').data('page') is 'CheckinsNew'
     infowindow = new google.maps.InfoWindow
       content: 'mark your life here'
 
-    markersArray = []
-    markersArray.push marker
-
     position = ''
 
     google.maps.event.addListener marker, 'dragend', ()->
@@ -107,18 +80,11 @@ if $('body').data('page') is 'CheckinsNew'
     google.maps.event.addListener marker, 'click', ()->
       infowindow.open map, marker
 
+    Ehxe.Maps.markerSetByCategory(myLatlng,map)
+
     $('#checkin_category_ids option').click (e)->
       $.getJSON '/categories/'+$(this).attr('value')+'.json', (data)->
-        marker = new google.maps.Marker
-          position: myLatlng
-          map: map
-          draggable: true
-          title: 'mark your life here X'
-          icon: Ehxe.markers[data.category.color]
-        for i in markersArray
-          i.setMap null
-        markersArray.length = 0
-        markersArray.push marker
+        marker.icon = Ehxe.markers[data.category.color]
 
   google.maps.event.addDomListener window, 'load', getLocation
 
