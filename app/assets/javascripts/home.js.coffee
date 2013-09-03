@@ -18,7 +18,3 @@ changeBackground = () ->
 setInterval (->
   changeBackground()
 ), 3000
-
-$('.password_placeholder').click () ->
-  $(@).hide()
-  $('password_field_tag').focus()

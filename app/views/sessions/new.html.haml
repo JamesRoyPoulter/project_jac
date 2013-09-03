@@ -1,13 +1,11 @@
 .new_login
   %h1.logo
     = image_tag 'Ehxe_logo.png', id: 'ehxe_logo'
-  = form_tag sessions_path do
+  = form_for sessions_path do |f|
     .field#email_field
-      = text_field_tag :email, params[:email], placeholder: "EMAIL"
+      = f.text_field :email, placeholder: "EMAIL"
     .field#password_field
       .password_field_tag
-        = password_field_tag :password
-      .password_placeholder
-        PASSWORD
+        = f.password_field :password, placeholder: "PASSWORD"
     .actions.login
-      = submit_tag 'LOGIN', id: 'login_submit'
+      = f.submit 'LOGIN', id: 'login_submit'
