@@ -81,7 +81,6 @@ window.Ehxe =
       reader = new FileReader()
       reader.onload = (e) ->
         $(element).eq(-1).attr "src", e.target.result
-
       reader.readAsDataURL input.files[0]
 
   Maps:

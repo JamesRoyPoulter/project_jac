@@ -22,7 +22,7 @@
       marker = new google.maps.Marker
         position: checkinLatLng
         map: map
-        icon: Ehxe.markers.black
+        icon: Ehxe.markers[data.checkin.categories[0].color]
 
       #creates check-in info-window
       infowindow = new google.maps.InfoWindow

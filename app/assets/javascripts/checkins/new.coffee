@@ -31,7 +31,22 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
       $('.checkin_medias').eq(-1).click()
 
     $('.checkin_medias').change ()->
-      Ehxe.previewImage(".upload_preview", this)
+      x = new RegExp(/^[a-zA-Z]*/)
+      if x.exec(this.files[0].type)[0] isnt 'audio'
+        Ehxe.previewImage(".upload_preview", this)
+      else
+        $('.div_for_asset__upload_appends').append $('<div/>',
+          class: 'new_media',
+          html: $('<img/>',
+            src: 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png',
+            class: 'upload_preview',
+            style: 'height: 50px'
+          )
+        )
+    $('.upload_preview').click ()->
+      confirmation = confirm('Are you sure you want to delete this asset?')
+      if confirmation is true
+        $(this).parents('.new_media').remove()
 
     $('.x_icon').click ()->
       $(@).parent('.new_media').remove()
@@ -66,6 +81,7 @@ if $('body').data('page') is 'CheckinsNew'
       draggable: true
       title: 'mark your life here X'
       icon: Ehxe.markers.black
+    Ehxe.Maps.markersArray.push marker
 
     #creates check-in info-window
     infowindow = new google.maps.InfoWindow
@@ -74,19 +90,17 @@ if $('body').data('page') is 'CheckinsNew'
     position = ''
 
     google.maps.event.addListener marker, 'dragend', ()->
-      position = marker[0].getPosition()
-      console.log(position.lat(), position.lng())
+      position = marker.getPosition()
       Ehxe.setFormLatLng position.lat(), position.lng()
 
     google.maps.event.addListener marker, 'click', ()->
       infowindow.open map, marker
 
-    # Ehxe.Maps.markerSetByCategory(myLatlng,map)
 
     $('#checkin_category_ids option').click (e)->
       $.getJSON '/categories/'+$(this).attr('value')+'.json', (data)->
         marker = new google.maps.Marker
-          position: myLatlng
+          position: marker.getPosition()
           map: map
           draggable: true
           title: 'mark your life here X'
