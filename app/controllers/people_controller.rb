@@ -10,8 +10,19 @@ class PeopleController < ApplicationController
   end
 
   def search
-    @person = Person.find_by_name(params[:name_startsWith])
-    render json: @person.checkins, root: false
+    if params[:name_startsWith]
+      @people = Person.where(
+        'name ilike :name AND user_id=:id',
+        name: "%#{params[:name_startsWith]}%",
+        id: current_user.id
+      )
+      render json: @people, root: false
+    else
+      @person = Person.where('name ilike :name AND user_id=:id',
+        name: "%#{params[:name]}%",
+        id: current_user.id).first
+      render json: @person.checkins, root: false
+    end
   end
 
   def show

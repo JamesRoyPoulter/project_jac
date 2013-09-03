@@ -1,29 +1,17 @@
 $ ()->
 
-  $('#location').click () ->
-    $('#searchCategory').attr({value: 'location'})
-    $('#location_red').css('z-index', '1')
-    $('#location').css('z-index', '0')
-    $('#category_red').css('z-index', '0')
-    $('#category').css('z-index', '1')
-    $('#people_red').css('z-index', '0')
-    $('#people').css('z-index', '1')
-  $('#category').click () ->
-    $('#searchCategory').attr({value: 'category'})
-    $('#location_red').css('z-index', '0')
-    $('#location').css('z-index', '1')
-    $('#category_red').css('z-index', '1')
-    $('#category').css('z-index', '0')
-    $('#people_red').css('z-index', '0')
-    $('#people').css('z-index', '1')
-  $('#people').click () ->
-    $('#searchCategory').attr({value: 'people'})
-    $('#location_red').css('z-index', '0')
-    $('#location').css('z-index', '1')
-    $('#category_red').css('z-index', '0')
-    $('#category').css('z-index', '1')
-    $('#people_red').css('z-index', '1')
-    $('#people').css('z-index', '0')
+  $('.categoryChoice').click ()->
+    $.each $(this).siblings('.categoryChoice'), (index, item)->
+      cat = @.getAttribute('data-value')
+      $(this).attr(
+        'src',
+        "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/#{cat}_icon_grey.png"
+      )
+    $(this).attr(
+      'src',
+      "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/#{$(this).data('value')}_icon_red.png"
+    )
+    $('#searchCategory').attr({value: $(this).data('value') })
 
   timelineDisplay = ()->
     screen_size = {
@@ -102,13 +90,13 @@ $ ()->
         src: Ehxe.defaults.audio
       ).appendTo "#checkin_title"+index
       setCategoryColor(checkin, index)
-    else if checkin.video and checkin.video.length isnt 0
-      $('<img/>',
-        class:'jpage_image checkin_video'
-        src: checkin.video[0].media.video_thumb.url
-        # style: 'height:175px;width:175px'
-      ).appendTo "#checkin_title"+index
-      setCategoryColor(checkin, index)
+    # else if checkin.video and checkin.video.length isnt 0
+    #   $('<img/>',
+    #     class:'jpage_image checkin_video'
+    #     src: checkin.video[0].media.video_thumb.url
+    #     # style: 'height:175px;width:175px'
+    #   ).appendTo "#checkin_title"+index
+    #   setCategoryColor(checkin, index)
     else
       $("<img/>",
         class: 'jpage_image checkin_minimap'
@@ -190,14 +178,14 @@ $ ()->
         $.ajax
           url:
             switch category
-              when 'people' then "/people"
-              when 'category' then "/categories"
-              when 'location' then "http://ws.geonames.org/searchJSON"
+              when 'People' then "/search/People"
+              when 'Category' then "/search/Categories"
+              when 'Location' then "http://ws.geonames.org/searchJSON"
           dataType:
             switch category
-              when 'people', 'category'
+              when 'People', 'Category'
                 "json"
-              when 'location' then 'jsonp'
+              when 'Location' then 'jsonp'
           data:
             featureClass: "P"
             style: "full"
@@ -205,16 +193,23 @@ $ ()->
             name_startsWith: request.term
           success: (data)->
             switch category
-              when 'people' then response( dataMap(data.people) )
-              when 'category' then response( dataMap(data.categories) )
-              when 'location'
+              when 'People' then response( dataMap(data) )
+              when 'Category' then response( dataMap(data) )
+              when 'Location'
                 response(
                   $.map data.geonames, (item)->
                     return label: (item.name + ", " + item.countryName), value: item.name
                 )
       select: (event,ui)->
         category = $('#searchCategory').val()
-        $.getJSON "/search/#{category}?name_startsWith="+ui.item.label, (data)->
+        switch category
+          when 'People'
+            url = 'People'
+          when 'Category'
+            url = 'Categories'
+          when 'Location'
+            url = 'Location'
+        $.getJSON "/search/#{url}?name="+ui.item.label, (data)->
           if data.length isnt 0
             $('#itemContainer').html ''
             index = 1
