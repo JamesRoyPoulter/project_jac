@@ -1,11 +1,12 @@
 $ ()->
 
   $('#location').click () ->
-    $('#searchCategory').attr({value: 'location'})
+    $('#searchCategory').attr value: 'location'
   $('#category').click () ->
-    $('#searchCategory').attr({value: 'category'})
+    $('#searchCategory').attr value: 'category'
   $('#people').click () ->
-    $('#searchCategory').attr({value: 'people'})
+    $('#searchCategory').attr value: 'people'
+
   timelineDisplay = ()->
     screen_size = {
       width  : $(window).width(),
