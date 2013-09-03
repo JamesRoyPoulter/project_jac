@@ -118,6 +118,18 @@ if $('body').data('page') is 'CheckinsNew'
     infowindow = new google.maps.InfoWindow
       content: 'mark your life here'
 
+    markersArray = []
+    markersArray.push marker
+
+    position = ''
+
+    google.maps.event.addListener marker, 'dragend', ()->
+      position = marker.getPosition()
+      Ehxe.setFormLatLng position.lat(), position.lng()
+
+    google.maps.event.addListener marker, 'click', ()->
+      infowindow.open map, marker
+
     $('#checkin_category_ids option').click (e)->
       $.getJSON '/categories/'+$(this).attr('value')+'.json', (data)->
         marker = new google.maps.Marker
@@ -126,13 +138,10 @@ if $('body').data('page') is 'CheckinsNew'
           draggable: true
           title: 'mark your life here X'
           icon: Ehxe.markers[data.category.color]
-
-    google.maps.event.addListener marker, 'dragend', ()->
-      position = marker.getPosition()
-      Ehxe.setFormLatLng position.lat(), position.lng()
-
-    google.maps.event.addListener marker, 'click', ()->
-      infowindow.open map, marker
+        for i in markersArray
+          i.setMap null
+        markersArray.length = 0
+        markersArray.push marker
 
   google.maps.event.addDomListener window, 'load', getLocation
 
