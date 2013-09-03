@@ -39,6 +39,7 @@
 
     #category_color {
       width: 100%;
+      color: #fff;
     }
 
     .styled-select {
@@ -100,10 +101,13 @@
 }
 
 .edit_category .button {
-  width: 49.6%;
+  width: 45%;
   border-radius: 3px;
-  background: #5BBD96;
+  background: #A9a9a9;
   float: left;
+  height: 25%;
+  padding: 2%;
+  margin-left: 2%;
 }
 
 .new_category .button {
