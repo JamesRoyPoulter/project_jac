@@ -6,34 +6,11 @@ mediaAddNumber = 0
 page = $('body').data('page')
 if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
 
-  $('.category_overlay').click () ->
-    $(@).hide()
-    $('.category_content').show()
-    autoOpenCategoryChoice()
-
-  $('.people_overlay').click () ->
-    $(@).hide()
-    $('.people_content').show()
-    autoOpenPeopleChoice()
-
-  $('.words_overlay').click () ->
-    $(@).hide()
-    $('#checkin_description').show()
-
-  $('.add_media_overlay').click () ->
-    $(@).hide()
-    $('.add_media').show()
-    addMedia()
-
   $('#add_categories').click () ->
     addCategory()
 
   $('#add_people').click () ->
     addPeople()
-
-  $(".remove").click () ->
-    # $('#remove_words').trigger('click')
-    $('.words_overlay').show()
 
   $('#add_media').click ()->
     addMedia()
@@ -118,12 +95,37 @@ if $('body').data('page') is 'CheckinsNew'
     infowindow = new google.maps.InfoWindow
       content: 'mark your life here'
 
+    markersArray = []
+    markersArray.push marker
+
+    position = ''
+
     google.maps.event.addListener marker, 'dragend', ()->
-      position = marker.getPosition()
+      position = marker[0].getPosition()
+      console.log(position.lat(), position.lng())
       Ehxe.setFormLatLng position.lat(), position.lng()
 
     google.maps.event.addListener marker, 'click', ()->
       infowindow.open map, marker
+
+    $('#checkin_category_ids option').click (e)->
+      $.getJSON '/categories/'+$(this).attr('value')+'.json', (data)->
+        marker = new google.maps.Marker
+          position: myLatlng
+          map: map
+          draggable: true
+          title: 'mark your life here X'
+          icon: Ehxe.markers[data.category.color]
+
+        google.maps.event.addListener marker, 'dragend', ()->
+          position = marker.getPosition()
+          console.log(position.lat(), position.lng())
+          Ehxe.setFormLatLng position.lat(), position.lng()
+
+        for i in markersArray
+          i.setMap null
+        markersArray.length = 0
+        markersArray.push marker
 
   google.maps.event.addDomListener window, 'load', getLocation
 

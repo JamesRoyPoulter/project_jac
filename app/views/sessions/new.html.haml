@@ -6,8 +6,8 @@
       = text_field_tag :email, params[:email], placeholder: "EMAIL"
     .field#password_field
       .password_field_tag
-        = password_field_tag :password
-      .password_placeholder
-        PASSWORD
+        = password_field_tag :password, nil, placeholder: "PASSWORD"
+      -# .password_placeholder
+      -#   PASSWORD
     .actions.login
       = submit_tag 'LOGIN', id: 'login_submit'

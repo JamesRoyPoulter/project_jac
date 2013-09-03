@@ -149,25 +149,24 @@ $ ()->
 
   # INITIATE MAP
   if $('body').data('page') is 'CheckinsIndex'
-
+    map = ""
     initialize = (zoom, styles)->
       mapOptions =
         mapTypeControlOptions:
           mapTypeIds: [ 'Styled']
-        center: new google.maps.LatLng(51.0500, 3.7333)
+        center: new google.maps.LatLng(16.7758, 3.0094)
         zoom: zoom
-        minZoom: 1
+        minZoom: 2
         mapTypeId: 'Styled'
       styledMapType = new google.maps.StyledMapType(STYLES, { name: 'Styled' })
-      map = new google.maps.Map(document.getElementById("map"), mapOptions)
+      map = Ehxe.Maps.map "map", mapOptions
       map.mapTypes.set('Styled', styledMapType)
       map
 
-    google.maps.event.addDomListener(window, 'load', initialize(10, STYLES))
+    google.maps.event.addDomListener(window, 'load', initialize(2, STYLES))
 
     infowindow = new google.maps.InfoWindow
 
-    map = initialize(bounds, STYLES)
     bounds = new google.maps.LatLngBounds()
 
     dataMap = (data)->
@@ -176,11 +175,12 @@ $ ()->
 
     $.getJSON "/checkins.json", (data)->
       index = 1
-      $.each data.checkins, (index, checkin)->
-        addCheckinMarker checkin, map, bounds
-        populateTimeLine checkin, index
-        index +=1
-      paginate()
+      if data.checkins.length > 0
+        $.each data.checkins, (index, checkin)->
+          addCheckinMarker checkin, map, bounds
+          populateTimeLine checkin, index
+          index +=1
+        paginate()
 
     $( "#searchQuery" ).autocomplete
       source: (request, response)->

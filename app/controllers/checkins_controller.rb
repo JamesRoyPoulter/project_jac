@@ -123,11 +123,11 @@ class CheckinsController < ApplicationController
     end
   end
   def yt_client
-      @yt_client ||= YouTubeIt::Client.new(
-        username: ENV['GOOGLE_USER'],
-        password: ENV['GOOGLE_PASS'],
-        dev_key: ENV['GOOGLE2']
-      )
-    end
+    @yt_client ||= YouTubeIt::Client.new(
+      username: ENV['GOOGLE_USER'],
+      password: ENV['GOOGLE_PASS'],
+      dev_key: ENV['GOOGLE2']
+    )
+  end
 
 end
