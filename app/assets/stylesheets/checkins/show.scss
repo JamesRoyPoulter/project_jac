@@ -3,12 +3,15 @@
   text-align: center;
   width: 85%;
   height: 100%;
+  div {
+    max-width: 800px;
+  }
 }
 
 .title_container {
   background-color: #fff;
-  width: 98%;
-  padding: 1%;
+  width: 100%;
+  padding: 1% 0;
   margin-top: 3%;
 }
 
@@ -29,7 +32,6 @@
   background-color: #A9A9A9;
   overflow-x: scroll;
   overflow-y: hidden;
-  display: inline-block;
 }
 
 .asset_div {
@@ -37,7 +39,7 @@
   height: 85%;
   margin: auto;
   text-align: center;
-  padding: 2% 0 2% 2%;
+  padding: 2% 0 2% 0;
 }
 
 .words_div {
@@ -61,21 +63,23 @@
   height: 100%;
 }
 
+.edit_delete_links {
+  clear: both;
+  padding-bottom: 2%;
+}
+
 .people_category_container {
-    // margin-top: 2%;
-    margin: auto;
+  margin-top: 3%;
 }
 
 .show_checkin_people, .show_checkin_categories {
   background-color: #A9A9A9;
-  width: 50%;
+  width: 49%;
   float: left;
-  margin-top: 2%;
 }
 
-.show_controls {
-  clear: both;
-  margin-top: 2%;
+.show_checkin_categories {
+  margin-left: 2%;
 }
 
 #delete_icon_show_page {

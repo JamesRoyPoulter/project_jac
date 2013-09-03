@@ -29,15 +29,15 @@
   .people_category_container
     - if @checkin.people
       .show_checkin_people
-        PEOPLE
+        #form_field_label PEOPLE
         - @checkin.people.each do |person|
           = person.name
     - if @checkin.categories
       .show_checkin_categories
-        CATEGORIES
+        #form_field_label CATEGORIES
         - @checkin.categories.each do |category|
           = category.name
 
-  .show_controls
+  .edit_delete_links
     = link_to image_tag('x_icon_invert.png', id: 'delete_icon_show_page'), @checkin, method: :delete, data: { confirm: 'Are you sure?' }
     = link_to image_tag('edit_icon.png', id: "edit_icon_show_page"), edit_checkin_path(@checkin)
