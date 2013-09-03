@@ -252,6 +252,10 @@ textarea {
   height: 100%;
 }
 
+select option.selected {
+  background-color: red;
+}
+
 .div_for_asset__upload_appends {
   position: relative;
 }
