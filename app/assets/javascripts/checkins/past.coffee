@@ -1,7 +1,5 @@
 if $('body').data('page') is 'CheckinsPast'
 
-  $('form').hide()
-
   $('.past_checkin_location_search').keypress (e)->
     if e.keyCode is 13
       location = $('#location').val()
@@ -10,16 +8,25 @@ if $('body').data('page') is 'CheckinsPast'
         if status is google.maps.GeocoderStatus.OK
           $('form').slideDown 500
           location = results[0].geometry.location
-          Ehxe.setFormLatLng location.lat(), location.lng()
           center = new google.maps.LatLng location.lat(), location.lng()
           map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions center, 10
-          styledMapType = new google.maps.StyledMapType STYLES, name: 'Styled'
-          map.mapTypes.set 'Styled', styledMapType
-          Ehxe.Maps.placeMarker center, map
+          map.mapTypes.set 'Styled', Ehxe.Maps.styledMap()
+          marker = Ehxe.Maps.checkinMarker(center, map,'black')
+          Ehxe.Maps.markersArray.push marker
           map.setCenter center
-          google.maps.event.addListener map, 'click', (event)->
-            Ehxe.Maps.clearMarkers()
-            Ehxe.Maps.placeMarker event.latLng, map
-            Ehxe.setFormLatLng event.latLng.lat(), event.latLng.lng()
+          Ehxe.setFormLatLng location.lat(), location.lng()
+          google.maps.event.addListener marker, 'dragend', ()->
+            position = marker.getPosition()
+            Ehxe.setFormLatLng position.lat(), position.lng()
+
+          $('#checkin_category_ids option').click (e)->
+            $.getJSON '/categories/'+$(this).attr('value')+'.json', (data)->
+              Ehxe.Maps.clearMarkers()
+              marker = Ehxe.Maps.checkinMarker(marker.getPosition(),map,data.category.color)
+              Ehxe.Maps.markersArray.push marker
+              google.maps.event.addListener marker, 'dragend', ()->
+                position = marker.getPosition()
+                Ehxe.setFormLatLng position.lat(), position.lng()
+
         else
           alert "Geocode was not successful for the following reason: " + status

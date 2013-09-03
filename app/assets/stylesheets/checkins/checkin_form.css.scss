@@ -4,6 +4,10 @@
   clear: both;
 }
 
+body[data-page=CheckinsPast] form {
+  display: none;
+}
+
 .checkin_form {
   width: 100%;
   height: 100%;
