@@ -124,7 +124,8 @@ if $('body').data('page') is 'CheckinsNew'
     position = ''
 
     google.maps.event.addListener marker, 'dragend', ()->
-      position = marker.getPosition()
+      position = marker[0].getPosition()
+      console.log(position.lat(), position.lng())
       Ehxe.setFormLatLng position.lat(), position.lng()
 
     google.maps.event.addListener marker, 'click', ()->
@@ -138,6 +139,12 @@ if $('body').data('page') is 'CheckinsNew'
           draggable: true
           title: 'mark your life here X'
           icon: Ehxe.markers[data.category.color]
+
+        google.maps.event.addListener marker, 'dragend', ()->
+          position = marker.getPosition()
+          console.log(position.lat(), position.lng())
+          Ehxe.setFormLatLng position.lat(), position.lng()
+
         for i in markersArray
           i.setMap null
         markersArray.length = 0
