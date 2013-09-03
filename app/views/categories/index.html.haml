@@ -1,15 +1,10 @@
 .category_page
   - @categories.each do |category|
     .category
-      .title
-        = link_to category.name, category
-      .marker
-        = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/markers/#{category.color}_marker.png"
-      .options
-        .button#category_icons
-          = link_to image_tag('edit_icon.png', id: 'edit_icon'), edit_category_path(category)
-          = link_to image_tag('x_icon_invert.png'), category, method: :delete, data: { confirm: 'Are you sure?' }
-      .checkins
+      = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/markers/#{category.color}_marker.png", id: 'category_page_marker'
+      = link_to category.name, category
+      = link_to image_tag('edit_icon.png', id: 'edit_icon_cat'), edit_category_path(category)
+      = link_to image_tag('x_icon_invert.png', id: 'delete_icon_cat'), category, method: :delete, data: { confirm: 'Are you sure?' }
 
 .new_category_button
   = link_to 'New Category', new_category_path, id: "submit_new_category"
