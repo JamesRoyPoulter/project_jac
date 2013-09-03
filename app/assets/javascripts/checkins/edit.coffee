@@ -2,8 +2,6 @@ $ ()->
 
   if $('body').data('page') is 'CheckinsEdit'
 
-    $('.add_media_overlay').hide()
-    $('.people_overlay').hide()
     $('.div_for_asset__upload_appends').show()
     $('textarea').show()
 

@@ -6,34 +6,11 @@ mediaAddNumber = 0
 page = $('body').data('page')
 if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
 
-  $('.category_overlay').click () ->
-    $(@).hide()
-    $('.category_content').show()
-    autoOpenCategoryChoice()
-
-  $('.people_overlay').click () ->
-    $(@).hide()
-    $('.people_content').show()
-    autoOpenPeopleChoice()
-
-  $('.words_overlay').click () ->
-    $(@).hide()
-    $('#checkin_description').show()
-
-  $('.add_media_overlay').click () ->
-    $(@).hide()
-    $('.add_media').show()
-    addMedia()
-
   $('#add_categories').click () ->
     addCategory()
 
   $('#add_people').click () ->
     addPeople()
-
-  $(".remove").click () ->
-    # $('#remove_words').trigger('click')
-    $('.words_overlay').show()
 
   $('#add_media').click ()->
     addMedia()
