@@ -5,7 +5,7 @@
     = @person.name
 
   .picture
-    = image_tag(@person.picture.detail.url)
+    = render 'people/picture', person: @person
 
   .person_checkins
     - if @person.checkins

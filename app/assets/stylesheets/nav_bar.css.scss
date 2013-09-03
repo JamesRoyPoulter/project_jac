@@ -1,42 +1,19 @@
 #jPanelMenu-menu {
-  -webkit-background-clip: border-box;
-  -webkit-background-origin: padding-box;
-  -webkit-background-size: auto;
-  background-attachment: scroll;
-  background-clip: border-box;
   background-color: rgb(59, 59, 59);
-  background-image: none;
-  background-origin: padding-box;
-  background-size: auto;
   color: rgb(85, 85, 85);
   display: block;
   font-family: 'Sinhala Sangam MN', Perpetua, Garamond;
   letter-spacing: 0.1em;
-  font-size: 16px;
-  font-weight: 300;
-  height: 131px;
   left: 0px;
-  line-height: 28px;
-  overflow-x: hidden;
-  overflow-y: scroll;
   position: fixed;
   top: 0px;
   z-index: 1;
-  zoom: 1;
-
-  .checkin_link {
-    display: none;
-  }
 
   li:first-child {
     height: 36px;
   }
 
   ul {
-    color: rgb(85, 85, 85);
-    display: block;
-    font-family: 'Sinhala Sangam MN', Perpetua, Garamond;
-    font-size: 16px;
     font-weight: 300;
     height: 460px;
     line-height: 28px;
@@ -51,47 +28,21 @@
       border-bottom-style: solid;
       border-bottom-width: 1px;
       color: rgb(85, 85, 85);
-      display: list-item;
-      font-family: 'Sinhala Sangam MN', Perpetua, Garamond;
-      font-size: 16px;
-      font-weight: 300;
-      height: 46px;
-      line-height: 28px;
-      list-style: none;
-      list-style-image: none;
-      list-style-position: outside;
-      list-style-type: none;
       text-align: center;
       zoom: 1;
       a {
-        -webkit-background-clip: border-box;
-        -webkit-background-origin: padding-box;
-        -webkit-background-size: auto;
-        background-attachment: scroll;
-        background-clip: border-box;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: -webkit-linear-gradient(top, rgb(62, 62, 62), rgb(56, 56, 56));
-        background-origin: padding-box;
-        background-size: auto;
         border-bottom-color: rgb(46, 46, 46);
         border-bottom-style: solid;
         border-bottom-width: 1px;
         border-top-color: rgb(72, 72, 72);
         border-top-style: solid;
         border-top-width: 1px;
-        color: rgb(247, 247, 247);
         display: block;
         font-family: 'Sinhala Sangam MN', Perpetua, Garamond;
-        font-size: 16px;
         font-weight: bold;
-        height: 28px;
         line-height: 28px;
-        list-style-image: none;
-        list-style-position: outside;
-        list-style-type: none;
         padding: 8px 12.5px 8px 12.5px;
         text-decoration: none;
-        text-shadow: rgb(34, 34, 34) 0px -1px 2px;
         zoom: 1;
       }
     }

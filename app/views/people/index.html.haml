@@ -4,7 +4,7 @@
       .title#people
         = link_to person.name, person
       .person_image
-        = image_tag person.picture.detail.url, id: 'person_image'
+        = render 'people/picture', person: person
       .options
         .button#person_icons
           = link_to image_tag('edit_icon.png', id: 'edit_icon'), edit_person_path(person)

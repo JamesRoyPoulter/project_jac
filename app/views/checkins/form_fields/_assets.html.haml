@@ -1,4 +1,6 @@
-#form_field_label ASSETS
+#form_field_label
+  ASSETS
+  %img#add_media{src:'http://iconizer.net/files/Wireframe_mono_icons/orig/sq_plus.png'}
 
 = f.fields_for :assets do |asset|
   = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
@@ -16,5 +18,5 @@
     = asset.file_field :media, style: 'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
     = asset.link_to_remove "X"
 
-.plus_button
-  %img#add_media{src:'http://iconizer.net/files/Wireframe_mono_icons/orig/sq_plus.png'}
+/ .plus_button
+/   %img#add_media{src:'http://iconizer.net/files/Wireframe_mono_icons/orig/sq_plus.png'}

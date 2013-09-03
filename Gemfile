@@ -30,6 +30,7 @@ gem 'jquery-rails'
 gem 'haml-rails'
 
 gem 'nested_form'
+gem 'devise'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 

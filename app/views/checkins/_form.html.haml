@@ -28,4 +28,7 @@
       = render 'checkins/form_fields/people', f: f
 
     .submit_checkin
-      = f.submit 'CHECKIN', class: 'submit_button'
+      - if params[:action] === 'new' || params[:action] === 'past'
+        = f.submit 'CHECKIN', class: 'submit_button'
+      - if params[:action] === 'edit'
+        = f.submit 'SAVE CHANGES', class: 'submit_button'

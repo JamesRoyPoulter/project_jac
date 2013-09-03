@@ -1,0 +1,4 @@
+- if person.picture.detail.url != nil
+  = image_tag person.picture.detail.url, id: 'person_image'
+- else
+  = image_tag('http://maruccielitehouston.net/wp-content/uploads/2013/04/default_avatar.png')

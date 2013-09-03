@@ -1,8 +1,10 @@
 = form_for(@user) do |f|
   = render 'partials/errors', resource: @user
+
   .new_session
-    %h1.logo
-      = image_tag 'Ehxe_logo.png', id: 'ehxe_logo'
+    - if params[:action] != 'edit'
+      %h1.logo
+        = image_tag 'Ehxe_logo.png', id: 'ehxe_logo'
 
     .field#email_field
       = f.email_field :email, placeholder: ' EMAIL', required: true
