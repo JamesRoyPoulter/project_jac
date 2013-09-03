@@ -1,7 +1,7 @@
 var navBar = $.jPanelMenu({
   menu: '#navbar',
   trigger: '.menu_icon',
-  openPosition: '120px',
+  openPosition: '140px',
   closeOnContentClick: true
 });
 

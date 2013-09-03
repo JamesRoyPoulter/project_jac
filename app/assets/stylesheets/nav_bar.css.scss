@@ -10,7 +10,8 @@
   background-size: auto;
   color: rgb(85, 85, 85);
   display: block;
-  font-family: museo-sans, 'Museo Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Sinhala Sangam MN', Perpetua, Garamond;
+  letter-spacing: 0.1em;
   font-size: 16px;
   font-weight: 300;
   height: 131px;
@@ -27,10 +28,14 @@
     display: none;
   }
 
+  li:first-child {
+    height: 36px;
+  }
+
   ul {
     color: rgb(85, 85, 85);
     display: block;
-    font-family: museo-sans, 'Museo Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Sinhala Sangam MN', Perpetua, Garamond;
     font-size: 16px;
     font-weight: 300;
     height: 460px;
@@ -47,7 +52,7 @@
       border-bottom-width: 1px;
       color: rgb(85, 85, 85);
       display: list-item;
-      font-family: museo-sans, 'Museo Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: 'Sinhala Sangam MN', Perpetua, Garamond;
       font-size: 16px;
       font-weight: 300;
       height: 46px;
@@ -76,7 +81,7 @@
         border-top-width: 1px;
         color: rgb(247, 247, 247);
         display: block;
-        font-family: museo-sans, 'Museo Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-family: 'Sinhala Sangam MN', Perpetua, Garamond;
         font-size: 16px;
         font-weight: bold;
         height: 28px;
