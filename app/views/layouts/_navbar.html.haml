@@ -8,6 +8,3 @@
     %li= link_to 'PEOPLE', people_path
     %li= link_to 'ACCOUNT', edit_user_path(current_user)
     %li= link_to 'LOGOUT', session_path(session), method: :delete, data: {confirm: 'Are you sure?'}
-  - else
-    %li= link_to 'Sign up', new_user_path
-    %li= link_to 'Login', sign_in_path
