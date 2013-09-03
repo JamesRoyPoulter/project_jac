@@ -20,9 +20,12 @@ if $('body').data('page') is 'CheckinsPast'
           $('form').slideDown 500
           center = results[0].geometry.location
           Ehxe.setFormLatLng center.lat(), center.lng()
-          map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions center, 12
+          center = new google.maps.LatLng center.lat(), center.lng()
+          map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions center, 10
           styledMapType = new google.maps.StyledMapType STYLES, name: 'Styled'
           map.mapTypes.set 'Styled', styledMapType
+          placeMarker center, map
+          map.setCenter center
           google.maps.event.addListener map, 'click', (event)->
             for i in markersArray
               i.setMap null

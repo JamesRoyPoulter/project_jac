@@ -37,9 +37,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'carrierwave'
 gem 'fog'
 gem 'rmagick'
-gem 'carrierwave-video-thumbnailer'
-gem 'carrierwave-video'
-gem 'vulcan'
-gem 'thor', "0.14.6"
+gem 'youtube_it'
 
 gem 'geocoder'
