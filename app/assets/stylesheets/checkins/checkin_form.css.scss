@@ -36,6 +36,10 @@ body[data-page=CheckinsPast] form {
     display: none;
   }
 
+  .date_field {
+    margin: 5px 0;
+  }
+
   .checkin_form_box {
     width: 100%;
     height: 30%;
@@ -143,7 +147,6 @@ body[data-page=CheckinsPast] form {
   height: 90%;
   width: 100%;
   display: block;
-  overflow: scroll;
   background-color: #A9A9A9;
 }
 

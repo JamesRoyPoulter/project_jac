@@ -74,17 +74,31 @@ if $('body').data('page') is 'CheckinsNew'
     position = ''
 
     google.maps.event.addListener marker, 'dragend', ()->
-      position = marker.getPosition()
+      position = marker[0].getPosition()
+      console.log(position.lat(), position.lng())
       Ehxe.setFormLatLng position.lat(), position.lng()
 
     google.maps.event.addListener marker, 'click', ()->
       infowindow.open map, marker
 
-    Ehxe.Maps.markerSetByCategory(myLatlng,map)
+    # Ehxe.Maps.markerSetByCategory(myLatlng,map)
 
     $('#checkin_category_ids option').click (e)->
       $.getJSON '/categories/'+$(this).attr('value')+'.json', (data)->
-        marker.icon = Ehxe.markers[data.category.color]
+        marker = new google.maps.Marker
+          position: myLatlng
+          map: map
+          draggable: true
+          title: 'mark your life here X'
+          icon: Ehxe.markers[data.category.color]
+
+        google.maps.event.addListener marker, 'dragend', ()->
+          position = marker.getPosition()
+          console.log(position.lat(), position.lng())
+          Ehxe.setFormLatLng position.lat(), position.lng()
+
+        Ehxe.Maps.clearMarkers()
+        Ehxe.Maps.markersArray.push marker
 
   google.maps.event.addDomListener window, 'load', getLocation
 

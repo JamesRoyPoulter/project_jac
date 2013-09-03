@@ -10,12 +10,7 @@
   .person_checkins
     - if @person.checkins
       - @person.checkins.each do |checkin|
-        - checkin.assets.each do |asset|
-          - if asset.type === 'Image'
-            = image_tag(asset.media.thumb.url)
-          - elsif asset.type === 'Audio'
-            = audio_tag(asset.media.url, controls: true)
-
+        = checkin.title
 .options
   .button#person_icons
     = link_to image_tag('edit_icon.png', id: 'edit_icon_people'), edit_person_path(@person)
