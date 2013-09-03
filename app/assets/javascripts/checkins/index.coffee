@@ -207,6 +207,8 @@ $ ()->
             url = 'People'
           when 'Category'
             url = 'Categories'
+          when 'Location'
+            url = 'Location'
         $.getJSON "/search/#{url}?name="+ui.item.label, (data)->
           if data.length isnt 0
             $('#itemContainer').html ''

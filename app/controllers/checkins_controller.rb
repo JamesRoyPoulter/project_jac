@@ -21,7 +21,7 @@ class CheckinsController < ApplicationController
   end
 
   def search
-    @checkins = Checkin.belonging_to(current_user).near(params[:name_startsWith])
+    @checkins = Checkin.belonging_to(current_user).near(params[:name],50)
     render json: @checkins, root: false
   end
 
