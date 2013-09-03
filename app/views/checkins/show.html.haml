@@ -1,6 +1,9 @@
 .show_checkin_container{data: { id: @checkin.id } }
   .title_container
     = @checkin.title
+    .edit_delete_links
+      = link_to image_tag('x_icon_invert.png', id: 'delete_icon_show_page'), @checkin, method: :delete, data: { confirm: 'Are you sure?' }
+      = link_to image_tag('edit_icon.png', id: "edit_icon_show_page"), edit_checkin_path(@checkin)
 
   .show_checkin_map
     #map.show
@@ -37,7 +40,3 @@
         #form_field_label CATEGORIES
         - @checkin.categories.each do |category|
           = category.name
-
-  .edit_delete_links
-    = link_to image_tag('x_icon_invert.png', id: 'delete_icon_show_page'), @checkin, method: :delete, data: { confirm: 'Are you sure?' }
-    = link_to image_tag('edit_icon.png', id: "edit_icon_show_page"), edit_checkin_path(@checkin)
