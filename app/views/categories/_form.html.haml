@@ -1,13 +1,13 @@
 = form_for @category do |f|
   = render 'partials/errors', resource: @category
 
-  .field
-    = f.text_field :name, placeholder: 'Name'
-  .field
+  .field#new_category_title
+    = f.text_field :name, placeholder: 'NEW CATEGORY NAME'
+  .field#marker_color_select
     .styled-select
       = f.select :color, Category.colors
     .marker
       %img#marker
 
-  .actions
-    = f.submit 'Save'
+  .actions.category
+    = f.submit 'Save', id: "category_submit"
