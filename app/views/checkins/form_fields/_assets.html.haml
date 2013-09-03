@@ -1,15 +1,11 @@
--# .add_media_overlay
-  -# = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/assets_image_small2.png", id: "assets_image"
 
-  = f.fields_for :assets do |asset|
-    = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
-    = asset.link_to_remove "Remove Words"
-  = f.link_to_add '', :assets
-
-  -# %p.instructions MEDIA
+= f.fields_for :assets do |asset|
+  = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
+  = asset.link_to_remove "Remove Words"
+= f.link_to_add '', :assets
 
 .add_media
-  #form_field_label.assets UPLOAD MEDIA
+
   .div_for_asset__upload_appends
     - if params[:action] === 'edit'
       = f.fields_for :assets do |asset|
@@ -24,6 +20,6 @@
         = asset.link_to_remove "X"
       = f.link_to_add '', :assets
 
-    .plus_button
+  .plus_button
 
-      %img#add_media{src:'http://iconizer.net/files/Wireframe_mono_icons/orig/sq_plus.png'}
+    %img#add_media{src:'http://iconizer.net/files/Wireframe_mono_icons/orig/sq_plus.png'}
