@@ -31,7 +31,7 @@ window.markerColor = (color) ->
 navBar = $.jPanelMenu(
   menu: "#navbar"
   trigger: ".menu_icon"
-  openPosition: "140px"
+  openPosition: "160px"
   closeOnContentClick: true
 )
 

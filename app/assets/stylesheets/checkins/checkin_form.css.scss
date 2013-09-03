@@ -63,7 +63,8 @@ select[multiple] {
   }
 
   #checkin_title,
-  .past_checkin_location_search{
+  #location {
+    margin-bottom: 1.3%;
     width: 50%;
     font-size: 1.3em;
     height: 30px;
@@ -157,22 +158,19 @@ select option.selected {
   float: left;
   background-color: #A9A9A9;
   margin-bottom: 3%;
-  .plus_button {
-    position: relative;
-    height: 83.6%; width: 25%;
-    float: left;
-    #add_media {
-      height: 30%; width: 50%;
-      top: 31%;
-      position: absolute;
-      margin-top: 3%;
-    }
+  overflow: auto;
+  #add_media {
+    height: 100%; width: 50%;
+    float: right;
   }
+  .checkin_medias { display: none; }
   .new_media {
-    height: 83.6%; width: 25%;
+    height: auto; width: 25%;
+    margin-left: 3%;
     float: right;
     .upload_preview {
       width: 100%;
+      top: 31%;
     }
   }
 }
