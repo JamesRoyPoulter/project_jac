@@ -23,9 +23,8 @@
 
 #logo_marker_background {
   background-color: purple;
-  width: 15%;
+  width: 20%;
   float: left;
-  margin-left: 10%;
   -webkit-transition: all 1s ease-in;
   -moz-transition: all 1s ease-in;
   -o-transition: all 1s ease-in;
@@ -36,6 +35,8 @@
 .home_links {
   margin-top: 8%;
   text-align: center;
+  float: left;
+  width: 40%;
 }
 
 #login_home,
@@ -43,23 +44,10 @@
   font-size: 1.5em;
   border-radius: 3px;
   color: #777;
-  padding: 1%;
   width: 10%;
   margin: 2% auto;
   display: inline block;
   font-family: "Sinhala MN", "Sinhala Sangam MN", "Perpetua", "Garamond";
-}
-
-#signup_home {
-  float: left;
-  width: 10%;
-  margin-left: 10%;
-}
-
-#login_home {
-  width: 10%;
-  float: left;
-  margin-left: 20%;
 }
 
 #login_home:hover,
@@ -67,6 +55,11 @@
 #signup_home:hover,
 #signup_home:focus {
   color: #fff;
+}
+
+.content#home_page {
+  margin-top: -5%;
+  height: auto;
 }
 
 
