@@ -1,7 +1,7 @@
 
 = f.fields_for :assets do |asset|
   = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
-  = asset.link_to_remove "Remove Words"
+  = asset.link_to_remove ""
 = f.link_to_add '', :assets
 
 .add_media

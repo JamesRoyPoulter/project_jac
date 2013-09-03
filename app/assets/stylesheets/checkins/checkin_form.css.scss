@@ -10,8 +10,9 @@ body[data-page=CheckinsPast] form {
 
 .checkin_form {
   width: 100%;
-  height: 100%;
-  margin: 20px auto;
+  height: 98%;
+  margin: 0 auto;
+  padding-top: 2%;
   text-align: center;
 
   form {
@@ -68,6 +69,7 @@ body[data-page=CheckinsPast] form {
     margin: auto;
     text-align: center;
     margin-top: 1%;
+    padding: 5px 15px 0px;
     font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
   }
 
@@ -169,22 +171,6 @@ body[data-page=CheckinsPast] form {
   width: 49%;
 }
 
-// .people.checkin_form_box, .people_overlay, .people_content {
-//   background-color: #767E7F;
-// }
-
-// .categories.checkin_form_box, .category_overlay, .category_content{
-//   background-color: #95B2BB;
-// }
-
-// .words.checkin_form_box, .words_overlay , .words_content{
-//   background-color: #998080;
-// }
-
-// .assets.checkin_form_box, .add_media_overlay, #assets_image, .add_media {
-//   background-color: #D2C469;
-// }
-
 .categories.checkin_form_box, .people.checkin_form_box, .assets.checkin_form_box, .words.checkin_form_box{
   border: none;
   text-align: center;
@@ -250,6 +236,10 @@ textarea {
   margin: auto;
   color: #fff;
   height: 100%;
+}
+
+select option.selected {
+  background-color: red;
 }
 
 .div_for_asset__upload_appends {
