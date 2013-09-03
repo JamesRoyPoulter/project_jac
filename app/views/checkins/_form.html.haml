@@ -15,22 +15,16 @@
       = f.date_select(:date, start_year: Time.now.year, end_year: (Time.now.year-1000))
 
   #checkin_inventory
-    .checkin_form_box.words
-      -# -if params[:action] == 'new' || params[:action] == 'past'
-      -#   .words_overlay
-      -#     = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/words.png",  id: 'words_image'
-      -#     %p.instructions WORDS
-      .words_content
-        .field#words_text_area
-          = f.text_area :description, placeholder: 'DESCRIPTION'
+    .words_form
+      = f.text_area :description, placeholder: 'DESCRIPTION'
 
-    .checkin_form_box.assets
+    .assets_form
       = render 'checkins/form_fields/assets', f: f
 
-    .checkin_form_box.categories
+    .categories_form
       = render 'checkins/form_fields/categories', f: f
 
-    .checkin_form_box.people
+    .people_form
       = render 'checkins/form_fields/people', f: f
 
     .submit_checkin

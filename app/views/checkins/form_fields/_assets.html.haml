@@ -1,25 +1,20 @@
+#form_field_label ASSETS
 
 = f.fields_for :assets do |asset|
   = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
   = asset.link_to_remove ""
-= f.link_to_add '', :assets
 
-.add_media
+- if params[:action] === 'edit'
+  = f.fields_for :assets do |asset|
 
-  .div_for_asset__upload_appends
-    - if params[:action] === 'edit'
-      = f.fields_for :assets do |asset|
+    - if asset.object.type
+      - if asset.object.type === 'Image'
+        = image_tag(asset.object.media.thumb.url)
+      - elsif asset.object.type === 'Audio'
+        = audio_tag(asset.object.media.url, controls: true)
 
-        - if asset.object.type
-          - if asset.object.type === 'Image'
-            = image_tag(asset.object.media.thumb.url)
-          - elsif asset.object.type === 'Audio'
-            = audio_tag(asset.object.media.url, controls: true)
+    = asset.file_field :media, style: 'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
+    = asset.link_to_remove "X"
 
-        = asset.file_field :media, style: 'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
-        = asset.link_to_remove "X"
-      = f.link_to_add '', :assets
-
-  .plus_button
-
-    %img#add_media{src:'http://iconizer.net/files/Wireframe_mono_icons/orig/sq_plus.png'}
+.plus_button
+  %img#add_media{src:'http://iconizer.net/files/Wireframe_mono_icons/orig/sq_plus.png'}

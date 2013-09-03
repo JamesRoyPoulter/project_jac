@@ -7,53 +7,43 @@ page = $('body').data('page')
 if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
 
   $('#add_media').click ()->
-    addMedia()
+    $('.assets_form').append $('<div/>',
+      class:'new_media'
+      html: $('<img/>',
+        class: 'upload_preview'
+      )
+    ).append $('<input>',
+      type:'file'
+      name: 'medias[]'
+      class: 'checkin_medias'
+      style:'display:none'
+    )
+    $('.checkin_medias').eq(-1).click()
+    $('.checkin_medias').change ()->
+      x = new RegExp(/^[a-zA-Z]*/)
+      div = $('<div/>', {class: 'new_media'})
+      div.append $('<img/>', {class: 'upload_preview'})
+      $('.plus_button').before div
+      if x.exec(this.files[0].type)[0] isnt 'audio'
+        Ehxe.previewImage(".upload_preview", this)
+      else
+        $('.upload_preview').eq(-1).attr("src",'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png')
+
 
   $('#checkin_description').click () ->
     $(@).css 'text-align', 'left'
 
-  addMedia = () ->
-    $('.div_for_asset__upload_appends').append $('<div/>',
-      class:'new_media'
-      html: $('<img/>',
-        class: 'upload_preview'
-        style: 'height: 50px'
-      )
-    ).append $('<input>',
-        type:'file'
-        name: 'medias[]'
-        class: 'checkin_medias'
-        style:'display:none'
-      ).append $('<img/>',
-        src: Ehxe.defaults.x,
-        class: 'x_icon'
-      )
-      $('.checkin_medias').eq(-1).click()
+  $('.upload_preview').click ()->
+    confirmation = confirm('Are you sure you want to delete this asset?')
+    if confirmation is true
+      $(this).parents('.new_media').remove()
 
-    $('.checkin_medias').change ()->
-      x = new RegExp(/^[a-zA-Z]*/)
-      if x.exec(this.files[0].type)[0] isnt 'audio'
-        Ehxe.previewImage(".upload_preview", this)
-      else
-        $('.div_for_asset__upload_appends').append $('<div/>',
-          class: 'new_media',
-          html: $('<img/>',
-            src: 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png',
-            class: 'upload_preview',
-            style: 'height: 50px'
-          )
-        )
-    $('.upload_preview').click ()->
-      confirmation = confirm('Are you sure you want to delete this asset?')
-      if confirmation is true
-        $(this).parents('.new_media').remove()
+  $('.x_icon').click ()->
+    $(@).parent('.new_media').remove()
 
-    $('.x_icon').click ()->
-      $(@).parent('.new_media').remove()
-
-    mediaAddNumber += 1
-    if mediaAddNumber>=10
-      $('#add_media').hide()
+  mediaAddNumber += 1
+  if mediaAddNumber>=10
+    $('#add_media').hide()
 
 #MAPPING BELOW
 if $('body').data('page') is 'CheckinsNew'

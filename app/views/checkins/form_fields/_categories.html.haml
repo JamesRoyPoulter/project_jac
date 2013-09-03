@@ -1,5 +1,4 @@
-.category_content
-  - if !current_user.categories.empty?
-    .field#categories_form
-      #form_field_label CATEGORIES
-      = f.select :category_ids, current_user.categories.collect { |x| [x.name,x.id] }, {prompt: false}, multiple: true
+- if !current_user.categories.empty?
+  .field#categories_form
+    #form_field_label CATEGORIES
+    = f.select :category_ids, current_user.categories.collect { |x| [x.name,x.id] }, {prompt: false}, multiple: true
