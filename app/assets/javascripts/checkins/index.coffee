@@ -2,10 +2,29 @@ $ ()->
 
   $('#location').click () ->
     $('#searchCategory').attr({value: 'location'})
+    $('#location_red').css('z-index', '1')
+    $('#location').css('z-index', '0')
+    $('#category_red').css('z-index', '0')
+    $('#category').css('z-index', '1')
+    $('#people_red').css('z-index', '0')
+    $('#people').css('z-index', '1')
   $('#category').click () ->
     $('#searchCategory').attr({value: 'category'})
+    $('#location_red').css('z-index', '0')
+    $('#location').css('z-index', '1')
+    $('#category_red').css('z-index', '1')
+    $('#category').css('z-index', '0')
+    $('#people_red').css('z-index', '0')
+    $('#people').css('z-index', '1')
   $('#people').click () ->
     $('#searchCategory').attr({value: 'people'})
+    $('#location_red').css('z-index', '0')
+    $('#location').css('z-index', '1')
+    $('#category_red').css('z-index', '0')
+    $('#category').css('z-index', '1')
+    $('#people_red').css('z-index', '1')
+    $('#people').css('z-index', '0')
+
   timelineDisplay = ()->
     screen_size = {
       width  : $(window).width(),

@@ -147,6 +147,17 @@
 }
 
 #location, #category, #people {
-  margin: 5px;
+  margin: 1px;
+  position: relative;
+  // display: block;
+  z-index: 1;
+}
+
+#location_red, #category_red, #people_red {
+  margin: 1px;
+  position: absolute;
+  // display: block;
+  // display: none;
+  z-index: 0;
 }
 
