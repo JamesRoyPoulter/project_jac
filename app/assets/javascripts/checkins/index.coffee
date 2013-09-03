@@ -181,6 +181,8 @@ $ ()->
           populateTimeLine checkin, index
           index +=1
         paginate()
+      else
+        $('.bottom_container').css('display', 'none')
 
     $( "#searchQuery" ).autocomplete
       source: (request, response)->
