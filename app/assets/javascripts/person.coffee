@@ -1,0 +1,1 @@
+$.getJSON '/people.json', (data) ->

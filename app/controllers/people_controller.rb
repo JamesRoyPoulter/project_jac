@@ -80,4 +80,5 @@ class PeopleController < ApplicationController
       params[:person][:user_id] = current_user.id
       params[:person]
     end
+
 end

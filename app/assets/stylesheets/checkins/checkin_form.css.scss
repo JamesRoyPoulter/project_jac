@@ -16,8 +16,9 @@
     margin: 0 auto;
 
     input#checkin_title {
-      width: 98.5%;
-      margin-bottom: 3px;
+      width: 100%;
+      margin-bottom: 1%;
+      margin-top: 2%;
     }
     #map {
       margin: 0 auto 3px;
@@ -32,9 +33,8 @@
   }
 
   .checkin_form_box {
-    border: 1px solid black;
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 30%;
     float: left;
 
     select[multiple] {
@@ -54,37 +54,45 @@
   }
 
   #checkin_description {
-    display: none;
-    max-width: 75%;
-    max-height: 75%
+    display: block;
+    width: 90%;
+    max-height: 72%;
+    margin: auto;
+    text-align: center;
+    margin-top: 1%;
+    font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
   }
-  .new_media {
-    width: 100%;
-    margin: 5px 0 5px 0;
+
+
+  #checkin_description:focus::-webkit-input-placeholder
+  {
+      color: transparent;
   }
 
   #checkin_title,
-  .past_checkin_location_search {
+  .past_checkin_location_search{
     width: 50%;
     font-size: 1.3em;
     height: 30px;
     border: none;
     text-align: center;
+    font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
   }
 
 }
 
 #add_media {
-  height: 20px;
+  height: 80%;
+  margin-top: 3%;
 }
 
 .add_media {
   position: relative;
 
   .plus_button {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
+    top: 40%;
+    width: 25%;
+    float: left;
   }
 }
 
@@ -101,14 +109,14 @@
   width: 100%;
   background: red;
   color: white;
-  font-family: 'Droid Sans';
+  font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
   font-size: 1.3em;
   border: none;
   border-radius: 3px;
 }
 
 .category_overlay, .people_overlay, .words_overlay, .add_media_overlay {
-  background-color: #00D5E1;
+  background-color: #A9A9A9;
   position: relative;
   width: 100%;
   height: 100%;
@@ -128,14 +136,17 @@
 }
 
 .people_content, .category_content, .words_content, .add_media {
-  height: 100%;
+  height: 90%;
   width: 100%;
-  display: none;
+  display: block;
   overflow: scroll;
+  background-color: #A9A9A9;
 }
 
 .words_content {
   display: block;
+  z-index: -1;
+  height: 100%;
 }
 
 #remove_words {
@@ -151,21 +162,21 @@
   width: 49%;
 }
 
-.people.checkin_form_box, .people_overlay, .people_content {
-  background-color: #767E7F;
-}
+// .people.checkin_form_box, .people_overlay, .people_content {
+//   background-color: #767E7F;
+// }
 
-.categories.checkin_form_box, .category_overlay, .category_content{
-  background-color: #95B2BB;
-}
+// .categories.checkin_form_box, .category_overlay, .category_content{
+//   background-color: #95B2BB;
+// }
 
-.words.checkin_form_box, .words_overlay , .words_content{
-  background-color: #998080;
-}
+// .words.checkin_form_box, .words_overlay , .words_content{
+//   background-color: #998080;
+// }
 
-.assets.checkin_form_box, .add_media_overlay, #assets_image, .add_media {
-  background-color: #D2C469;
-}
+// .assets.checkin_form_box, .add_media_overlay, #assets_image, .add_media {
+//   background-color: #D2C469;
+// }
 
 .categories.checkin_form_box, .people.checkin_form_box, .assets.checkin_form_box, .words.checkin_form_box{
   border: none;
@@ -173,17 +184,37 @@
   margin: auto;
 }
 
+.words.checkin_form_box {
+margin-bottom: 3%;
+}
+
+.assets.checkin_form_box {
+  width: 50%;
+  float: left;
+  height: 50%;
+}
+
+.categories.checkin_form_box, .people.checkin_form_box {
+  float: left;
+  width: 22%;
+  margin-left: 3%;
+  height: 50%;
+}
+
 #checkin_inventory {
   text-align: center;
-  margin: 0 auto;
+  margin: auto;
+  margin-top: 2%;
   width: 100%;
   height: 60%;
+  margin-bottom: 0;
 }
 
 p.instructions {
   z-index: 2;
-  font-family: "Perpetua Titling MT", Garamond, "Times New Roman";
-  font-size: 14px;
+  font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
+  font-size: 20px;
+  padding-top: 10%;
 }
 
 textarea {
@@ -192,5 +223,79 @@ textarea {
 }
 
 #words_text_area {
+  height: 90%;
+  display: block;
+  padding: 1%;
+}
+
+.new_media {
+  float: left;
+  max-width: 20%;
+  float: left;
+  top: 15%;
+  margin: 3%;
+  margin-top: 3%;
+}
+
+#checkin_category_ids, #checkin_person_ids {
+  font-size: 0.9em;
+  font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
+  margin: auto;
+  color: #fff;
   height: 100%;
 }
+
+.div_for_asset__upload_appends {
+  position: relative;
+}
+
+#form_field_label {
+  color: #fff;
+  background-color: #333;
+  display: block;
+  margin-top: -3%;
+  margin-bottom: 2%;
+  padding-top: 2%;
+}
+
+#form_field_label.assets {
+  margin-top: 0;
+  padding-top: 1%;
+}
+
+.submit_checkin {
+  padding: 1%;
+  background-color: purple;
+  border-radius: 3px;
+  width: 98%;
+  -webkit-transition: all 1s ease-in;
+  -moz-transition: all 1s ease-in;
+  -o-transition: all 1s ease-in;
+  -ms-transition:all 1s ease-in;
+  transition: all 1s ease-in;
+  text-align: center;
+  clear: both;
+}
+
+#submit_button  {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
+  font-size: 1.2em;
+}
+
+#people_form,
+#categories_form {
+  height: 100%;
+}
+
+ .past_checkin_title {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
+    font-size: 1.2em;
+    margin-bottom: 1%;
+    margin-top: -1%;
+ }

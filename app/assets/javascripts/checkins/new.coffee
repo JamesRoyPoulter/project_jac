@@ -38,6 +38,9 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
   $('#add_media').click ()->
     addMedia()
 
+  $('#checkin_description').click () ->
+    $(@).css 'text-align', 'left'
+
   addCategory = () ->
     categoryAddNumber += 1
     if categoryAddNumber>=10
@@ -73,7 +76,7 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
       $(@).parent('.new_media').remove()
 
     mediaAddNumber += 1
-    if mediaAddNumber>=5
+    if mediaAddNumber>=10
       $('#add_media').hide()
 
   autoOpenCategoryChoice = () ->

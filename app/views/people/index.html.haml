@@ -1,19 +1,19 @@
-%h1 Listing people
-
-%table
-  %tr
-    %th Name
-    %th Picture
-    %th
-    %th
-
+.people_page
   - @people.each do |person|
-    %tr
-      %td= link_to person.name, person
-      %td= person.picture
-      %td= link_to 'Edit', edit_person_path(person)
-      %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    .people
+      .title#people
+        = link_to person.name, person
+      .person_image
+        = image_tag person.picture.detail.url, id: 'person_image'
+      .options
+        .button#person_icons
+          = link_to image_tag('edit_icon.png', id: 'edit_icon'), edit_person_path(person)
+          = link_to image_tag('x_icon_invert.png'), person, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      .checkins
+        -# .person_divs
+        -#   -person.checkins.map do |checkin|
+        -#     - checkin.categories.map do |category|
+        -#       = category.color
 
-%br
-
-= link_to 'New Person', new_person_path
+.new_person_button
+  = link_to 'NEW PERSON', new_person_path, id: "submit_new_person"

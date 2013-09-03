@@ -1,3 +1,81 @@
-// Place all the styles related to the people controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.people_page {
+  width: 75%;
+  margin: auto;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.people {
+  display: inline-block;
+  width: 33%;
+  float: left;
+  margin-bottom: 5%;
+}
+
+.title#people, {
+  font-size: 1em;
+  font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
+}
+
+.new_person_button {
+  padding: 1%;
+  background-color: purple;
+  border-radius: 3px;
+  width: 30%;
+  margin: 5% auto;
+  -webkit-transition: all 1s ease-in;
+  -moz-transition: all 1s ease-in;
+  -o-transition: all 1s ease-in;
+  -ms-transition:all 1s ease-in;
+  transition: all 1s ease-in;
+  text-align: center;
+  clear: both;
+}
+
+#submit_new_person {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
+  font-size: 1.2em;
+}
+
+#edit_icon {
+  width: 5%;
+  margin-right: 5%;
+}
+
+#edit_icon_people {
+  margin: auto;
+  width: 3%;
+}
+
+#people_icons, #person_icons {
+  display: inline-block;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+}
+
+#person_image {
+  width: 50%;
+}
+
+.person {
+  width: 75%;
+  margin: auto;
+  text-align: center;
+}
+
+.name {
+  color: #fff;
+  font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
+  font-size: 1em;
+  margin: 5% auto 2%;
+}
+
+#left_arrow img {
+  width: 3%;
+  margin: auto;
+  margin-top: 10%;
+}
