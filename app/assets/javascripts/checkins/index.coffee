@@ -19,13 +19,13 @@ $ ()->
       height : $(window).height()
     }
     w = screen_size.width
-    if w < 410
+    if w <= 410
       num = 3
-    else if w > 411 and w < 640
+    else if w > 411 and w <= 640
       num = 4
-    else if w > 641 and w < 800
+    else if w > 641 and w <= 800
       num = 5
-    else if w > 801 and w < 1100
+    else if w > 801 and w <= 1100
       num = 6
     else if w > 1101
       num = 7
