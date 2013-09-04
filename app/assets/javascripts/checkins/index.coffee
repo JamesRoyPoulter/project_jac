@@ -32,6 +32,7 @@ $ ()->
     return num
 
   widthFunction = () ->
+    timelineDisplay()
     timeline_div_width = String(100/timelineDisplay().toFixed(2) + '%')
     return timeline_div_width
 
@@ -60,6 +61,10 @@ $ ()->
         style: 'background-color:'+Ehxe.marker_hex_values[category_color]
       ).appendTo '#checkin_title'+index
 
+  setWordHeight = () ->
+    height = $('.checkin_description').width()
+    $('.checkin_description').css ({"height:", height})
+
   # POPULATE CATEGORY
   populateTimeLine = (checkin, index)->
 
@@ -85,6 +90,13 @@ $ ()->
         src: Ehxe.defaults.audio
       ).appendTo "#checkin_title"+index
       setCategoryColor(checkin, index)
+    else if checkin.description and checkin.description.length isnt 0
+      $('<div/>',
+        class: 'jpage_image checkin_description'
+        html: checkin.description
+      ).appendTo "#checkin_title"+index
+      setCategoryColor(checkin, index)
+      setWordHeight()
     # else if checkin.video and checkin.video.length isnt 0
     #   $('<img/>',
     #     class:'jpage_image checkin_video'
