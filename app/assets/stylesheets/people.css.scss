@@ -12,7 +12,7 @@
 .people {
   display: inline-block;
   width: 33%;
-  float: left;
+  // float: left;
   margin-bottom: 5%;
 }
 
@@ -63,6 +63,10 @@
   width: 7%;
 }
 
+#edit_icon_people_show {
+  width: 4%;
+}
+
 #people_icons, #person_icons {
   display: inline-block;
   text-align: center;
@@ -72,6 +76,11 @@
 
 #person_image {
   width: 50%;
+}
+
+.picture_show {
+  width: 70%;
+  margin: auto;
 }
 
 .person {
@@ -147,12 +156,13 @@
     padding-top: 2%;
 
     .button#people_back {
-      width: 25%;
+      width: 10%;
       height: 25%;
       border-radius: 3px;
       background: #A9A9A9;
       padding: 1%;
-      margin: auto;
+      margin: 0 auto;
+      margin-bottom: 2%;
     }
   }
 
@@ -161,10 +171,11 @@
     width: 50%;
   }
 
-  #new_person_picture {
-    width: 65%;
-    margin: auto;
-  }
+
+#new_person_picture {
+  width: 65%;
+  margin: auto;
+}
 
 #person_picture {
   width: 81%;

@@ -60,7 +60,8 @@ input#email,
 input#user_email,
 input#user_name,
 input#user_password,
-input#user_password_confirmation {
+input#user_password_confirmation,
+input#user_current_password {
   width: 30%;
   margin: auto;
   padding: 1%;
@@ -83,3 +84,26 @@ input#user_password_confirmation {
   width: 30%;
   padding: 1%;
 }
+
+
+// DEVISE STYLING
+
+.remember_me_div {
+  margin-top: 2%;
+  font-size: .8em;
+}
+
+.devise_container_div {
+  margin-top: 2%;
+}
+
+#sign_in_devise_link, #sign_up_devise_link {
+  font-size: 1em;
+  padding: 2%;
+}
+
+#forgot_password_devise_link {
+  padding: 2%;
+  font-size: 1em;
+}
+

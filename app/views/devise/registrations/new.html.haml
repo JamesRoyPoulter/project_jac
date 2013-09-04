@@ -4,7 +4,7 @@
   .new_session
     - if params[:action] != 'edit'
       %h1.logo
-        = image_tag 'Ehxe_logo.png', id: 'ehxe_logo'
+        = link_to image_tag('Ehxe_logo.png', id: 'ehxe_logo'), root_path
 
     .field#email_field
       = f.email_field :email, placeholder: ' EMAIL', required: true, autofocus: true
