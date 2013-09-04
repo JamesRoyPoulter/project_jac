@@ -1,0 +1,23 @@
+.new_login
+  = current_user
+  %h1.logo
+    = image_tag 'Ehxe_logo.png', id: 'ehxe_logo'
+
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+
+    = devise_error_messages!
+
+    .field#email_field
+      = f.text_field :email, placeholder: "EMAIL", autofocus: true
+
+    .field#password_field
+      .password_field_tag
+        = f.password_field :password, placeholder: "PASSWORD", autocomplete: 'off'
+        %br
+        = f.check_box :remember_me
+        = f.label :remember_me
+
+    .actions.login
+      = f.submit 'LOGIN', id: 'login_submit'
+
+  = render "devise/shared/links"

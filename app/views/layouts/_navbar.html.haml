@@ -1,10 +1,9 @@
 %ul
-  - if current_user
-    %li
-    %li= link_to 'DASH', checkins_path
-    %li= link_to 'NEW EHXE', new_checkin_path
-    %li= link_to 'PAST EHXE', past_checkin_path
-    %li= link_to 'CATEGORIES', categories_path
-    %li= link_to 'PEOPLE', people_path
-    %li= link_to 'ACCOUNT', edit_user_path(current_user)
-    %li= link_to 'LOGOUT', session_path(session), method: :delete, data: {confirm: 'Are you sure?'}
+  %li
+  %li= link_to 'DASH', checkins_path
+  %li= link_to 'NEW EHXE', new_checkin_path
+  %li= link_to 'PAST EHXE', past_checkin_path
+  %li= link_to 'CATEGORIES', categories_path
+  %li= link_to 'PEOPLE', people_path
+  %li= link_to 'ACCOUNT', edit_user_registration_path(current_user)
+  %li= link_to 'LOGOUT', destroy_user_session_path, method: :delete, data: {confirm: 'Are you sure?'}
