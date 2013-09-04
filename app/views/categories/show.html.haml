@@ -2,16 +2,20 @@
   .title
     = image_tag("https://s3-eu-west-1.amazonaws.com/ehxe/markers/#{@category.color}_marker.png")
     = @category.name
-  %p
-    %b Checkins
+
+  #category_checkins
     - @checkins.each do |checkin|
+      #category_checkin_title
+        = link_to checkin.title, checkin_path(checkin)
       - checkin.assets.each do |asset|
         - if asset.type === 'Image'
           = image_tag(asset.media.thumb.url)
         - elsif asset.type === 'Audio'
           = audio_tag(asset.media.url, controls: true)
+#category_show
+  = link_to 'Edit Category', edit_category_path(@category)
 
-  = link_to 'Edit', edit_category_path(@category)
-
-  = link_to 'Back', categories_path
+.options#category_back
+  .button
+    = link_to 'Back', categories_path
 
