@@ -48,6 +48,7 @@ class CheckinsController < ApplicationController
 
   def create
     @checkin = Checkin.new(checkin_params)
+
     respond_to do |format|
       if @checkin.save
         build_new_assets

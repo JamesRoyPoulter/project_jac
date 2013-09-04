@@ -1,6 +1,9 @@
 $ ()->
 
   if $('body').data('page') is 'CheckinsEdit'
+    $('#add_media').click ()->
+        Ehxe.newCheckinPreviewImage()
+
     $('.upload_preview').click ()->
       confirmation = confirm('Are you sure you want to delete this asset?')
       if confirmation is true
