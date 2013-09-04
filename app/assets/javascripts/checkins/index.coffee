@@ -180,7 +180,7 @@ $ ()->
         listener = google.maps.event.addListener(map, "idle", ->
           zoom = map.getZoom()
           map.setZoom 16  if map.getZoom() > 16
-          map.setZoom(zoom-2) if map.getZoom() < 16
+          map.setZoom(zoom-1) if map.getZoom() < 16
           google.maps.event.removeListener listener
         )
         paginate()
