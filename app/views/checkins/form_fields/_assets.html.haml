@@ -9,12 +9,12 @@
 
 - if params[:action] === 'edit'
   = f.fields_for :assets do |asset|
-
-    - if asset.object.type
-      - if asset.object.type === 'Image'
-        = image_tag(asset.object.media.thumb.url)
-      - elsif asset.object.type === 'Audio'
-        = audio_tag(asset.object.media.url, class: 'edit_audio_display', controls: true)
+    .new_media
+      - if asset.object.type
+        - if asset.object.type === 'Image'
+          = image_tag asset.object.media.thumb.url, class: 'upload_preview'
+        - elsif asset.object.type === 'Audio'
+          = image_tag 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png', class: 'upload_preview'
 
     = asset.file_field :media, style: 'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
-    = asset.link_to_remove "X"
+    = asset.link_to_remove "", class: 'delete_asset'

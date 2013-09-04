@@ -5,6 +5,10 @@
   margin-top: 5%;
 }
 
+#person_picture {
+  display: none;
+}
+
 .people {
   display: inline-block;
   width: 33%;
@@ -17,6 +21,20 @@
   font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
 }
 
+#new_person_picture .button {
+  padding: 1%;
+  color: white;
+  background-color: purple;
+  border-radius: 3px;
+  width: 98%;
+  margin: 1% auto;
+  -webkit-transition: all 1s ease-in;
+  -moz-transition: all 1s ease-in;
+  -o-transition: all 1s ease-in;
+  -ms-transition:all 1s ease-in;
+  transition: all 1s ease-in;
+  margin-top: 2%;
+}
 .new_person_button {
   padding: 1%;
   background-color: purple;
@@ -140,6 +158,7 @@
 
   #edit_person_picture {
     margin: 3%;
+    width: 50%;
   }
 
   #new_person_picture {

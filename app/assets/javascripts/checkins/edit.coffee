@@ -1,12 +1,13 @@
 $ ()->
 
   if $('body').data('page') is 'CheckinsEdit'
+    $('.upload_preview').click ()->
+      confirmation = confirm('Are you sure you want to delete this asset?')
+      if confirmation is true
+        $(this).parents('.new_media').siblings('.delete_asset').click()
 
-    $('.div_for_asset__upload_appends').show()
-    $('textarea').show()
-
-    $('.people_content, .category_content, .words_content, .add_media').css("display", "block")
     checkin_id = $('#map').data 'id'
+
     $.getJSON '/checkins/'+checkin_id+'/edit.json', (data)->
       checkinLatLng = new google.maps.LatLng(data.checkin.latitude, data.checkin.longitude)
 
