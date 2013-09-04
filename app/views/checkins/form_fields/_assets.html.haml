@@ -14,7 +14,7 @@
       - if asset.object.type === 'Image'
         = image_tag(asset.object.media.thumb.url)
       - elsif asset.object.type === 'Audio'
-        = audio_tag(asset.object.media.url, controls: true)
+        = audio_tag(asset.object.media.url, class: 'edit_audio_display', controls: true)
 
     = asset.file_field :media, style: 'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
     = asset.link_to_remove "X"
