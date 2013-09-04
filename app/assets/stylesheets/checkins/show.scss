@@ -48,6 +48,10 @@
   height: 100%;
 }
 
+.assets:first-child {
+  margin-left: 10px;
+}
+
 .image_show, .video_show, .words_div {
   margin-right: 10px;
   float: left;
