@@ -2,7 +2,7 @@
   - @people.each do |person|
     .people
       .title#people
-        = link_to person.name, person
+        = person.name
       .person_image
         = render 'people/picture', person: person
       .options

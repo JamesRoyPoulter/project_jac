@@ -3,8 +3,10 @@
 
   .field#new_person_title
     = f.text_field :name, placeholder: "NEW PERSON NAME", id: "person_name"
-    - if @person.picture
+    - if params[:action] === 'edit'
       = image_tag @person.picture, id: "edit_person_picture"
+    - else
+      = image_tag 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/default-avatar.jpg', id: "edit_person_picture"
 
   .field#new_person_picture
     = f.file_field :picture
