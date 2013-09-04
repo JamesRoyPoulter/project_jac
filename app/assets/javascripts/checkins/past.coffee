@@ -1,4 +1,8 @@
 if $('body').data('page') is 'CheckinsPast'
+  $('.upload_preview').click ()->
+    confirmation = confirm('Are you sure you want to delete this asset?')
+    if confirmation is true
+      $(this).parents('.new_media').remove()
 
   $('.past_checkin_location_search').keypress (e)->
     if e.keyCode is 13

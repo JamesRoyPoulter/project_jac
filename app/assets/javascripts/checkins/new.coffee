@@ -14,9 +14,6 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
     $('.checkin_medias').eq(-1).click()
     $('.checkin_medias').change ()->
       x = new RegExp(/^[a-zA-Z]*/)
-      # div = $('<div/>', {class: 'new_media'})
-      # div.append $('<img/>', {class: 'upload_preview'})
-      # $('.plus_button').before div
       if x.exec(this.files[0].type)[0] isnt 'audio'
         Ehxe.previewImage(".upload_preview", this)
       else
@@ -25,11 +22,6 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
 
   $('#checkin_description').click () ->
     $(@).css 'text-align', 'left'
-
-  $('.upload_preview').click ()->
-    confirmation = confirm('Are you sure you want to delete this asset?')
-    if confirmation is true
-      $(this).parents('.new_media').remove()
 
   $('.x_icon').click ()->
     $(@).parent('.new_media').remove()
@@ -40,6 +32,12 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
 
 #MAPPING BELOW
 if $('body').data('page') is 'CheckinsNew'
+
+  $('.upload_preview').click ()->
+    confirmation = confirm('Are you sure you want to delete this asset?')
+    if confirmation is true
+      $(this).parents('.new_media').remove()
+
   #gets location from browser
   getLocation = ()->
     if navigator.geolocation
