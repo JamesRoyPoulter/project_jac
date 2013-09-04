@@ -12,13 +12,22 @@
   background-color: #A9A9A9;
   width: 100%;
   padding: 1% 0;
-  margin-top: 3%;
+  font-size: 1.4em;
+  margin: 3% auto 0 auto;
+  position: relative;
+}
+
+.edit_delete_links {
+  // clear: both;
+  // padding-bottom: 2%;
+  position: absolute;
+  top: 0;
 }
 
 .show_checkin_map {
   text-align: center;
   height: 35%;
-  margin-top: 2%;
+  margin: 2% auto 0 auto;
 
   #map {
     height: 100%;
@@ -28,18 +37,17 @@
 .assets_container {
   height: 35%;
   width: 100%;
-  margin-top: 2%;
   background-color: #A9A9A9;
+  margin: 2% auto 0 auto;
+  padding: 2% 0 2% 0;
   overflow-x: scroll;
   overflow-y: hidden;
 }
 
-.asset_div {
+.image_show, .video_show {
+  height: 100%;
   float: left;
-  height: 85%;
-  margin: auto;
-  text-align: center;
-  padding: 2% 0 2% 0;
+  margin-left: 2%;
 }
 
 .words_div {
@@ -52,30 +60,22 @@
 
 .music_container {
   width: 100%;
-  margin-top: 2%;
+  margin: 2% auto 0 auto;
 }
 
-#audio_show_controls {
+.audio_show_controls {
   width: 100%;
 }
 
-#image_show, #video_show {
-  height: 100%;
-}
-
-.edit_delete_links {
-  clear: both;
-  padding-bottom: 2%;
-}
-
 .people_category_container {
-  margin-top: 3%;
+  margin: 2% auto 0 auto;
 }
 
 .show_checkin_people, .show_checkin_categories {
   background-color: #A9A9A9;
   width: 49%;
   float: left;
+  margin-bottom: 2%;
 }
 
 .show_checkin_categories {

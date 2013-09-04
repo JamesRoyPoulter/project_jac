@@ -7,19 +7,13 @@
 
   .show_checkin_map
     #map.show
-    %br
-    #address
-      - if @checkin.address != nil
-        = @checkin.address
-
 
   .assets_container
-    .asset_div
-      - @checkin.assets.each do |asset|
-        - if asset.media.model.file_type === 'image'
-          = image_tag asset.media.url, id: "image_show"
-        - elsif asset.media.model.file_type === 'video'
-          = video_tag asset.media.url, controls: true, id: "video_show"
+    - @checkin.assets.each do |asset|
+      - if asset.media.model.file_type === 'image'
+        = image_tag asset.media.url, class: "image_show"
+      - elsif asset.media.model.file_type === 'video'
+        = video_tag asset.media.url, controls: true, class: "video_show"
 
     .words_div
       = @checkin.description
@@ -27,7 +21,7 @@
   - @checkin.assets.each do |asset|
     - if asset.media.model.file_type === 'audio'
       .music_container
-        = audio_tag asset.media.url, controls: true, id: "audio_show_controls"
+        = audio_tag asset.media.url, controls: true, class: "audio_show_controls"
 
   .people_category_container
     - if @checkin.people
