@@ -35,11 +35,11 @@
 }
 
 .assets_container {
-  height: 35%;
+  height: 25%;
   width: 100%;
   background-color: #A9A9A9;
   margin: 2% auto 0 auto;
-  padding: 2% 0 2% 0;
+  padding: 1% 0 1% 0;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
@@ -48,13 +48,7 @@
 .image_show, .video_show {
   height: 100%;
   display: inline-block;
-  margin-left: 2%;
-}
-
-.image_show, .video_show {
-  height: 100%;
-  display: inline-block;
-  margin-left: 2%;
+  margin-right: 1%;
 }
 
 .words_div {
@@ -81,8 +75,10 @@
 .show_checkin_people, .show_checkin_categories {
   background-color: #A9A9A9;
   width: 49%;
-  float: left;
   margin-bottom: 2%;
+  display: inline-block;
+  float: left;
+  min-height: 50px;
 }
 
 .show_checkin_categories {

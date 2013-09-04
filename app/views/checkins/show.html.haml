@@ -27,11 +27,13 @@
   .people_category_container
     - if @checkin.people
       .show_checkin_people
-        #form_field_label PEOPLE
+        #form_field_label
+          = link_to 'PEOPLE', people_path
         - @checkin.people.each do |person|
-          = person.name
+          = link_to person.name, person_path(person)
     - if @checkin.categories
       .show_checkin_categories
-        #form_field_label CATEGORIES
+        #form_field_label
+          = link_to 'CATEGORIES', categories_path
         - @checkin.categories.each do |category|
-          = category.name
+          = link_to category.name, category_path(category)
