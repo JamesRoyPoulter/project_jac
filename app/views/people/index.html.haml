@@ -1,3 +1,6 @@
+.new_person_button
+  = link_to 'NEW PERSON', new_person_path, id: "submit_new_person"
+
 .people_page
   - @people.each do |person|
     .people
@@ -15,5 +18,3 @@
         -#     - checkin.categories.map do |category|
         -#       = category.color
 
-.new_person_button
-  = link_to 'NEW PERSON', new_person_path, id: "submit_new_person"
