@@ -1,17 +1,17 @@
 %p#notice= notice
+.category
+  #category_show_name
+    = @category.name
 
-%p
-  %b Name:
-  - @category.name
-%p
-  %b Checkins
-  - @checkins.each do |checkin|
-    - checkin.assets.each do |asset|
-      - if asset.type === 'Image'
-        = image_tag(asset.media.thumb.url)
-      - elsif asset.type === 'Audio'
-        = audio_tag(asset.media.url, controls: true)
+  .checkin_show_for_person
+    - @checkins.each do |checkin|
+      - checkin.assets.each do |asset|
+        - if asset.type === 'Image'
+          = image_tag(asset.media.thumb.url)
+        - elsif asset.type === 'Audio'
+          = audio_tag(asset.media.url, controls: true)
 
-= link_to 'Edit', edit_category_path(@category)
-
-= link_to 'Back', categories_path
+.options
+  .button#category_icons
+    = link_to 'Edit', edit_category_path(@category)
+    = link_to 'Back', categories_path
