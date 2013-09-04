@@ -13,7 +13,7 @@
   width: 100%;
   padding: 1% 0;
   font-size: 1.4em;
-  margin: 3% auto 0 auto;
+  margin: 5% auto 0 auto;
   position: relative;
 }
 
@@ -66,7 +66,7 @@
   max-width: 200px;
   overflow: scroll;
   padding-top: 1%;
-  height: 98%;
+  height: 94%;
   text-align: left;
   line-height: 125%;
   box-shadow: 5px 5px 2px #777;
@@ -107,4 +107,7 @@
   width: 25px;
 }
 
+.show_checkin_categories a {
+  display: block;
+}
 
