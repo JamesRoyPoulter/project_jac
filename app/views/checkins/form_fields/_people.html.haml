@@ -1,13 +1,9 @@
-
--# .people_overlay
--#   -# = image_tag "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/People.png",  id: 'people_image'
--#   %p.instructions PEOPLE
 .people_content
-  - if !current_user.people.empty?
-    .field#people_form
-      #form_field_label PEOPLE
+  .field#people_form
+    #form_field_label PEOPLE
+    - if !current_user.people.empty?
       = f.select :person_ids, current_user.people.collect { |x| [x.name,x.id] }, {prompt: false}, multiple: true
-  - else
-    .no_people
-      You have not yet added anyone
+    - else
+      .no_people
+        You have not yet added anyone
 
