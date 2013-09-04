@@ -1,7 +1,6 @@
-= devise_error_messages!
+= render 'partials/errors'
 
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
-  = render 'partials/errors', resource: @user
 
   .edit_user
     - if params[:action] != 'edit'

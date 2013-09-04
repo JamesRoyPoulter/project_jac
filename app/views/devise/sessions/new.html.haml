@@ -1,11 +1,10 @@
 .new_login
-  = current_user
+  = render 'partials/errors', resource: resource
+
   %h1.logo
     = link_to image_tag('Ehxe_logo.png', id: 'ehxe_logo'), root_path
 
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-
-    = devise_error_messages!
 
     .field#email_field
       = f.text_field :email, placeholder: "EMAIL", autofocus: true
