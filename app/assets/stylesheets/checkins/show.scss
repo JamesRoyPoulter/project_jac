@@ -18,10 +18,10 @@
 }
 
 .edit_delete_links {
-  // clear: both;
-  // padding-bottom: 2%;
   position: absolute;
   top: 0;
+  right: 0;
+  padding: 1%;
 }
 
 .show_checkin_map {
@@ -42,11 +42,18 @@
   padding: 2% 0 2% 0;
   overflow-x: scroll;
   overflow-y: hidden;
+  white-space: nowrap;
 }
 
 .image_show, .video_show {
   height: 100%;
-  float: left;
+  display: inline-block;
+  margin-left: 2%;
+}
+
+.image_show, .video_show {
+  height: 100%;
+  display: inline-block;
   margin-left: 2%;
 }
 
@@ -82,16 +89,8 @@
   margin-left: 2%;
 }
 
-#delete_icon_show_page {
-  width: 3%;
-  margin-top: 2%;
-  margin-right: 2%;
-}
-
 #edit_icon_show_page {
-  width: 4%;
-  margin-top: 2%;
-  margin-left: 2%;
+  width: 25px;
 }
 
 
