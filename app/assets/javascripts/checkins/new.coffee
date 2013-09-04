@@ -3,6 +3,7 @@ mediaAddNumber = 0
 page = $('body').data('page')
 
 if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
+  $('#checkin_category_ids').change ()->
 
   $('#add_media').click ()->
     $('.assets_form').append $('<div/>',
@@ -14,10 +15,14 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
     $('.checkin_medias').eq(-1).click()
     $('.checkin_medias').change ()->
       x = new RegExp(/^[a-zA-Z]*/)
-      if x.exec(this.files[0].type)[0] isnt 'audio'
+      type = x.exec(this.files[0].type)[0]
+      if type is 'image'
         Ehxe.previewImage(".upload_preview", this)
-      else
+      else if type is 'audio'
         $('.upload_preview').eq(-1).attr("src",'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png')
+      else
+        alert 'Invalid File Type'
+        delete this.files[0]
 
 
   $('#checkin_description').click () ->
