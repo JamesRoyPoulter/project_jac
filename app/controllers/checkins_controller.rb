@@ -13,6 +13,7 @@ class CheckinsController < ApplicationController
 
   def show
     @checkin = Checkin.find(params[:id])
+    @people = @checkin.people
 
     respond_to do |format|
       format.html
