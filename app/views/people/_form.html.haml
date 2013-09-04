@@ -8,6 +8,8 @@
 
   .field#new_person_picture
     = f.file_field :picture
+    .button
+      Upload Image
 
   .actions.person
     = f.submit 'Save', id: "person_submit"

@@ -117,17 +117,9 @@ class CheckinsController < ApplicationController
           when 'audio' then Audio
           when 'video' then Video
         end
-        @file = klass.create media: asset, checkin_id: @checkin.id, user_id: current_user.id
-         yt_client.upload(File.open(@file.media.url)) if @file.type === 'Video'
+        klass.create media: asset, checkin_id: @checkin.id, user_id: current_user.id
       end
     end
-  end
-  def yt_client
-    @yt_client ||= YouTubeIt::Client.new(
-      username: ENV['GOOGLE_USER'],
-      password: ENV['GOOGLE_PASS'],
-      dev_key: ENV['GOOGLE2']
-    )
   end
 
 end
