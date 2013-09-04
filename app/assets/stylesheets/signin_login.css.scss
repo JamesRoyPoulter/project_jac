@@ -60,7 +60,8 @@ input#email,
 input#user_email,
 input#user_name,
 input#user_password,
-input#user_password_confirmation {
+input#user_password_confirmation,
+input#user_current_password {
   width: 30%;
   margin: auto;
   padding: 1%;

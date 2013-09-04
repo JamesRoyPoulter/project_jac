@@ -156,25 +156,21 @@
     padding-top: 2%;
 
     .button#people_back {
-      width: 25%;
+      width: 10%;
       height: 25%;
       border-radius: 3px;
       background: #A9A9A9;
       padding: 1%;
-      margin: 2% auto;
+      margin: 0 auto;
+      margin-bottom: 2%;
     }
   }
 
-// <<<<<<< HEAD
-// #edit_person_picture {
-//   margin: 3%;
-// }
-// =======
   #edit_person_picture {
     margin: 3%;
     width: 50%;
   }
-// >>>>>>> 273d834b5d10d44f5d19e468536d30aca2aa4721
+
 
 #new_person_picture {
   width: 65%;
