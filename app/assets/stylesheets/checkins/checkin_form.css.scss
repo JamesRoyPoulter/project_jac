@@ -149,9 +149,14 @@ select[multiple] {
   background-color: #A9A9A9;
   margin-bottom: 3%;
   overflow: auto;
-  #add_media {
-    height: 15px; width: 15px;
+  .add_media {
+    height: 83.6%;
+    width: 25%;
     float: right;
+    #add_media {
+      height: 30%; width: 50%;
+      margin: 60% auto;
+    }
   }
   .checkin_medias { display: none; }
   .new_media {

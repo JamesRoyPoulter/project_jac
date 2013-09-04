@@ -83,6 +83,38 @@ window.Ehxe =
         $(element).eq(-1).attr "src", e.target.result
       reader.readAsDataURL input.files[0]
 
+  getFileType: (file)->
+    x = new RegExp(/^[a-zA-Z]*/)
+    x.exec(file.files[0].type)[0]
+
+  validateFileType: (type,element)->
+    if type is 'image'
+      Ehxe.previewImage(".upload_preview", element)
+    else if type is 'audio'
+      $('.upload_preview').eq(-1).attr("src",'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png')
+    else
+      alert 'Invalid File Type'
+      delete this.files[0]
+
+  appendFileInput: (element)->
+    $(element).append $('<div/>',
+      class:'new_media'
+      html: $('<img/>',{class: 'upload_preview'})
+    ).append $('<input>',
+      {type:'file', name: 'medias[]', class: 'checkin_medias' }
+    )
+
+  newCheckinPreviewImage: ()->
+    Ehxe.appendFileInput('.assets_form')
+    $('.checkin_medias').eq(-1).click()
+    $('.checkin_medias').change ()->
+      fileType = Ehxe.getFileType(this)
+      Ehxe.validateFileType(fileType,this)
+    $('.upload_preview').click ()->
+      confirmation = confirm('Are you sure you want to delete this asset?')
+      if confirmation is true
+        $(this).parents('.new_media').remove()
+
   Maps:
     markersArray: []
 
@@ -214,3 +246,10 @@ window.STYLES = [
     color: "#cccccc"
   ]
 ]
+
+# walkme = document.createElement("script")
+# walkme.type = "text/javascript"
+# walkme.async = true
+# walkme.src = "http://cdn.walkme.com/users/b951c2088e0f4e60ad4b5e0306bf89c1/walkme_b951c2088e0f4e60ad4b5e0306bf89c1.js"
+# s = document.getElementsByTagName("script")[0]
+# s.parentNode.insertBefore walkme, s
