@@ -5,19 +5,19 @@
       = link_to image_tag('edit_icon.png', id: "edit_icon_show_page"), edit_checkin_path(@checkin)
       = link_to image_tag('x_icon_invert.png', id: 'delete_icon_show_page'), @checkin, method: :delete, data: { confirm: 'Are you sure?' }
 
-
   .show_checkin_map
     #map.show
 
   .assets_container
-    - @checkin.assets.each do |asset|
-      - if asset.media.model.file_type === 'image'
-        = image_tag asset.media.url, class: "image_show"
-      - elsif asset.media.model.file_type === 'video'
-        = video_tag asset.media.url, controls: true, class: "video_show"
-
-    .words_div
-      = @checkin.description
+    .assets
+      - @checkin.assets.each do |asset|
+        - if asset.media.model.file_type === 'image'
+          = image_tag asset.media.url, class: "image_show"
+        - elsif asset.media.model.file_type === 'video'
+          = video_tag asset.media.url, controls: true, class: "video_show"
+      .words_div
+        .words_inside
+          = @checkin.description
 
   - @checkin.assets.each do |asset|
     - if asset.media.model.file_type === 'audio'

@@ -1,4 +1,12 @@
  $ ()->
+
+  assets = $('.assets_container .assets')
+  if assets.length > 0
+    width = 0
+    assets.children().each (index, element) =>
+      width += ($(element).width() + 10)
+    assets.css width: "#{width}px", maxWidth: "#{width}px"
+
   if $('body').data('page') is 'CheckinsShow'
     checkin_id = $('.show_checkin_container').data 'id'
     $.getJSON '/checkins/'+checkin_id+'.json', (data)->

@@ -42,21 +42,35 @@
   padding: 1% 0 1% 0;
   overflow-x: scroll;
   overflow-y: hidden;
-  white-space: nowrap;
 }
 
-.image_show, .video_show {
+.assets {
   height: 100%;
-  display: inline-block;
-  margin-right: 1%;
+}
+
+.image_show, .video_show, .words_div {
+  margin-right: 10px;
+  float: left;
+  display: block;
+  background: #fff;
+  height: 100%;
+  box-shadow: 5px 5px 2px #777;
 }
 
 .words_div {
-  width: 50%;
-  height: 100%;
-  margin: auto;
-  padding-top: 2%;
-  padding-bottom: 2%;
+  width: 200px;
+  max-width: 200px;
+  overflow: scroll;
+  padding-top: 1%;
+  height: 93%;
+  text-align: left;
+  line-height: 125%;
+  box-shadow: 5px 5px 2px #777;
+}
+
+.words_inside {
+  padding: 5%;
+  padding-top: 1%;
 }
 
 .music_container {
