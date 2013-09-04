@@ -3,8 +3,8 @@
     = image_tag 'Ehxe_logo.png', id: 'ehxe_logo'
   .logo_marker
     .home_links
-      = link_to 'LOGIN', sign_in_path, id: 'login_home'
+      = link_to 'LOGIN', new_user_session_path, id: 'login_home'
     #logo_marker_background
       = image_tag 'exhe_marker_clear.png', id: 'marker_home'
     .home_links
-      = link_to 'SIGNUP', new_user_path, id: 'signup_home'
+      = link_to 'SIGNUP', new_user_registration_path, id: 'signup_home'

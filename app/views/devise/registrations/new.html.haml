@@ -1,5 +1,5 @@
-= form_for(@user) do |f|
-  = render 'partials/errors', resource: @user
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  = devise_error_messages!
 
   .new_session
     - if params[:action] != 'edit'
@@ -7,7 +7,7 @@
         = image_tag 'Ehxe_logo.png', id: 'ehxe_logo'
 
     .field#email_field
-      = f.email_field :email, placeholder: ' EMAIL', required: true
+      = f.email_field :email, placeholder: ' EMAIL', required: true, autofocus: true
     .field#name_field
       = f.text_field :name, placeholder: ' NAME', required: true
     .field#password_field
@@ -18,3 +18,5 @@
         = f.password_field :password_confirmation, placeholder: ' PASSWORD CONFIRMATION', required: true
     .field.actions.login
       = f.submit 'SIGN UP', class: 'submit_button'
+
+    = render "devise/shared/links"

@@ -1,11 +1,11 @@
 class CategoriesController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate_user!
 
   def index
     @categories = Category.where(user_id: current_user.id)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @categories }
     end
   end

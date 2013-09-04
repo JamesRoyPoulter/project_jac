@@ -160,13 +160,14 @@ select option.selected {
   margin-bottom: 3%;
   overflow: auto;
   #add_media {
-    height: 100%; width: 50%;
+    height: 15px; width: 15px;
     float: right;
   }
   .checkin_medias { display: none; }
   .new_media {
     height: auto; width: 25%;
     margin-left: 3%;
+    margin-right: 4.7%;
     float: right;
     .upload_preview {
       width: 100%;
