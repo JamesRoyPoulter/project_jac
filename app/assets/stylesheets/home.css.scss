@@ -6,7 +6,14 @@
 }
 
 .logo_div {
-  margin-top: 3%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  text-align: center;
+  background: black;
+  height: 15%;
+  img {
+    height: 100%;
+  }
 }
 
 #marker_home {
@@ -67,4 +74,15 @@
   height: 100%;
 }
 
+#error_explanation {
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 3px;
+    border: 2px solid grey;
+    padding: 1%;
+    background: white;
+    h2 {
+
+    }
+}
 

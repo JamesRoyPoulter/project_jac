@@ -19,13 +19,13 @@ $ ()->
       height : $(window).height()
     }
     w = screen_size.width
-    if w < 410
+    if w <= 410
       num = 3
-    else if w > 411 and w < 640
+    else if w > 411 and w <= 640
       num = 4
-    else if w > 641 and w < 800
+    else if w > 641 and w <= 800
       num = 5
-    else if w > 801 and w < 1100
+    else if w > 801 and w <= 1100
       num = 6
     else if w > 1101
       num = 7
@@ -52,11 +52,6 @@ $ ()->
       infowindow.open(map, marker))
     markersArray.push marker
     bounds.extend(checkinLatLng)
-    if markersArray[0] is marker
-      map.setZoom(13)
-      map.setCenter(checkinLatLng)
-    else
-      map.fitBounds(bounds)
 
   setCategoryColor = (checkin, index)->
     if checkin.categories[0]?
@@ -168,7 +163,15 @@ $ ()->
         $.each data.checkins, (index, checkin)->
           addCheckinMarker checkin, map, bounds
           populateTimeLine checkin, index
+
           index +=1
+        map.fitBounds(bounds)
+        listener = google.maps.event.addListener(map, "idle", ->
+          zoom = map.getZoom()
+          map.setZoom 16  if map.getZoom() > 16
+          map.setZoom(zoom-2) if map.getZoom() < 16
+          google.maps.event.removeListener listener
+        )
         paginate()
       else
         $('.bottom_container').css('display', 'none')
@@ -225,3 +228,13 @@ $ ()->
             paginate()
           else
             alert 'No Results Found'
+
+
+
+# FUTURE CODE FOR MAP POSITION
+
+    # method to put in after populateTimeline() is called
+    # setLowestLatitude = (checkin) ->
+    #   lowestLatitude = 0
+    #   return Lowest
+    # and map.setCenter(16.7758, 3.0094)

@@ -69,18 +69,32 @@ input#user_current_password {
   text-align: center;
 }
 
-.password_placeholder {
-  position: absolute;
-  margin: auto;
-  text-align: center;
-  color: #A9A9A9;
-  width: 100%;
-  bottom: 40%;
-}
-
 #_sessions_email,
 #_sessions_password {
   text-align: center;
   width: 30%;
   padding: 1%;
 }
+
+
+// DEVISE STYLING
+
+.remember_me_div {
+  margin-top: 2%;
+  font-size: .8em;
+}
+
+.devise_container_div {
+  margin-top: 2%;
+}
+
+#sign_in_devise_link, #sign_up_devise_link {
+  font-size: 1em;
+  padding: 2%;
+}
+
+#forgot_password_devise_link {
+  padding: 2%;
+  font-size: 1em;
+}
+

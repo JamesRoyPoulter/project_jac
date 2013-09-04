@@ -1,4 +1,5 @@
 .jPanelMenu-panel {
+  position: relative;
   height: 100%;
   width: 100%;
 }
@@ -64,7 +65,8 @@
 
   .map_dash {
     width: 100%;
-    height: 100%;
+    height: 94%;
+    margin-top: 2.9%;
 
     #map {
       height: 100%;
@@ -73,6 +75,9 @@
   }
 
   .top_bar {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4%; min-height: 30px;
     -webkit-background-clip: border-box;
     -webkit-background-origin: padding-box;
     -webkit-background-size: auto;
@@ -93,14 +98,7 @@
     font-size: 16px;
     font-weight: bold;
     text-shadow: rgb(34, 34, 34) 0px -1px 2px;
-    width: 225px;
     zoom: 1;
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 30px;
-    height: 4%;
     font-size: 1.5em;
     border: 0;
     text-align: center;
@@ -116,20 +114,13 @@
 
   .content {
     position: absolute;
+    top: 0;
     left: 0;
-    width: 100%;
-    height: 96%;
+    width: 100%; height: 100%;
     overflow: auto;
     background-image: url('tweed.png')
   }
 
-  .errors {
-    font-size: 1em;
-    width: 100%;
-    border: 2px solid red;
-    border-radius: 5px;
-    margin: 0 auto;
-  }
 }
 
 @media all and (max-width: 700px) {
@@ -146,15 +137,12 @@
 #location, #category, #people {
   margin: 1px;
   position: relative;
-  // display: block;
   z-index: 1;
 }
 
 #location_red, #category_red, #people_red {
   margin: 1px;
   position: absolute;
-  // display: block;
-  // display: none;
   z-index: 0;
 }
 

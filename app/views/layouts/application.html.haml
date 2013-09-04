@@ -17,11 +17,11 @@
       -if current_user
         #navbar
           = render 'layouts/navbar'
+        .content
+          = yield
         .top_bar
           = link_to image_tag('Ehxe_logo_name.png', id: 'logo_name'),  checkins_path
           = image_tag 'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/navbar_icon.png', class: 'menu_icon'
-        .content
-          = yield
       -else
         .content#home_page
           = yield

@@ -30,7 +30,7 @@
         #form_field_label
           = link_to 'PEOPLE', people_path
         - @checkin.people.each do |person|
-          = link_to person.name, person_path(person)
+          = link_to person.name, people_path
     - if @checkin.categories
       .show_checkin_categories
         #form_field_label

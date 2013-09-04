@@ -1,9 +1,9 @@
-%p#notice= notice
-.category
-  #category_show_name
+.category_show
+  .title
+    = image_tag("https://s3-eu-west-1.amazonaws.com/ehxe/markers/#{@category.color}_marker.png")
     = @category.name
-
-  .checkin_show_for_person
+  %p
+    %b Checkins
     - @checkins.each do |checkin|
       - checkin.assets.each do |asset|
         - if asset.type === 'Image'
@@ -11,7 +11,7 @@
         - elsif asset.type === 'Audio'
           = audio_tag(asset.media.url, controls: true)
 
-.options
-  .button#category_icons
-    = link_to 'Edit', edit_category_path(@category)
-    = link_to 'Back', categories_path
+  = link_to 'Edit', edit_category_path(@category)
+
+  = link_to 'Back', categories_path
+
