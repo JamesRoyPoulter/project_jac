@@ -74,3 +74,73 @@
   margin: auto;
   margin-top: 10%;
 }
+
+
+.edit_person,
+.new_person {
+  width: 35%;
+  margin: 0 auto;
+
+  form {
+    width: 100%;
+    text-align: center;
+
+    #new_person_title {
+      width: 100%;
+      margin-top: 8%;
+      padding: 0;
+    }
+
+    #person_name {
+      width: 99%;
+      height: 35px;
+      border: none;
+      text-align: center;
+      border-radius: 3px;
+      font-size: 1.6em;
+    }
+  }
+
+  .actions.person {
+    padding: 1%;
+    background-color: purple;
+    border-radius: 3px;
+    width: 98%;
+    margin: 1% auto;
+    -webkit-transition: all 1s ease-in;
+    -moz-transition: all 1s ease-in;
+    -o-transition: all 1s ease-in;
+    -ms-transition:all 1s ease-in;
+    transition: all 1s ease-in;
+    margin-top: 2%;
+  }
+
+    #person_submit {
+      border: none;
+      background-color: transparent;
+      color: #fff;
+      font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
+      font-size: 1.2em;
+    }
+  }
+
+  .options {
+    text-align: center;
+    padding-top: 2%;
+
+    .button#people_back {
+      width: 25%;
+      height: 25%;
+      border-radius: 3px;
+      background: #A9A9A9;
+      padding: 1%;
+      margin: auto;
+    }
+  }
+
+  #edit_person_picture {
+    margin: 3%;
+  }
+
+
+

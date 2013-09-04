@@ -1,6 +1,6 @@
+.edit_person
+  = render 'form'
 
-= render 'form'
-
-= link_to 'Show', @person
-\|
-= link_to 'Back', people_path
+  .options
+    .button#people_back
+      = link_to 'Back', people_path

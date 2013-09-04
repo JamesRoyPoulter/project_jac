@@ -1,13 +1,13 @@
 = form_for @person do |f|
   = render 'partials/errors', resource: @person
 
-  .field
-    = f.label :name
-    = f.text_field :name
+  .field#new_person_title
+    = f.text_field :name, placeholder: "NEW PERSON NAME", id: "person_name"
+    - if @person.picture
+      = image_tag @person.picture, id: "edit_person_picture"
 
-  .field
-    = f.label :picture
+  .field#new_person_picture
     = f.file_field :picture
 
-  .actions
-    = f.submit 'Save'
+  .actions.person
+    = f.submit 'Save', id: "person_submit"

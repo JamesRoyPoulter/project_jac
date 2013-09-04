@@ -1,5 +1,6 @@
-%h1 New person
+.new_person
+  = render 'form'
 
-= render 'form'
-
-= link_to 'Back', people_path
+.options
+  .button#people_back
+    = link_to 'Back', people_path
