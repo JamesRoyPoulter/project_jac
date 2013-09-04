@@ -4,7 +4,7 @@
   .name
     = @person.name
 
-  .picture
+  .picture_show
     = render 'people/picture', person: @person
 
   .person_checkins
@@ -13,8 +13,9 @@
         = checkin.title
 .options
   .button#person_icons
-    = link_to image_tag('edit_icon.png', id: 'edit_icon_people'), edit_person_path(@person)
+    = link_to image_tag('edit_icon.png', id: 'edit_icon_people_show'), edit_person_path(@person)
 
 
-    .link_to_back
-      = link_to image_tag('left_arrow.png'), people_path, id: "left_arrow"
+.options
+  .button#people_back
+    = link_to 'Back', people_path

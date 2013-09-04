@@ -45,6 +45,10 @@
   width: 7%;
 }
 
+#edit_icon_people_show {
+  width: 4%;
+}
+
 #people_icons, #person_icons {
   display: inline-block;
   text-align: center;
@@ -54,6 +58,11 @@
 
 #person_image {
   width: 50%;
+}
+
+.picture_show {
+  width: 70%;
+  margin: auto;
 }
 
 .person {
@@ -134,18 +143,18 @@
       border-radius: 3px;
       background: #A9A9A9;
       padding: 1%;
-      margin: auto;
+      margin: 2% auto;
     }
   }
 
-  #edit_person_picture {
-    margin: 3%;
-  }
+#edit_person_picture {
+  margin: 3%;
+}
 
-  #new_person_picture {
-    width: 65%;
-    margin: auto;
-  }
+#new_person_picture {
+  width: 65%;
+  margin: auto;
+}
 
 #person_picture {
   width: 81%;
