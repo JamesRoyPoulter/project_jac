@@ -1,6 +1,8 @@
 #form_field_label
   ASSETS
-  %img#add_media{src:'http://iconizer.net/files/Wireframe_mono_icons/orig/sq_plus.png'}
+
+.add_media
+  %img#add_media{src:'https://s3-eu-west-1.amazonaws.com/ehxe/plus_icon.png'}
 
 = f.fields_for :assets do |asset|
   = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK

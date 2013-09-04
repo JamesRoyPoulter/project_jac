@@ -37,11 +37,11 @@ if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
 
 #MAPPING BELOW
 if $('body').data('page') is 'CheckinsNew'
-
-  $('.upload_preview').click ()->
-    confirmation = confirm('Are you sure you want to delete this asset?')
-    if confirmation is true
-      $(this).parents('.new_media').remove()
+  ()->
+    $('.upload_preview').click ()->
+      confirmation = confirm('Are you sure you want to delete this asset?')
+      if confirmation is true
+        $(this).parents('.new_media').remove()
 
   #gets location from browser
   getLocation = ()->
@@ -57,7 +57,7 @@ if $('body').data('page') is 'CheckinsNew'
     #sets lat and lng to current location
     myLatlng = new google.maps.LatLng position.coords.latitude, position.coords.longitude
 
-    map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions myLatlng, 16
+    map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions(myLatlng, 16)
     map.mapTypes.set 'Styled', Ehxe.Maps.styledMap()
 
     #creates the geolocated marker
