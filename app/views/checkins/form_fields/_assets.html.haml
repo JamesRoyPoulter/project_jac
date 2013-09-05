@@ -1,4 +1,5 @@
 - if params[:action] === 'new' || params[:action] === 'past'
+
   = f.fields_for :assets do |asset|
     = asset.file_field :media, style:'display:none' #DO NOT DELETE OR FILE UPLOAD WILL NOT WORK
     = asset.link_to_remove ""

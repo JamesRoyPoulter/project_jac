@@ -1,24 +1,24 @@
 if $('body').data('page') is 'CheckinsPast'
+
   $('#add_media').click ()->
         Ehxe.newCheckinPreviewImage()
 
   $('.past_checkin_location_search').keypress (e)->
     if e.keyCode is 13
       location = $('#location').val()
-      geocoder = new google.maps.Geocoder()
-      geocoder.geocode address: location, (results, status)->
+      Ehxe.Maps.geocoder.geocode address: location, (results, status)->
         if status is google.maps.GeocoderStatus.OK
           $('form').slideDown 500
 
           location = results[0].geometry.location
-          center = new google.maps.LatLng location.lat(), location.lng()
+          center = Ehxe.Maps.latlng location.lat(), location.lng()
           Ehxe.setFormLatLng location.lat(), location.lng()
 
           map = Ehxe.Maps.map 'map', center, 12
-          map.mapTypes.set 'Styled', Ehxe.Maps.styledMap()
+          Ehxe.Maps.styleMap map, 'Styled'
 
           #creates the geolocated marker
-          marker = Ehxe.Maps.placeMarker(center,map,'black',true,'mark your life')
+          marker = Ehxe.Maps.placeMarker(Ehxe.Maps.mapCenter(map),map,'black',true,'mark your life')
 
           google.maps.event.addListener marker, 'dragend', ()->
             position = marker.getPosition()
