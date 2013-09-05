@@ -11,17 +11,18 @@
   .show_checkin_map
     #map.show
 
-  .assets_container
-    .assets
-      - @checkin.assets.each do |asset|
-        - if asset.media.model.file_type === 'image'
-          = image_tag asset.media.url, class: "image_show"
-        - elsif asset.media.model.file_type === 'video'
-          = video_tag asset.media.url, controls: true, class: "video_show"
-      - if @checkin.description.length > 0
-        .words_div
-          .words_inside
-            = @checkin.description
+  - if @checkin.assets.length > 0 || @checkin.description.length > 0
+    .assets_container
+      .assets
+        - @checkin.assets.each do |asset|
+          - if asset.media.model.file_type === 'image'
+            = image_tag asset.media.url, class: "image_show"
+          - elsif asset.media.model.file_type === 'video'
+            = video_tag asset.media.url, controls: true, class: "video_show"
+        - if @checkin.description.length > 0
+          .words_div
+            .words_inside
+              = @checkin.description
 
   - @checkin.assets.each do |asset|
     - if asset.media.model.file_type === 'audio'
