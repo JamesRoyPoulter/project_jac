@@ -28,5 +28,8 @@ describe Checkin do
       expect(checkin.title).to eq 'Checkin title'
     end
 
+    it 'should have a category' do
+      expect(checkin.categories.first.name).to eq 'Love'
+    end
   end
 end

@@ -3,11 +3,11 @@ class CheckinsController < ApplicationController
   protect_from_forgery
 
   def index
-    @checkins = Checkin.belonging_to current_user
+    @checkins = current_user.checkins.reverse
 
     respond_to do |format|
       format.html
-      format.json { render json: @checkins.reverse }
+      format.json { render json: @checkins }
     end
   end
 
