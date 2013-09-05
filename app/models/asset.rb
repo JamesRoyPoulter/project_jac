@@ -5,6 +5,6 @@ class Asset < ActiveRecord::Base
   belongs_to :checkin
   belongs_to :user
 
-  # validates :media, uniqueness: true, presence: true
+  validates :media, uniqueness: true, presence: true
 
 end

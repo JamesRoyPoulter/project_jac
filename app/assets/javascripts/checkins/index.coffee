@@ -32,7 +32,6 @@ $ ()->
     return num
 
   widthFunction = () ->
-    timelineDisplay()
     timeline_div_width = String(100/timelineDisplay().toFixed(2) + '%')
     return timeline_div_width
 

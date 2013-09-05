@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :person do
+    user
     name "MyString"
     picture "MyString"
-    user_id 1
   end
 end
