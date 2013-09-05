@@ -163,10 +163,12 @@ select[multiple] {
   height: 80%;
   background-color: #A9A9A9;
   margin-bottom: 3%;
-  overflow-x: scroll;
-  overflow-y: hidden;
   position: relative;
-  white-space: nowrap;
+  .previews {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
   .fields {
     height: 85%;
     display: inline-block;
@@ -174,13 +176,15 @@ select[multiple] {
       height: 100%;
     }
   }
-
   .add_media {
     display: inline-block;
-    padding: 15%;
+    position: absolute;
+    bottom: 3%; left: 0;
+    height: 15%;
+    text-align: center;
+    width: 100%;
     #add_media {
-      padding-left: 25%;
-      padding-bottom: 65%;
+      height: 100%;
     }
   }
   .checkin_medias { display: none; }
@@ -190,16 +194,10 @@ select[multiple] {
     height: 85%;
     margin: 5%;
     .upload_preview {
-      height: 100%;
+      height: 72%;
     }
   }
 }
-
-// #edit_checkin {
-//     .fields {
-//       display: inline-block;
-//     }
-// }
 
 .assets_form #form_field_label {
   position: absolute;
