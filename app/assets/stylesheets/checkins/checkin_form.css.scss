@@ -146,7 +146,7 @@ select[multiple] {
   float: left;
   width: 47.8%;
   margin-right: 3%;
-  height: 50%;
+  height: 49%;
 }
 
 .media_label {
@@ -166,6 +166,13 @@ select[multiple] {
   overflow-y: hidden;
   position: relative;
   white-space: nowrap;
+  .fields {
+    height: 85%;
+    display: inline-block;
+    .new_media {
+      height: 100%;
+    }
+  }
 
   .add_media {
     display: inline-block;
@@ -186,6 +193,12 @@ select[multiple] {
     }
   }
 }
+
+// #edit_checkin {
+//     .fields {
+//       display: inline-block;
+//     }
+// }
 
 .assets_form #form_field_label {
   position: absolute;

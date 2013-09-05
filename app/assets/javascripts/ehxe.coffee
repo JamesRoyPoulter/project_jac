@@ -99,7 +99,7 @@ window.Ehxe =
     $("#checkin_longitude").val lng
 
   appendFileInput: (element)->
-    $(element).append $('<div/>',
+    $(element).prepend $('<div/>',
       class:'new_media'
       html: $('<img/>',{class: 'upload_preview'})
     ).append $('<input>',
