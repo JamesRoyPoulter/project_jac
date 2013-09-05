@@ -1,8 +1,8 @@
 .new_user,
 .edit_user {
   width: 100%;
-  margin: 2% auto;
   text-align: center;
+  padding-top: 3%;
 
   form {
     width: 100%;
@@ -18,6 +18,40 @@
       padding: 3px 0px 3px 0px;
     }
   }
+}
+
+#reset_password {
+  margin-top: 3%;
+  font-size: 1.2em
+}
+
+.devise_container_div {
+  margin: 2% auto;
+  text-align: center;
+}
+
+#sign_in_devise_link {
+  padding: 0;
+}
+
+#forgot_password {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
+    font-size: 1.2em;
+}
+
+#user_email {
+  margin-top: 3%;
+}
+
+#user_email_field {
+  margin: 3%;
+}
+
+.new_user {
+  padding-top: 0;
 }
 
 .button#account_cancel,
@@ -37,3 +71,4 @@
   color: #fff;
   font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
 }
+

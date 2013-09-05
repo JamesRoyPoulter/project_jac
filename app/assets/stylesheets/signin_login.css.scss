@@ -80,17 +80,22 @@ input#user_current_password {
 // DEVISE STYLING
 
 .remember_me_div {
-  margin-top: 2%;
-  font-size: .8em;
+  font-size: .7em;
 }
 
-.devise_container_div {
-  margin-top: 2%;
+#user_remember_me {
+  margin-right: 0.5%;
+  margin-bottom: 0.3%;
 }
+
+// .devise_container_div {
+//   margin-top: 2%;
+// }
 
 #sign_in_devise_link, #sign_up_devise_link {
   font-size: 1em;
-  padding: 2%;
+  padding: 1%;
+  display: block;
 }
 
 #forgot_password_devise_link {
