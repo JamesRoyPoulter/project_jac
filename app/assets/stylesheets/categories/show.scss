@@ -49,3 +49,11 @@
 .options#category_back {
   padding-top: 0;
 }
+
+
+@media all and (max-width: 700px) {
+
+#category_checkins {
+  width: 80%;
+  }
+}
