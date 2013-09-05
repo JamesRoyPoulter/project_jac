@@ -256,3 +256,21 @@ select[multiple] {
   margin-top: -1%;
 }
 
+@media all and (max-width: 700px) {
+
+  .checkin_form {
+
+    form {
+      width: 90%;
+      }
+
+    .media_upload_container {
+      width: 38%;
+    }
+
+    .people_form,
+    .categories_form {
+      height: 28%;
+    }
+  }
+}
