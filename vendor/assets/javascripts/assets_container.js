@@ -1,4 +1,5 @@
 $(function() {
+  setTimeout(function() {
   var assets, width,
     _this = this;
   assets = $('.assets_container .assets');
@@ -11,5 +12,7 @@ $(function() {
       width: "" + width + "px",
       maxWidth: "" + width + "px"
     });
-  }
+  };
+  },
+  1);
 });
