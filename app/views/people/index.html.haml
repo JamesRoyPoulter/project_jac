@@ -12,9 +12,5 @@
         .button#person_icons
           = link_to image_tag('edit_icon.png', id: 'edit_icon_people'), edit_person_path(person)
           = link_to image_tag('x_icon_invert.png'), person, :method => :delete, :data => { :confirm => 'Are you sure?' }
-      .checkins
-        -# .person_divs
-        -#   -person.checkins.map do |checkin|
-        -#     - checkin.categories.map do |category|
-        -#       = category.color
+
 
