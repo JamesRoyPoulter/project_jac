@@ -2,16 +2,17 @@ require 'spec_helper'
 
 describe PeopleController do
 
+  let(:user) { FactoryGirl.create(:user) }
+
   before (:each) do
-    @user = FactoryGirl.create :user
-    sign_in @user
+    sign_in user
   end
 
-  let(:valid_attributes) { { name: "MyString", user_id: @user.id } }
+  let(:valid_attributes) { { name: "MyString", user_id: user.id } }
 
   describe "GET index" do
     it "assigns current_user's people to @people" do
-      person = FactoryGirl.create :person, user: @user
+      person = FactoryGirl.create :person, user: user
       get :index, {}
       assigns(:people).should eq([person])
     end

@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @categories = Category.where(user_id: current_user.id)
+    @categories = current_user.categories
 
     respond_to do |format|
       format.html
@@ -21,17 +21,14 @@ class CategoriesController < ApplicationController
 
   def search
     if params[:name_startsWith]
-      @categories = Category.where(
-        'name ilike :name AND user_id=:id',
-        name: "%#{params[:name_startsWith]}%",
-        id: current_user.id
+      @categories = current_user.categories.where(
+        'name ilike ?',"%#{params[:name_startsWith]}%"
       )
       render json: @categories, root: false
     else
-      @category = Category.where(
-        'name ilike :name AND user_id=:id',
-        name: "%#{params[:name]}%",
-        id: current_user.id).first
+      @category = current_user.categories.where(
+        'name ilike ?', "%#{params[:name]}%",
+      ).first
       render json: @category.checkins, root: false
     end
   end

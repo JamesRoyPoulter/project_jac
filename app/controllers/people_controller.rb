@@ -11,16 +11,14 @@ class PeopleController < ApplicationController
 
   def search
     if params[:name_startsWith]
-      @people = Person.where(
-        'name ilike :name AND user_id=:id',
-        name: "%#{params[:name_startsWith]}%",
-        id: current_user.id
+      @people = current_user.people.where(
+        'name ilike ?', "%#{params[:name_startsWith]}%"
       )
       render json: @people, root: false
     else
-      @person = Person.where('name ilike :name AND user_id=:id',
-        name: "%#{params[:name]}%",
-        id: current_user.id).first
+      @person = current_user.people.where(
+        'name ilike ?', "%#{params[:name]}%"
+      ).first
       render json: @person.checkins, root: false
     end
   end
