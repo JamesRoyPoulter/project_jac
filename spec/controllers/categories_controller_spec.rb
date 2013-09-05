@@ -2,18 +2,19 @@ require 'spec_helper'
 
 describe CategoriesController do
 
+  let(:user) { FactoryGirl.create(:user) }
+
   before (:each) do
-    @user = FactoryGirl.create :user
-    sign_in @user
+    sign_in user
   end
 
-  let(:valid_attributes) { { name: "MyString", color:'aqua', user_id: @user.id } }
+  let(:valid_attributes) { { name: "MyString", color:'aqua', user_id: user.id } }
 
   describe "GET index" do
     it "assigns current_user's categories to @categories" do
-      category = FactoryGirl.create :category, user: @user
+      category = FactoryGirl.create :category, user: user
       get :index, {}
-      assigns(:categories).should eq([category])
+      assigns(:categories).should eq(user.categories)
     end
   end
 
