@@ -84,7 +84,7 @@ window.Ehxe =
       if type is 'image'
         Ehxe.File.previewImage(".upload_preview", element)
       else if type is 'audio'
-        $('.upload_preview').eq(-1).attr("src",Ehxe.defaults.audo)
+        $('.upload_preview').eq(-1).attr("src",Ehxe.defaults.audio)
       else
         alert 'Invalid File Type'
         delete this.files[0]
@@ -99,7 +99,7 @@ window.Ehxe =
     $("#checkin_longitude").val lng
 
   appendFileInput: (element)->
-    $(element).prepend $('<div/>',
+    $(element).append $('<div/>',
       class:'new_media'
       html: $('<img/>',{class: 'upload_preview'})
     ).append $('<input>',
@@ -141,7 +141,7 @@ window.Ehxe =
     styledMap: ()->
       new google.maps.StyledMapType STYLES, name: 'Styled'
 
-    styleMap: (map, style)->
+    styleMap: (map, style)=>
       map.mapTypes.set style, Ehxe.Maps.styledMap()
 
     placeMarker: (location, map, color,draggable='false',title='mark your life here X')->

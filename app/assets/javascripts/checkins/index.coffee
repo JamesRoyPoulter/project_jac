@@ -36,7 +36,12 @@ $ ()->
     return timeline_div_width
 
   addCheckinMarker = (checkin, map, bounds)->
-    link = '<a class="infowindowMarker" href="/checkins/'+checkin.id+'">'+checkin.title+'</a>'
+    x = 'BOOBS'
+    if checkin.image.length > 0
+      image = '<img src="'+checkin.image[0].media.thumb.url+'" />'
+    else
+      image = ""
+    link = '<a class="infowindowMarker" href="/checkins/'+checkin.id+'">'+checkin.title+image+'</a>'
     location = new google.maps.LatLng checkin.latitude, checkin.longitude
     marker = Ehxe.Maps.placeMarker(location, map, checkin.categories[0].color,false,checkin.title)
     google.maps.event.addListener marker, 'click', ()->
