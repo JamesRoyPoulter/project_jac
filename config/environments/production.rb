@@ -77,4 +77,6 @@ YourWorld::Application.configure do
     config.fog_directory  = ENV['S3_BUCKET_NAME']
   end
 
+  config.assets.compile = true
+
 end
