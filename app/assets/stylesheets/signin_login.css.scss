@@ -102,3 +102,21 @@ input#user_current_password {
   font-size: 1em;
 }
 
+@media all and (max-width: 700px) {
+
+input#password,
+input#email,
+input#user_email,
+input#user_name,
+input#user_password,
+input#user_password_confirmation,
+input#user_current_password {
+  width: 80%;
+}
+
+.button#account_cancel,
+.button#back_account {
+  width: 50% !important;
+}
+
+}
