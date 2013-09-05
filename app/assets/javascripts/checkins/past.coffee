@@ -1,7 +1,8 @@
 if $('body').data('page') is 'CheckinsPast'
 
   $('#add_media').click ()->
-        Ehxe.newCheckinPreviewImage()
+    Ehxe.newCheckinPreviewImage()
+    $('.previews').scrollLeft(1300)
 
   $('.past_checkin_location_search').keypress (e)->
     if e.keyCode is 13

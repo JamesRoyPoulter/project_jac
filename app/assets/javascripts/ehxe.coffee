@@ -107,7 +107,7 @@ window.Ehxe =
     )
 
   newCheckinPreviewImage: ()->
-    Ehxe.appendFileInput('.assets_form')
+    Ehxe.appendFileInput('.previews')
     $('.checkin_medias').eq(-1).click()
     $('.checkin_medias').change ()->
       fileType = Ehxe.File.getFileType(this)

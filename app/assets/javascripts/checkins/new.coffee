@@ -53,6 +53,7 @@ if $('body').data('page') is 'CheckinsNew'
         infowindow.open map, marker
 
       $('#add_media').click ()->
+        console.log('meow')
         Ehxe.newCheckinPreviewImage()
 
       $('#checkin_category_ids option').click (e)->

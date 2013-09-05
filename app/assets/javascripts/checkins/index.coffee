@@ -41,7 +41,7 @@ $ ()->
       image = '<img src="'+checkin.image[0].media.thumb.url+'" />'
     else
       image = ""
-    link = '<a class="infowindowMarker" href="/checkins/'+checkin.id+'">'+checkin.title+image+'</a>'
+    link = '<a class="infowindowMarker" href="/checkins/'+checkin.id+'">'+checkin.title+'</br></br>'+image+'</a>'
     location = new google.maps.LatLng checkin.latitude, checkin.longitude
     marker = Ehxe.Maps.placeMarker(location, map, checkin.categories[0].color,false,checkin.title)
     google.maps.event.addListener marker, 'click', ()->
@@ -158,7 +158,7 @@ $ ()->
         listener = google.maps.event.addListener(map, "idle", ->
           zoom = map.getZoom()
           map.setZoom 16  if map.getZoom() > 16
-          map.setZoom(zoom-1) if map.getZoom() < 16
+          # map.setZoom(zoom-2) if map.getZoom() < 16
           google.maps.event.removeListener listener
         )
         paginate()
