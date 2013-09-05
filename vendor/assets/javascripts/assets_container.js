@@ -1,5 +1,6 @@
 $(function() {
-  setTimeout(function() {
+  setInterval(function() {
+    console.log('yoda');
   var assets, width,
     _this = this;
   assets = $('.assets_container .assets');
@@ -14,5 +15,5 @@ $(function() {
     });
   };
   },
-  10);
+  100);
 });
