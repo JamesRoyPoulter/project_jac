@@ -13,7 +13,7 @@
   width: 100%;
   padding: 1% 0;
   font-size: 1.4em;
-  margin: 3% auto 0 auto;
+  margin: 5% auto 0 auto;
   position: relative;
 }
 
@@ -48,6 +48,10 @@
   height: 100%;
 }
 
+.assets:first-child {
+  margin-left: 10px;
+}
+
 .image_show, .video_show, .words_div {
   margin-right: 10px;
   float: left;
@@ -62,7 +66,7 @@
   max-width: 200px;
   overflow: scroll;
   padding-top: 1%;
-  height: 93%;
+  height: 94%;
   text-align: left;
   line-height: 125%;
   box-shadow: 5px 5px 2px #777;
@@ -103,4 +107,13 @@
   width: 25px;
 }
 
+.show_checkin_categories a {
+  display: block;
+}
+
+@media all and (max-width: 760px) {
+    .show_checkin_container {
+      padding-top: 5%;
+    }
+}
 

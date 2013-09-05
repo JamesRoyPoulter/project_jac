@@ -72,40 +72,76 @@ window.Ehxe =
     audio: "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png"
     x: "https://s3-eu-west-1.amazonaws.com/ehxe/defaults/x_icon.png"
 
+  File:
+    previewImage: (element, input) ->
+      if input and input.files[0]
+        reader = new FileReader()
+        reader.onload = (e) ->
+          $(element).eq(-1).attr "src", e.target.result
+        reader.readAsDataURL input.files[0]
+
+    validateFileType: (type,element)->
+      if type is 'image'
+        Ehxe.File.previewImage(".upload_preview", element)
+      else if type is 'audio'
+        $('.upload_preview').eq(-1).attr("src",Ehxe.defaults.audo)
+      else
+        alert 'Invalid File Type'
+        delete this.files[0]
+
+    getFileType: (file)->
+      x = new RegExp(/^[a-zA-Z]*/)
+      x.exec(file.files[0].type)[0]
+
+
   setFormLatLng: (lat, lng) ->
     $("#checkin_latitude").val lat
     $("#checkin_longitude").val lng
 
-  previewImage: (element, input) ->
-    if input and input.files[0]
-      reader = new FileReader()
-      reader.onload = (e) ->
-        $(element).eq(-1).attr "src", e.target.result
-      reader.readAsDataURL input.files[0]
+  appendFileInput: (element)->
+    $(element).append $('<div/>',
+      class:'new_media'
+      html: $('<img/>',{class: 'upload_preview'})
+    ).append $('<input>',
+      {type:'file', name: 'medias[]', class: 'checkin_medias' }
+    )
+
+  newCheckinPreviewImage: ()->
+    Ehxe.appendFileInput('.assets_form')
+    $('.checkin_medias').eq(-1).click()
+    $('.checkin_medias').change ()->
+      fileType = Ehxe.File.getFileType(this)
+      Ehxe.File.validateFileType(fileType,this)
+    $('.upload_preview').click ()->
+      confirmation = confirm('Are you sure you want to delete this asset?')
+      if confirmation is true
+        $(this).parents('.new_media').remove()
 
   Maps:
     markersArray: []
 
-    map: (element, options) ->
+    map: (element, center, zoom) ->
+      options =
+        center: center
+        zoom: zoom
+        minZoom: 1
+        mapTypeId: "Styled"
+        mapTypeControlOptions:
+          mapTypeIds: ["Styled"]
       new google.maps.Map(document.getElementById(element), options)
-
-    mapOptions: (center, zoom) ->
-      center: center
-      zoom: zoom
-      minZoom: 1
-      mapTypeId: "Styled"
-      mapTypeControlOptions:
-        mapTypeIds: ["Styled"]
 
     styledMap: ()->
       new google.maps.StyledMapType STYLES, name: 'Styled'
 
-    placeMarker: (location, map, color)->
+    placeMarker: (location, map, color,draggable='false',title='mark your life here X')->
       marker = new google.maps.Marker
         position: location
         icon: Ehxe.markers[color]
         map: map
+        draggable: draggable
+        title: title
       @markersArray.push marker
+      marker
 
     checkinMarker: (location, map, color)->
       new google.maps.Marker

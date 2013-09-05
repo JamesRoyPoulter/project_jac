@@ -1,6 +1,10 @@
-- if flash[:error]
+- if flash[:error] || flash[:notice]
   .errors
     #error_explanation
       - flash.each do |name, msg|
         - if msg.is_a?(String)
           = content_tag :div, msg, :id => "flash_#{name}"
+- if resource.errors.any?
+  #error_explanation
+    - resource.errors.full_messages.each do |msg|
+      = msg
