@@ -8,6 +8,7 @@ gem 'active_model_serializers'
 
 gem 'pg'
 gem 'puma'
+gem 'foreman'
 
 gem 'pry-rails'
 

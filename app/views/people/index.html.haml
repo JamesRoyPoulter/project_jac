@@ -1,7 +1,7 @@
-.new_person_button
-  = link_to 'NEW PERSON', new_person_path, id: "submit_new_person"
-
 .people_page
+  .new_person_button
+    = link_to 'NEW PERSON', new_person_path, id: "submit_new_person"
+
   - @people.each do |person|
     .people
       .title#people
