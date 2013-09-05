@@ -19,7 +19,7 @@ group :development do
   gem 'pry-stack_explorer'
 end
 
-gem 'faker'
+gem 'ffaker'
 gem 'rspec-rails'
 gem 'factory_girl_rails'
 gem 'database_cleaner'
