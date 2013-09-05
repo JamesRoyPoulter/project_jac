@@ -177,10 +177,10 @@ select[multiple] {
 
   .add_media {
     display: inline-block;
-    padding: 15%;
+    margin: 25% 0;
     #add_media {
-      padding-left: 25%;
-      padding-bottom: 65%;
+      // padding-left: 25%;
+      // padding-bottom: 65%;
     }
   }
   .checkin_medias { display: none; }
