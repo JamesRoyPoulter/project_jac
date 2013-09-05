@@ -18,14 +18,19 @@
     .words_form
       = f.text_area :description, placeholder: 'DESCRIPTION'
 
-    .assets_form
-      = render 'checkins/form_fields/assets', f: f
+    .media_upload_container
+      #form_field_label.media_label MEDIA
+      .assets_form
+        = render 'checkins/form_fields/assets', f: f
 
     .categories_form
       = render 'checkins/form_fields/categories', f: f
 
     .people_form
       = render 'checkins/form_fields/people', f: f
+
+
+
 
     .submit_checkin
       - if params[:action] === 'new' || params[:action] === 'past'
