@@ -1,4 +1,5 @@
 if $('body').data('page') is 'CheckinsPast'
+
   $('#add_media').click ()->
         Ehxe.newCheckinPreviewImage()
 
