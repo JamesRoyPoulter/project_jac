@@ -120,6 +120,14 @@ window.Ehxe =
   Maps:
     markersArray: []
 
+    geocoder: new google.maps.Geocoder()
+
+    latlng: (lat,lng)->
+      new google.maps.LatLng lat, lng
+
+    mapCenter: (map)->
+      @latlng(map.getCenter().lat(), map.getCenter().lng())
+
     map: (element, center, zoom) ->
       options =
         center: center
@@ -132,6 +140,9 @@ window.Ehxe =
 
     styledMap: ()->
       new google.maps.StyledMapType STYLES, name: 'Styled'
+
+    styleMap: (map, style)->
+      map.mapTypes.set style, Ehxe.Maps.styledMap()
 
     placeMarker: (location, map, color,draggable='false',title='mark your life here X')->
       marker = new google.maps.Marker
