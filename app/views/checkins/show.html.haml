@@ -18,9 +18,10 @@
           = image_tag asset.media.url, class: "image_show"
         - elsif asset.media.model.file_type === 'video'
           = video_tag asset.media.url, controls: true, class: "video_show"
-      .words_div
-        .words_inside
-          = @checkin.description
+      - if @checkin.description.length > 0
+        .words_div
+          .words_inside
+            = @checkin.description
 
   - @checkin.assets.each do |asset|
     - if asset.media.model.file_type === 'audio'
