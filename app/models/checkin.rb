@@ -1,7 +1,7 @@
 class Checkin < ActiveRecord::Base
 
   attr_accessible :address, :latitude, :longitude, :user_id, :title, :description, :date,
-                  :category_ids, :person_ids
+                  :category_ids, :person_ids, :assets_attributes
 
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode
