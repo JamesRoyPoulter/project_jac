@@ -3,6 +3,7 @@
   text-align: center;
   width: 85%;
   height: 100%;
+  padding-top: 3%;
   div {
     max-width: 800px;
   }
@@ -103,4 +104,9 @@
   width: 25px;
 }
 
+@media all and (max-width: 760px) {
+    .show_checkin_container {
+      padding-top: 5%;
+    }
+}
 

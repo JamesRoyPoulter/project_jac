@@ -33,17 +33,11 @@ if $('body').data('page') is 'CheckinsNew'
       #sets lat and lng to current location
       myLatlng = new google.maps.LatLng position.coords.latitude, position.coords.longitude
 
-      map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions(myLatlng, 16)
+      map = Ehxe.Maps.map 'map', myLatlng, 16
       map.mapTypes.set 'Styled', Ehxe.Maps.styledMap()
 
       #creates the geolocated marker
-      marker = new google.maps.Marker
-        position: myLatlng
-        map: map
-        draggable: true
-        title: 'mark your life here X'
-        icon: Ehxe.markers.black
-      Ehxe.Maps.markersArray.push marker
+      marker = Ehxe.Maps.placeMarker(myLatlng,map,'black',true,'mark your life')
 
       #creates check-in info-window
       infowindow = new google.maps.InfoWindow
