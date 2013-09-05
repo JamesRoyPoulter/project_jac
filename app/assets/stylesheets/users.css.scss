@@ -20,6 +20,36 @@
   }
 }
 
+#reset_password {
+  margin-top: 3%;
+  font-size: 1.2em
+}
+
+.devise_container_div {
+  margin: 2% auto;
+  text-align: center;
+}
+
+#sign_in_devise_link {
+  padding: 0;
+}
+
+#forgot_password {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
+    font-size: 1.2em;
+}
+
+#user_email {
+  margin-top: 3%;
+}
+
+#user_email_field {
+  margin: 3%;
+}
+
 .new_user {
   padding-top: 0;
 }
@@ -41,3 +71,4 @@
   color: #fff;
   font-family: "Sinhala Sangam MN", "Perpetua", "Garamond";
 }
+

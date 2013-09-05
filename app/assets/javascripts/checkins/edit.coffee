@@ -12,20 +12,14 @@ $ ()->
     checkin_id = $('#map').data 'id'
 
     $.getJSON '/checkins/'+checkin_id+'/edit.json', (data)->
-      checkinLatLng = new google.maps.LatLng(data.checkin.latitude, data.checkin.longitude)
-
-      styledMapType = new google.maps.StyledMapType STYLES, name: 'Styled'
+      location = new google.maps.LatLng(data.checkin.latitude, data.checkin.longitude)
 
       #generates the map, passing options and style
-      map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions(checkinLatLng, 16)
-      map.mapTypes.set 'Styled', styledMapType
+      map = Ehxe.Maps.map 'map', location, 16
+      map.mapTypes.set 'Styled', Ehxe.Maps.styledMap()
 
       #creates the geolocated marker
-      marker = new google.maps.Marker
-        position: checkinLatLng
-        map: map
-        draggable: true
-        icon: Ehxe.markers.black
+      marker = Ehxe.Maps.placeMarker(location, map, 'black', true, data.checkin.title)
 
       google.maps.event.addListener marker, 'dragend', ()->
         position = marker.getPosition()

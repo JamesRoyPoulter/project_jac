@@ -4,26 +4,6 @@ page = $('body').data('page')
 
 if page is 'CheckinsNew' || page is 'CheckinsPast' || page is 'CheckinsEdit'
 
-  # $('#add_media').click ()->
-  #   $('.assets_form').append $('<div/>',
-  #     class:'new_media'
-  #     html: $('<img/>',{class: 'upload_preview'})
-  #   ).append $('<input>',
-  #     {type:'file', name: 'medias[]', class: 'checkin_medias' }
-  #   )
-  #   $('.checkin_medias').eq(-1).click()
-  #   $('.checkin_medias').change ()->
-  #     x = new RegExp(/^[a-zA-Z]*/)
-  #     type = x.exec(this.files[0].type)[0]
-  #     if type is 'image'
-  #       Ehxe.previewImage(".upload_preview", this)
-  #     else if type is 'audio'
-  #       $('.upload_preview').eq(-1).attr("src",'https://s3-eu-west-1.amazonaws.com/ehxe/defaults/audio.png')
-  #     else
-  #       alert 'Invalid File Type'
-  #       delete this.files[0]
-
-
   $('#checkin_description').click () ->
     $(@).css 'text-align', 'left'
 
@@ -53,17 +33,11 @@ if $('body').data('page') is 'CheckinsNew'
       #sets lat and lng to current location
       myLatlng = new google.maps.LatLng position.coords.latitude, position.coords.longitude
 
-      map = Ehxe.Maps.map 'map', Ehxe.Maps.mapOptions(myLatlng, 16)
+      map = Ehxe.Maps.map 'map', myLatlng, 16
       map.mapTypes.set 'Styled', Ehxe.Maps.styledMap()
 
       #creates the geolocated marker
-      marker = new google.maps.Marker
-        position: myLatlng
-        map: map
-        draggable: true
-        title: 'mark your life here X'
-        icon: Ehxe.markers.black
-      Ehxe.Maps.markersArray.push marker
+      marker = Ehxe.Maps.placeMarker(myLatlng,map,'black',true,'mark your life')
 
       #creates check-in info-window
       infowindow = new google.maps.InfoWindow

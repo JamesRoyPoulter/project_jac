@@ -32,26 +32,18 @@ $ ()->
     return num
 
   widthFunction = () ->
-    timelineDisplay()
     timeline_div_width = String(100/timelineDisplay().toFixed(2) + '%')
     return timeline_div_width
 
   addCheckinMarker = (checkin, map, bounds)->
-    checkinLatLng = new google.maps.LatLng checkin.latitude, checkin.longitude
-    marker = new google.maps.Marker
-      position: checkinLatLng
-      map: map
-      icon:
-        if checkin.categories[0]?
-          markerColor(checkin.categories[0].color)
-        else
-          Ehxe.markers.black
-      contentString = checkin.title
-    google.maps.event.addListener(marker, 'click', ()->
-      infowindow.setContent(contentString)
-      infowindow.open(map, marker))
+    link = '<a class="infowindowMarker" href="/checkins/'+checkin.id+'">'+checkin.title+'</a>'
+    location = new google.maps.LatLng checkin.latitude, checkin.longitude
+    marker = Ehxe.Maps.placeMarker(location, map, checkin.categories[0].color,false,checkin.title)
+    google.maps.event.addListener marker, 'click', ()->
+      infowindow.setContent(link)
+      infowindow.open(map, marker)
     markersArray.push marker
-    bounds.extend(checkinLatLng)
+    bounds.extend(location)
 
   setCategoryColor = (checkin, index)->
     if checkin.categories[0]?
@@ -97,13 +89,6 @@ $ ()->
       ).appendTo "#checkin_title"+index
       setCategoryColor(checkin, index)
       setWordHeight()
-    # else if checkin.video and checkin.video.length isnt 0
-    #   $('<img/>',
-    #     class:'jpage_image checkin_video'
-    #     src: checkin.video[0].media.video_thumb.url
-    #     # style: 'height:175px;width:175px'
-    #   ).appendTo "#checkin_title"+index
-    #   setCategoryColor(checkin, index)
     else
       $("<img/>",
         class: 'jpage_image checkin_minimap'
@@ -144,21 +129,10 @@ $ ()->
 
   # INITIATE MAP
   if $('body').data('page') is 'CheckinsIndex'
-    map = ""
-    initialize = (zoom, styles)->
-      mapOptions =
-        mapTypeControlOptions:
-          mapTypeIds: [ 'Styled']
-        center: new google.maps.LatLng(16.7758, 3.0094)
-        zoom: zoom
-        minZoom: 2
-        mapTypeId: 'Styled'
-      styledMapType = new google.maps.StyledMapType(STYLES, { name: 'Styled' })
-      map = Ehxe.Maps.map "map", mapOptions
-      map.mapTypes.set('Styled', styledMapType)
-      map
+    center = new google.maps.LatLng(16.7758, 3.0094)
 
-    google.maps.event.addDomListener(window, 'load', initialize(2, STYLES))
+    map = Ehxe.Maps.map "map", center, 4
+    map.mapTypes.set 'Styled', Ehxe.Maps.styledMap()
 
     infowindow = new google.maps.InfoWindow
 
@@ -174,8 +148,7 @@ $ ()->
         $.each data.checkins, (index, checkin)->
           addCheckinMarker checkin, map, bounds
           populateTimeLine checkin, index
-
-          index +=1
+          index += 1
         map.fitBounds(bounds)
         listener = google.maps.event.addListener(map, "idle", ->
           zoom = map.getZoom()

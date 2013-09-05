@@ -27,6 +27,7 @@ body {
   max-height: 200px;
   margin: 0 auto;
   margin-top: -20px;
+  vertical-align: bottom;
  }
 
  #logo_name {
