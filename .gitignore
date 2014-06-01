@@ -14,8 +14,10 @@
 /log/*.log
 /tmp
 
+.idea
 /public/uploads
 .DS_Store
 /vendor/ffmpeg
 .zeus.sock
+Ehxe_assets
 

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
+ruby '2.1.1'
 
 gem 'rails', '3.2.14'
 gem 'turbolinks'
@@ -10,8 +10,6 @@ gem 'pg'
 gem 'puma'
 gem 'foreman'
 
-gem 'pry-rails'
-
 group :development do
   gem 'pry-rails'
   gem 'pry-debugger'
@@ -20,26 +18,23 @@ group :development do
   gem 'pry-stack_explorer'
 end
 
-gem 'ffaker'
-gem 'rspec-rails'
-gem 'factory_girl_rails'
-gem 'database_cleaner'
+group :test do
+  gem 'ffaker'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+end
 
 gem 'sass-rails',   '~> 3.2.3'
 gem 'coffee-rails', '~> 3.2.1'
 gem 'uglifier', '>= 1.0.3'
-gem 'jquery-rails'
 gem 'haml-rails'
 
-gem 'nested_form'
 gem 'devise'
-
-gem 'bcrypt-ruby', '~> 3.0.0'
 
 # File Uploads
 gem 'carrierwave'
 gem 'fog'
 gem 'rmagick'
-gem 'youtube_it'
 
 gem 'geocoder'
