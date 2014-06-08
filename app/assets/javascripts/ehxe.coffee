@@ -261,10 +261,3 @@ window.STYLES = [
     color: "#cccccc"
   ]
 ]
-
-# walkme = document.createElement("script")
-# walkme.type = "text/javascript"
-# walkme.async = true
-# walkme.src = "http://cdn.walkme.com/users/b951c2088e0f4e60ad4b5e0306bf89c1/walkme_b951c2088e0f4e60ad4b5e0306bf89c1.js"
-# s = document.getElementsByTagName("script")[0]
-# s.parentNode.insertBefore walkme, s
